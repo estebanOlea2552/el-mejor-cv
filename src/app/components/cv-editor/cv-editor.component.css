@@ -4,14 +4,16 @@
 .form {
     width: 50%;
     height: auto;
-    /* border: 2px solid rgb(70, 70, 70); */
     margin: 1%
 }
 
 .preview {
-    width: 50%;
-    max-height: 90vh;
-    /* border: 2px solid rgb(70, 70, 70); */
+    position: fixed;
+    top: 3%;
+    left: calc(50%);
+    width: calc(50% - 2%);
+    height: 90vh;
     background-color: rgb(230, 230, 230);
-    margin: 1%
+    margin: 1%;
+    overflow: auto;
 }

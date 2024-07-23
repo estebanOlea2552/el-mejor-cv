@@ -1,5 +1,6 @@
 <h3>Formulario</h3>
 <form class="formGroup" [formGroup]="cvForm">
+    <!-- Información General -->
     <mat-card>
         <mat-card-header>
             <mat-card-title>Información General</mat-card-title>
@@ -15,6 +16,7 @@
             </mat-form-field>
         </mat-card-content>
     </mat-card>
+
     <mat-card>
         <mat-card-content>
             <mat-form-field>
@@ -23,6 +25,7 @@
             </mat-form-field>
         </mat-card-content>
     </mat-card>
+
     <mat-card>
         <mat-card-content>
             <mat-form-field>
@@ -31,72 +34,62 @@
             </mat-form-field>
         </mat-card-content>
     </mat-card>
+    <!-- Formación Académica -->
     <mat-card>
         <mat-card-header>
             <mat-card-title>Formación Académica</mat-card-title>
+
         </mat-card-header>
         <mat-card-content>
             <div formGroupName="academicBackground">
-                <div>
-                    <mat-form-field>
-                        <mat-label>Título</mat-label>
-                        <input matInput formControlName="title">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Escuela</mat-label>
-                        <input matInput formControlName="school">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Fecha</mat-label>
-                        <input matInput formControlName="date">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Descripción</mat-label>
-                        <textarea matInput formControlName="description"></textarea>
-                    </mat-form-field>
-                </div>
+                <mat-form-field>
+                    <mat-label>Título</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Escuela</mat-label>
+                    <input matInput formControlName="school">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Fecha</mat-label>
+                    <input matInput formControlName="date">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
             </div>
         </mat-card-content>
+        <button mat-button>Añadir</button>
     </mat-card>
+    <!-- Experiencia Laboral -->
     <mat-card>
         <mat-card-header>
             <mat-card-title>Experiencia Laboral</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <div formGroupName="workExperience">
-                <div>
-                    <mat-form-field>
-                        <mat-label>Posición</mat-label>
-                        <input matInput formControlName="position">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Compañía</mat-label>
-                        <input matInput formControlName="company">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Fecha</mat-label>
-                        <input matInput formControlName="date">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Descripción</mat-label>
-                        <textarea matInput formControlName="description"></textarea>
-                    </mat-form-field>
-                </div>
+                <mat-form-field>
+                    <mat-label>Posición</mat-label>
+                    <input matInput formControlName="position">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Compañía</mat-label>
+                    <input matInput formControlName="company">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Fecha</mat-label>
+                    <input matInput formControlName="date">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
             </div>
         </mat-card-content>
+        <button mat-button>Añadir</button>
     </mat-card>
+    <!-- Habilidades -->
     <mat-card>
         <mat-card-header>
             <mat-card-title>Habilidades</mat-card-title>
@@ -118,4 +111,5 @@
             </ul>
         </mat-card-content>
     </mat-card>
+    <button mat-button (click)="send()">Send</button>
 </form>
