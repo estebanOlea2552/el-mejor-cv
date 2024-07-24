@@ -38,25 +38,33 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>Formación Académica</mat-card-title>
-
         </mat-card-header>
         <mat-card-content>
             <div formGroupName="academicBackground">
+                <!-- Fecha de inicio -->
                 <mat-form-field>
-                    <mat-label>Título</mat-label>
-                    <input matInput formControlName="title">
+                    <mat-label>Elige una fecha de inicio</mat-label>
+                    <input
+                    matInput
+                    [matDatepicker]="AcademicBackgroundInitPicker"
+                    formControlName="AcademicBackgroundInitDate">
+                    <mat-hint>mm/dd/aaaa</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="AcademicBackgroundInitPicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #AcademicBackgroundInitPicker startView="multi-year">
+                    </mat-datepicker>
                 </mat-form-field>
+
+                <!-- Fecha de finalización -->
                 <mat-form-field>
-                    <mat-label>Escuela</mat-label>
-                    <input matInput formControlName="school">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Fecha</mat-label>
-                    <input matInput formControlName="date">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Descripción</mat-label>
-                    <textarea matInput formControlName="description"></textarea>
+                    <mat-label>Elige una fecha de finalización</mat-label>
+                    <input matInput [matDatepicker]="AcademicBackgroundEndPicker"
+                        formControlName="AcademicBackgroundEndDate">
+                    <mat-hint>mm/dd/aaaa</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="AcademicBackgroundEndPicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #AcademicBackgroundEndPicker startView="multi-year">
+                    </mat-datepicker>
                 </mat-form-field>
             </div>
         </mat-card-content>
@@ -77,13 +85,28 @@
                     <mat-label>Compañía</mat-label>
                     <input matInput formControlName="company">
                 </mat-form-field>
+                <!-- Fecha de inicio -->
                 <mat-form-field>
-                    <mat-label>Fecha</mat-label>
-                    <input matInput formControlName="date">
+                    <mat-label>Elige una fecha de inicio</mat-label>
+                    <input matInput [matDatepicker]="WorkExperienceInitPicker"
+                        formControlName="WorkExperienceInitDate">
+                    <mat-hint>mm/dd/aaaa</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="WorkExperienceInitPicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #WorkExperienceInitPicker startView="multi-year">
+                    </mat-datepicker>
                 </mat-form-field>
+
+                <!-- Fecha de finalización -->
                 <mat-form-field>
-                    <mat-label>Descripción</mat-label>
-                    <textarea matInput formControlName="description"></textarea>
+                    <mat-label>Elige una fecha de finalización</mat-label>
+                    <input matInput [matDatepicker]="WorkExperienceEndPicker"
+                        formControlName="WorkExperienceEndDate">
+                    <mat-hint>mm/dd/aaaa</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="WorkExperienceEndPicker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #WorkExperienceEndPicker startView="multi-year">
+                    </mat-datepicker>
                 </mat-form-field>
             </div>
         </mat-card-content>

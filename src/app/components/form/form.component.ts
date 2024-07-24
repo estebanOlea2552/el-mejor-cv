@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { WorkerI } from 'src/app/interfaces/cv.interface';
 import { distinctUntilChanged } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -16,6 +21,7 @@ import { distinctUntilChanged } from 'rxjs';
   styleUrls: ['./form.component.css'],
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -23,7 +29,9 @@ import { distinctUntilChanged } from 'rxjs';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class FormComponent implements OnInit {
@@ -36,13 +44,15 @@ export class FormComponent implements OnInit {
     academicBackground: {
       title: '',
       school: '',
-      date: '',
+      AcademicBackgroundInitDate: '',
+      AcademicBackgroundEndDate: '',
       description: ''
     },
     workExperience: {
       position: '',
       company: '',
-      date: '',
+      WorkExperienceInitDate: '',
+      WorkExperienceEndDate: '',
       description: ''
     },
     skills: ''
@@ -58,13 +68,15 @@ export class FormComponent implements OnInit {
         academicBackground: this.formBuilder.group({
           title: [''],
           school: [''],
-          date: [''],
+          AcademicBackgroundInitDate: [''],
+          AcademicBackgroundEndDate: [''],
           description: ['']
         }),
         workExperience: this.formBuilder.group({
           position: [''],
           company: [''],
-          date: [''],
+          WorkExperienceInitDate: [''],
+          WorkExperienceEndDate: [''],
           description: ['']
         }),
         skills: ['']
@@ -105,7 +117,7 @@ export class FormComponent implements OnInit {
     } else if (keys.length === 2) {
       (this.workerForm as any)[keys[0]][keys[1]] = value;
     }
-    this.previewConnector.updateWorkerField(controlName, value);
+    this.previewConnector.updateWorkerData(controlName, value);
   }
 
   send(){

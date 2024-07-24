@@ -22,13 +22,15 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     academicBackground: {
       title: '',
       school: '',
-      date: '',
+      AcademicBackgroundInitDate: '',
+      AcademicBackgroundEndDate: '',
       description: ''
     },
     workExperience: {
       position: '',
       company: '',
-      date: '',
+      WorkExperienceInitDate: '',
+      WorkExperienceEndDate: '',
       description: ''
     },
     skills: ''
@@ -39,12 +41,12 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
   constructor(private previewConnector: PreviewConnectorService) {}
 
   ngAfterViewInit(): void {
-    this.currentValueSuscription = this.previewConnector.formCurrentValue$.subscribe((workerData) => {
-      this.updateWorker(workerData.field, workerData.value);
+    this.currentValueSuscription = this.previewConnector.fieldCurrentValue$.subscribe((workerData) => {
+      this.updateWorkerPreview(workerData.field, workerData.value);
     })
   }
 
-  updateWorker(controlName: string, value: any) {
+  updateWorkerPreview(controlName: string, value: any) {
     const keys: string[] = controlName.split('.');
     if (keys.length === 1) {
       (this.workerPreview as any)[keys[0]] = value;

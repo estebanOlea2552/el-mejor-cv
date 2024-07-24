@@ -4,54 +4,63 @@
         <h3>Preview</h3>
     </mat-card-header>
     <mat-card-content>
+        <span class="title">Nombre</span>
         <span>{{workerPreview.name}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
+        <span class="title">Apellido</span>
         <span>{{workerPreview.lastname}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
+        <span class="title">Posición</span>
         <span>{{workerPreview.jobPosition}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
+        <span class="title">Sobre Mí</span>
         <span>{{workerPreview.aboutMe}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
+        <span class="title">Educación</span>
         <span>{{workerPreview.academicBackground.title}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
         <span>{{workerPreview.academicBackground.school}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
-        <span>{{workerPreview.academicBackground.date}}</span>
+        <span>{{workerPreview.academicBackground.AcademicBackgroundInitDate | date}}</span>
+        <span>{{workerPreview.academicBackground.AcademicBackgroundEndDate | date}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
         <span>{{workerPreview.academicBackground.description}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
+        <span class="title">Experiencia</span>
         <span>{{workerPreview.workExperience.position}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
         <span>{{workerPreview.workExperience.company}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
-        <span>{{workerPreview.workExperience.date}}</span>
+        <span>{{ workerPreview.workExperience.WorkExperienceInitDate | date }}</span>
+        <span>{{ workerPreview.workExperience.WorkExperienceEndDate| date }}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
         <span>{{workerPreview.workExperience.description}}</span>
     </mat-card-content>
-    <hr>
+    
     <mat-card-content>
+        <span class="title">Habilidades</span>
         <span>{{workerPreview.skills}}</span>
     </mat-card-content>
 </mat-card>

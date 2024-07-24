@@ -6,11 +6,11 @@ import { Subject } from 'rxjs';
 })
 export class PreviewConnectorService {
   private workerDataSubject = new Subject<any>();
-  formCurrentValue$ = this.workerDataSubject.asObservable();
+  fieldCurrentValue$ = this.workerDataSubject.asObservable();
 
   constructor() { }
 
-  updateWorkerField(field: string, value: any) {
+  updateWorkerData(field: string, value: string) {
     this.workerDataSubject.next({ field, value });
   }
 }

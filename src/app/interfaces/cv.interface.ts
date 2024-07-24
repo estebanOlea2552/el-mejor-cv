@@ -1,14 +1,16 @@
 export interface AcademicBackgroundI {
     title: string;
     school: string;
-    date: string;
+    AcademicBackgroundInitDate: string,
+    AcademicBackgroundEndDate: string,
     description: string;
 }
 
 export interface WorkExperienceI {
     position: string;
     company: string;
-    date: string;
+    WorkExperienceInitDate: string,
+    WorkExperienceEndDate: string,
     description: string;
 }
 
