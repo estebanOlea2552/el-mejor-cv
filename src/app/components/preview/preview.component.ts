@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { MatCardModule } from '@angular/material/card';
-import { Subscription } from 'rxjs';
+
 import { WorkerI } from 'src/app/interfaces/cv.interface';
 
 @Component({
@@ -19,21 +21,21 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     lastname: '',
     jobPosition: '',
     aboutMe: '',
-    academicBackground: {
-      title: '',
+    academicBackground: [{
+      grade: '',
       school: '',
-      AcademicBackgroundInitDate: '',
-      AcademicBackgroundEndDate: '',
+      academicBackgroundInitDate: '',
+      academicBackgroundEndDate: '',
       description: ''
-    },
-    workExperience: {
+    }],
+    workExperience: [{
       position: '',
       company: '',
-      WorkExperienceInitDate: '',
-      WorkExperienceEndDate: '',
+      workExperienceInitDate: '',
+      workExperienceEndDate: '',
       description: ''
-    },
-    skills: ''
+    }],
+    skills: ['']
   };
   
   currentValueSuscription: Subscription | undefined;

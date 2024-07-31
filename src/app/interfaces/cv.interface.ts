@@ -1,16 +1,16 @@
 export interface AcademicBackgroundI {
-    title: string;
+    grade: string;
     school: string;
-    AcademicBackgroundInitDate: string,
-    AcademicBackgroundEndDate: string,
+    academicBackgroundInitDate: string,
+    academicBackgroundEndDate: string,
     description: string;
 }
 
 export interface WorkExperienceI {
     position: string;
     company: string;
-    WorkExperienceInitDate: string,
-    WorkExperienceEndDate: string,
+    workExperienceInitDate: string,
+    workExperienceEndDate: string,
     description: string;
 }
 
@@ -19,7 +19,7 @@ export interface WorkerI {
     lastname: string;
     jobPosition: string;
     aboutMe: string;
-    academicBackground: AcademicBackgroundI;
-    workExperience: WorkExperienceI;
-    skills: string;
+    academicBackground: AcademicBackgroundI[];
+    workExperience: WorkExperienceI[];
+    skills: string[];
 }

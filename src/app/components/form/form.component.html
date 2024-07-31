@@ -6,22 +6,26 @@
             <mat-card-title>Información General</mat-card-title>
         </mat-card-header>
         <mat-card-content>
+
             <mat-form-field>
                 <mat-label>Nombre</mat-label>
-                <input matInput formControlName="name">
+                <input
+                matInput
+                formControlName="name">
             </mat-form-field>
+
             <mat-form-field>
                 <mat-label>Apellido</mat-label>
-                <input matInput formControlName="lastname">
+                <input
+                matInput
+                formControlName="lastname">
             </mat-form-field>
-        </mat-card-content>
-    </mat-card>
 
-    <mat-card>
-        <mat-card-content>
             <mat-form-field>
                 <mat-label>Posición de Trabajo</mat-label>
-                <input matInput formControlName="jobPosition">
+                <input
+                matInput
+                formControlName="jobPosition">
             </mat-form-field>
         </mat-card-content>
     </mat-card>
@@ -30,109 +34,200 @@
         <mat-card-content>
             <mat-form-field>
                 <mat-label>Sobre Mí</mat-label>
-                <textarea matInput formControlName="aboutMe"></textarea>
+                <textarea
+                matInput
+                formControlName="aboutMe">
+                </textarea>
             </mat-form-field>
         </mat-card-content>
     </mat-card>
+
     <!-- Formación Académica -->
     <mat-card>
         <mat-card-header>
             <mat-card-title>Formación Académica</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-            <div formGroupName="academicBackground">
-                <!-- Fecha de inicio -->
-                <mat-form-field>
-                    <mat-label>Elige una fecha de inicio</mat-label>
-                    <input
-                    matInput
-                    [matDatepicker]="AcademicBackgroundInitPicker"
-                    formControlName="AcademicBackgroundInitDate">
-                    <mat-hint>mm/dd/aaaa</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="AcademicBackgroundInitPicker">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #AcademicBackgroundInitPicker startView="multi-year">
-                    </mat-datepicker>
-                </mat-form-field>
 
-                <!-- Fecha de finalización -->
-                <mat-form-field>
-                    <mat-label>Elige una fecha de finalización</mat-label>
-                    <input matInput [matDatepicker]="AcademicBackgroundEndPicker"
-                        formControlName="AcademicBackgroundEndDate">
-                    <mat-hint>mm/dd/aaaa</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="AcademicBackgroundEndPicker">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #AcademicBackgroundEndPicker startView="multi-year">
-                    </mat-datepicker>
-                </mat-form-field>
+        <mat-card-content>
+            <div formArrayName="academicBackground">
+                <!-- Reccorrido -->
+                <div *ngFor="let grade of academicBackground.controls, let i=index" [formGroupName]="i">
+
+                    <mat-form-field>
+                        <mat-label>Grado</mat-label>
+                        <input
+                        matInput
+                        formControlName="grade">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Escuela</mat-label>
+                        <input
+                        matInput
+                        formControlName="school">
+                    </mat-form-field>
+
+                    <!-- Fecha de inicio -->
+                    <mat-form-field>
+                        <mat-label>Elige una fecha de inicio</mat-label>
+                        <input
+                        matInput
+                        [matDatepicker]="academicBackgroundInitPicker"
+                        formControlName="academicBackgroundInitDate">
+                        <mat-hint>mm/dd/aaaa</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="academicBackgroundInitPicker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #academicBackgroundInitPicker startView="multi-year">
+                        </mat-datepicker>
+                    </mat-form-field>
+
+                    <!-- Fecha de finalización -->
+                    <mat-form-field>
+                        <mat-label>Elige una fecha de finalización</mat-label>
+                        <input matInput [matDatepicker]="academicBackgroundEndPicker"
+                            formControlName="academicBackgroundEndDate">
+                        <mat-hint>mm/dd/aaaa</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="academicBackgroundEndPicker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #academicBackgroundEndPicker startView="multi-year">
+                        </mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Descripción</mat-label>
+                        <textarea
+                        matInput
+                        formControlName="description">
+                        </textarea>
+                    </mat-form-field>
+
+                    <button
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Remove"
+                    (click)="removeAcademicBackground(i)"
+                    style="margin: 1%;">
+                        <mat-icon>close</mat-icon>
+                    </button>
+
+                </div>
+                <button
+                mat-stroked-button
+                (click)="addAcademicBackground()">
+                    Añadir
+                </button>
             </div>
         </mat-card-content>
-        <button mat-button>Añadir</button>
     </mat-card>
+
     <!-- Experiencia Laboral -->
     <mat-card>
         <mat-card-header>
             <mat-card-title>Experiencia Laboral</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-            <div formGroupName="workExperience">
-                <mat-form-field>
-                    <mat-label>Posición</mat-label>
-                    <input matInput formControlName="position">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Compañía</mat-label>
-                    <input matInput formControlName="company">
-                </mat-form-field>
-                <!-- Fecha de inicio -->
-                <mat-form-field>
-                    <mat-label>Elige una fecha de inicio</mat-label>
-                    <input matInput [matDatepicker]="WorkExperienceInitPicker"
-                        formControlName="WorkExperienceInitDate">
-                    <mat-hint>mm/dd/aaaa</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="WorkExperienceInitPicker">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #WorkExperienceInitPicker startView="multi-year">
-                    </mat-datepicker>
-                </mat-form-field>
 
-                <!-- Fecha de finalización -->
-                <mat-form-field>
-                    <mat-label>Elige una fecha de finalización</mat-label>
-                    <input matInput [matDatepicker]="WorkExperienceEndPicker"
-                        formControlName="WorkExperienceEndDate">
-                    <mat-hint>mm/dd/aaaa</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="WorkExperienceEndPicker">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #WorkExperienceEndPicker startView="multi-year">
-                    </mat-datepicker>
-                </mat-form-field>
+        <mat-card-content>
+            <div formArrayName="workExperience">
+                <!-- Recorrido -->
+                <div *ngFor="let experience of workExperience.controls, let i=index" [formGroupName]="i">
+
+                    <mat-form-field>
+                        <mat-label>Posición</mat-label>
+                        <input
+                        matInput
+                        formControlName="position">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Compañía</mat-label>
+                        <input
+                        matInput
+                        formControlName="company">
+                    </mat-form-field>
+
+                    <!-- Fecha de inicio -->
+                    <mat-form-field>
+                        <mat-label>Elige una fecha de inicio</mat-label>
+                        <input matInput [matDatepicker]="workExperienceInitPicker"
+                            formControlName="workExperienceInitDate">
+                        <mat-hint>mm/dd/aaaa</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="workExperienceInitPicker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #workExperienceInitPicker startView="multi-year">
+                        </mat-datepicker>
+                    </mat-form-field>
+
+                    <!-- Fecha de finalización -->
+                    <mat-form-field>
+                        <mat-label>Elige una fecha de finalización</mat-label>
+                        <input matInput [matDatepicker]="workExperienceEndPicker"
+                            formControlName="workExperienceEndDate">
+                        <mat-hint>mm/dd/aaaa</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="workExperienceEndPicker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #workExperienceEndPicker startView="multi-year">
+                        </mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Descripción</mat-label>
+                        <textarea
+                        matInput
+                        formControlName="description">
+                        </textarea>
+                    </mat-form-field>
+
+                    <button
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Remove"
+                    (click)="removeWorkExperience(i)"
+                    style="margin: 1%;">
+                        <mat-icon>close</mat-icon>
+                    </button>
+
+                </div>
+                <button
+                mat-stroked-button
+                (click)="addWorkExperience()">
+                    Añadir
+                </button>
             </div>
         </mat-card-content>
-        <button mat-button>Añadir</button>
     </mat-card>
+
     <!-- Habilidades -->
     <mat-card>
         <mat-card-header>
             <mat-card-title>Habilidades</mat-card-title>
         </mat-card-header>
+
         <mat-card-content>
-            <ul>
-                <li>
-                    <mat-form-field>
-                        <mat-label>Habilidad 1</mat-label>
-                        <input matInput formControlName="skills">
+            <div formArrayName="skills">
+                <!-- Recorrido -->
+                <div *ngFor="let skill of skills.controls, let i=index" style="display: flex;">
+
+                    <mat-form-field style="display: block; width: 50%;">
+                        <mat-label>Habilidad</mat-label>
+                        <input
+                        matInput
+                        [formControlName]="i">
                     </mat-form-field>
-                </li>
-                <li>
-                    <mat-form-field>
-                        <mat-label>Habilidad 2</mat-label>
-                        <input matInput formControlName="skills">
-                    </mat-form-field>
-                </li>
-            </ul>
+
+                    <button
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Remove"
+                    (click)="removeSkill(i)"
+                    style="margin: 1%;">
+                        <mat-icon>close</mat-icon>
+                    </button>
+
+                </div>
+                <button mat-stroked-button (click)="addSkill()">Añadir</button>
+            </div>
         </mat-card-content>
     </mat-card>
+    
     <button mat-button (click)="send()">Send</button>
 </form>

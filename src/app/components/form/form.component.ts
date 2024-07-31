@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,13 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { WorkerI } from 'src/app/interfaces/cv.interface';
 import { distinctUntilChanged } from 'rxjs';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -41,21 +41,21 @@ export class FormComponent implements OnInit {
     lastname: '',
     jobPosition: '',
     aboutMe: '',
-    academicBackground: {
-      title: '',
+    academicBackground: [{
+      grade: '',
       school: '',
-      AcademicBackgroundInitDate: '',
-      AcademicBackgroundEndDate: '',
+      academicBackgroundInitDate: '',
+      academicBackgroundEndDate: '',
       description: ''
-    },
-    workExperience: {
+    }],
+    workExperience: [{
       position: '',
       company: '',
-      WorkExperienceInitDate: '',
-      WorkExperienceEndDate: '',
+      workExperienceInitDate: '',
+      workExperienceEndDate: '',
       description: ''
-    },
-    skills: ''
+    }],
+    skills: ['']
   };
 
   constructor(private formBuilder: FormBuilder, private previewConnector: PreviewConnectorService) {
@@ -65,29 +65,84 @@ export class FormComponent implements OnInit {
         lastname: [''],
         jobPosition: [''],
         aboutMe: [''],
-        academicBackground: this.formBuilder.group({
-          title: [''],
-          school: [''],
-          AcademicBackgroundInitDate: [''],
-          AcademicBackgroundEndDate: [''],
-          description: ['']
-        }),
-        workExperience: this.formBuilder.group({
-          position: [''],
-          company: [''],
-          WorkExperienceInitDate: [''],
-          WorkExperienceEndDate: [''],
-          description: ['']
-        }),
-        skills: ['']
+        academicBackground: this.formBuilder.array([
+          this.createAcademicBackground()
+        ]),
+        workExperience: this.formBuilder.array([
+          this.createWorkExperience()
+        ]),
+        skills: this.formBuilder.array([''])
       }
-    )
-  }
+    );
+  };
 
   ngOnInit(): void {
     this.initFormListeners();
   }
 
+  /* Métodos para crear, añadir y eliminar el formGroup 'academicBackground' */
+
+  get academicBackground(): FormArray {
+    return this.cvForm.get('academicBackground') as FormArray;
+  }
+
+  createAcademicBackground(): FormGroup {
+    return this.formBuilder.group({
+      grade: [''],
+      school: [''],
+      academicBackgroundInitDate: [''],
+      academicBackgroundEndDate: [''],
+      description: ['']
+    });
+  }
+
+  addAcademicBackground(): void {
+    this.academicBackground.push(this.createAcademicBackground());
+  }
+
+  removeAcademicBackground(index: number): void {
+    this.academicBackground.removeAt(index);
+  }
+
+  /* Métodos para crear, añadir y eliminar el formGroup 'workExperience' */
+
+  get workExperience(): FormArray {
+    return this.cvForm.get('workExperience') as FormArray;
+  }
+
+  createWorkExperience(): FormGroup {
+    return this.formBuilder.group({
+      position: [''],
+      company: [''],
+      workExperienceInitDate: [''],
+      workExperienceEndDate: [''],
+      description: ['']
+    });
+  }
+
+  addWorkExperience(): void {
+    this.workExperience.push(this.createWorkExperience());
+  }
+
+  removeWorkExperience(index: number): void {
+    this.workExperience.removeAt(index);
+  }
+
+  /* Manejo del campo 'skills' */
+
+  get skills(): FormArray {
+    return this.cvForm.get('skills') as FormArray;
+  }
+
+  addSkill(): void {
+    this.skills.push(this.formBuilder.control(['']));
+  }
+
+  removeSkill(index: number): void {
+    this.skills.removeAt(index);
+  }
+
+  /* Suscripción a los valores de los controles */
   initFormListeners() {
     Object.keys(this.cvForm.controls).forEach(controlName => {
       const control = this.cvForm.get(controlName);
@@ -110,6 +165,7 @@ export class FormComponent implements OnInit {
     });
   }
 
+  /* Carga de los nuevos valores a workerForm */
   updateWorker(controlName: string, value: any) {
     const keys: string[] = controlName.split('.');
     if (keys.length === 1) {
@@ -119,6 +175,8 @@ export class FormComponent implements OnInit {
     }
     this.previewConnector.updateWorkerData(controlName, value);
   }
+
+  /* Reinicio del formulario */
 
   send(){
     this.cvForm.reset();

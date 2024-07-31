@@ -1,66 +1,70 @@
-
 <mat-card *ngIf="workerPreview">
     <mat-card-header>
         <h3>Preview</h3>
     </mat-card-header>
+
+    <!-- Información General -->
     <mat-card-content>
         <span class="title">Nombre</span>
-        <span>{{workerPreview.name}}</span>
+        <span>{{ workerPreview.name }}</span>
     </mat-card-content>
     
     <mat-card-content>
         <span class="title">Apellido</span>
-        <span>{{workerPreview.lastname}}</span>
+        <span>{{ workerPreview.lastname }}</span>
     </mat-card-content>
     
     <mat-card-content>
         <span class="title">Posición</span>
-        <span>{{workerPreview.jobPosition}}</span>
+        <span>{{ workerPreview.jobPosition }}</span>
     </mat-card-content>
     
     <mat-card-content>
         <span class="title">Sobre Mí</span>
-        <span>{{workerPreview.aboutMe}}</span>
+        <span>{{ workerPreview.aboutMe }}</span>
     </mat-card-content>
-    
-    <mat-card-content>
+
+    <!-- Educación -->
+    <mat-card-content *ngFor="let grade of workerPreview.academicBackground, let i=index">
         <span class="title">Educación</span>
-        <span>{{workerPreview.academicBackground.title}}</span>
+        <mat-card-content>
+            <span>{{ grade.grade }}</span>
+        </mat-card-content>
+        <mat-card-content>
+            <span>{{ grade.school }}</span>
+        </mat-card-content>
+        <mat-card-content>
+            <span>{{ grade.academicBackgroundInitDate | date }}</span>
+            <span>{{ grade.academicBackgroundEndDate | date }}</span>
+        </mat-card-content>
+        <mat-card-content>
+            <span>{{ grade.description }}</span>
+        </mat-card-content>
     </mat-card-content>
     
-    <mat-card-content>
-        <span>{{workerPreview.academicBackground.school}}</span>
-    </mat-card-content>
-    
-    <mat-card-content>
-        <span>{{workerPreview.academicBackground.AcademicBackgroundInitDate | date}}</span>
-        <span>{{workerPreview.academicBackground.AcademicBackgroundEndDate | date}}</span>
-    </mat-card-content>
-    
-    <mat-card-content>
-        <span>{{workerPreview.academicBackground.description}}</span>
-    </mat-card-content>
-    
-    <mat-card-content>
+    <!-- Experiencia -->
+    <mat-card-content *ngFor="let experience of workerPreview.workExperience, let i=index">
         <span class="title">Experiencia</span>
-        <span>{{workerPreview.workExperience.position}}</span>
+        <mat-card-content>
+            <span>{{ experience.position }}</span>
+        </mat-card-content>
+        <mat-card-content>
+            <span>{{ experience.company }}</span>
+        </mat-card-content>
+        <mat-card-content>
+            <span>{{ experience.workExperienceInitDate | date }}</span>
+            <span>{{ experience.workExperienceEndDate| date }}</span>
+        </mat-card-content>
+        <mat-card-content>
+            <span>{{ experience.description }}</span>
+        </mat-card-content>
     </mat-card-content>
     
-    <mat-card-content>
-        <span>{{workerPreview.workExperience.company}}</span>
-    </mat-card-content>
-    
-    <mat-card-content>
-        <span>{{ workerPreview.workExperience.WorkExperienceInitDate | date }}</span>
-        <span>{{ workerPreview.workExperience.WorkExperienceEndDate| date }}</span>
-    </mat-card-content>
-    
-    <mat-card-content>
-        <span>{{workerPreview.workExperience.description}}</span>
-    </mat-card-content>
-    
+    <!-- Habilidades -->
     <mat-card-content>
         <span class="title">Habilidades</span>
-        <span>{{workerPreview.skills}}</span>
+        <div *ngFor="let skill of workerPreview.skills, let i=index">
+            <span>{{ skill }}</span>
+        </div>
     </mat-card-content>
 </mat-card>
