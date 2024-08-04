@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 
 import { WorkerI } from 'src/app/interfaces/cv.interface';
 import { MatButtonModule } from '@angular/material/button';
+import { ExportService } from 'src/app/services/export.service';
 
 @Component({
   selector: 'app-preview',
@@ -45,7 +46,10 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
   
   currentValueSuscription: Subscription | undefined;
 
-  constructor(private previewConnector: PreviewConnectorService) {}
+  constructor(
+    private previewConnector: PreviewConnectorService,
+    private exportCv: ExportService
+  ) {}
 
   ngAfterViewInit(): void {
     this.currentValueSuscription = this.previewConnector.fieldCurrentValue$.subscribe((workerData) => {
@@ -62,27 +66,8 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  generatePDF() {
-    const elements = document.querySelectorAll('.text-content')
-    const pdf = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'A4'
-    })
-    pdf.setFont('Helvetica', 'bold');
-    pdf.setFontSize(16);
-    pdf.setTextColor(0, 0, 0);
-
-    let positionX = 0;
-    let positionY = 0;
-
-    elements.forEach((element) => {
-      const text = element.textContent || "";
-      pdf.text(text, positionX, positionY);
-      positionX = positionX + 10;
-      positionY = positionY + 10;
-    })
-    pdf.save('pdf')
+  export(){
+    this.exportCv.generatePdf('preview');
   }
 
   ngOnDestroy(): void {

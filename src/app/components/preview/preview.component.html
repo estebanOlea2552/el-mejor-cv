@@ -1,66 +1,75 @@
 <div id="preview" #cv>
     <mat-card *ngIf="workerPreview">
-        <mat-card-header>
-            <h3>Preview</h3>
-        </mat-card-header>
-    
+        <img
+        src="../../../assets/images/foto.jpg"
+        style="
+            width: 50px;
+            height: 50px;
+            margin: 15px;
+            ">
         <!-- Información General -->
         <mat-card-content>
+            <!-- Nombre -->
             <span class="title">Nombre</span>
             <span class="text-content">{{ workerPreview.name }}</span>
         </mat-card-content>
-        
+        <!-- Apellido -->
         <mat-card-content>
             <span class="title">Apellido</span>
             <span class="text-content">{{ workerPreview.lastname }}</span>
         </mat-card-content>
-        
+        <!-- Posición -->
         <mat-card-content>
             <span class="title">Posición</span>
             <span class="text-content">{{ workerPreview.jobPosition }}</span>
         </mat-card-content>
-        
+        <!-- Sobre mí -->
         <mat-card-content>
             <span class="title">Sobre Mí</span>
             <span class="text-content">{{ workerPreview.aboutMe }}</span>
         </mat-card-content>
-    
         <!-- Educación -->
         <mat-card-content *ngFor="let grade of workerPreview.academicBackground, let i=index">
             <span class="title">Educación</span>
+            <!-- Grado -->
             <mat-card-content>
                 <span class="text-content">{{ grade.grade }}</span>
             </mat-card-content>
+            <!-- Escuela -->
             <mat-card-content>
                 <span class="text-content">{{ grade.school }}</span>
             </mat-card-content>
+            <!-- Fecha de Inicio/Final -->
             <mat-card-content>
                 <span class="text-content">{{ grade.academicBackgroundInitDate | date }}</span>
                 <span class="text-content">{{ grade.academicBackgroundEndDate | date }}</span>
             </mat-card-content>
+            <!-- Descripción -->
             <mat-card-content>
                 <span class="text-content">{{ grade.description }}</span>
             </mat-card-content>
-        </mat-card-content>
-        
+        </mat-card-content>  
         <!-- Experiencia -->
         <mat-card-content *ngFor="let experience of workerPreview.workExperience, let i=index">
             <span class="title">Experiencia</span>
+            <!-- Posición -->
             <mat-card-content>
                 <span class="text-content">{{ experience.position }}</span>
             </mat-card-content>
+            <!-- Empresa -->
             <mat-card-content>
                 <span class="text-content">{{ experience.company }}</span>
             </mat-card-content>
+            <!-- Fecha de Inicio/Final -->
             <mat-card-content>
                 <span class="text-content">{{ experience.workExperienceInitDate | date }}</span>
                 <span class="text-content">{{ experience.workExperienceEndDate| date }}</span>
             </mat-card-content>
+            <!-- Descripción -->
             <mat-card-content>
                 <span class="text-content">{{ experience.description }}</span>
             </mat-card-content>
         </mat-card-content>
-        
         <!-- Habilidades -->
         <mat-card-content>
             <span class="title">Habilidades</span>
@@ -69,5 +78,5 @@
             </div>
         </mat-card-content>
     </mat-card>
-    <button mat-button (click)="generatePDF()">Genearte</button>
 </div>
+<button mat-button (click)="export()">Genearte</button>
