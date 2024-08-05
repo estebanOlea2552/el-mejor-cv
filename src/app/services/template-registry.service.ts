@@ -8,18 +8,15 @@ import { TemplateI } from '../interfaces/templateI';
 })
 export class TemplateRegistryService {
   private templates: TemplateI[] = [
-    { id: 'tempalte1', name: 'template1', component: Template1Component },
-    { id: 'tempalte2', name: 'template2', component: Template2Component }
+    { id: 'tempalte1', name: 'Template 1', component: Template1Component },
+    { id: 'tempalte2', name: 'Template 2', component: Template2Component }
   ]
 
-  constructor() { }
-
-  getTemplates(): TemplateI[] {
+  public getTemplates(): TemplateI[] {
     return this.templates;
   }
 
-  getTemplateById(id: string) {
+  public getTemplateById(id: string):TemplateI | undefined {
     return this.templates.find(t => t.id === id);
   }
-
 }

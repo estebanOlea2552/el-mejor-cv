@@ -6,10 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { MatCardModule } from '@angular/material/card';
 
-import { WorkerI } from 'src/app/interfaces/cv.interface';
+import {cvDataI } from 'src/app/interfaces/cv.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { ExportService } from 'src/app/services/export.service';
-import { TemplateRegistryService } from 'src/app/services/TemplateRegistry.service';
+import { TemplateRegistryService } from 'src/app/services/template-registry.service';
 
 @Component({
   selector: 'app-preview',
@@ -19,11 +19,10 @@ import { TemplateRegistryService } from 'src/app/services/TemplateRegistry.servi
   imports: [CommonModule, MatFormFieldModule, MatCardModule, MatButtonModule]
 })
 export class PreviewComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('cv') cv!: ElementRef<HTMLDivElement>
   @ViewChild('templateContainer', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
 
-  cvPreview: WorkerI = {
+  protected cvPreview: cvDataI = {
     name: '',
     lastname: '',
     jobPosition: '',
@@ -45,8 +44,9 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     skills: ['']
   };
   
-  private cvValueSubscription: Subscription | undefined;
+  private cvDataSubscription: Subscription | undefined;
   private selectedTemplateSubscription: Subscription | undefined;
+  private htmlPreview: any;
 
   constructor(
     private previewConnector: PreviewConnectorService,
@@ -55,9 +55,9 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit(): void {
-    this.cvValueSubscription = this.previewConnector.fieldCurrentValue$.
-    subscribe((workerData) => {
-      this.updateCv(workerData.field, workerData.value);
+    this.cvDataSubscription = this.previewConnector.cvFieldValue$.
+    subscribe((cvData) => {
+      this.updateCv(cvData.field, cvData.value);
     });
 
     this.selectedTemplateSubscription = this.previewConnector.selectedTemplate$.
@@ -66,7 +66,7 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     })
   }
 
-  updateCv(controlName: string, value: any) {
+  private updateCv(controlName: string, value: any):void {
     const keys: string[] = controlName.split('.');
     if (keys.length === 1) {
       (this.cvPreview as any)[keys[0]] = value;
@@ -79,17 +79,21 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     const template = this.templateService.getTemplateById(templateId);
     if (template) {
       this.container.clear();
-      const componentRef = this.container.createComponent(template.component as Type<any>)
+      const componentRef = this.container.createComponent(template.component as Type<any>);
+      (componentRef.instance as any).cvPreview = this.cvPreview;
+      const nativeElement = componentRef.location.nativeElement;
+      this.htmlPreview = nativeElement.innerHTML;
     }
   }
 
-  export(){
+  protected export():void {
+    console.log(this.htmlPreview)
     this.exportCv.generatePdf('preview');
   }
 
   ngOnDestroy(): void {
-    if(this.cvValueSubscription){
-      this.cvValueSubscription.unsubscribe();
+    if(this.cvDataSubscription){
+      this.cvDataSubscription.unsubscribe();
     }
     if (this.selectedTemplateSubscription) {
       this.selectedTemplateSubscription.unsubscribe();

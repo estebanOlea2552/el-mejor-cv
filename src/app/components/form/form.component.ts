@@ -12,7 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
-import { WorkerI } from 'src/app/interfaces/cv.interface';
+import { cvDataI } from 'src/app/interfaces/cv.interface';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -36,7 +36,7 @@ import { distinctUntilChanged } from 'rxjs';
 })
 export class FormComponent implements OnInit {
   cvForm: FormGroup;
-  private workerForm: WorkerI = {
+  private workerProfile: cvDataI = {
     name: '',
     lastname: '',
     jobPosition: '',
@@ -58,8 +58,11 @@ export class FormComponent implements OnInit {
     skills: ['']
   };
 
-  constructor(private formBuilder: FormBuilder, private previewConnector: PreviewConnectorService) {
-    this.cvForm = this.formBuilder.group(
+  constructor(
+    private formBuilder: FormBuilder,
+    private previewConnector: PreviewConnectorService) {
+    
+      this.cvForm = this.formBuilder.group(
       {
         name: [''],
         lastname: [''],
@@ -86,7 +89,7 @@ export class FormComponent implements OnInit {
     return this.cvForm.get('academicBackground') as FormArray;
   }
 
-  createAcademicBackground(): FormGroup {
+  private createAcademicBackground(): FormGroup {
     return this.formBuilder.group({
       grade: [''],
       school: [''],
@@ -96,11 +99,11 @@ export class FormComponent implements OnInit {
     });
   }
 
-  addAcademicBackground(): void {
+  protected addAcademicBackground(): void {
     this.academicBackground.push(this.createAcademicBackground());
   }
 
-  removeAcademicBackground(index: number): void {
+  protected removeAcademicBackground(index: number): void {
     this.academicBackground.removeAt(index);
   }
 
@@ -110,7 +113,7 @@ export class FormComponent implements OnInit {
     return this.cvForm.get('workExperience') as FormArray;
   }
 
-  createWorkExperience(): FormGroup {
+  private createWorkExperience(): FormGroup {
     return this.formBuilder.group({
       position: [''],
       company: [''],
@@ -120,11 +123,11 @@ export class FormComponent implements OnInit {
     });
   }
 
-  addWorkExperience(): void {
+  protected addWorkExperience(): void {
     this.workExperience.push(this.createWorkExperience());
   }
 
-  removeWorkExperience(index: number): void {
+  protected removeWorkExperience(index: number): void {
     this.workExperience.removeAt(index);
   }
 
@@ -134,16 +137,16 @@ export class FormComponent implements OnInit {
     return this.cvForm.get('skills') as FormArray;
   }
 
-  addSkill(): void {
+  protected addSkill(): void {
     this.skills.push(this.formBuilder.control(['']));
   }
 
-  removeSkill(index: number): void {
+  protected removeSkill(index: number): void {
     this.skills.removeAt(index);
   }
 
   /* Suscripción a los valores de los controles */
-  initFormListeners() {
+  private initFormListeners() {
     Object.keys(this.cvForm.controls).forEach(controlName => {
       const control = this.cvForm.get(controlName);
       if (control instanceof FormGroup) {
@@ -157,22 +160,22 @@ export class FormComponent implements OnInit {
     });
   }
 
-  subscribeToControlChanges(control: any, controlName: string) {
+  private subscribeToControlChanges(control: any, controlName: string) {
     control.valueChanges.pipe(
       distinctUntilChanged()
     ).subscribe((value: string) => {
-      this.updateWorker(controlName, value);
+      this.updateWorkerProfile(controlName, value);
     });
   }
 
   /* Carga de los nuevos valores a workerForm */
-  updateWorker(controlName: string, value: any) {
+  private updateWorkerProfile(controlName: string, value: any) {
     const keys: string[] = controlName.split('.');
     if (keys.length === 1) {
-      (this.workerForm as any)[keys[0]] = value;
+      (this.workerProfile as any)[keys[0]] = value;
     } else if (keys.length === 2) {
-      (this.workerForm as any)[keys[0]][keys[1]] = value;
+      (this.workerProfile as any)[keys[0]][keys[1]] = value;
     }
-    this.previewConnector.updateWorkerData(controlName, value);
+    this.previewConnector.updateCvData(controlName, value);
   }
 }

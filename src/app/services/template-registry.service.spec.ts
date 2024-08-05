@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { TemplateRegistryService } from './TemplateRegistry.service';
+import { TemplateRegistryService } from './template-registry.service';
 
 describe('Service: TemplateRegistry', () => {
   beforeEach(() => {

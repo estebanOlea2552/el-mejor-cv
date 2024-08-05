@@ -1,3 +1,26 @@
-<p>
-  template1 works!
-</p>
+<div class="container">
+  <h3>Template 1</h3>
+  <div style="display: flex; flex-direction: column;">
+    <span>{{cvPreview.name}}</span>
+    <span>{{cvPreview.lastname}}</span>
+    <span>{{cvPreview.jobPosition}}</span>
+    <span>{{cvPreview.aboutMe}}</span>
+    <div *ngFor="let school of cvPreview.academicBackground" style="display: flex; flex-direction: column;">
+      <span>{{school.grade}}</span>
+      <span>{{school.school}}</span>
+      <span>{{school.academicBackgroundInitDate}}</span>
+      <span>{{school.academicBackgroundEndDate}}</span>
+      <span>{{school.description}}</span>
+    </div>
+    <div *ngFor="let exp of cvPreview.workExperience" style="display: flex; flex-direction: column;">
+      <span>{{exp.position}}</span>
+      <span>{{exp.company}}</span>
+      <span>{{exp.workExperienceInitDate}}</span>
+      <span>{{exp.workExperienceEndDate}}</span>
+      <span>{{exp.description}}</span>
+    </div>
+    <div *ngFor="let skill of cvPreview.skills" style="display: flex; flex-direction: column;">
+      <span>{{skill}}</span>
+    </div>
+  </div>
+</div>

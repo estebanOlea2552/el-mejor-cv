@@ -14,7 +14,7 @@ export interface WorkExperienceI {
     description: string;
 }
 
-export interface WorkerI {
+export interface cvDataI {
     name: string;
     lastname: string;
     jobPosition: string;

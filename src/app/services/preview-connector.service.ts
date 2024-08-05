@@ -5,16 +5,16 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class PreviewConnectorService {
-  private workerDataSubject = new Subject<any>();
-  public fieldCurrentValue$ = this.workerDataSubject.asObservable();
+  private cvDataSubject = new Subject<any>();
+  public cvFieldValue$ = this.cvDataSubject.asObservable();
 
   private templateSubject = new Subject<any>();
   public selectedTemplate$ = this.templateSubject.asObservable();
 
   constructor() { }
 
-  public updateWorkerData(field: string, value: string): void {
-    this.workerDataSubject.next({ field, value });
+  public updateCvData(field: string, value: string): void {
+    this.cvDataSubject.next({ field, value });
   }
 
   public updateSelectedTemplate(templateId: string): void {

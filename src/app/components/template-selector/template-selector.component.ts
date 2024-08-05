@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips'
-import { TemplateRegistryService } from 'src/app/services/TemplateRegistry.service';
+import { TemplateRegistryService } from 'src/app/services/template-registry.service';
 import { TemplateI } from 'src/app/interfaces/templateI';
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 
@@ -22,7 +22,7 @@ export class TemplateSelectorComponent implements OnInit {
     this.templates = this.templateRegistry.getTemplates();
   }
 
-  protected selectTemplate(templateId: string) {
+  protected selectTemp(templateId: string):void {
     this.selectedTemplate = templateId;
     this.previewConnector.updateSelectedTemplate(this.selectedTemplate);
   }

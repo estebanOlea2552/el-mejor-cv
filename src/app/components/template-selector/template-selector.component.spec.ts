@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { templateSelectorComponent } from './template-selector.component';
+import { TemplateSelectorComponent } from './template-selector.component';
 
 describe('TemplateSelectorComponent', () => {
-  let component: templateSelectorComponent;
-  let fixture: ComponentFixture<templateSelectorComponent>;
+  let component: TemplateSelectorComponent;
+  let fixture: ComponentFixture<TemplateSelectorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ templateSelectorComponent ]
+      declarations: [ TemplateSelectorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(templateSelectorComponent);
+    fixture = TestBed.createComponent(TemplateSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
