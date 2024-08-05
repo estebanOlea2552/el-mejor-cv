@@ -175,10 +175,4 @@ export class FormComponent implements OnInit {
     }
     this.previewConnector.updateWorkerData(controlName, value);
   }
-
-  /* Reinicio del formulario */
-
-  send(){
-    this.cvForm.reset();
-  }
 }
