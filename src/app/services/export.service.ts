@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExportService {
-  jsPdf = new jsPDF({
+  private cvToExport: ElementRef | undefined;
+  private doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
     format: 'A4'
@@ -13,25 +14,28 @@ export class ExportService {
 
 constructor() { }
   
-  generatePdf(elementId: string): void {
-    const element = document.getElementById(elementId);
+  public setCvToExport(cv: ElementRef){
+    this.cvToExport = cv;
+  }
 
-    if (!element) {
+  public generatePdf(): void {
+    const content = this.cvToExport?.nativeElement;
+
+    if (!content) {
       console.error('Element not found');
       return;
     }
 
-    const doc = new jsPDF();
-    const pdfWidth = doc.internal.pageSize.getWidth();
+    const pdfWidth = this.doc.internal.pageSize.getWidth();
 
-    doc.html(element, {
+    this.doc.html(content, {
       callback: (doc) => {
         doc.save('documento.pdf');
       },
       x: 0,
       y: 0,
       width: pdfWidth,
-      windowWidth: element.scrollWidth,
+      windowWidth: content.scrollWidth,
       html2canvas: {
         scale: 0.4288 //la proporción perfecta
       },

@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CvEditorModule } from './components/cv-editor/cv-editor.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CvEditorModule } from './modules/cv-editor/cv-editor.module';
 
 @NgModule({
   declarations: [

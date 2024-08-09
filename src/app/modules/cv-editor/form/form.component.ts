@@ -58,38 +58,37 @@ export class FormComponent implements OnInit {
     skills: ['']
   };
 
-  constructor(
+  constructor (
     private formBuilder: FormBuilder,
-    private previewConnector: PreviewConnectorService) {
-    
+    private previewConnector: PreviewConnectorService
+  ) {
       this.cvForm = this.formBuilder.group(
-      {
-        name: [''],
-        lastname: [''],
-        jobPosition: [''],
-        aboutMe: [''],
-        academicBackground: this.formBuilder.array([
-          this.createAcademicBackground()
-        ]),
-        workExperience: this.formBuilder.array([
-          this.createWorkExperience()
-        ]),
-        skills: this.formBuilder.array([''])
-      }
-    );
-  };
+        {
+          name: [''],
+          lastname: [''],
+          jobPosition: [''],
+          aboutMe: [''],
+          academicBackground: this.formBuilder.array([
+            this.createAcademicBg()
+          ]),
+          workExperience: this.formBuilder.array([
+            this.createWorkExp()
+          ]),
+          skills: this.formBuilder.array([''])
+        }
+      );
+    };
 
   ngOnInit(): void {
     this.initFormListeners();
   }
-
-  /* Métodos para crear, añadir y eliminar el formGroup 'academicBackground' */
-
+  
+  /* Methods to create, add and remove the formGroup of type 'academicBackground' */
   get academicBackground(): FormArray {
     return this.cvForm.get('academicBackground') as FormArray;
   }
 
-  private createAcademicBackground(): FormGroup {
+  private createAcademicBg(): FormGroup {
     return this.formBuilder.group({
       grade: [''],
       school: [''],
@@ -99,21 +98,21 @@ export class FormComponent implements OnInit {
     });
   }
 
-  protected addAcademicBackground(): void {
-    this.academicBackground.push(this.createAcademicBackground());
+  protected addAcademicBg(): void {
+    this.academicBackground.push(this.createAcademicBg());
   }
 
-  protected removeAcademicBackground(index: number): void {
+  protected removeAcademicBg(index: number): void {
     this.academicBackground.removeAt(index);
   }
 
-  /* Métodos para crear, añadir y eliminar el formGroup 'workExperience' */
+  /* Methods to create, add and remove the formGroup of type 'workExperience' */
 
   get workExperience(): FormArray {
     return this.cvForm.get('workExperience') as FormArray;
   }
 
-  private createWorkExperience(): FormGroup {
+  private createWorkExp(): FormGroup {
     return this.formBuilder.group({
       position: [''],
       company: [''],
@@ -123,15 +122,15 @@ export class FormComponent implements OnInit {
     });
   }
 
-  protected addWorkExperience(): void {
-    this.workExperience.push(this.createWorkExperience());
+  protected addWorkExp(): void {
+    this.workExperience.push(this.createWorkExp());
   }
 
-  protected removeWorkExperience(index: number): void {
+  protected removeWorkExp(index: number): void {
     this.workExperience.removeAt(index);
   }
 
-  /* Manejo del campo 'skills' */
+  /* 'skills' field handler */
 
   get skills(): FormArray {
     return this.cvForm.get('skills') as FormArray;
@@ -145,7 +144,7 @@ export class FormComponent implements OnInit {
     this.skills.removeAt(index);
   }
 
-  /* Suscripción a los valores de los controles */
+  /* Subscription to Control values*/
   private initFormListeners() {
     Object.keys(this.cvForm.controls).forEach(controlName => {
       const control = this.cvForm.get(controlName);
@@ -168,7 +167,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  /* Carga de los nuevos valores a workerForm */
+  /* workerForm loader for new values */
   private updateWorkerProfile(controlName: string, value: any) {
     const keys: string[] = controlName.split('.');
     if (keys.length === 1) {

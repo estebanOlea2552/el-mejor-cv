@@ -1,5 +1,6 @@
 .editor-container {
     display: flex;
+    background-color: rgb(200, 200, 200);
 }
 
 .selector-form-container {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewContainerRef, ElementRef, OnDestroy, ViewChild, Type } from '@angular/core';
+import { AfterViewInit, Component, ViewContainerRef, OnDestroy, ViewChild, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
@@ -20,33 +20,30 @@ import { TemplateRegistryService } from 'src/app/services/template-registry.serv
 })
 export class PreviewComponent implements AfterViewInit, OnDestroy {
   @ViewChild('templateContainer', { read: ViewContainerRef, static: true })
-  container!: ViewContainerRef;
-
-  protected cvPreview: cvDataI = {
-    name: '',
-    lastname: '',
-    jobPosition: '',
-    aboutMe: '',
-    academicBackground: [{
-      grade: '',
-      school: '',
-      academicBackgroundInitDate: '',
-      academicBackgroundEndDate: '',
-      description: ''
-    }],
-    workExperience: [{
-      position: '',
-      company: '',
-      workExperienceInitDate: '',
-      workExperienceEndDate: '',
-      description: ''
-    }],
-    skills: ['']
-  };
-  
+  private container!: ViewContainerRef;
   private cvDataSubscription: Subscription | undefined;
   private selectedTemplateSubscription: Subscription | undefined;
-  private htmlPreview: any;
+  protected cvPreview: cvDataI = {
+    name: 'Esteban',
+    lastname: 'Olea',
+    jobPosition: 'Full-Stack Developer',
+    aboutMe: 'Bla bla bla',
+    academicBackground: [{
+      grade: 'Programador Universitario',
+      school: 'UNT-FACET',
+      academicBackgroundInitDate: '',
+      academicBackgroundEndDate: '',
+      description: 'Programador que programa'
+    }],
+    workExperience: [{
+      position: 'Frontend Developer Angular',
+      company: 'Freelance',
+      workExperienceInitDate: '',
+      workExperienceEndDate: '',
+      description: 'Trabajador que trabaja'
+    }],
+    skills: ['Angular', 'Java', 'MySQL']
+  };
 
   constructor(
     private previewConnector: PreviewConnectorService,
@@ -59,11 +56,10 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     subscribe((cvData) => {
       this.updateCv(cvData.field, cvData.value);
     });
-
     this.selectedTemplateSubscription = this.previewConnector.selectedTemplate$.
     subscribe((templateId: string) => {
       this.updateTemplate(templateId);
-    })
+    });
   }
 
   private updateCv(controlName: string, value: any):void {
@@ -81,14 +77,11 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
       this.container.clear();
       const componentRef = this.container.createComponent(template.component as Type<any>);
       (componentRef.instance as any).cvPreview = this.cvPreview;
-      const nativeElement = componentRef.location.nativeElement;
-      this.htmlPreview = nativeElement.innerHTML;
     }
   }
 
   protected export():void {
-    console.log(this.htmlPreview)
-    this.exportCv.generatePdf('preview');
+    this.exportCv.generatePdf();
   }
 
   ngOnDestroy(): void {

@@ -16,7 +16,10 @@ export class TemplateSelectorComponent implements OnInit {
   protected templates!: TemplateI[];
   protected selectedTemplate: string = '';
 
-  constructor(private templateRegistry: TemplateRegistryService, private previewConnector: PreviewConnectorService) {}
+  constructor (
+    private templateRegistry: TemplateRegistryService, 
+    private previewConnector: PreviewConnectorService
+  ) {}
 
   ngOnInit(): void {
     this.templates = this.templateRegistry.getTemplates();
