@@ -1,26 +1,27 @@
 .editor-container {
+    height: 100%;
     display: flex;
-    background-color: rgb(200, 200, 200);
+    flex-direction: row;
+    background-color: rgb(250, 200, 200);
 }
 
 .selector-form-container {
     display: flex;
     flex-direction: column;
+    width: 50%;
+    overflow-y: scroll;
+    background-color: rgb(190, 230, 200);
+}
+
+.template-selector {
+    background-color:  rgb(232, 233, 169);
 }
 
 .form {
-    width: 50%;
-    height: auto;
-    margin: 1%
+    background-color:  rgb(234, 110, 110);
 }
 
 .preview {
-    position: fixed;
-    top: 3%;
-    left: calc(50%);
-    width: calc(50% - 2%);
-    height: 90vh;
-    background-color: rgb(230, 230, 230);
-    margin: 1%;
-    overflow: auto;
+    width: 50%;
+    background-color: fuchsia;
 }

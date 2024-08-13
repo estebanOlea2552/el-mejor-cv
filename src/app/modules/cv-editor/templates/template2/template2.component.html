@@ -1,5 +1,4 @@
-<div class="container" #cvContent>
-  <h3>Template 2</h3>
+<div class="cv-container" #cvContent>
   <div style="display: flex; flex-direction: column;">
     <span>{{cvPreview.name}}</span>
     <span>{{cvPreview.lastname}}</span>
@@ -8,15 +7,15 @@
     <div *ngFor="let school of cvPreview.academicBackground" style="display: flex; flex-direction: column;">
       <span>{{school.grade}}</span>
       <span>{{school.school}}</span>
-      <span>{{school.academicBackgroundInitDate}}</span>
-      <span>{{school.academicBackgroundEndDate}}</span>
+      <span>{{school.academicBackgroundInitDate | date}}</span>
+      <span>{{school.academicBackgroundEndDate | date}}</span>
       <span>{{school.description}}</span>
     </div>
     <div *ngFor="let exp of cvPreview.workExperience" style="display: flex; flex-direction: column;">
       <span>{{exp.position}}</span>
       <span>{{exp.company}}</span>
-      <span>{{exp.workExperienceInitDate}}</span>
-      <span>{{exp.workExperienceEndDate}}</span>
+      <span>{{exp.workExperienceInitDate | date}}</span>
+      <span>{{exp.workExperienceEndDate | date}}</span>
       <span>{{exp.description}}</span>
     </div>
     <div *ngFor="let skill of cvPreview.skills" style="display: flex; flex-direction: column;">

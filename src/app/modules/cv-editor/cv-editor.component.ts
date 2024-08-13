@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './cv-editor.component.html',
   styleUrls: ['./cv-editor.component.css']
 })
-export class CvEditorComponent {
-
-}
+export class CvEditorComponent {}
