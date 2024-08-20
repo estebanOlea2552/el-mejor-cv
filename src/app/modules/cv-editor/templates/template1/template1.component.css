@@ -2,7 +2,7 @@
     /* A4 format, reduced by the expression * 0.5 to scale the element into the view */
     width: calc(595.28pt * 0.5);
     height: calc(841.89pt * 0.5);
-    background-color: rgb(181, 181, 181);
+    background-color: rgb(255, 255, 255);
     display: flex;
 }
 
