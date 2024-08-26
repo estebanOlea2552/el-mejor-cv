@@ -13,7 +13,7 @@ import { PreviewConnectorService } from 'src/app/services/preview-connector.serv
   imports: [ CommonModule, MatChipsModule ]
 })
 export class TemplateSelectorComponent implements OnInit {
-  protected templates!: TemplateI[];
+  protected templates: TemplateI[] = [];
   protected selectedTemplate: string = '';
 
   constructor (

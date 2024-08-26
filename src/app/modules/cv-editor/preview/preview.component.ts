@@ -26,10 +26,18 @@ import Panzoom, { PanzoomObject } from '@panzoom/panzoom';
 export class PreviewComponent implements AfterViewInit, OnDestroy {
   @ViewChild('templateContainer', { read: ViewContainerRef, static: true })
   private container!: ViewContainerRef; // Where the preview is displayed
+
+  @ViewChild('previewContainer', { static: false })
+  private previewContainer!: ElementRef; // Container for Panzoom element
+
   @ViewChild('preview', { static: false })
   private preview!: ElementRef; // The element controlled by the Panzoom functionality
 
-  protected panzoom: PanzoomObject | undefined;
+  // Panzoom instance
+  protected panzoom!: PanzoomObject;
+  // Values for Panzoom's configuration
+  private previewWidth: number = 0;
+  private previewHeight: number = 0;
 
   // Suscriptions to handle the observable data of a resume
   private cvDataSubscription: Subscription | undefined;
@@ -75,15 +83,34 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
         this.updateTemplate(templateId);
       });
 
+    // Config Panzoom
     this.panzoom = Panzoom(this.preview.nativeElement, {
-      maxScale: 50,
-      minScale: 0.1,
-      startScale: 1,
-      step: 0.1,
-      startX: 100,
-      startY: 100,
-      contain: 'inside'
-    })
+      animate: true, // Define si se animan las transiciones.
+      duration: 300, // (número) Duración de la transición en milisegundos.
+      startScale: 1, // (número) Valores iniciales de escala y desplazamiento (X e Y).
+      minScale: 1.2,
+      maxScale: 1.8,
+      easing: 'ease-in',
+    });
+
+    this.setPanInitPosition();
+
+    // Init Wheel Event listener
+    this.previewContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
+      event.preventDefault();
+      const zoomFactor = event.deltaY < 0 ? 1.05 : 0.01;
+      const currentScale = this.panzoom?.getScale();
+      let newScale = currentScale * zoomFactor;
+
+      if (newScale < this.panzoom?.getOptions().minScale!) {
+        newScale = this.panzoom?.getOptions().minScale!;
+      } else if (newScale > this.panzoom?.getOptions().maxScale!) {
+        newScale = this.panzoom?.getOptions().maxScale!;
+      }
+
+      this.panzoom.zoom(newScale, {animate: true, focal: { x: 250, y: 250 }}
+      );
+    });
   }
 
   // Updates the preview in real time
@@ -106,19 +133,28 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  // Panzoom methods
+
+  private setPanInitPosition() {
+    this.previewWidth = this.previewContainer.nativeElement.clientWidth;
+    this.previewHeight = this.previewContainer.nativeElement.clientHeight;
+    this.panzoom?.setOptions({
+      // This values need more precision
+      startX: (this.previewWidth / 5),
+      startY: (this.previewHeight / 10)
+    })
+  }
   protected zoomIn(): void {
     this.panzoom?.zoomIn()
   }
-
   protected zoomOut(): void {
     this.panzoom?.zoomOut()
   }
-
-
   protected reset(): void {
     this.panzoom?.reset()
   }
 
+  // Export Resume
   protected export(): void {
     this.exportCv.generatePdf();
   }
