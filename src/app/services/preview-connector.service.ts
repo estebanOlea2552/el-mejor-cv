@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class PreviewConnectorService {
   private cvDataSubject = new Subject<any>();
   public cvFieldValue$ = this.cvDataSubject.asObservable();
 
-  private templateSubject = new Subject<any>();
+  private templateSubject = new BehaviorSubject<any>("template1");
   public selectedTemplate$ = this.templateSubject.asObservable();
 
   constructor() { }

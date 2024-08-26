@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CvEditorComponent } from './modules/cv-editor/cv-editor.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    component: CvEditorComponent
+  { path: '',
+    loadChildren: () => import('./modules/template-mananger/template-mananger.module').then(m => m.TemplateManangerModule) 
+  },
+  { path: 'editor',
+    loadChildren: () => import('./modules/cv-editor/cv-editor.module').then(m => m.CvEditorModule) 
   }
 ];
 
@@ -13,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
