@@ -74,14 +74,17 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
 
   // Subscriptions to the observables of the PreviewConnectorService
   ngAfterViewInit(): void {
+    console.log('afterViewInit');
     this.cvDataSubscription = this.previewConnector.cvFieldValue$.
       subscribe((cvData) => {
         this.updateCv(cvData.field, cvData.value);
       });
-    this.selectedTemplateSubscription = this.previewConnector.selectedTemplate$.
-      subscribe((templateId: string) => {
+
+    this.selectedTemplateSubscription =
+      this.previewConnector.selectedTemplate$.subscribe((templateId: string) => {
+        console.log(templateId);
         this.updateTemplate(templateId);
-      });
+      })
 
     // Config Panzoom
     this.panzoom = Panzoom(this.preview.nativeElement, {
@@ -108,7 +111,7 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
         newScale = this.panzoom?.getOptions().maxScale!;
       }
 
-      this.panzoom.zoom(newScale, {animate: true, focal: { x: 250, y: 250 }}
+      this.panzoom.zoom(newScale, { animate: true, focal: { x: 250, y: 250 } }
       );
     });
   }
@@ -125,6 +128,7 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
 
   // Updates the selected template in real time
   private updateTemplate(templateId: string): void {
+    console.log("preview: " + "templateId");
     const template = this.templateService.getTemplateById(templateId);
     if (template) {
       this.container.clear();

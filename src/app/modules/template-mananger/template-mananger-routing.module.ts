@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CvEditorComponent } from './cv-editor.component';
+import { TemplateManangerComponent } from './template-mananger.component';
 
 const routes: Routes = [
   {
-    path: "", component: CvEditorComponent
+    path: "", component: TemplateManangerComponent
   }
 ];
 
@@ -12,4 +12,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CvEditorRoutingModule { }
+export class TemplateManangerRoutingModule { }
