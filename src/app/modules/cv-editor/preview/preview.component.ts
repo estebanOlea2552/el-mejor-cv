@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewContainerRef, OnDestroy, ViewChild, Type, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ViewContainerRef, OnDestroy, ViewChild, ElementRef, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
@@ -6,11 +6,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { MatCardModule } from '@angular/material/card';
 
-import { cvDataI } from 'src/app/interfaces/cv.interface';
+import { cvData } from 'src/app/model/cv-data.model';
 import { MatButtonModule } from '@angular/material/button';
 import { ExportService } from 'src/app/services/export.service';
 import { TemplateRegistryService } from 'src/app/services/template-registry.service';
 import Panzoom, { PanzoomObject } from '@panzoom/panzoom';
+import { Store } from '@ngrx/store';
+import { templateSelector } from 'src/app/state/selectors/template.selectors';
 
 @Component({
   selector: 'app-preview',
@@ -21,7 +23,8 @@ import Panzoom, { PanzoomObject } from '@panzoom/panzoom';
     CommonModule,
     MatFormFieldModule,
     MatCardModule,
-    MatButtonModule]
+    MatButtonModule
+  ]
 })
 export class PreviewComponent implements AfterViewInit, OnDestroy {
   @ViewChild('templateContainer', { read: ViewContainerRef, static: true })
@@ -41,10 +44,13 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
 
   // Suscriptions to handle the observable data of a resume
   private cvDataSubscription: Subscription | undefined;
-  private selectedTemplateSubscription: Subscription | undefined;
+  private templateSelectorSubscription: Subscription | undefined;
+
+  // Variable to show the selected template
+
 
   // Initialization of the cvPreview object
-  protected cvPreview: cvDataI = {
+  protected cvDataPreview: cvData = {
     name: 'Esteban',
     lastname: 'Olea',
     jobPosition: 'Full-Stack Developer',
@@ -69,22 +75,16 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
   constructor(
     private previewConnector: PreviewConnectorService,
     private exportCv: ExportService,
-    private templateService: TemplateRegistryService
+    private templateService: TemplateRegistryService,
+    private store: Store
   ) { }
 
   // Subscriptions to the observables of the PreviewConnectorService
   ngAfterViewInit(): void {
-    console.log('afterViewInit');
     this.cvDataSubscription = this.previewConnector.cvFieldValue$.
       subscribe((cvData) => {
         this.updateCv(cvData.field, cvData.value);
       });
-
-    this.selectedTemplateSubscription =
-      this.previewConnector.selectedTemplate$.subscribe((templateId: string) => {
-        console.log(templateId);
-        this.updateTemplate(templateId);
-      })
 
     // Config Panzoom
     this.panzoom = Panzoom(this.preview.nativeElement, {
@@ -114,31 +114,34 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
       this.panzoom.zoom(newScale, { animate: true, focal: { x: 250, y: 250 } }
       );
     });
+
+    // Template selector from the Store
+    this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
+      this.updateTemplate(templateId);
+    });
   }
 
-  // Updates the preview in real time
+  // Updates the cv data in real time
   private updateCv(controlName: string, value: any): void {
     const keys: string[] = controlName.split('.');
     if (keys.length === 1) {
-      (this.cvPreview as any)[keys[0]] = value;
+      (this.cvDataPreview as any)[keys[0]] = value;
     } else if (keys.length === 2) {
-      (this.cvPreview as any)[keys[0]][keys[1]] = value;
+      (this.cvDataPreview as any)[keys[0]][keys[1]] = value;
     }
   }
 
   // Updates the selected template in real time
   private updateTemplate(templateId: string): void {
-    console.log("preview: " + "templateId");
     const template = this.templateService.getTemplateById(templateId);
     if (template) {
       this.container.clear();
       const componentRef = this.container.createComponent(template.component as Type<any>);
-      (componentRef.instance as any).cvPreview = this.cvPreview;
+      (componentRef.instance as any).cvPreview = this.cvDataPreview;
     }
   }
 
   // Panzoom methods
-
   private setPanInitPosition() {
     this.previewWidth = this.previewContainer.nativeElement.clientWidth;
     this.previewHeight = this.previewContainer.nativeElement.clientHeight;
@@ -167,8 +170,8 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
     if (this.cvDataSubscription) {
       this.cvDataSubscription.unsubscribe();
     }
-    if (this.selectedTemplateSubscription) {
-      this.selectedTemplateSubscription.unsubscribe();
+    if (this.templateSelectorSubscription) {
+      this.templateSelectorSubscription.unsubscribe();
     }
   }
 }

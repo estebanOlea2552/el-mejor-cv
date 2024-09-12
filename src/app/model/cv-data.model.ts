@@ -1,4 +1,4 @@
-export interface AcademicBackgroundI {
+export interface AcademicBackground {
     grade: string;
     school: string;
     academicBackgroundInitDate: string,
@@ -6,7 +6,7 @@ export interface AcademicBackgroundI {
     description: string;
 }
 
-export interface WorkExperienceI {
+export interface WorkExperience {
     position: string;
     company: string;
     workExperienceInitDate: string,
@@ -14,12 +14,12 @@ export interface WorkExperienceI {
     description: string;
 }
 
-export interface cvDataI {
+export interface cvData {
     name: string;
     lastname: string;
     jobPosition: string;
     aboutMe: string;
-    academicBackground: AcademicBackgroundI[];
-    workExperience: WorkExperienceI[];
+    academicBackground: AcademicBackground[];
+    workExperience: WorkExperience[];
     skills: string[];
 }

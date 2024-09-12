@@ -1,8 +1,8 @@
 <mat-chip-listbox>
   <mat-chip-option
   *ngFor="let template of templates"
-  [selected]="selectedTemplate === template.id" 
+  [selected]="selectedTemplate.templateName === template.templateName" 
   (click)="selectTemp(template.id)">
-  {{ template.name }}
+  {{ template.templateName }}
   </mat-chip-option>
 </mat-chip-listbox>

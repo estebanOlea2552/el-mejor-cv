@@ -12,7 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
-import { cvDataI } from 'src/app/interfaces/cv.interface';
+import { cvData } from 'src/app/model/cv-data.model';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -36,7 +36,7 @@ import { distinctUntilChanged } from 'rxjs';
 })
 export class FormComponent implements OnInit {
   cvForm: FormGroup;
-  private workerProfile: cvDataI = {
+  private workerProfile: cvData = {
     name: '',
     lastname: '',
     jobPosition: '',

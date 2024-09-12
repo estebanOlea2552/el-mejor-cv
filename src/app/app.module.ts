@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CvEditorModule } from './modules/cv-editor/cv-editor.module';
+import { StoreModule } from '@ngrx/store';
+import { ROOT_REDUCERS } from './state/app.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,9 @@ import { CvEditorModule } from './modules/cv-editor/cv-editor.module';
     BrowserModule,
     AppRoutingModule,
     CvEditorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ name: "TEST" })
   ],
   providers: [],
   bootstrap: [AppComponent]
