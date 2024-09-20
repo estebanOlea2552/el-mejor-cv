@@ -1,27 +1,12 @@
 .editor-container {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    background-color: rgb(250, 200, 200);
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    background-color: rgb(40, 40, 40);
 }
 
 .selector-form-container {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
     overflow-y: scroll;
-    background-color: rgb(190, 230, 200);
-}
-
-.template-selector {
-    background-color:  rgb(232, 233, 169);
-}
-
-.form {
-    background-color:  rgb(234, 110, 110);
-}
-
-.preview {
-    width: 50%;
-    background-color: fuchsia;
 }

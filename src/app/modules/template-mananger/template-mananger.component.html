@@ -1,2 +1,7 @@
-<app-template-selector></app-template-selector>
-<button (click)="navigateTo('/editor')">Comenzar!</button>
+<h1>Administrador de Plantillas</h1>
+<span>** Explicación sobre el administrador de plantillas **</span>
+<br>
+<div class="template-selector-container">
+    <app-template-selector></app-template-selector>
+</div>
+<button [disabled]="!templateIsSelected" (click)="navigateTo('/editor')">Comenzar!</button>

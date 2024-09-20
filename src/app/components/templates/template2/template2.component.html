@@ -8,15 +8,15 @@
   <div class="academic-bg-container" *ngFor="let school of cvPreview.academicBackground">
     <span>{{school.grade}}</span>
     <span>{{school.school}}</span>
-    <span>{{school.academicBackgroundInitDate | date}}</span>
-    <span>{{school.academicBackgroundEndDate | date}}</span>
+    <span>{{school.aBInitDate | date}}</span>
+    <span>{{school.aBEndDate | date}}</span>
     <span>{{school.description}}</span>
   </div>
   <div class="work-exp-container" *ngFor="let exp of cvPreview.workExperience">
     <span>{{exp.position}}</span>
     <span>{{exp.company}}</span>
-    <span>{{exp.workExperienceInitDate | date}}</span>
-    <span>{{exp.workExperienceEndDate | date}}</span>
+    <span>{{exp.wExpInitDate | date}}</span>
+    <span>{{exp.wExpEndDate | date}}</span>
     <span>{{exp.description}}</span>
   </div>
   <div class="skills-container" *ngFor="let skill of cvPreview.skills">

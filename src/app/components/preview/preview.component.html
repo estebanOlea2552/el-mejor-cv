@@ -1,0 +1,11 @@
+<div #previewContainer class="preview-container">
+    <div #preview class="template-container">
+        <ng-container #templateContainer></ng-container>
+    </div>
+    <div class="buttons-container">
+        <button (click)="zoomIn()" mat-stroked-button>+</button>
+        <button (click)="zoomOut()" mat-stroked-button>-</button>
+        <!-- <button (click)="reset()" mat-stroked-button>Reset</button> -->
+        <button class="generate-button" mat-stroked-button (click)="export()">Genearte</button>
+    </div>
+</div>

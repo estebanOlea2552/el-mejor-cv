@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CvEditorComponent } from './cv-editor.component';
 
 import { MatCardModule } from '@angular/material/card';
-import { FormComponent } from './form/form.component';
-import { PreviewComponent } from './preview/preview.component';
+import { FormComponent } from 'src/app/components/form/form.component'; 
+import { PreviewComponent } from 'src/app/components/preview/preview.component'; 
 import { CvEditorRoutingModule } from './cv-editor-routing.module';
 
 @NgModule({

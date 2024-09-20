@@ -20,23 +20,24 @@ export class Template2Component implements OnInit {
     academicBackground: [{
       grade: '',
       school: '',
-      academicBackgroundInitDate: '',
-      academicBackgroundEndDate: '',
+      aBInitDate: '',
+      aBEndDate: '',
       description: ''
     }],
     workExperience: [{
       position: '',
       company: '',
-      workExperienceInitDate: '',
-      workExperienceEndDate: '',
+      wExpInitDate: '',
+      wExpEndDate: '',
       description: ''
     }],
     skills: ['']
   };
 
-  constructor(private exportCv: ExportService) {}
+  constructor(private exportCv: ExportService){}
 
   ngOnInit(): void {
     this.exportCv.setCvToExport(this.cvContent);
   }
+
 }

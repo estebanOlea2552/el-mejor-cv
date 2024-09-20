@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Template1Component } from '../modules/cv-editor/templates/template1/template1.component';
-import { Template2Component } from '../modules/cv-editor/templates/template2/template2.component';
+import { Template1Component } from '../components/templates/template1/template1.component'; 
+import { Template2Component } from '../components/templates/template2/template2.component'; 
 import { Template } from '../model/template.model';
 
 @Injectable({

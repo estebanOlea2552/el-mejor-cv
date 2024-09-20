@@ -1,7 +1,8 @@
-.formGroup {
+.form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
+  background-color:  rgb(234, 110, 110);
 }
 
 mat-form-field {

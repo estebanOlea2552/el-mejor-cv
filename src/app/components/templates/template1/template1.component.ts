@@ -20,15 +20,15 @@ export class Template1Component implements OnInit {
     academicBackground: [{
       grade: '',
       school: '',
-      academicBackgroundInitDate: '',
-      academicBackgroundEndDate: '',
+      aBInitDate: '',
+      aBEndDate: '',
       description: ''
     }],
     workExperience: [{
       position: '',
       company: '',
-      workExperienceInitDate: '',
-      workExperienceEndDate: '',
+      wExpInitDate: '',
+      wExpEndDate: '',
       description: ''
     }],
     skills: ['']

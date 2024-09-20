@@ -2,7 +2,7 @@
     /* A4 format, reduced by the expression * 0.5 to scale the element into the view */
     width: calc(595.28pt * 0.5);
     height: calc(841.89pt * 0.5);
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 166, 222);
     display: flex;
 }
 
@@ -11,17 +11,17 @@ span {
 }
 
 .general-info-container {
-    background-color: rgb(0, 187, 255);
+    background-color: rgb(255, 0, 170);
 }
 
 .academic-bg-container {
-    background-color: rgb(151, 234, 255);
+    background-color: rgb(255, 151, 226);
 }
 
 .work-exp-container {
-    background-color: rgb(236, 253, 255);
+    background-color: rgb(255, 236, 248);
 }
 
 .skills-container {
-    background-color: rgb(151, 234, 255);
+    background-color: rgb(255, 151, 226);
 }

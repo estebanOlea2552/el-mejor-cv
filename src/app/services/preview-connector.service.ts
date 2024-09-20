@@ -6,12 +6,9 @@ import { Subject } from 'rxjs';
 })
 export class PreviewConnectorService {
   private cvDataSubject = new Subject<any>();
-  public cvFieldValue$ = this.cvDataSubject.asObservable();
+  public cvDataInput$ = this.cvDataSubject.asObservable();
 
-  constructor() { }
-
-  public updateCvData(field: string, value: string): void {
-    this.cvDataSubject.next({ field, value });
+  public updateCvData(controlName: string, value: string): void {
+    this.cvDataSubject.next({ controlName, value });
   }
 }
-

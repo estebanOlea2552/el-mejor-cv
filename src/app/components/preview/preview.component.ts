@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewContainerRef, OnDestroy, ViewChild, ElementRef, Type } from '@angular/core';
+import { AfterViewInit, Component, ViewContainerRef, OnDestroy, ViewChild, ElementRef, Type, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
@@ -26,7 +26,7 @@ import { templateSelector } from 'src/app/state/selectors/template.selectors';
     MatButtonModule
   ]
 })
-export class PreviewComponent implements AfterViewInit, OnDestroy {
+export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('templateContainer', { read: ViewContainerRef, static: true })
   private container!: ViewContainerRef; // Where the preview is displayed
 
@@ -34,59 +34,67 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
   private previewContainer!: ElementRef; // Container for Panzoom element
 
   @ViewChild('preview', { static: false })
-  private preview!: ElementRef; // The element controlled by the Panzoom functionality
+  private preview!: ElementRef; // The element controlled by Panzoom
 
   // Panzoom instance
   protected panzoom!: PanzoomObject;
+
   // Values for Panzoom's configuration
   private previewWidth: number = 0;
   private previewHeight: number = 0;
 
-  // Suscriptions to handle the observable data of a resume
+  // Subscriptions for managing the observable data of the cvData
   private cvDataSubscription: Subscription | undefined;
   private templateSelectorSubscription: Subscription | undefined;
 
-  // Variable to show the selected template
-
-
   // Initialization of the cvPreview object
   protected cvDataPreview: cvData = {
-    name: 'Esteban',
-    lastname: 'Olea',
-    jobPosition: 'Full-Stack Developer',
-    aboutMe: 'Bla bla bla',
+    name: '',
+    lastname: '',
+    jobPosition: '',
+    aboutMe: '',
     academicBackground: [{
-      grade: 'Programador Universitario',
-      school: 'UNT-FACET',
-      academicBackgroundInitDate: '',
-      academicBackgroundEndDate: '',
-      description: 'Programador que programa'
+      grade: '',
+      school: '',
+      aBInitDate: '',
+      aBEndDate: '',
+      description: ''
     }],
     workExperience: [{
-      position: 'Frontend Developer Angular',
-      company: 'Freelance',
-      workExperienceInitDate: '',
-      workExperienceEndDate: '',
-      description: 'Trabajador que trabaja'
+      position: '',
+      company: '',
+      wExpInitDate: '',
+      wExpEndDate: '',
+      description: ''
     }],
-    skills: ['Angular', 'Java', 'MySQL']
+    skills: ['']
   };
 
   constructor(
-    private previewConnector: PreviewConnectorService,
-    private exportCv: ExportService,
     private templateService: TemplateRegistryService,
-    private store: Store
+    private previewConnector: PreviewConnectorService,
+    private store: Store,
+    private exportCv: ExportService,
   ) { }
 
-  // Subscriptions to the observables of the PreviewConnectorService
-  ngAfterViewInit(): void {
-    this.cvDataSubscription = this.previewConnector.cvFieldValue$.
+  // Here are all the subscriptions
+  ngOnInit(): void {
+    // Subscription to the cvData of the previewConnector
+    this.cvDataSubscription = this.previewConnector.cvDataInput$.
       subscribe((cvData) => {
-        this.updateCv(cvData.field, cvData.value);
+        this.updatePreview(cvData.controlName, cvData.value);
       });
 
-    // Config Panzoom
+    this.updateSelectedTemplate('template1');
+    
+    // Template selector from the Store
+    this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
+      this.updateSelectedTemplate(templateId);
+    });
+  }
+
+  ngAfterViewInit(): void {
+    // Config Panzoom. Panzoom depends to the first render of the view
     this.panzoom = Panzoom(this.preview.nativeElement, {
       animate: true, // Define si se animan las transiciones.
       duration: 300, // (número) Duración de la transición en milisegundos.
@@ -96,6 +104,7 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
       easing: 'ease-in',
     });
 
+    // Defines a center position to the panzoom element
     this.setPanInitPosition();
 
     // Init Wheel Event listener
@@ -110,19 +119,14 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
       } else if (newScale > this.panzoom?.getOptions().maxScale!) {
         newScale = this.panzoom?.getOptions().maxScale!;
       }
-
-      this.panzoom.zoom(newScale, { animate: true, focal: { x: 250, y: 250 } }
+      this.panzoom.zoom(
+        newScale, { animate: true, focal: { x: 250, y: 250 } }
       );
     });
+  } 
 
-    // Template selector from the Store
-    this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
-      this.updateTemplate(templateId);
-    });
-  }
-
-  // Updates the cv data in real time
-  private updateCv(controlName: string, value: any): void {
+  // Updates the cvDataPreview in real time
+  private updatePreview(controlName: string, value: any): void {
     const keys: string[] = controlName.split('.');
     if (keys.length === 1) {
       (this.cvDataPreview as any)[keys[0]] = value;
@@ -132,7 +136,7 @@ export class PreviewComponent implements AfterViewInit, OnDestroy {
   }
 
   // Updates the selected template in real time
-  private updateTemplate(templateId: string): void {
+  private updateSelectedTemplate(templateId: string): void {
     const template = this.templateService.getTemplateById(templateId);
     if (template) {
       this.container.clear();
