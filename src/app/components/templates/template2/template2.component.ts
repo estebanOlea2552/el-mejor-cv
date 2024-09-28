@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { cvData } from 'src/app/model/cv-data.model';
+import { cvDataInit } from 'src/app/model/cv-data-init';
 import { ExportService } from 'src/app/services/export.service';
 
 @Component({
@@ -12,27 +13,7 @@ import { ExportService } from 'src/app/services/export.service';
 })
 export class Template2Component implements OnInit {
   @ViewChild('cvContent', {static: true}) cvContent!: ElementRef;
-  @Input() cvPreview: cvData = {
-    name: '',
-    lastname: '',
-    jobPosition: '',
-    aboutMe: '',
-    academicBackground: [{
-      grade: '',
-      school: '',
-      aBInitDate: '',
-      aBEndDate: '',
-      description: ''
-    }],
-    workExperience: [{
-      position: '',
-      company: '',
-      wExpInitDate: '',
-      wExpEndDate: '',
-      description: ''
-    }],
-    skills: ['']
-  };
+  @Input() cvPreview: cvData = cvDataInit
 
   constructor(private exportCv: ExportService){}
 

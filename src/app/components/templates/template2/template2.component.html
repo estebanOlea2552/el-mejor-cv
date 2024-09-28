@@ -1,25 +1,47 @@
 <div class="cv-container" #cvContent>
   <div class="general-info-container">
-    <span>{{cvPreview.name}}</span>
-    <span>{{cvPreview.lastname}}</span>
-    <span>{{cvPreview.jobPosition}}</span>
-    <span>{{cvPreview.aboutMe}}</span>
+    <h6>Nombre</h6>
+    <span>{{ cvPreview.personalInfo.name }}</span>
+    <h6>Apellido</h6>
+    <span>{{ cvPreview.personalInfo.lastname }}</span>
+    <h6>Posición</h6>
+    <span>{{ cvPreview.personalInfo.jobPosition }}</span>
+    <h6>Sobre mí</h6>
+    <span [innerHTML]="cvPreview.personalInfo.professionalSummary"></span>
   </div>
-  <div class="academic-bg-container" *ngFor="let school of cvPreview.academicBackground">
-    <span>{{school.grade}}</span>
-    <span>{{school.school}}</span>
-    <span>{{school.aBInitDate | date}}</span>
-    <span>{{school.aBEndDate | date}}</span>
-    <span>{{school.description}}</span>
+  <h6>Educación</h6>
+  <div class="academic-bg-container" *ngFor="let school of cvPreview.education">
+    <h6>Título</h6>
+    <span>{{ school.grade }}</span>
+    <h6>Institución</h6>
+    <span>{{ school.school }}</span>
+    <h6>Inicio</h6>
+    <span>{{ school.edInitMonth }}</span>
+    <span>{{ school.edInitYear }}</span>
+    <h6>Fin</h6>
+    <span>{{ school.edEndMonth }}</span>
+    <span>{{ school.edEndYear }}</span>
+    <h6>Descripción</h6>
+    <span [innerHTML]="school.description"></span>
   </div>
+  <h6>Experiencia</h6>
   <div class="work-exp-container" *ngFor="let exp of cvPreview.workExperience">
-    <span>{{exp.position}}</span>
-    <span>{{exp.company}}</span>
-    <span>{{exp.wExpInitDate | date}}</span>
-    <span>{{exp.wExpEndDate | date}}</span>
-    <span>{{exp.description}}</span>
+    <h6>Posición</h6>
+    <span>{{ exp.position }}</span>
+    <h6>Organización</h6>
+    <span>{{ exp.organization }}</span>
+    <h6>Inicio</h6>
+    <span>{{ exp.wExpInitMonth }}</span>
+    <span>{{ exp.wExpInitYear }}</span>
+    <h6>Fin</h6>
+    <span>{{ exp.wExpEndMonth }}</span>
+    <span>{{ exp.wExpEndYear }}</span>
+    <h6>Descripción</h6>
+    <span [innerHTML]="exp.description"></span>
   </div>
+  <h6>Habilidades</h6>
   <div class="skills-container" *ngFor="let skill of cvPreview.skills">
-    <span>{{skill}}</span>
+    <h6>Habilidad</h6>
+    <span>{{ skill }}</span>
   </div>
 </div>

@@ -14,30 +14,26 @@
             <mat-card-title>Información General</mat-card-title>
         </mat-card-header>
         <mat-card-content>
+            <!-- The groupName attribute is used to link the general FormGroup and the internal controls of the component -->
             <text-line
-                [groupName]="cvFormGroup"
+                [groupName]="getFormGroup('personalInfo')"
                 controlName="name"
-                label="Nombre"
-            ></text-line>
+                label="Nombre">
+            </text-line>
             <text-line
-                [groupName]="cvFormGroup"
+                [groupName]="getFormGroup('personalInfo')"
                 controlName="lastname"
                 label="Apellido"
             ></text-line>
             <text-line
-                [groupName]="cvFormGroup"
+                [groupName]="getFormGroup('personalInfo')"
                 controlName="jobPosition"
-                label="Puesto"
-            ></text-line>          
-        </mat-card-content>
-        <mat-card-content>
-            <mat-form-field>
-                <mat-label>Sobre Mí</mat-label>
-                <textarea
-                matInput
-                formControlName="aboutMe">
-                </textarea>
-            </mat-form-field>
+                label="Puesto">
+            </text-line>          
+            <paragraph
+                [groupName]="getFormGroup('personalInfo')"
+                controlName="professionalSummary">
+            </paragraph>
         </mat-card-content>
     </mat-card>
 
@@ -47,62 +43,39 @@
             <mat-card-title>Formación Académica</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <div formArrayName="academicBackground">
-                <div *ngFor="let control of academicBackground.controls, let i=index" [formGroupName]="i">
-                    <mat-form-field>
-                        <mat-label>Título</mat-label>
-                        <input
-                        matInput
-                        formControlName="grade">
-                    </mat-form-field>
+            <div formArrayName="education">
+                <div *ngFor="let control of education.controls, let i=index" [formGroupName]="i">
+                    <text-line
+                        [groupName]="getFormGroup('education', i)"
+                        controlName="grade"
+                        label="Título">
+                    </text-line>
 
-                    <mat-form-field>
-                        <mat-label>Universidad</mat-label>
-                        <input
-                        matInput
-                        formControlName="school">
-                    </mat-form-field>
+                    <text-line
+                        [groupName]="getFormGroup('education', i)"
+                        controlName="school"
+                        label="Escuela">
+                    </text-line>
 
-                    <init-end-date></init-end-date>
+                    <init-end-date
+                        [groupName]="getFormGroup('education', i)"
+                        initMControl="edInitMonth"
+                        initYControl="edInitYear"
+                        endMControl="edEndMonth"
+                        endYControl="edEndYear">
+                    </init-end-date>
 
-                    <!-- <mat-form-field>
-                        <mat-label>Fecha de inicio</mat-label>
-                        <input
-                        matInput
-                        [matDatepicker]="academicBackgroundInitPicker"
-                        formControlName="aBInitDate">
-                        <mat-hint>mm/dd/aaaa</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="academicBackgroundInitPicker">
-                        </mat-datepicker-toggle>
-                        <mat-datepicker #academicBackgroundInitPicker startView="multi-year">
-                        </mat-datepicker>
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label>Fecha de finalización</mat-label>
-                        <input matInput [matDatepicker]="academicBackgroundEndPicker"
-                            formControlName="aBEndDate">
-                        <mat-hint>mm/dd/aaaa</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="academicBackgroundEndPicker">
-                        </mat-datepicker-toggle>
-                        <mat-datepicker #academicBackgroundEndPicker startView="multi-year">
-                        </mat-datepicker>
-                    </mat-form-field> -->
-
-                    <mat-form-field>
-                        <mat-label>Descripción</mat-label>
-                        <textarea
-                        matInput
-                        formControlName="description">
-                        </textarea>
-                    </mat-form-field>
+                    <paragraph
+                        [groupName]="getFormGroup('education', i)"
+                        controlName="description">
+                    </paragraph>
 
                     <button
                     type="button"
                     matSuffix
                     mat-icon-button
                     aria-label="Remove"
-                    (click)="removeAcademicBg(i)"
+                    (click)="removeEducation(i)"
                     style="margin: 1%;">
                         <mat-icon>close</mat-icon>
                     </button>
@@ -110,7 +83,7 @@
                 <button
                 type="button"
                 mat-stroked-button
-                (click)="addAcademicBg()">
+                (click)="addEducation()">
                     Añadir
                 </button>
             </div>
@@ -118,7 +91,7 @@
     </mat-card>
 
     <!-- Work Experience -->
-    <mat-card>
+    <!-- <mat-card>
         <mat-card-header>
             <mat-card-title>Experiencia Laboral</mat-card-title>
         </mat-card-header>
@@ -126,51 +99,30 @@
         <mat-card-content>
             <div formArrayName="workExperience">
                 <div *ngFor="let experience of workExperience.controls, let i=index" [formGroupName]="i">
-                    <mat-form-field>
-                        <mat-label>Posición</mat-label>
-                        <input
-                        matInput
-                        formControlName="position">
-                    </mat-form-field>
+                    <text-line
+                        [groupName]="getFormGroup(i, 'workExperience')"
+                        controlName="position"
+                        label="Posición">
+                    </text-line>
 
-                    <mat-form-field>
-                        <mat-label>Compañía</mat-label>
-                        <input
-                        matInput
-                        formControlName="company">
-                    </mat-form-field>
+                    <text-line
+                        [groupName]="getFormGroup(i, 'workExperience')"
+                        controlName="organization"
+                        label="Empresa">
+                    </text-line>
 
-                    <init-end-date></init-end-date>
+                    <init-end-date
+                        [groupName]="getFormGroup(i, 'workExperience')"
+                        initMControl="wExpInitMonth"
+                        initYControl="wExpInitYear"
+                        endMControl="wExpEndMonth"
+                        endYControl="wExpEndYear">
+                    </init-end-date>
 
-                    <!-- <mat-form-field>
-                        <mat-label>Fecha de inicio</mat-label>
-                        <input matInput [matDatepicker]="workExperienceInitPicker"
-                            formControlName="wExpInitDate">
-                        <mat-hint>mm/dd/aaaa</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="workExperienceInitPicker">
-                        </mat-datepicker-toggle>
-                        <mat-datepicker #workExperienceInitPicker startView="multi-year">
-                        </mat-datepicker>
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label>Fecha de finalización</mat-label>
-                        <input matInput [matDatepicker]="workExperienceEndPicker"
-                            formControlName="wExpEndDate">
-                        <mat-hint>mm/dd/aaaa</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="workExperienceEndPicker">
-                        </mat-datepicker-toggle>
-                        <mat-datepicker #workExperienceEndPicker startView="multi-year">
-                        </mat-datepicker>
-                    </mat-form-field> -->
-
-                    <mat-form-field>
-                        <mat-label>Descripción</mat-label>
-                        <textarea
-                        matInput
-                        formControlName="description">
-                        </textarea>
-                    </mat-form-field>
+                    <paragraph
+                        [groupName]="getFormGroup(i, 'workExperience')"
+                        controlName="description">
+                    </paragraph>
 
                     <button
                     type="button"
@@ -190,10 +142,10 @@
                 </button>
             </div>
         </mat-card-content>
-    </mat-card>
+    </mat-card> -->
 
     <!-- Skills -->
-    <mat-card>
+    <!-- <mat-card>
         <mat-card-header>
             <mat-card-title>Habilidades</mat-card-title>
         </mat-card-header>
@@ -225,5 +177,5 @@
                 (click)="addSkill()">Añadir</button>
             </div>
         </mat-card-content>
-    </mat-card>
-</form>
+    </mat-card> -->
+</form> 

@@ -1,30 +1,77 @@
-/* These interfaces need revision
-They are limited for all the cases 
-and users who want to make their
-personal curriculum */
+export interface PersonalInfo {
+    name: string,
+    lastname: string,
+    jobPosition: string,
+    professionalSummary: string,
+}
 
-export interface AcademicBackground {
+export interface Education {
     grade: string,
     school: string,
-    aBInitDate: string,
-    aBEndDate: string,
+    edInitMonth: string,
+    edInitYear: string,
+    edEndMonth: string,
+    edEndYear: string,
+    inCourse: string,
     description: string
 }
 
 export interface WorkExperience {
     position: string,
-    company: string,
-    wExpInitDate: string,
-    wExpEndDate: string,
+    organization: string,
+    wExpInitMonth: string,
+    wExpInitYear: string,
+    wExpEndMonth: string,
+    wExpEndYear: string,
+    inCourse: string,
     description: string
 }
 
+export interface Certification {
+    title: string;
+    average: string;
+}
+
+export interface Skill {
+    skill: string;
+    level: string;
+}
+
+export interface Language {
+    language: string;
+    level: string;
+}
+
+export interface VolunteerWork {
+    position: string;
+    organization: string;
+    vWInitMonth: string;
+    vWInitYear: string;
+    vWEndMonth: string;
+    vWEndYear: string;
+    inCourse: string;
+    description: string;
+}
+
+export interface Reference {
+    name: string;
+    organization: string;
+    email: string;
+    phone: string;
+}
+
+export interface Link {
+    link: string;
+}
+
 export interface cvData {
-    name: string,
-    lastname: string,
-    jobPosition: string,
-    aboutMe: string,
-    academicBackground: AcademicBackground[],
+    personalInfo: PersonalInfo,
+    education: Education[],
     workExperience: WorkExperience[],
-    skills: string[]
+    certifications: Certification[],
+    skills: Skill[],
+    languages: Language[],
+    voluneerWorks: VolunteerWork[],
+    references: Reference[],
+    links: Link[]
 }

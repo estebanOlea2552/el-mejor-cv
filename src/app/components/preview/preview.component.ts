@@ -7,6 +7,7 @@ import { PreviewConnectorService } from 'src/app/services/preview-connector.serv
 import { MatCardModule } from '@angular/material/card';
 
 import { cvData } from 'src/app/model/cv-data.model';
+import { cvDataInit } from 'src/app/model/cv-data-init'; 
 import { MatButtonModule } from '@angular/material/button';
 import { ExportService } from 'src/app/services/export.service';
 import { TemplateRegistryService } from 'src/app/services/template-registry.service';
@@ -48,27 +49,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   private templateSelectorSubscription: Subscription | undefined;
 
   // Initialization of the cvPreview object
-  protected cvDataPreview: cvData = {
-    name: '',
-    lastname: '',
-    jobPosition: '',
-    aboutMe: '',
-    academicBackground: [{
-      grade: '',
-      school: '',
-      aBInitDate: '',
-      aBEndDate: '',
-      description: ''
-    }],
-    workExperience: [{
-      position: '',
-      company: '',
-      wExpInitDate: '',
-      wExpEndDate: '',
-      description: ''
-    }],
-    skills: ['']
-  };
+  protected cvDataPreview: cvData = cvDataInit;
 
   constructor(
     private templateService: TemplateRegistryService,

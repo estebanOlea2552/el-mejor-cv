@@ -13,7 +13,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     <div [formGroup]="groupName">
       <mat-form-field>
         <mat-label>Mes</mat-label>
-        <mat-select>
+        <mat-select
+          [(value)]="initMonthSelected"
+          [formControlName]="initMControl">
           <div *ngFor="let month of months">
             <mat-option [value]="month">{{ month }}</mat-option>
           </div>
@@ -21,7 +23,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       </mat-form-field>
       <mat-form-field>
         <mat-label>Año</mat-label>
-        <mat-select>
+        <mat-select 
+          [(value)]="initYearSelected"
+          [formControlName]="initYControl">
           <div *ngFor="let year of years">
             <mat-option [value]="year">{{ year }}</mat-option>
           </div>
@@ -30,7 +34,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       <br>
       <mat-form-field>
         <mat-label>Mes</mat-label>
-        <mat-select [disabled]="inCourse">
+        <mat-select 
+          [disabled]="inCourse"
+          [(value)]="endMonthSelected"
+          [formControlName]="endMControl">
           <div *ngFor="let month of months">
             <mat-option [value]="month">{{ month }}</mat-option>
           </div>
@@ -38,7 +45,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       </mat-form-field>
       <mat-form-field>
         <mat-label>Año</mat-label>
-        <mat-select [disabled]="inCourse">
+        <mat-select 
+          [disabled]="inCourse"
+          [(value)]="endYearSelected"
+          [formControlName]="endYControl">
           <div *ngFor="let year of years">
             <mat-option [value]="year">{{ year }}</mat-option>
           </div>
@@ -49,6 +59,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       (change)="this.inCourse = !this.inCourse;">
         Presente
       </mat-checkbox>
+      {{ initMonthSelected }}
+      {{ initYearSelected }}
+      {{ endMonthSelected }}
+      {{ endYearSelected }}
+      {{ inCourse }}
     </div>
   `,
   styles: [`* {color: black}`],
@@ -64,6 +79,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 })
 export class InitEndDateComponent implements OnInit {
   @Input() public groupName!: FormGroup;
+  @Input() public initMControl!: string;
+  @Input() public initYControl!: string;
+  @Input() public endMControl!: string;
+  @Input() public endYControl!: string;
   protected months: string[] = [
     'Enero',
     'Febrero',
@@ -79,13 +98,16 @@ export class InitEndDateComponent implements OnInit {
     'Diciembre'
   ];
   protected years: number[] = [];
+  protected initMonthSelected: string = "";
+  protected initYearSelected: number | undefined;
+  protected endMonthSelected: string = "";
+  protected endYearSelected: number | undefined;
   protected inCourse: boolean = false;
   
   constructor() { }
   
   ngOnInit() {
     this.loadYears();
-    console.log(this.inCourse);
   }
   
   private loadYears(): void {
