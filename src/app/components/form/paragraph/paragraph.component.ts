@@ -6,11 +6,11 @@ import { Jodit } from 'jodit';
   selector: 'paragraph',
   template: `
     <div [formGroup]="groupName">
-        <textarea
-          [formControlName]="controlName"
-          #textEditor
-          id="textEditor">
-        </textarea>
+      <textarea
+        [formControlName]="controlName"
+        #textEditor
+        id="textEditor">
+      </textarea>
     </div>
   `,
   styles: [``],

@@ -20,6 +20,8 @@ import { distinctUntilChanged } from 'rxjs';
 import { TextLineComponent } from "./text-line/text-line.component";
 import { InitEndDateComponent } from "./init-end-date/init-end-date.component";
 import { ParagraphComponent } from "./paragraph/paragraph.component";
+import { NumInputComponent } from './num-input/num-input.component';
+import { LevelComponent } from "./level/level.component";
 
 @Component({
   selector: 'app-form',
@@ -40,7 +42,9 @@ import { ParagraphComponent } from "./paragraph/paragraph.component";
     MatNativeDateModule,
     TextLineComponent,
     InitEndDateComponent,
-    ParagraphComponent
+    ParagraphComponent,
+    NumInputComponent,
+    LevelComponent
 ]
 })
 export class FormComponent implements OnInit {
@@ -58,11 +62,11 @@ export class FormComponent implements OnInit {
     this.cvFormGroup = this.formBuilder.group(
       {
         personalInfo: this.createPersonalInfo(),
+        workExperience: this.formBuilder.array(
+          this.cvDataInput.workExperience.map(wExp => this.createWorkExp(wExp))
+        ),
         education: this.formBuilder.array(
           this.cvDataInput.education.map(edu => this.createEducation(edu))
-        ),
-        /* workExperience: this.formBuilder.array(
-          this.cvDataInput.workExperience.map(wExp => this.createWorkExp(wExp))
         ),
         certifications: this.formBuilder.array(
           this.cvDataInput.certifications.map(cert => this.createCertification(cert))
@@ -74,14 +78,14 @@ export class FormComponent implements OnInit {
           this.cvDataInput.languages.map(lang => this.createLanguage(lang))
         ),
         volunteerWorks: this.formBuilder.array(
-          this.cvDataInput.voluneerWorks.map(vWork => this.createVolunteerWork(vWork))
+          this.cvDataInput.volunteerWorks.map(vWork => this.createVolunteerWork(vWork))
         ),
         references: this.formBuilder.array(
           this.cvDataInput.references.map(ref => this.createReference(ref))
         ),
         links: this.formBuilder.array(
           this.cvDataInput.links.map(link => this.createLink(link))
-        ) */
+        )
       }
     );
   };
@@ -90,7 +94,7 @@ export class FormComponent implements OnInit {
     this.initFormListeners();
   }
 
-  // Personal Info Controls
+  // PersonalInfo methods
   get personalInfo(): FormGroup {
     return this.cvFormGroup.get('personalInfo') as FormGroup;
   }
@@ -100,6 +104,13 @@ export class FormComponent implements OnInit {
       name: [this.cvDataInput.personalInfo.name],
       lastname: [this.cvDataInput.personalInfo.lastname],
       jobPosition: [this.cvDataInput.personalInfo.jobPosition],
+      email: [this.cvDataInput.personalInfo.email],
+      phone: [this.cvDataInput.personalInfo.phone],
+      country: [this.cvDataInput.personalInfo.country],
+      stateProvince: [this.cvDataInput.personalInfo.stateProvince],
+      city: [this.cvDataInput.personalInfo.city],
+      nationality: [this.cvDataInput.personalInfo.nationality],
+      age: [this.cvDataInput.personalInfo.age],
       professionalSummary: [this.cvDataInput.personalInfo.professionalSummary]
     });
   }
@@ -112,6 +123,8 @@ export class FormComponent implements OnInit {
     return this.formBuilder.group({
       grade: [edu.grade || ''],
       school: [edu.school || ''],
+      type: [edu.type || ''],
+      average: [edu.average || ''],
       edInitMonth: [edu.edInitMonth || ''],
       edInitYear: [edu.edInitYear || ''],
       edEndMonth: [edu.edEndMonth || ''],
@@ -128,13 +141,15 @@ export class FormComponent implements OnInit {
   }
 
   // Work Experience FormArray methods
-  /* get workExperience(): FormArray {
+  get workExperience(): FormArray {
     return this.cvFormGroup.get('workExperience') as FormArray;
   }
   private createWorkExp(wExp: any = {}): FormGroup {
     return this.formBuilder.group({
       position: [wExp.position || ''],
       organization: [wExp.organization || ''],
+      location: [wExp.location || ''],
+      workingDay: [wExp.worKingDay || ''],
       wExpInitMonth: [wExp.wExpInitMonth || ''],
       wExpInitYear: [wExp.wExpInitYear || ''],
       wExpEndMonth: [wExp.wExpEndMonth || ''],
@@ -148,21 +163,22 @@ export class FormComponent implements OnInit {
   }
   protected removeWorkExp(index: number): void {
     this.workExperience.removeAt(index);
-  } */
+  }
 
   // Certifications FormArray methods
-  /* get certifications(): FormArray {
+  get certifications(): FormArray {
     return this.cvFormGroup.get('certifications') as FormArray;
   }
   private createCertification(cert: any = {}): FormGroup {
     return this.formBuilder.group({
       title: [cert.title || ''],
+      institution: [cert.institution || ''],
       average: [cert.average || '']
     });
-  } */
+  }
   
   // Skills FormArray methods
-  /* get skills(): FormArray {
+  get skills(): FormArray {
     return this.cvFormGroup.get('skills') as FormArray;
   }
   private createSkill(skill: any = {}): FormGroup {
@@ -176,10 +192,10 @@ export class FormComponent implements OnInit {
   }
   protected removeSkill(index: number): void {
     this.skills.removeAt(index);
-  } */
+  }
 
   // Languages FormArray methods
-  /* get languages(): FormArray {
+  get languages(): FormArray {
     return this.cvFormGroup.get('languages') as FormArray;
   }
   private createLanguage(lang: any = {}): FormGroup {
@@ -187,10 +203,10 @@ export class FormComponent implements OnInit {
       language: [lang.language || ''],
       level: [lang.level || '']
     });
-  } */
+  }
 
   // Volunteer Works FormArray methods
-  /* get volunteerWorks(): FormArray {
+  get volunteerWorks(): FormArray {
     return this.cvFormGroup.get('volunteerWorks') as FormArray;
   }
   private createVolunteerWork(vWork: any = {}): FormGroup {
@@ -204,10 +220,10 @@ export class FormComponent implements OnInit {
       inCourse: [vWork.inCourse || ''],
       description: [vWork.description || '']
     });
-  } */
+  }
 
   // References FormArray methods
-  /* get references(): FormArray {
+  get references(): FormArray {
     return this.cvFormGroup.get('references') as FormArray;
   }
   private createReference(ref: any = {}): FormGroup {
@@ -217,39 +233,39 @@ export class FormComponent implements OnInit {
       email: [ref.email || ''],
       phone: [ref.phone || '']
     });
-  } */
+  }
 
   // Links FormArray methods
-  /* get links(): FormArray {
+  get links(): FormArray {
     return this.cvFormGroup.get('links') as FormArray;
   }
   private createLink(link: any = {}): FormGroup {
     return this.formBuilder.group({
       link: [link.link || '']
     });
-  } */
+  }
 
   // Return the result of the .at method as FormGroup
   protected getFormGroup(group: string, index?: number): FormGroup {
     switch (group) {
       case 'personalInfo':
         return this.personalInfo as FormGroup;
+      case 'workExperience':
+        return this.workExperience.at(index || 0) as FormGroup;
       case 'education':
         return this.education.at(index || 0) as FormGroup;
-      /* case 'workExperience':
-        return this.workExperience.at(index) as FormGroup;
       case 'certifications':
-        return this.certifications.at(index) as FormGroup;
+        return this.certifications.at(index || 0) as FormGroup;
       case 'skills':
-        return this.skills.at(index) as FormGroup;
+        return this.skills.at(index || 0) as FormGroup;
       case 'languages':
-        return this.languages.at(index) as FormGroup;
+        return this.languages.at(index || 0) as FormGroup;
       case 'volunteerWorks':
-        return this.volunteerWorks.at(index) as FormGroup;  
+        return this.volunteerWorks.at(index || 0) as FormGroup;
       case 'references':
-        return this.references.at(index) as FormGroup;
+        return this.references.at(index || 0) as FormGroup;
       case 'links':
-        return this.links.at(index) as FormGroup; */
+        return this.links.at(index || 0) as FormGroup;
       default:
         throw new Error(`Invalid group: ${group}`);
     }

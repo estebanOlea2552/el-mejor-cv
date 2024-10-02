@@ -2,12 +2,21 @@ export interface PersonalInfo {
     name: string,
     lastname: string,
     jobPosition: string,
+    email: string,
+    phone: string,
+    country: string,
+    stateProvince: string,
+    city: string,
+    nationality: string,
+    age: string
     professionalSummary: string,
 }
 
 export interface Education {
     grade: string,
     school: string,
+    type: string,
+    average: string,
     edInitMonth: string,
     edInitYear: string,
     edEndMonth: string,
@@ -19,6 +28,8 @@ export interface Education {
 export interface WorkExperience {
     position: string,
     organization: string,
+    location: string;
+    workingDay: string;
     wExpInitMonth: string,
     wExpInitYear: string,
     wExpEndMonth: string,
@@ -29,6 +40,7 @@ export interface WorkExperience {
 
 export interface Certification {
     title: string;
+    institution: string
     average: string;
 }
 
@@ -71,7 +83,7 @@ export interface cvData {
     certifications: Certification[],
     skills: Skill[],
     languages: Language[],
-    voluneerWorks: VolunteerWork[],
+    volunteerWorks: VolunteerWork[],
     references: Reference[],
     links: Link[]
 }

@@ -3,11 +3,20 @@ export const cvDataInit = {
         name: '',
         lastname: '',
         jobPosition: '',
+        email: '',
+        phone: '',
+        country: '',
+        stateProvince: '',
+        city: '',
+        nationality: '',
+        age: '',
         professionalSummary: ''
     },
     education: [{
         grade: '',
         school: '',
+        type: '',
+        average: '',
         edInitMonth: '',
         edInitYear: '',
         edEndMonth: '',
@@ -18,6 +27,8 @@ export const cvDataInit = {
     workExperience: [{
         position: '',
         organization: '',
+        location: '',
+        workingDay: '',
         wExpInitMonth: '',
         wExpInitYear: '',
         wExpEndMonth: '',
@@ -27,6 +38,7 @@ export const cvDataInit = {
     }],
     certifications: [{
         title: '',
+        institution: '',
         average: ''
     }],
     skills: [{
@@ -37,7 +49,7 @@ export const cvDataInit = {
         language: '',
         level: ''
     }],
-    voluneerWorks: [{
+    volunteerWorks: [{
         position: '',
         organization: '',
         vWInitMonth: '',

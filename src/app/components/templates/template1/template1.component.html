@@ -6,30 +6,34 @@
     <span>{{ cvPreview.personalInfo.lastname }}</span>
     <h6>Posición</h6>
     <span>{{ cvPreview.personalInfo.jobPosition }}</span>
+    <h6>Email</h6>
+    <span>{{ cvPreview.personalInfo.email }}</span>
+    <h6>Teléfono</h6>
+    <span>{{ cvPreview.personalInfo.phone }}</span>
+    <h6>País</h6>
+    <span>{{ cvPreview.personalInfo.country }}</span>
+    <h6>Estado/Provincia</h6>
+    <span>{{ cvPreview.personalInfo.stateProvince }}</span>
+    <h6>Ciudad</h6>
+    <span>{{ cvPreview.personalInfo.city }}</span>
+    <h6>Nacionalidad</h6>
+    <span>{{ cvPreview.personalInfo.nationality }}</span>
+    <h6>Edad</h6>
+    <span>{{ cvPreview.personalInfo.age }}</span>
     <h6>Sobre mí</h6>
     <span [innerHTML]="cvPreview.personalInfo.professionalSummary"></span>
   </div>
-  <h6>Educación</h6>
-  <div class="academic-bg-container" *ngFor="let school of cvPreview.education">
-    <h6>Título</h6>
-    <span>{{ school.grade }}</span>
-    <h6>Institución</h6>
-    <span>{{ school.school }}</span>
-    <h6>Inicio</h6>
-    <span>{{ school.edInitMonth }}</span>
-    <span>{{ school.edInitYear }}</span>
-    <h6>Fin</h6>
-    <span>{{ school.edEndMonth }}</span>
-    <span>{{ school.edEndYear }}</span>
-    <h6>Descripción</h6>
-    <span [innerHTML]="school.description"></span>
-  </div>
+
   <h6>Experiencia</h6>
   <div class="work-exp-container" *ngFor="let exp of cvPreview.workExperience">
     <h6>Posición</h6>
     <span>{{ exp.position }}</span>
     <h6>Organización</h6>
     <span>{{ exp.organization }}</span>
+    <h6>Ubicación</h6>
+    <span>{{ exp.location }}</span>
+    <h6>Jornada</h6>
+    <span>{{ exp.workingDay }}</span>
     <h6>Inicio</h6>
     <span>{{ exp.wExpInitMonth }}</span>
     <span>{{ exp.wExpInitYear }}</span>
@@ -39,9 +43,84 @@
     <h6>Descripción</h6>
     <span [innerHTML]="exp.description"></span>
   </div>
+
+  <h6>Educación</h6>
+  <div class="academic-bg-container" *ngFor="let school of cvPreview.education">
+    <h6>Título</h6>
+    <span>{{ school.grade }}</span>
+    <h6>Institución</h6>
+    <span>{{ school.school }}</span>
+    <h6>Tipo</h6>
+    <span>{{ school.type }}</span>
+    <h6>Promedio Académico</h6>
+    <span>{{ school.average }}</span>
+    <h6>Inicio</h6>
+    <span>{{ school.edInitMonth }}</span>
+    <span>{{ school.edInitYear }}</span>
+    <h6>Fin</h6>
+    <span>{{ school.edEndMonth }}</span>
+    <span>{{ school.edEndYear }}</span>
+    <h6>Descripción</h6>
+    <span [innerHTML]="school.description"></span>
+  </div>
+
+  <h6>Exámenes y certificaciones</h6>
+  <div class="certifications-containter" *ngFor="let cert of cvPreview.certifications">
+    <h6>Título</h6>
+    <span>{{ cert.title }}</span>
+    <h6>Institución</h6>
+    <span>{{ cert.institution }}</span>
+    <h6>Nivel</h6>
+    <span>{{ cert.average }}</span>
+  </div>
+
   <h6>Habilidades</h6>
   <div class="skills-container" *ngFor="let skill of cvPreview.skills">
     <h6>Habilidad</h6>
-    <span>{{ skill }}</span>
+    <span>{{ skill.skill }}</span>
+    <h6>Nivel</h6>
+    <span>{{ skill.level }}</span>
+  </div>
+
+  <h6>Idiomas</h6>
+  <div class="languages-containter" *ngFor="let lang of cvPreview.languages">
+    <h6>Idioma</h6>
+    <span>{{ lang.language }}</span>
+    <h6>Nivel</h6>
+    <span>{{ lang.level }}</span>
+  </div>
+
+  <h6>Voluntariado</h6>
+  <div class="vol-containter" *ngFor="let vol of cvPreview.volunteerWorks">
+    <h6>Puesto</h6>
+    <span>{{ vol.position }}</span>
+    <h6>Organización</h6>
+    <span>{{ vol.organization }}</span>
+    <h6>Inicio</h6>
+    <span>{{ vol.vWInitMonth }}</span>
+    <span>{{ vol.vWInitYear }}</span>
+    <h6>Fin</h6>
+    <span>{{ vol.vWEndMonth }}</span>
+    <span>{{ vol.vWEndYear }}</span>
+    <h6>Descripción</h6>
+    <span [innerHTML]="vol.description"></span>
+  </div>
+
+  <h6>Referencias</h6>
+  <div class="ref-containter" *ngFor="let ref of cvPreview.references">
+    <h6>Nombre Completo</h6>
+    <span>{{ ref.name }}</span>
+    <h6>Organización</h6>
+    <span>{{ ref.organization }}</span>
+    <h6>Email</h6>
+    <span>{{ ref.email }}</span>
+    <h6>Teléfono</h6>
+    <span>{{ ref.phone }}</span>
+  </div>
+
+  <h6>Enlaces</h6>
+  <div class="link-containter" *ngFor="let link of cvPreview.links">
+    <h6>Enlace</h6>
+    <span>{{ link.link }}</span>
   </div>
 </div>

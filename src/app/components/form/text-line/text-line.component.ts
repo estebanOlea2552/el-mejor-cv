@@ -6,14 +6,12 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'text-line',
   template: `
-    
-      <mat-form-field [formGroup]="groupName">
-        <mat-label>{{ label }}</mat-label>
-        <input
-        matInput
-        [formControlName]="controlName">
-      </mat-form-field>
-    
+    <mat-form-field [formGroup]="groupName">
+      <mat-label>{{ label }}</mat-label>
+      <input
+      matInput
+      [formControlName]="controlName">
+    </mat-form-field>
   `,
   styles: [`
     mat-form-field {
