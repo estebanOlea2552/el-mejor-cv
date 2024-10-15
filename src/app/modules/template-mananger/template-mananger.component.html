@@ -1,7 +1,18 @@
-<h1>Administrador de Plantillas</h1>
-<span>** Explicación sobre el administrador de plantillas **</span>
-<br>
-<div class="template-selector-container">
-    <app-template-selector></app-template-selector>
+<div
+class="general-container"
+fxLayout="column">
+    <header>
+        <h1>Administrador de Plantillas</h1>
+    </header>
+    <main
+    fxLayout="column"
+    fxLayoutAlign="center center">
+        <app-template-selector></app-template-selector>
+        <button
+        mat-stroked-button
+        [disabled]="!templateIsSelected"
+        (click)="navigateTo('/editor')">
+            Comenzar!
+        </button>
+    </main>
 </div>
-<button [disabled]="!templateIsSelected" (click)="navigateTo('/editor')">Comenzar!</button>

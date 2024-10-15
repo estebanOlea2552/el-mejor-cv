@@ -1,31 +1,12 @@
-<<<<<<< HEAD
-# CvMakerOnline
+
+# Cv-Maker Online
+
+> El CV-Maker Online es un proyecto totalmente gratuito y libre que se encuentra en proceso de desarrollo, para más info contacta conmigo :D
+
+CV-Maker Online es una aplicación web que te permite crear tu propio currículm profesional de forma totalmente gratuita.
+
+Se basa en una interfaz intuitiva, diseñada especialmente para omitir los detalles de diseño y que así puedas centrarte exclusivamente en el contenido. La app cuenta con una serie de plantillas que abarcan mútiples enfoques para presentar tu currículum al mercado laboral, plantillas que van desde un diseño formal y sobrio hasta propuestas creativas únicas que te harán destacar enormemente en un proceso de selección.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-=======
-# cv-maker-online
 >>>>>>> f60e0ddba97bd5eff18ecd0ac5e7717c56850e16

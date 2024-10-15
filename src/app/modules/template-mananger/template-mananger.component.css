@@ -1,3 +1,4 @@
-.template-selector-container {
-    background-color: bisque;
+header {
+    background-color: var(--primary);
+    color: var(--font-white);
 }

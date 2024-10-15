@@ -1,6 +1,20 @@
-html, body { height: 100%; }
+:root {
+    --primary: rgb(50, 50, 50);
+    --secondary: rgb(100, 100, 100);
+    --light-gray: rgb(180,180,180);
+    --font-white: rgb(210, 210, 210);
+}
+
+html, body { 
+    height: 100%; 
+}
+
 body { 
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     box-sizing: border-box;
+}
+
+.general-container {
+    padding: 1%;
 }

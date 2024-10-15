@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -9,8 +11,9 @@ import { MatInputModule } from '@angular/material/input';
     <mat-form-field [formGroup]="groupName">
       <mat-label>{{ label }}</mat-label>
       <input
-      matInput
-      [formControlName]="controlName">
+        matInput
+        [formControlName]="controlName">
+      <mat-hint>Generic hint</mat-hint>
     </mat-form-field>
   `,
   styles: [`
@@ -21,19 +24,20 @@ import { MatInputModule } from '@angular/material/input';
   `],
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule
   ]
 })
 export class TextLineComponent implements OnInit {
-  @Input() groupName!: FormGroup; 
-  @Input() controlName!: string; 
-  @Input() label!: string;
+  @Input() public groupName!: FormGroup; 
+  @Input() public controlName!: string; 
+  @Input() public label!: string;
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  
 }

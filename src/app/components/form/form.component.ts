@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 //Material Imports
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -268,6 +268,53 @@ export class FormComponent implements OnInit {
         return this.links.at(index || 0) as FormGroup;
       default:
         throw new Error(`Invalid group: ${group}`);
+    }
+  }
+
+  // Add and remove methods
+  protected addFormField(formField: string):void {
+    switch(formField) {
+      case 'workExperience':
+        return this.workExperience.push(this.createWorkExp());
+      case 'education':
+        return this.education.push(this.createEducation());
+      case 'certifications':
+        return this.certifications.push(this.createCertification());
+      case 'skills':
+        return this.skills.push(this.createSkill());
+      case 'languages':
+        return this.languages.push(this.createLanguage());
+      case 'volunteerWorks':
+        return this.volunteerWorks.push(this.createVolunteerWork());
+      case 'references':
+        return this.references.push(this.createReference());
+      case 'links':
+        return this.links.push(this.createLink());
+      default:
+        throw new Error (`Invalid formField: ${formField}`);
+    }
+  }
+
+  protected removeFormField(formField: string, index: number):void {
+    switch(formField) {
+      case 'workExperience':
+        return this.workExperience.removeAt(index);
+      case 'education':
+        return this.education.removeAt(index);
+      case 'certifications':
+        return this.certifications.removeAt(index);
+      case 'skills':
+        return this.skills.removeAt(index);
+      case 'languages':
+        return this.languages.removeAt(index);
+      case 'volunteerWorks':
+        return this.volunteerWorks.removeAt(index);
+      case 'references':
+        return this.references.removeAt(index);
+      case 'links':
+        return this.links.removeAt(index);
+      default:
+        throw new Error (`Invalid formField: ${formField}`);
     }
   }
 

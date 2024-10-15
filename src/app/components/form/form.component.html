@@ -110,7 +110,15 @@
                         [groupName]="getFormGroup('workExperience', i)"
                         controlName="description">
                     </paragraph>
+                    <!-- Botón -->
+                    <button mat-button (click)="removeFormField('workExperience', i)">
+                        remove
+                    </button>
                 </div>
+                <!-- Botón -->
+                <button mat-button (click)="addFormField('workExperience')">
+                    add
+                </button>
             </div>
         </mat-card-content>
     </mat-card>
@@ -154,7 +162,15 @@
                         [groupName]="getFormGroup('education', i)"
                         controlName="description">
                     </paragraph>
+                    <!-- Botón -->
+                    <button mat-button (click)="removeFormField('education', i)">
+                        remove
+                    </button>
                 </div>
+                <!-- Botón -->
+                <button mat-button (click)="addFormField('education')">
+                    add
+                </button>
             </div>
         </mat-card-content>
     </mat-card>
@@ -182,7 +198,15 @@
                         controlName="average"
                         label="Puntaje">
                     </num-input>
+                    <!-- Botón -->
+                    <button mat-button (click)="removeFormField('certifications', i)">
+                        remove
+                    </button>
                 </div>
+                <!-- Botón -->
+                <button mat-button (click)="addFormField('certifications')">
+                    add
+                </button>
             </div>
         </mat-card-content>
     </mat-card>
@@ -205,7 +229,15 @@
                         controlName="level"
                         label="Nivel">
                     </level>
+                    <!-- Botón -->
+                    <button mat-button (click)="removeFormField('skills', i)">
+                        remove
+                    </button>
                 </div>
+                <!-- Botón -->
+                <button mat-button (click)="addFormField('skills')">
+                    add
+                </button>
             </div>
         </mat-card-content>
     </mat-card>
@@ -228,7 +260,15 @@
                         controlName="level"
                         label="Nivel">
                     </level>
+                    <!-- Botón -->
+                    <button mat-button (click)="removeFormField('languages', i)">
+                        remove
+                    </button>
                 </div>
+                <!-- Botón -->
+                <button mat-button (click)="addFormField('languages')">
+                    add
+                </button>
             </div>
         </mat-card-content>
     </mat-card>
@@ -261,8 +301,16 @@
                     <paragraph
                         [groupName]="getFormGroup('volunteerWorks', i)"
                         controlName="description">
-                    </paragraph>          
+                    </paragraph>
+                    <!-- Botón -->
+                    <button mat-button (click)="removeFormField('volunteerWorks', i)">
+                        remove
+                    </button>        
                 </div>
+                <!-- Botón -->
+                <button mat-button (click)="addFormField('volunteerWorks')">
+                    add
+                </button>
             </div>
         </mat-card-content>
     </mat-card>
@@ -295,7 +343,15 @@
                         controlName="phone"
                         label="Teléfono">
                     </text-line>
+                    <!-- Botón -->
+                    <button mat-button (click)="removeFormField('references', i)">
+                        remove
+                    </button>
                 </div>
+                <!-- Botón -->
+                <button mat-button (click)="addFormField('references')">
+                    add
+                </button>
             </div>
         </mat-card-content>
     </mat-card>
@@ -313,7 +369,15 @@
                         controlName="link"
                         label="Enlace">
                     </text-line>
+                    <!-- Botón -->
+                    <button mat-button (click)="removeFormField('links', i)">
+                        remove
+                    </button>
                 </div>
+                <!-- Botón -->
+                <button mat-button (click)="addFormField('links')">
+                    add
+                </button>
             </div>
         </mat-card-content>
     </mat-card>
