@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Material Imports
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // Internal App Files
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
@@ -22,6 +23,7 @@ import { InitEndDateComponent } from "./init-end-date/init-end-date.component";
 import { ParagraphComponent } from "./paragraph/paragraph.component";
 import { NumInputComponent } from './num-input/num-input.component';
 import { LevelComponent } from "./level/level.component";
+import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
 
 @Component({
   selector: 'app-form',
@@ -40,14 +42,30 @@ import { LevelComponent } from "./level/level.component";
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatExpansionModule,
     TextLineComponent,
     InitEndDateComponent,
     ParagraphComponent,
     NumInputComponent,
     LevelComponent
-]
+],
+animations: [ slideInOutAnimation ]
 })
 export class FormComponent implements OnInit {
+  //This array is for activating in-out animations for cards of the form
+  visibleCards: any[] = [
+    {name:'personalInfo', visible: false},
+    {name:'professionalSum', visible: false},
+    {name:'education', visible: false},
+    {name:'workExp', visible: false},
+    {name:'certifications', visible: false},
+    {name:'skills', visible: false},
+    {name:'languages', visible: false},
+    {name:'volunteerWorks', visible: false},
+    {name:'references', visible: false},
+    {name:'links', visible: false},
+  ];
+
   // FormGroup Declaration
   protected cvFormGroup: FormGroup;
 
@@ -358,6 +376,41 @@ export class FormComponent implements OnInit {
   }
 
   protected resetForm(){
-    this.cvFormGroup.reset(this.cvDataInput);
+    this.cvFormGroup.reset();
+  }
+
+  //Animation methods
+  getCardIsVisible(visibleCard: string): boolean {
+    switch (visibleCard) {
+      case 'personalInfo':
+        return this.visibleCards[0].visible;
+      case 'professionalSum':
+        return this.visibleCards[1].visible;
+      case 'education':
+        return this.visibleCards[2].visible;
+      case 'workExp':
+        return this.visibleCards[3].visible;
+      case 'certifications':
+        return this.visibleCards[4].visible;
+      case 'skills':
+        return this.visibleCards[5].visible;
+      case 'languages':
+        return this.visibleCards[6].visible;
+      case 'volunteerWorks':
+        return this.visibleCards[7].visible;
+      case 'references':
+        return this.visibleCards[8].visible;
+      case 'links':
+        return this.visibleCards[9].visible;
+      default:
+        return false
+    }
+  }
+
+  toggleVisible(visibleCard: string){
+    const card = this.visibleCards.find(card => card.name === visibleCard);
+    if (card) {
+      card.visible = !card.visible;
+    }
   }
 }

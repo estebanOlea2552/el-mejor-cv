@@ -2,7 +2,7 @@
 <form class="form" [formGroup]="cvFormGroup">
     <button
         type="button"
-        mat-stroked-button
+        mat-flat-button
         aria-label="Reset"
         (click)="resetForm()"
         style="margin: 1%;">
@@ -11,9 +11,15 @@
     <!-- General Info -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Información General</mat-card-title>
+            <mat-card-title>
+                Información General
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('personalInfo')">
+                Añadir resúmen
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('personalInfo') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content *ngIf="getCardIsVisible('personalInfo')" @slideInOut>
             <text-line
                 [groupName]="getFormGroup('personalInfo')"
                 controlName="name"
@@ -39,44 +45,73 @@
                 controlName="phone"
                 label="Teléfono">
             </text-line>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="country"
-                label="País">
-            </text-line>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="stateProvince"
-                label="Estado/Provincia">
-            </text-line>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="city"
-                label="Ciudad">
-            </text-line>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="nationality"
-                label="Nacionalidad">
-            </text-line>
-            <num-input
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="age"
-                label="Edad">
-            </num-input>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Agregar información extra</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <text-line
+                        [groupName]="getFormGroup('personalInfo')"
+                        controlName="country"
+                        label="País">
+                    </text-line>
+                    <text-line
+                        [groupName]="getFormGroup('personalInfo')"
+                        controlName="stateProvince"
+                        label="Estado/Provincia">
+                    </text-line>
+                    <text-line
+                        [groupName]="getFormGroup('personalInfo')"
+                        controlName="city"
+                        label="Ciudad">
+                    </text-line>
+                    <text-line
+                        [groupName]="getFormGroup('personalInfo')"
+                        controlName="nationality"
+                        label="Nacionalidad">
+                    </text-line>
+                    <num-input
+                        [groupName]="getFormGroup('personalInfo')"
+                        controlName="age"
+                        label="Edad">
+                    </num-input>
+                </mat-expansion-panel>
+            </mat-accordion>     
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Description -->
+    
+      <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Resúmen Profesional
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('professionalSum')">
+                Añadir resúmen
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('professionalSum') }}</span>
+        </mat-card-header>
+        <mat-card-content *ngIf="getCardIsVisible('professionalSum')" @slideInOut>
             <paragraph
                 [groupName]="getFormGroup('personalInfo')"
                 controlName="professionalSummary">
             </paragraph>
         </mat-card-content>
-    </mat-card>
-
+    </mat-card>  
+    
     <!-- Work Experience -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Experiencia Laboral</mat-card-title>
+            <mat-card-title>
+                Experiencia Laboral
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('workExp')">
+                Añadir Experiencia Laboral
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('workExp') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content *ngIf="getCardIsVisible('workExp')" @slideInOut>
             <div formArrayName="workExperience">
                 <div *ngFor="let experience of workExperience.controls, let i=index" [formGroupName]="i">
                     <text-line
@@ -126,9 +161,15 @@
     <!-- Education -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Educación</mat-card-title>
+            <mat-card-title>
+                Educación
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('education')">
+                Añadir Estudios
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('education') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content *ngIf="getCardIsVisible('education')" @slideInOut>
             <div formArrayName="education">
                 <div *ngFor="let control of education.controls, let i=index" [formGroupName]="i">
                     <text-line
@@ -178,9 +219,15 @@
     <!-- Certifications -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Exámenes y Certificaciones</mat-card-title>
+            <mat-card-title>
+                Exámenes y Certificaciones
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('certifications')">
+                Añadir Exámenes y certificaciones
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('certifications') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content *ngIf="getCardIsVisible('certifications')" @slideInOut>
             <div formArrayName="certifications">
                 <div *ngFor="let control of certifications.controls, let i=index" [formGroupName]="i">
                     <text-line
@@ -214,9 +261,15 @@
     <!-- Skills -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Habilidades</mat-card-title>
+            <mat-card-title>
+                Habilidades
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('skills')">
+                Añadir Habilidades
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('skills') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content  *ngIf="getCardIsVisible('skills')" @slideInOut>
             <div formArrayName="skills">
                 <div *ngFor="let skill of skills.controls, let i=index" [formGroupName]="i">
                     <text-line
@@ -245,9 +298,15 @@
     <!-- Languages -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Idiomas</mat-card-title>
+            <mat-card-title>
+                Idiomas
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('languages')">
+                Añadir Idiomas
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('languages') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content *ngIf="getCardIsVisible('languages')" @slideInOut>
             <div formArrayName="languages">
                 <div *ngFor="let control of languages.controls, let i=index" [formGroupName]="i">
                     <text-line
@@ -276,9 +335,15 @@
     <!-- Volunteer Works -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Voluntariados</mat-card-title>
+            <mat-card-title>
+                Voluntariados
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('volunteerWorks')">
+                Añadir Experiencia Laboral
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('volunteerWorks') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content *ngIf="getCardIsVisible('volunteerWorks')" @slideInOut>
             <div formArrayName="volunteerWorks">
                 <div *ngFor="let control of volunteerWorks.controls, let i=index" [formGroupName]="i">
                     <text-line
@@ -318,9 +383,15 @@
     <!-- References -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Referencias</mat-card-title>
+            <mat-card-title>
+                Referencias
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('references')">
+                Añadir Experiencia Laboral
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('references') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content *ngIf="getCardIsVisible('references')" @slideInOut>
             <div formArrayName="references">
                 <div *ngFor="let control of references.controls, let i=index" [formGroupName]="i">
                     <text-line
@@ -359,9 +430,15 @@
     <!-- Links -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Enlaces</mat-card-title>
+            <mat-card-title>
+                Enlaces
+            </mat-card-title>
+            <mat-card-subtitle (click)="toggleVisible('links')">
+                Añadir Experiencia Laboral
+            </mat-card-subtitle>
+            <span>{{ getCardIsVisible('links') }}</span>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content *ngIf="getCardIsVisible('links')" @slideInOut>
             <div formArrayName="links">
                 <div *ngFor="let control of links.controls, let i=index" [formGroupName]="i">
                     <text-line

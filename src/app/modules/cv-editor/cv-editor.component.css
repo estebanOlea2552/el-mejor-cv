@@ -1,12 +1,17 @@
-.editor-container {
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    background-color: rgb(40, 40, 40);
+.general-container {
+    height: auto;
+    /* width: 100vw; */
+    background-color: var(--secondary);
 }
 
-.selector-form-container {
-    overflow-y: scroll;
+/* .form-container, .preview-container {
+    width: 50%;
+} */
+
+.form-container {
+    background-color: var(--primary);
 }
+
+/* .mobile-slider-container {
+    padding: 1%;
+} */
