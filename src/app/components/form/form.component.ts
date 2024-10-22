@@ -12,6 +12,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Internal App Files
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
@@ -43,6 +46,10 @@ import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
+    FlexLayoutModule,
+    MatListModule,
+    MatSidenavModule,
+    MatToolbarModule,
     TextLineComponent,
     InitEndDateComponent,
     ParagraphComponent,

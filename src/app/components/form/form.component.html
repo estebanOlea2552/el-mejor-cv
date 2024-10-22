@@ -1,461 +1,400 @@
 <!-- General Container -->
-<form class="form" [formGroup]="cvFormGroup">
-    <button
-        type="button"
-        mat-flat-button
-        aria-label="Reset"
-        (click)="resetForm()"
-        style="margin: 1%;">
-            Limpiar Formulario
-        </button>
-    <!-- General Info -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Información General
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('personalInfo')">
-                Añadir resúmen
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('personalInfo') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('personalInfo')" @slideInOut>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="name"
-                label="Nombre">
-            </text-line>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="lastname"
-                label="Apellido"
-            ></text-line>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="jobPosition"
-                label="Puesto">
-            </text-line>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="email"
-                label="Email">
-            </text-line>
-            <text-line
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="phone"
-                label="Teléfono">
-            </text-line>
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Agregar información extra</mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <text-line
-                        [groupName]="getFormGroup('personalInfo')"
-                        controlName="country"
-                        label="País">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('personalInfo')"
-                        controlName="stateProvince"
-                        label="Estado/Provincia">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('personalInfo')"
-                        controlName="city"
-                        label="Ciudad">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('personalInfo')"
-                        controlName="nationality"
-                        label="Nacionalidad">
-                    </text-line>
-                    <num-input
-                        [groupName]="getFormGroup('personalInfo')"
-                        controlName="age"
-                        label="Edad">
-                    </num-input>
-                </mat-expansion-panel>
-            </mat-accordion>     
-        </mat-card-content>
-    </mat-card>
+<div
+fxLayout="column"
+fxLayoutAlign="start center"
+class="general-container">
+    <!-- Sidenav -->
+    <mat-sidenav-container>
+        <mat-sidenav
+        #sidenav mode="over"
+        opened="false">
+            <mat-nav-list>
+                <mat-list-item>Item 1</mat-list-item>
+                <mat-list-item>Item 2</mat-list-item>
+                <mat-list-item>Item 3</mat-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
 
-    <!-- Description -->
-    
-      <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Resúmen Profesional
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('professionalSum')">
-                Añadir resúmen
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('professionalSum') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('professionalSum')" @slideInOut>
-            <paragraph
-                [groupName]="getFormGroup('personalInfo')"
-                controlName="professionalSummary">
-            </paragraph>
-        </mat-card-content>
-    </mat-card>  
-    
-    <!-- Work Experience -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Experiencia Laboral
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('workExp')">
-                Añadir Experiencia Laboral
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('workExp') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('workExp')" @slideInOut>
-            <div formArrayName="workExperience">
-                <div *ngFor="let experience of workExperience.controls, let i=index" [formGroupName]="i">
-                    <text-line
-                        [groupName]="getFormGroup('workExperience', i)"
-                        controlName="position"
-                        label="Posición">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('workExperience', i)"
-                        controlName="organization"
-                        label="Empresa">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('workExperience', i)"
-                        controlName="location"
-                        label="Ubicación">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('workExperience', i)"
-                        controlName="workingDay"
-                        label="Jornada">
-                    </text-line>
-                    <init-end-date
-                        [groupName]="getFormGroup('workExperience', i)"
-                        initMControl="wExpInitMonth"
-                        initYControl="wExpInitYear"
-                        endMControl="wExpEndMonth"
-                        endYControl="wExpEndYear">
-                    </init-end-date>
-                    <paragraph
-                        [groupName]="getFormGroup('workExperience', i)"
-                        controlName="description">
-                    </paragraph>
-                    <!-- Botón -->
-                    <button mat-button (click)="removeFormField('workExperience', i)">
-                        remove
+            <!-- Toolbar -->
+            <mat-toolbar>
+                <button mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </mat-toolbar>
+
+            <!-- Content -->
+            <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            class="form-container">
+
+                <!-- Form -->
+                <form
+                class="form"
+                [formGroup]="cvFormGroup">
+                    <button
+                    type="button"
+                    mat-flat-button
+                    aria-label="Reset"
+                    (click)="resetForm()"
+                    style="margin: 1%;">
+                        Limpiar Formulario
                     </button>
-                </div>
-                <!-- Botón -->
-                <button mat-button (click)="addFormField('workExperience')">
-                    add
-                </button>
-            </div>
-        </mat-card-content>
-    </mat-card>
 
-    <!-- Education -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Educación
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('education')">
-                Añadir Estudios
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('education') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('education')" @slideInOut>
-            <div formArrayName="education">
-                <div *ngFor="let control of education.controls, let i=index" [formGroupName]="i">
-                    <text-line
-                        [groupName]="getFormGroup('education', i)"
-                        controlName="grade"
-                        label="Título">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('education', i)"
-                        controlName="school"
-                        label="Escuela">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('education', i)"
-                        controlName="type"
-                        label="Tipo">
-                    </text-line>
-                    <num-input
-                        [groupName]="getFormGroup('education', i)"
-                        controlName="average"
-                        label="Promedio académico">
-                    </num-input>
-                    <init-end-date
-                        [groupName]="getFormGroup('education', i)"
-                        initMControl="edInitMonth"
-                        initYControl="edInitYear"
-                        endMControl="edEndMonth"
-                        endYControl="edEndYear">
-                    </init-end-date>
-                    <paragraph
-                        [groupName]="getFormGroup('education', i)"
-                        controlName="description">
-                    </paragraph>
-                    <!-- Botón -->
-                    <button mat-button (click)="removeFormField('education', i)">
-                        remove
-                    </button>
-                </div>
-                <!-- Botón -->
-                <button mat-button (click)="addFormField('education')">
-                    add
-                </button>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                    <!-- General Info -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Información General
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('personalInfo')">
+                                Añadir resúmen
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('personalInfo') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('personalInfo')" @slideInOut>
+                            <text-line [groupName]="getFormGroup('personalInfo')" controlName="name" label="Nombre">
+                            </text-line>
+                            <text-line [groupName]="getFormGroup('personalInfo')" controlName="lastname"
+                                label="Apellido"></text-line>
+                            <text-line [groupName]="getFormGroup('personalInfo')" controlName="jobPosition"
+                                label="Puesto">
+                            </text-line>
+                            <text-line [groupName]="getFormGroup('personalInfo')" controlName="email" label="Email">
+                            </text-line>
+                            <text-line [groupName]="getFormGroup('personalInfo')" controlName="phone" label="Teléfono">
+                            </text-line>
 
-    <!-- Certifications -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Exámenes y Certificaciones
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('certifications')">
-                Añadir Exámenes y certificaciones
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('certifications') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('certifications')" @slideInOut>
-            <div formArrayName="certifications">
-                <div *ngFor="let control of certifications.controls, let i=index" [formGroupName]="i">
-                    <text-line
-                        [groupName]="getFormGroup('certifications', i)"
-                        controlName="title"
-                        label="Título">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('certifications', i)"
-                        controlName="institution"
-                        label="Institución">
-                    </text-line>
-                    <num-input
-                        [groupName]="getFormGroup('certifications', i)"
-                        controlName="average"
-                        label="Puntaje">
-                    </num-input>
-                    <!-- Botón -->
-                    <button mat-button (click)="removeFormField('certifications', i)">
-                        remove
-                    </button>
-                </div>
-                <!-- Botón -->
-                <button mat-button (click)="addFormField('certifications')">
-                    add
-                </button>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                            <!-- More Info -->
+                            <mat-accordion>
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>Agregar información extra</mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <text-line [groupName]="getFormGroup('personalInfo')" controlName="country"
+                                        label="País">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('personalInfo')" controlName="stateProvince"
+                                        label="Estado/Provincia">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('personalInfo')" controlName="city"
+                                        label="Ciudad">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('personalInfo')" controlName="nationality"
+                                        label="Nacionalidad">
+                                    </text-line>
+                                    <num-input [groupName]="getFormGroup('personalInfo')" controlName="age"
+                                        label="Edad">
+                                    </num-input>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </mat-card-content>
+                    </mat-card>
 
-    <!-- Skills -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Habilidades
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('skills')">
-                Añadir Habilidades
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('skills') }}</span>
-        </mat-card-header>
-        <mat-card-content  *ngIf="getCardIsVisible('skills')" @slideInOut>
-            <div formArrayName="skills">
-                <div *ngFor="let skill of skills.controls, let i=index" [formGroupName]="i">
-                    <text-line
-                        [groupName]="getFormGroup('skills', i)"
-                        controlName="skill"
-                        label="Habilidad">
-                    </text-line>
-                    <level
-                        [groupName]="getFormGroup('skills', i)"
-                        controlName="level"
-                        label="Nivel">
-                    </level>
-                    <!-- Botón -->
-                    <button mat-button (click)="removeFormField('skills', i)">
-                        remove
-                    </button>
-                </div>
-                <!-- Botón -->
-                <button mat-button (click)="addFormField('skills')">
-                    add
-                </button>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                    <!-- Description -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Resúmen Profesional
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('professionalSum')">
+                                Añadir resúmen
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('professionalSum') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('professionalSum')" @slideInOut>
+                            <paragraph [groupName]="getFormGroup('personalInfo')" controlName="professionalSummary">
+                            </paragraph>
+                        </mat-card-content>
+                    </mat-card>
 
-    <!-- Languages -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Idiomas
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('languages')">
-                Añadir Idiomas
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('languages') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('languages')" @slideInOut>
-            <div formArrayName="languages">
-                <div *ngFor="let control of languages.controls, let i=index" [formGroupName]="i">
-                    <text-line
-                        [groupName]="getFormGroup('languages', i)"
-                        controlName="language"
-                        label="Idioma">
-                    </text-line>
-                    <level
-                        [groupName]="getFormGroup('languages', i)"
-                        controlName="level"
-                        label="Nivel">
-                    </level>
-                    <!-- Botón -->
-                    <button mat-button (click)="removeFormField('languages', i)">
-                        remove
-                    </button>
-                </div>
-                <!-- Botón -->
-                <button mat-button (click)="addFormField('languages')">
-                    add
-                </button>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                    <!-- Work Experience -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Experiencia Laboral
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('workExp')">
+                                Añadir Experiencia Laboral
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('workExp') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('workExp')" @slideInOut>
+                            <div formArrayName="workExperience">
+                                <div *ngFor="let experience of workExperience.controls, let i=index"
+                                    [formGroupName]="i">
+                                    <text-line [groupName]="getFormGroup('workExperience', i)" controlName="position"
+                                        label="Posición">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('workExperience', i)"
+                                        controlName="organization" label="Empresa">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('workExperience', i)" controlName="location"
+                                        label="Ubicación">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('workExperience', i)" controlName="workingDay"
+                                        label="Jornada">
+                                    </text-line>
+                                    <init-end-date [groupName]="getFormGroup('workExperience', i)"
+                                        initMControl="wExpInitMonth" initYControl="wExpInitYear"
+                                        endMControl="wExpEndMonth" endYControl="wExpEndYear">
+                                    </init-end-date>
+                                    <paragraph [groupName]="getFormGroup('workExperience', i)"
+                                        controlName="description">
+                                    </paragraph>
+                                    <!-- Botón -->
+                                    <button mat-button (click)="removeFormField('workExperience', i)">
+                                        remove
+                                    </button>
+                                </div>
+                                <!-- Botón -->
+                                <button mat-button (click)="addFormField('workExperience')">
+                                    add
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
 
-    <!-- Volunteer Works -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Voluntariados
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('volunteerWorks')">
-                Añadir Experiencia Laboral
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('volunteerWorks') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('volunteerWorks')" @slideInOut>
-            <div formArrayName="volunteerWorks">
-                <div *ngFor="let control of volunteerWorks.controls, let i=index" [formGroupName]="i">
-                    <text-line
-                        [groupName]="getFormGroup('volunteerWorks', i)"
-                        controlName="position"
-                        label="Puesto">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('volunteerWorks', i)"
-                        controlName="organization"
-                        label="Organización">
-                    </text-line>
-                    <init-end-date
-                        [groupName]="getFormGroup('volunteerWorks', i)"
-                        initMControl="vWInitMonth"
-                        initYControl="vWInitYear"
-                        endMControl="vWEndMonth"
-                        endYControl="vWEndYear">
-                    </init-end-date>
-                    <paragraph
-                        [groupName]="getFormGroup('volunteerWorks', i)"
-                        controlName="description">
-                    </paragraph>
-                    <!-- Botón -->
-                    <button mat-button (click)="removeFormField('volunteerWorks', i)">
-                        remove
-                    </button>        
-                </div>
-                <!-- Botón -->
-                <button mat-button (click)="addFormField('volunteerWorks')">
-                    add
-                </button>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                    <!-- Education -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Educación
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('education')">
+                                Añadir Estudios
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('education') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('education')" @slideInOut>
+                            <div formArrayName="education">
+                                <div *ngFor="let control of education.controls, let i=index" [formGroupName]="i">
+                                    <text-line [groupName]="getFormGroup('education', i)" controlName="grade"
+                                        label="Título">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('education', i)" controlName="school"
+                                        label="Escuela">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('education', i)" controlName="type"
+                                        label="Tipo">
+                                    </text-line>
+                                    <num-input [groupName]="getFormGroup('education', i)" controlName="average"
+                                        label="Promedio académico">
+                                    </num-input>
+                                    <init-end-date [groupName]="getFormGroup('education', i)" initMControl="edInitMonth"
+                                        initYControl="edInitYear" endMControl="edEndMonth" endYControl="edEndYear">
+                                    </init-end-date>
+                                    <paragraph [groupName]="getFormGroup('education', i)" controlName="description">
+                                    </paragraph>
+                                    <button mat-button (click)="removeFormField('education', i)">
+                                        remove
+                                    </button>
+                                </div>
+                                <button mat-button (click)="addFormField('education')">
+                                    add
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
 
-    <!-- References -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Referencias
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('references')">
-                Añadir Experiencia Laboral
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('references') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('references')" @slideInOut>
-            <div formArrayName="references">
-                <div *ngFor="let control of references.controls, let i=index" [formGroupName]="i">
-                    <text-line
-                        [groupName]="getFormGroup('references', i)"
-                        controlName="name"
-                        label="Nombre Completo">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('references', i)"
-                        controlName="organization"
-                        label="Organización">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('references', i)"
-                        controlName="email"
-                        label="Email">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup('references', i)"
-                        controlName="phone"
-                        label="Teléfono">
-                    </text-line>
-                    <!-- Botón -->
-                    <button mat-button (click)="removeFormField('references', i)">
-                        remove
-                    </button>
-                </div>
-                <!-- Botón -->
-                <button mat-button (click)="addFormField('references')">
-                    add
-                </button>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                    <!-- Certifications -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Exámenes y Certificaciones
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('certifications')">
+                                Añadir Exámenes y certificaciones
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('certifications') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('certifications')" @slideInOut>
+                            <div formArrayName="certifications">
+                                <div *ngFor="let control of certifications.controls, let i=index" [formGroupName]="i">
+                                    <text-line [groupName]="getFormGroup('certifications', i)" controlName="title"
+                                        label="Título">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('certifications', i)" controlName="institution"
+                                        label="Institución">
+                                    </text-line>
+                                    <num-input [groupName]="getFormGroup('certifications', i)" controlName="average"
+                                        label="Puntaje">
+                                    </num-input>
+                                    <button mat-button (click)="removeFormField('certifications', i)">
+                                        remove
+                                    </button>
+                                </div>
+                                <button mat-button (click)="addFormField('certifications')">
+                                    add
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
 
-    <!-- Links -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-                Enlaces
-            </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('links')">
-                Añadir Experiencia Laboral
-            </mat-card-subtitle>
-            <span>{{ getCardIsVisible('links') }}</span>
-        </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('links')" @slideInOut>
-            <div formArrayName="links">
-                <div *ngFor="let control of links.controls, let i=index" [formGroupName]="i">
-                    <text-line
-                        [groupName]="getFormGroup('links', i)"
-                        controlName="link"
-                        label="Enlace">
-                    </text-line>
-                    <!-- Botón -->
-                    <button mat-button (click)="removeFormField('links', i)">
-                        remove
-                    </button>
-                </div>
-                <!-- Botón -->
-                <button mat-button (click)="addFormField('links')">
-                    add
-                </button>
+                    <!-- Skills -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Habilidades
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('skills')">
+                                Añadir Habilidades
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('skills') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('skills')" @slideInOut>
+                            <div formArrayName="skills">
+                                <div *ngFor="let skill of skills.controls, let i=index" [formGroupName]="i">
+                                    <text-line [groupName]="getFormGroup('skills', i)" controlName="skill"
+                                        label="Habilidad">
+                                    </text-line>
+                                    <level [groupName]="getFormGroup('skills', i)" controlName="level" label="Nivel">
+                                    </level>
+                                    <button mat-button (click)="removeFormField('skills', i)">
+                                        remove
+                                    </button>
+                                </div>
+                                <button mat-button (click)="addFormField('skills')">
+                                    add
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <!-- Languages -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Idiomas
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('languages')">
+                                Añadir Idiomas
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('languages') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('languages')" @slideInOut>
+                            <div formArrayName="languages">
+                                <div *ngFor="let control of languages.controls, let i=index" [formGroupName]="i">
+                                    <text-line [groupName]="getFormGroup('languages', i)" controlName="language"
+                                        label="Idioma">
+                                    </text-line>
+                                    <level [groupName]="getFormGroup('languages', i)" controlName="level" label="Nivel">
+                                    </level>
+                                    <button mat-button (click)="removeFormField('languages', i)">
+                                        remove
+                                    </button>
+                                </div>
+                                <button mat-button (click)="addFormField('languages')">
+                                    add
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <!-- Volunteer Works -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Voluntariados
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('volunteerWorks')">
+                                Añadir Experiencia Laboral
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('volunteerWorks') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('volunteerWorks')" @slideInOut>
+                            <div formArrayName="volunteerWorks">
+                                <div *ngFor="let control of volunteerWorks.controls, let i=index" [formGroupName]="i">
+                                    <text-line [groupName]="getFormGroup('volunteerWorks', i)" controlName="position"
+                                        label="Puesto">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('volunteerWorks', i)"
+                                        controlName="organization" label="Organización">
+                                    </text-line>
+                                    <init-end-date [groupName]="getFormGroup('volunteerWorks', i)"
+                                        initMControl="vWInitMonth" initYControl="vWInitYear" endMControl="vWEndMonth"
+                                        endYControl="vWEndYear">
+                                    </init-end-date>
+                                    <paragraph [groupName]="getFormGroup('volunteerWorks', i)"
+                                        controlName="description">
+                                    </paragraph>
+                                    <button mat-button (click)="removeFormField('volunteerWorks', i)">
+                                        remove
+                                    </button>
+                                </div>
+                                <button mat-button (click)="addFormField('volunteerWorks')">
+                                    add
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <!-- References -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Referencias
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('references')">
+                                Añadir Experiencia Laboral
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('references') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('references')" @slideInOut>
+                            <div formArrayName="references">
+                                <div *ngFor="let control of references.controls, let i=index" [formGroupName]="i">
+                                    <text-line [groupName]="getFormGroup('references', i)" controlName="name"
+                                        label="Nombre Completo">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('references', i)" controlName="organization"
+                                        label="Organización">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('references', i)" controlName="email"
+                                        label="Email">
+                                    </text-line>
+                                    <text-line [groupName]="getFormGroup('references', i)" controlName="phone"
+                                        label="Teléfono">
+                                    </text-line>
+                                    <button mat-button (click)="removeFormField('references', i)">
+                                        remove
+                                    </button>
+                                </div>
+                                <button mat-button (click)="addFormField('references')">
+                                    add
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <!-- Links -->
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>
+                                Enlaces
+                            </mat-card-title>
+                            <mat-card-subtitle (click)="toggleVisible('links')">
+                                Añadir Experiencia Laboral
+                            </mat-card-subtitle>
+                            <span>{{ getCardIsVisible('links') }}</span>
+                        </mat-card-header>
+                        <mat-card-content *ngIf="getCardIsVisible('links')" @slideInOut>
+                            <div formArrayName="links">
+                                <div *ngFor="let control of links.controls, let i=index" [formGroupName]="i">
+                                    <text-line [groupName]="getFormGroup('links', i)" controlName="link" label="Enlace">
+                                    </text-line>
+                                    <button mat-button (click)="removeFormField('links', i)">
+                                        remove
+                                    </button>
+                                </div>
+                                <button mat-button (click)="addFormField('links')">
+                                    add
+                                </button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </form>
             </div>
-        </mat-card-content>
-    </mat-card>
-</form> 
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

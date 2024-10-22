@@ -1,8 +1,35 @@
+.general-container {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+mat-sidenav-container {
+  background-color: var(--primary);
+}
+
+mat-sidenav {
+  background-color: var(--light-gray);
+}
+
+mat-list-item {
+  background-color: var(--font-white);
+}
+
+mat-toolbar {
+  background-color: var(--secondary);
+}
+
+.form-container {
+  background-color: aquamarine;
+}
+
 .form {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: var(--secondary);
+  background-color: var(--light-gray);
 }
 
 mat-form-field {

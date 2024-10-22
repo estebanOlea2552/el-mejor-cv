@@ -1,39 +1,7 @@
-<div fxLayout="column" fxLayoutAlign="start center" class="general-container">
-
-    <mat-sidenav-container class="container">
-        <mat-sidenav #sidenav mode="over" opened="false">
-            <mat-nav-list>
-                <mat-list-item>Item 1</mat-list-item>
-                <mat-list-item>Item 2</mat-list-item>
-                <mat-list-item>Item 3</mat-list-item>
-            </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-content>
-            <mat-toolbar>
-                <button mat-icon-button (click)="sidenav.toggle()">
-                    <mat-icon>menu</mat-icon>
-                </button>
-            </mat-toolbar>
-            <div fxLayout="column" fxLayoutAlign="center center" class="container">
-                <app-form></app-form>
-            </div>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
-
-    <!-- <div class="preview-container">
-        <app-preview></app-preview>
-    </div> -->
-
-    <!-- <mat-card
-    class="mobile-slider-container"
-    fxLayoutAlign="space-between center"
-    fxFlexFill>
-        <button mat-icon-button>
-            <mat-icon>chevron_left</mat-icon>
-        </button>
-        <mat-card-title>Hola</mat-card-title>
-        <button mat-icon-button>
-            <mat-icon>chevron_right</mat-icon>
-        </button>
-    </mat-card> -->
+<div
+fxLayout="column"
+fxLayoutAlign="center center"
+class="general-container">
+    <app-form></app-form>
+    <!-- <app-preview></app-preview> -->
 </div>
