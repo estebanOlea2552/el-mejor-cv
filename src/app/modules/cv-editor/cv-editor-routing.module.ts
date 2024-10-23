@@ -3,9 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CvEditorComponent } from './cv-editor.component';
 
 const routes: Routes = [
-  {
-    path: "", component: CvEditorComponent
-  }
+  { path: '', component: CvEditorComponent }
 ];
 
 @NgModule({

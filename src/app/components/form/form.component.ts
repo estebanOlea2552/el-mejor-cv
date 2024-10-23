@@ -17,15 +17,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Internal App Files
+import { FormRoutingModule } from '../form-routing.module';
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { distinctUntilChanged } from 'rxjs';
-import { TextLineComponent } from "./text-line/text-line.component";
-import { InitEndDateComponent } from "./init-end-date/init-end-date.component";
-import { ParagraphComponent } from "./paragraph/paragraph.component";
-import { NumInputComponent } from './num-input/num-input.component';
-import { LevelComponent } from "./level/level.component";
+import { TextLineComponent } from "../../shared/text-line/text-line.component";
+import { InitEndDateComponent } from "../../shared/init-end-date/init-end-date.component";
+import { ParagraphComponent } from "../../shared/paragraph/paragraph.component";
+import { NumInputComponent } from '../../shared/num-input/num-input.component';
+import { LevelComponent } from "../../shared/level/level.component";
 import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
 
 @Component({
@@ -37,6 +38,7 @@ import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FormRoutingModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
