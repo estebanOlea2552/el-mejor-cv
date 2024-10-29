@@ -27,7 +27,7 @@ import { ParagraphComponent } from "../../shared/paragraph/paragraph.component";
 import { NumInputComponent } from '../../shared/num-input/num-input.component';
 import { LevelComponent } from "../../shared/level/level.component";
 import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -40,6 +40,7 @@ import { RouterOutlet } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterOutlet,
+    RouterLink,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,

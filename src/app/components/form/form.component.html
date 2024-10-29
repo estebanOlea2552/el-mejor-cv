@@ -9,9 +9,15 @@ class="general-container">
         #sidenav mode="over"
         opened="false">
             <mat-nav-list>
-                <mat-list-item>Item 1</mat-list-item>
-                <mat-list-item>Item 2</mat-list-item>
-                <mat-list-item>Item 3</mat-list-item>
+                <mat-list-item routerLink="p-info">Personal Info</mat-list-item>
+                <mat-list-item routerLink="ed">Education</mat-list-item>
+                <mat-list-item routerLink="work-exp">Work Experience</mat-list-item>
+                <mat-list-item routerLink="cert">Certifications</mat-list-item>
+                <mat-list-item routerLink="skills">Skills</mat-list-item>
+                <mat-list-item routerLink="languages">Languages</mat-list-item>
+                <mat-list-item routerLink="vol-works">Volunteer Works</mat-list-item>
+                <mat-list-item routerLink="ref">References</mat-list-item>
+                <mat-list-item routerLink="links">Links</mat-list-item>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
@@ -45,8 +51,6 @@ class="general-container">
                     </button>
 
                     <!-- Router -->
-                    <span>Aquí se muestra el componente</span>
-
                     <router-outlet></router-outlet>
 
                     <!-- Personal Info -->
