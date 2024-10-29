@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/template-mananger/template-mananger.module').then(m => m.TemplateManangerModule) 
   },
   { path: 'editor',
-    loadChildren: () => import('./modules/cv-editor/cv-editor.module').then(m => m.CvEditorModule) 
+    loadChildren: () => import('./modules/cv-editor/cv-editor.module').then(m => m.CvEditorModule)
   }
 ];
 

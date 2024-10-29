@@ -7,6 +7,7 @@ import { PreviewComponent } from 'src/app/components/preview/preview.component';
 import { CvEditorRoutingModule } from './cv-editor-routing.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormRoutingModule } from 'src/app/components/form/form-routing.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     CvEditorRoutingModule,
     FormComponent,
+    FormRoutingModule,
     PreviewComponent,
     FlexLayoutModule,
   ]

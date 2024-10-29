@@ -17,7 +17,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Internal App Files
-import { FormRoutingModule } from '../form-routing.module';
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
@@ -28,6 +27,8 @@ import { ParagraphComponent } from "../../shared/paragraph/paragraph.component";
 import { NumInputComponent } from '../../shared/num-input/num-input.component';
 import { LevelComponent } from "../../shared/level/level.component";
 import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-form',
@@ -38,7 +39,7 @@ import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FormRoutingModule,
+    RouterOutlet,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
