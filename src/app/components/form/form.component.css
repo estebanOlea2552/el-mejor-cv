@@ -3,10 +3,12 @@
   height: auto;
   margin: 0;
   padding: 0;
+  background-color: purple;
 }
 
 mat-sidenav-container {
-  background-color: var(--primary);
+  min-height: 100vh;
+  background-color: var(--light-gray);
 }
 
 mat-sidenav {
@@ -21,15 +23,10 @@ mat-toolbar {
   background-color: var(--secondary);
 }
 
-.form-container {
-  background-color: aquamarine;
-}
-
 .form {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: var(--primary);
 }
 
 mat-form-field {

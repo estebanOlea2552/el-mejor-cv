@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { provideRouter } from '@angular/router';
+import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './app/state/app.state';
@@ -10,7 +10,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 bootstrapApplication(AppComponent, {
   providers: [
     provideAnimations(),
-    provideRouter(APP_ROUTES),
+    provideRouter(APP_ROUTES, withPreloading(PreloadAllModules)),
     provideStore(ROOT_REDUCERS),
     provideStoreDevtools({ name: 'TEST' }) // Configuración de DevTools
   ]
