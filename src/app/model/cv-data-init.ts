@@ -12,6 +12,9 @@ export const cvDataInit = {
         age: '',
         professionalSummary: ''
     },
+    description: {
+        description: ''
+    },
     education: [{
         grade: '',
         school: '',

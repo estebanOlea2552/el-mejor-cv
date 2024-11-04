@@ -1,7 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { slideInOutAnimation } from "src/app/animations/slide-in-out";
+import { cvDataInit } from "src/app/model/cv-data-init";
+import { FormService } from "src/app/services/form.service";
 import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
 import { LevelComponent } from "src/app/shared/level/level.component";
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
@@ -15,37 +19,45 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         <mat-card-title>
             Referencias
         </mat-card-title>
-        <mat-card-subtitle (click)="toggleVisible('references')">
+        <mat-card-subtitle (click)="toggleVisible()">
             Añadir Experiencia Laboral
         </mat-card-subtitle>
-        <span>{{ getCardIsVisible('references') }}</span>
     </mat-card-header>
-    <mat-card-content *ngIf="getCardIsVisible('references')" @slideInOut>
+    <mat-card-content *ngIf="isVisible" @slideInOut>
+        <div [formGroup]="cvFormGroup">
         <div formArrayName="references">
-            <!-- <div *ngFor="let control of references.controls, let i=index" [formGroupName]="i"> -->
-                <text-line [groupName]="getFormGroup('references', 'i')" controlName="name"
+            <div *ngFor="let control of refGroup.controls, let i=index" [formGroupName]="i">
+                <text-line [groupName]="getFormGroup(i)" controlName="name"
                     label="Nombre Completo">
                 </text-line>
-                <text-line [groupName]="getFormGroup('references', 'i')" controlName="organization"
+                <text-line [groupName]="getFormGroup(i)" controlName="organization"
                     label="Organización">
                 </text-line>
-                <text-line [groupName]="getFormGroup('references', 'i')" controlName="email"
+                <text-line [groupName]="getFormGroup(i)" controlName="email"
                     label="Email">
                 </text-line>
-                <text-line [groupName]="getFormGroup('references', 'i')" controlName="phone"
+                <text-line [groupName]="getFormGroup(i)" controlName="phone"
                     label="Teléfono">
                 </text-line>
-                <!-- <button mat-button (click)="removeFormField('references', i)">
+                <button mat-button (click)="removeRef(i)">
                     remove
-                </button> -->
-            <!-- </div> -->
-            <!-- <button mat-button (click)="addFormField('references')">
+                </button>
+            </div>
+            <button mat-button (click)="addRef()">
                 add
-            </button> -->
+            </button>
+        </div>
         </div>
     </mat-card-content>
 </mat-card>`,
-    styles: [''],
+    styles: [`
+        .form-card {
+            background-color: var(--light-gray);
+            margin-top: 3%;
+            padding: 1%;
+            border-radius: 1%;
+        }
+        `],
     standalone: true,
     imports: [
         CommonModule,
@@ -56,20 +68,47 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         InitEndDateComponent,
         NumInputComponent,
         TextLineComponent,
-        LevelComponent
-    ]
+        LevelComponent,
+        MatButtonModule
+    ],
+    animations: [ slideInOutAnimation ]
 })
 export class ReferencesComponent {
-    // Trash methods
-    // The parameter 'i' has to be corrected, the original method receives a number, which is an index for the real FormGroup
-    getFormGroup(parameter: string, i: string): FormGroup { 
-        const data = new FormGroup('a');
-        return data
-    }
-    toggleVisible(parameter: string) {
+    cvFormGroup!: FormGroup;
+    refGroup!: FormArray;
+    refDataInit: any = cvDataInit.references;
+    isVisible: boolean = false;
 
-    }
-    getCardIsVisible(parameter: string) {
+    constructor(private fb: FormBuilder, private form: FormService) { }
 
+    ngOnInit(): void {
+        this.cvFormGroup = this.form.getFormGroup();
+        this.refGroup = this.cvFormGroup.get('references') as FormArray;
+        this.createRef();
+    }
+
+    toggleVisible() {
+        this.isVisible = !this.isVisible;
+    }
+
+    getFormGroup(index: number): FormGroup {
+        return this.refGroup.at(index || 0) as FormGroup;
+    }
+
+    createRef(): FormGroup {
+        return this.fb.group({
+            name: [this.refDataInit.map((ref: any) => ref.name) || ''],
+            organization: [this.refDataInit.map((ref: any) => ref.organization) || ''],
+            email: [this.refDataInit.map((ref: any) => ref.email) || ''],
+            phone: [this.refDataInit.map((ref: any) => ref.phone) || '']
+        });
+    }
+
+    addRef(): void {
+        this.refGroup.push(this.createRef());
+    }
+
+    removeRef(index: number): void {
+        this.refGroup.removeAt(index);
     }
 }

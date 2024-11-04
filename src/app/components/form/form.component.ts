@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Material Imports
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -21,13 +15,9 @@ import { PreviewConnectorService } from 'src/app/services/preview-connector.serv
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { distinctUntilChanged } from 'rxjs';
-import { TextLineComponent } from "../../shared/text-line/text-line.component";
-import { InitEndDateComponent } from "../../shared/init-end-date/init-end-date.component";
-import { ParagraphComponent } from "../../shared/paragraph/paragraph.component";
-import { NumInputComponent } from '../../shared/num-input/num-input.component';
-import { LevelComponent } from "../../shared/level/level.component";
 import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { FormService } from 'src/app/services/form.service';
 
 
 @Component({
@@ -41,42 +31,17 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     ReactiveFormsModule,
     RouterOutlet,
     RouterLink,
-    MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
     MatButtonModule,
-    MatCardModule,
     MatListModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatExpansionModule,
     FlexLayoutModule,
     MatListModule,
     MatSidenavModule,
-    MatToolbarModule,
-    TextLineComponent,
-    InitEndDateComponent,
-    ParagraphComponent,
-    NumInputComponent,
-    LevelComponent
+    MatToolbarModule
 ],
 animations: [ slideInOutAnimation ]
 })
-export class FormComponent implements OnInit {
-  //This array is for activating in-out animations for cards of the form
-  visibleCards: any[] = [
-    {name:'personalInfo', visible: false},
-    {name:'professionalSum', visible: false},
-    {name:'education', visible: false},
-    {name:'workExp', visible: false},
-    {name:'certifications', visible: false},
-    {name:'skills', visible: false},
-    {name:'languages', visible: false},
-    {name:'volunteerWorks', visible: false},
-    {name:'references', visible: false},
-    {name:'links', visible: false},
-  ];
-
+export class FormComponent implements OnInit {  
   // FormGroup Declaration
   protected cvFormGroup: FormGroup;
 
@@ -85,12 +50,14 @@ export class FormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private previewConnector: PreviewConnectorService
+    private previewConnector: PreviewConnectorService,
+    private formService: FormService
   ) {
     // FormGroup construction
     this.cvFormGroup = this.formBuilder.group(
       {
         personalInfo: this.createPersonalInfo(),
+        description: this.createDescription(),
         workExperience: this.formBuilder.array(
           this.cvDataInput.workExperience.map(wExp => this.createWorkExp(wExp))
         ),
@@ -121,13 +88,11 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormListeners();
+    // Send the cvFormGroup data to children components
+    this.formService.setFormGroup(this.cvFormGroup);
   }
 
-  // PersonalInfo methods
-  get personalInfo(): FormGroup {
-    return this.cvFormGroup.get('personalInfo') as FormGroup;
-  }
-
+  // PersonalInfo
   private createPersonalInfo(): FormGroup {
     return this.formBuilder.group({
       name: [this.cvDataInput.personalInfo.name],
@@ -144,10 +109,14 @@ export class FormComponent implements OnInit {
     });
   }
 
-  // Education FormArray methods
-  get education(): FormArray {
-    return this.cvFormGroup.get('education') as FormArray;
+  // Description
+  private createDescription(): FormGroup {
+    return this.formBuilder.group({
+      description: [this.cvDataInput.description.description]
+    })
   }
+
+  // Education FormArray
   private createEducation(edu: any = {}): FormGroup {
     return this.formBuilder.group({
       grade: [edu.grade || ''],
@@ -162,17 +131,8 @@ export class FormComponent implements OnInit {
       description: [edu.description || '']
     });
   }
-  protected addEducation(): void {
-    this.education.push(this.createEducation());
-  }
-  protected removeEducation(index: number): void {
-    this.education.removeAt(index);
-  }
 
-  // Work Experience FormArray methods
-  get workExperience(): FormArray {
-    return this.cvFormGroup.get('workExperience') as FormArray;
-  }
+  // Work Experience FormArray
   private createWorkExp(wExp: any = {}): FormGroup {
     return this.formBuilder.group({
       position: [wExp.position || ''],
@@ -187,17 +147,8 @@ export class FormComponent implements OnInit {
       description: [wExp.description || '']
     });
   }
-  protected addWorkExp(): void {
-    this.workExperience.push(this.createWorkExp());
-  }
-  protected removeWorkExp(index: number): void {
-    this.workExperience.removeAt(index);
-  }
 
-  // Certifications FormArray methods
-  get certifications(): FormArray {
-    return this.cvFormGroup.get('certifications') as FormArray;
-  }
+  // Certifications FormArray
   private createCertification(cert: any = {}): FormGroup {
     return this.formBuilder.group({
       title: [cert.title || ''],
@@ -206,27 +157,15 @@ export class FormComponent implements OnInit {
     });
   }
   
-  // Skills FormArray methods
-  get skills(): FormArray {
-    return this.cvFormGroup.get('skills') as FormArray;
-  }
+  // Skills FormArray
   private createSkill(skill: any = {}): FormGroup {
     return this.formBuilder.group({
       skill: [skill.skill || ''],
       level: [skill.level || '']
     });
   }
-  protected addSkill(): void {
-    this.skills.push(this.createSkill());
-  }
-  protected removeSkill(index: number): void {
-    this.skills.removeAt(index);
-  }
 
-  // Languages FormArray methods
-  get languages(): FormArray {
-    return this.cvFormGroup.get('languages') as FormArray;
-  }
+  // Languages FormArray
   private createLanguage(lang: any = {}): FormGroup {
     return this.formBuilder.group({
       language: [lang.language || ''],
@@ -234,10 +173,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  // Volunteer Works FormArray methods
-  get volunteerWorks(): FormArray {
-    return this.cvFormGroup.get('volunteerWorks') as FormArray;
-  }
+  // Volunteer Works FormArray
   private createVolunteerWork(vWork: any = {}): FormGroup {
     return this.formBuilder.group({
       position: [vWork.position || ''],
@@ -251,10 +187,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  // References FormArray methods
-  get references(): FormArray {
-    return this.cvFormGroup.get('references') as FormArray;
-  }
+  // References FormArray
   private createReference(ref: any = {}): FormGroup {
     return this.formBuilder.group({
       name: [ref.name || ''],
@@ -264,87 +197,11 @@ export class FormComponent implements OnInit {
     });
   }
 
-  // Links FormArray methods
-  get links(): FormArray {
-    return this.cvFormGroup.get('links') as FormArray;
-  }
+  // Links FormArray
   private createLink(link: any = {}): FormGroup {
     return this.formBuilder.group({
       link: [link.link || '']
     });
-  }
-
-  // Return the result of the .at method as FormGroup
-  protected getFormGroup(group: string, index?: number): FormGroup {
-    switch (group) {
-      case 'personalInfo':
-        return this.personalInfo as FormGroup;
-      case 'workExperience':
-        return this.workExperience.at(index || 0) as FormGroup;
-      case 'education':
-        return this.education.at(index || 0) as FormGroup;
-      case 'certifications':
-        return this.certifications.at(index || 0) as FormGroup;
-      case 'skills':
-        return this.skills.at(index || 0) as FormGroup;
-      case 'languages':
-        return this.languages.at(index || 0) as FormGroup;
-      case 'volunteerWorks':
-        return this.volunteerWorks.at(index || 0) as FormGroup;
-      case 'references':
-        return this.references.at(index || 0) as FormGroup;
-      case 'links':
-        return this.links.at(index || 0) as FormGroup;
-      default:
-        throw new Error(`Invalid group: ${group}`);
-    }
-  }
-
-  // Add and remove methods
-  protected addFormField(formField: string):void {
-    switch(formField) {
-      case 'workExperience':
-        return this.workExperience.push(this.createWorkExp());
-      case 'education':
-        return this.education.push(this.createEducation());
-      case 'certifications':
-        return this.certifications.push(this.createCertification());
-      case 'skills':
-        return this.skills.push(this.createSkill());
-      case 'languages':
-        return this.languages.push(this.createLanguage());
-      case 'volunteerWorks':
-        return this.volunteerWorks.push(this.createVolunteerWork());
-      case 'references':
-        return this.references.push(this.createReference());
-      case 'links':
-        return this.links.push(this.createLink());
-      default:
-        throw new Error (`Invalid formField: ${formField}`);
-    }
-  }
-
-  protected removeFormField(formField: string, index: number):void {
-    switch(formField) {
-      case 'workExperience':
-        return this.workExperience.removeAt(index);
-      case 'education':
-        return this.education.removeAt(index);
-      case 'certifications':
-        return this.certifications.removeAt(index);
-      case 'skills':
-        return this.skills.removeAt(index);
-      case 'languages':
-        return this.languages.removeAt(index);
-      case 'volunteerWorks':
-        return this.volunteerWorks.removeAt(index);
-      case 'references':
-        return this.references.removeAt(index);
-      case 'links':
-        return this.links.removeAt(index);
-      default:
-        throw new Error (`Invalid formField: ${formField}`);
-    }
   }
 
   // Create subscriptions for each FormControl
@@ -388,40 +245,5 @@ export class FormComponent implements OnInit {
 
   protected resetForm(){
     this.cvFormGroup.reset();
-  }
-
-  //Animation methods
-  getCardIsVisible(visibleCard: string): boolean {
-    switch (visibleCard) {
-      case 'personalInfo':
-        return this.visibleCards[0].visible;
-      case 'professionalSum':
-        return this.visibleCards[1].visible;
-      case 'education':
-        return this.visibleCards[2].visible;
-      case 'workExp':
-        return this.visibleCards[3].visible;
-      case 'certifications':
-        return this.visibleCards[4].visible;
-      case 'skills':
-        return this.visibleCards[5].visible;
-      case 'languages':
-        return this.visibleCards[6].visible;
-      case 'volunteerWorks':
-        return this.visibleCards[7].visible;
-      case 'references':
-        return this.visibleCards[8].visible;
-      case 'links':
-        return this.visibleCards[9].visible;
-      default:
-        return false
-    }
-  }
-
-  toggleVisible(visibleCard: string){
-    const card = this.visibleCards.find(card => card.name === visibleCard);
-    if (card) {
-      card.visible = !card.visible;
-    }
   }
 }

@@ -24,6 +24,10 @@
     <span [innerHTML]="cvPreview.personalInfo.professionalSummary"></span>
   </div>
 
+  <h6>Descripción</h6>
+  <div class="desc-container">
+    <span>{{ cvPreview.description.description }}</span>
+  </div>
   <h6>Experiencia</h6>
   <div class="work-exp-container" *ngFor="let exp of cvPreview.workExperience">
     <h6>Posición</h6>

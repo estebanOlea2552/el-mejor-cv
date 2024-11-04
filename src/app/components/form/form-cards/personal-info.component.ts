@@ -1,8 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { MatExpansionModule } from '@angular/material/expansion';
+import { slideInOutAnimation } from "src/app/animations/slide-in-out";
+import { FormService } from "src/app/services/form.service";
 
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
 import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
@@ -15,34 +17,33 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             <mat-card-title>
                 Información General
             </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible('personalInfo')">
+            <mat-card-subtitle (click)="toggleVisible()">
                 Añadir resúmen
             </mat-card-subtitle>
-            <span>{{ getCardIsVisible('personalInfo') }}</span>
         </mat-card-header>
-        <mat-card-content *ngIf="getCardIsVisible('personalInfo')" @slideInOut>
+        <mat-card-content *ngIf="isVisible" @slideInOut>
             <text-line
-                [groupName]="getFormGroup('personalInfo')"
+                [groupName]="personalInfoGroup"
                 controlName="name"
                 label="Nombre">
             </text-line>
             <text-line
-                [groupName]="getFormGroup('personalInfo')"
+                [groupName]="personalInfoGroup"
                 controlName="lastname"
                 label="Apellido">
             </text-line>
             <text-line
-                [groupName]="getFormGroup('personalInfo')"
+                [groupName]="personalInfoGroup"
                 controlName="jobPosition"
                 label="Puesto">
             </text-line>
             <text-line
-                [groupName]="getFormGroup('personalInfo')"
+                [groupName]="personalInfoGroup"
                 controlName="email"
                 label="Email">
             </text-line>
             <text-line
-                [groupName]="getFormGroup('personalInfo')"
+                [groupName]="personalInfoGroup"
                 controlName="phone"
                 label="Teléfono">
             </text-line>
@@ -53,26 +54,30 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 <mat-expansion-panel-header>
                     <mat-panel-title>Agregar información extra</mat-panel-title>
                 </mat-expansion-panel-header>
-                <text-line [groupName]="getFormGroup('personalInfo')" controlName="country"
+                <text-line [groupName]="personalInfoGroup" controlName="country"
                     label="País">
                 </text-line>
-                <text-line [groupName]="getFormGroup('personalInfo')" controlName="stateProvince"
+                <text-line [groupName]="personalInfoGroup" controlName="stateProvince"
                     label="Estado/Provincia">
                 </text-line>
-                <text-line [groupName]="getFormGroup('personalInfo')" controlName="city"
+                <text-line [groupName]="personalInfoGroup" controlName="city"
                     label="Ciudad">
                 </text-line>
-                <text-line [groupName]="getFormGroup('personalInfo')" controlName="nationality"
+                <text-line [groupName]="personalInfoGroup" controlName="nationality"
                     label="Nacionalidad">
                 </text-line>
-                <num-input [groupName]="getFormGroup('personalInfo')" controlName="age"
+                <num-input [groupName]="personalInfoGroup" controlName="age"
                     label="Edad">
                 </num-input>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-card-content>
 </mat-card>`,
-    styles: [''],
+    styles: [`
+            mat-card-content {
+                background-color: var(--secondary);
+            }
+        `],
     standalone: true,
     imports: [
         CommonModule,
@@ -82,20 +87,22 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         TextLineComponent,
         NumInputComponent,
         MatExpansionModule
-    ]
+    ],
+    animations: [ slideInOutAnimation ]
 })
-export class PersonalInfoComponent {
+export class PersonalInfoComponent implements OnInit {
+    cvFormGroup!: FormGroup;
+    personalInfoGroup!: FormGroup;
+    isVisible: boolean = false;
 
-    // Trash methods
-    getFormGroup(parameter: string): FormGroup { 
-        const data = new FormGroup('a');
-        return data
-    }
-    toggleVisible(parameter: string) {
+    constructor(private form: FormService){}
 
-    }
-    getCardIsVisible(parameter: string) {
-
+    ngOnInit(): void {
+        this.cvFormGroup = this.form.getFormGroup();
+        this.personalInfoGroup = this.cvFormGroup.get('personalInfo') as FormGroup;
     }
 
+    toggleVisible() {
+        this.isVisible = !this.isVisible;
+    }
 }

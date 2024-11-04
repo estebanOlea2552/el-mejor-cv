@@ -1,7 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { slideInOutAnimation } from "src/app/animations/slide-in-out";
+import { cvDataInit } from "src/app/model/cv-data-init";
+import { FormService } from "src/app/services/form.service";
 import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
 import { LevelComponent } from "src/app/shared/level/level.component";
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
@@ -15,27 +19,30 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         <mat-card-title>
             Enlaces
         </mat-card-title>
-        <mat-card-subtitle (click)="toggleVisible('links')">
+        <mat-card-subtitle (click)="toggleVisible()">
             Añadir Experiencia Laboral
         </mat-card-subtitle>
-        <span>{{ getCardIsVisible('links') }}</span>
     </mat-card-header>
-    <mat-card-content *ngIf="getCardIsVisible('links')" @slideInOut>
+    <mat-card-content *ngIf="isVisible" @slideInOut>
+        <div [formGroup]="cvFormGroup">
         <div formArrayName="links">
-            <!-- <div *ngFor="let control of links.controls, let i=index" [formGroupName]="i"> -->
-                <text-line [groupName]="getFormGroup('links', 'i')" controlName="link" label="Enlace">
+            <div *ngFor="let control of linksGroup.controls, let i=index" [formGroupName]="i">
+                <text-line [groupName]="getFormGroup(i)" controlName="link" label="Enlace">
                 </text-line>
-                <!-- <button mat-button (click)="removeFormField('links', i)">
+                <button mat-button (click)="removeLinks(i)">
                     remove
-                </button> -->
-            <!-- </div> -->
-            <!-- <button mat-button (click)="addFormField('links')">
+                </button>
+            </div>
+            <button mat-button (click)="addLinks()">
                 add
-            </button> -->
+            </button>
+        </div>
         </div>
     </mat-card-content>
 </mat-card>`,
-    styles: [''],
+    styles: [`
+        
+        `],
     standalone: true,
     imports: [
         CommonModule,
@@ -46,20 +53,44 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         InitEndDateComponent,
         NumInputComponent,
         TextLineComponent,
-        LevelComponent
-    ]
+        LevelComponent,
+        MatButtonModule
+    ],
+    animations: [ slideInOutAnimation ]
 })
 export class LinksComponent {
-    // Trash methods
-    // The parameter 'i' has to be corrected, the original method receives a number, which is an index for the real FormGroup
-    getFormGroup(parameter: string, i: string): FormGroup { 
-        const data = new FormGroup('a');
-        return data
-    }
-    toggleVisible(parameter: string) {
+    cvFormGroup!: FormGroup;
+    linksGroup!: FormArray;
+    linksDataInit: any = cvDataInit.links;
+    isVisible: boolean = false;
 
-    }
-    getCardIsVisible(parameter: string) {
+    constructor(private fb: FormBuilder, private form: FormService) { }
 
+    ngOnInit(): void {
+        this.cvFormGroup = this.form.getFormGroup();
+        this.linksGroup = this.cvFormGroup.get('links') as FormArray;
+        this.createLinks();
+    }
+
+    toggleVisible() {
+        this.isVisible = !this.isVisible;
+    }
+
+    getFormGroup(index: number): FormGroup {
+        return this.linksGroup.at(index || 0) as FormGroup;
+    }
+
+    createLinks(): FormGroup {
+        return this.fb.group({
+            link: [this.linksDataInit.map((link: any) => link.link) || '']
+        });
+    }
+
+    addLinks(): void {
+        this.linksGroup.push(this.createLinks());
+    }
+
+    removeLinks(index: number): void {
+        this.linksGroup.removeAt(index);
     }
 }

@@ -1,7 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { slideInOutAnimation } from "src/app/animations/slide-in-out";
+import { cvDataInit } from "src/app/model/cv-data-init";
+import { FormService } from "src/app/services/form.service";
 import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
 import { LevelComponent } from "src/app/shared/level/level.component";
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
@@ -15,30 +19,37 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         <mat-card-title>
             Habilidades
         </mat-card-title>
-        <mat-card-subtitle (click)="toggleVisible('skills')">
+        <mat-card-subtitle (click)="toggleVisible()">
             Añadir Habilidades
         </mat-card-subtitle>
-        <span>{{ getCardIsVisible('skills') }}</span>
     </mat-card-header>
-    <mat-card-content *ngIf="getCardIsVisible('skills')" @slideInOut>
+    <mat-card-content *ngIf="isVisible" @slideInOut>
+        <div [formGroup]="cvFormGroup">
         <div formArrayName="skills">
-            <!-- <div *ngFor="let skill of skills.controls, let i=index" [formGroupName]="i"> -->
-                <text-line [groupName]="getFormGroup('skills', 'i')" controlName="skill"
-                    label="Habilidad">
-                </text-line>
-                <level [groupName]="getFormGroup('skills', 'i')" controlName="level" label="Nivel">
+            <div *ngFor="let skill of skillGroup.controls, let i=index" [formGroupName]="i">
+                <text-line [groupName]="getFormGroup(i)" controlName="skill"
+                label="Habilidad">
+            </text-line>
+            <level [groupName]="getFormGroup(i)" controlName="level" label="Nivel">
                 </level>
-                <!-- <button mat-button (click)="removeFormField('skills', i)">
+                <button mat-button (click)="removeSkill(i)">
                     remove
-                </button> -->
-            <!-- </div> -->
-            <!-- <button mat-button (click)="addFormField('skills')">
+                </button>
+            </div>
+            <button mat-button (click)="addSkill()">
                 add
-            </button> -->
+            </button>
+        </div>
         </div>
     </mat-card-content>
 </mat-card>`,
-    styles: [''],
+    styles: [`
+        .form-card {
+            background-color: var(--light-gray);
+            margin-top: 3%;
+            padding: 1%;
+            border-radius: 1%;
+        }`],
     standalone: true,
     imports: [
         CommonModule,
@@ -49,20 +60,45 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         InitEndDateComponent,
         NumInputComponent,
         TextLineComponent,
-        LevelComponent
-    ]
+        LevelComponent,
+        MatButtonModule
+    ],
+    animations: [ slideInOutAnimation ]
 })
 export class SkillsComponent {
-    // Trash methods
-    // The parameter 'i' has to be corrected, the original method receives a number, which is an index for the real FormGroup
-    getFormGroup(parameter: string, i: string): FormGroup { 
-        const data = new FormGroup('a');
-        return data
-    }
-    toggleVisible(parameter: string) {
+    cvFormGroup!: FormGroup;
+    skillGroup!: FormArray;
+    skillDataInit: any = cvDataInit.skills;
+    isVisible: boolean = false;
 
-    }
-    getCardIsVisible(parameter: string) {
+    constructor(private fb: FormBuilder, private form: FormService) { }
 
+    ngOnInit(): void {
+        this.cvFormGroup = this.form.getFormGroup();
+        this.skillGroup = this.cvFormGroup.get('skills') as FormArray;
+        this.createSkill();
+    }
+
+    toggleVisible() {
+        this.isVisible = !this.isVisible;
+    }
+
+    getFormGroup(index: number): FormGroup {
+        return this.skillGroup.at(index || 0) as FormGroup;
+    }
+
+    createSkill(): FormGroup {
+        return this.fb.group({
+            skill: [this.skillDataInit.map((skill: any) => skill.skill) || ''],
+            level: [this.skillDataInit.map((skill: any) => skill.level) || '']
+          });
+    }
+
+    addSkill(): void {
+        this.skillGroup.push(this.createSkill());
+    }
+
+    removeSkill(index: number): void {
+        this.skillGroup.removeAt(index);
     }
 }

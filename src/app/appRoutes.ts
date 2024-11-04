@@ -8,6 +8,7 @@ import { LanguagesComponent } from "./components/form/form-cards/languages.compo
 import { VolunteerWorksComponent } from "./components/form/form-cards/volunteer-works.component";
 import { ReferencesComponent } from "./components/form/form-cards/references.component";
 import { LinksComponent } from "./components/form/form-cards/links.component";
+import { DescriptionComponent } from "./components/form/form-cards/description.component";
 
 export const APP_ROUTES: Routes = [
     {
@@ -22,6 +23,7 @@ export const APP_ROUTES: Routes = [
         loadComponent: () => import('./modules/cv-editor/cv-editor.component').then(m => m.CvEditorComponent),
         children: [
             {path: 'p-info', component: PersonalInfoComponent},
+            {path: 'desc', component: DescriptionComponent},
             {path: 'ed', component: EducationComponent},
             {path: 'work-exp', component: WorkExperienceComponent},
             {path: 'cert', component: CertificationsComponent},

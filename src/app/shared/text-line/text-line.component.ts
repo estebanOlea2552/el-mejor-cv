@@ -13,7 +13,6 @@ import { MatInputModule } from '@angular/material/input';
       <input
         matInput
         [formControlName]="controlName">
-      <mat-hint>Generic hint</mat-hint>
     </mat-form-field>
   `,
   styles: [`

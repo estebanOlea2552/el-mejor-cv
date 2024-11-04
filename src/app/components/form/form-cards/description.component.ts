@@ -2,6 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
+import { slideInOutAnimation } from "src/app/animations/slide-in-out";
+import { FormService } from "src/app/services/form.service";
 import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component";
 
 @Component({
@@ -12,18 +14,24 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 <mat-card-title>
                     Resúmen Profesional
                 </mat-card-title>
-                <mat-card-subtitle (click)="toggleVisible('professionalSum')">
+                <mat-card-subtitle (click)="toggleVisible()">
                     Añadir resúmen
                 </mat-card-subtitle>
-                    <span>{{ getCardIsVisible('professionalSum') }}</span>
             </mat-card-header>
-            <mat-card-content *ngIf="getCardIsVisible('professionalSum')" @slideInOut>
-                <paragraph [groupName]="getFormGroup('personalInfo')" controlName="professionalSummary">
+            <mat-card-content *ngIf="isVisible" @slideInOut>
+                <paragraph [groupName]="descGroup" controlName="description">
                 </paragraph>
             </mat-card-content>
         </mat-card>
     `,
-    styles: [''],
+    styles: [`
+            .form-card {
+                background-color: var(--light-gray);
+                margin-top: 3%;
+                padding: 1%;
+                border-radius: 1%;
+            }
+        `],
     standalone: true,
     imports: [
         CommonModule,
@@ -31,19 +39,22 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
         ReactiveFormsModule,
         MatCardModule,
         ParagraphComponent
-    ]
+    ],
+    animations: [ slideInOutAnimation ]
 })
 export class DescriptionComponent {
-    
-    // Trash methods
-    getFormGroup(parameter: string): FormGroup { 
-        const data = new FormGroup('a');
-        return data
-    }
-    toggleVisible(parameter: string) {
+    cvFormGroup!: FormGroup;
+    descGroup!: FormGroup;
+    isVisible: boolean = false;
 
-    }
-    getCardIsVisible(parameter: string) {
+    constructor(private form: FormService) { }
 
+    ngOnInit(): void {
+        this.cvFormGroup = this.form.getFormGroup();
+        this.descGroup = this.cvFormGroup.get('description') as FormGroup;
+    }
+
+    toggleVisible() {
+        this.isVisible = !this.isVisible;
     }
 }

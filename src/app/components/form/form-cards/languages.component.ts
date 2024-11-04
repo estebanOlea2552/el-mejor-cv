@@ -1,7 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { slideInOutAnimation } from "src/app/animations/slide-in-out";
+import { cvDataInit } from "src/app/model/cv-data-init";
+import { FormService } from "src/app/services/form.service";
 import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
 import { LevelComponent } from "src/app/shared/level/level.component";
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
@@ -15,30 +19,38 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         <mat-card-title>
             Idiomas
         </mat-card-title>
-        <mat-card-subtitle (click)="toggleVisible('languages')">
+        <mat-card-subtitle (click)="toggleVisible()">
             Añadir Idiomas
         </mat-card-subtitle>
-        <span>{{ getCardIsVisible('languages') }}</span>
     </mat-card-header>
-    <mat-card-content *ngIf="getCardIsVisible('languages')" @slideInOut>
+    <mat-card-content *ngIf="isVisible" @slideInOut>
+        <div [formGroup]="cvFormGroup">
         <div formArrayName="languages">
-            <!-- <div *ngFor="let control of languages.controls, let i=index" [formGroupName]="i"> -->
-                <text-line [groupName]="getFormGroup('languages', 'i')" controlName="language"
+            <div *ngFor="let control of langGroup.controls, let i=index" [formGroupName]="i">
+                <text-line [groupName]="getFormGroup(i)" controlName="language"
                     label="Idioma">
                 </text-line>
-                <level [groupName]="getFormGroup('languages', 'i')" controlName="level" label="Nivel">
+                <level [groupName]="getFormGroup(i)" controlName="level" label="Nivel">
                 </level>
-                <!-- <button mat-button (click)="removeFormField('languages', i)">
+                <button mat-button (click)="removeLang(i)">
                     remove
-                </button> -->
-            <!-- </div> -->
-            <!-- <button mat-button (click)="addFormField('languages')">
+                </button>
+            </div>
+            <button mat-button (click)="addLang()">
                 add
-            </button> -->
+            </button>
+        </div>
         </div>
     </mat-card-content>
 </mat-card>`,
-    styles: [''],
+    styles: [`
+        .form-card {
+            background-color: var(--light-gray);
+            margin-top: 3%;
+            padding: 1%;
+            border-radius: 1%;
+        }
+        `],
     standalone: true,
     imports: [
         CommonModule,
@@ -49,20 +61,45 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         InitEndDateComponent,
         NumInputComponent,
         TextLineComponent,
-        LevelComponent
-    ]
+        LevelComponent,
+        MatButtonModule
+    ],
+    animations: [ slideInOutAnimation ]
 })
 export class LanguagesComponent {
-    // Trash methods
-    // The parameter 'i' has to be corrected, the original method receives a number, which is an index for the real FormGroup
-    getFormGroup(parameter: string, i: string): FormGroup { 
-        const data = new FormGroup('a');
-        return data
-    }
-    toggleVisible(parameter: string) {
+    cvFormGroup!: FormGroup;
+    langGroup!: FormArray;
+    langDataInit: any = cvDataInit.languages;
+    isVisible: boolean = false;
 
-    }
-    getCardIsVisible(parameter: string) {
+    constructor(private fb: FormBuilder, private form: FormService) { }
 
+    ngOnInit(): void {
+        this.cvFormGroup = this.form.getFormGroup();
+        this.langGroup = this.cvFormGroup.get('languages') as FormArray;
+        this.createLang();
+    }
+
+    toggleVisible() {
+        this.isVisible = !this.isVisible;
+    }
+
+    getFormGroup(index: number): FormGroup {
+        return this.langGroup.at(index || 0) as FormGroup;
+    }
+
+    createLang(): FormGroup {
+        return this.fb.group({
+            language: [this.langDataInit.map((lang: any) => lang.language) || ''],
+            level: [this.langDataInit.map((lang: any) => lang.level) || '']
+        });
+    }
+
+    addLang(): void {
+        this.langGroup.push(this.createLang());
+    }
+
+    removeLang(index: number): void {
+        this.langGroup.removeAt(index);
     }
 }

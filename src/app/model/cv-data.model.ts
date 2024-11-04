@@ -12,6 +12,10 @@ export interface PersonalInfo {
     professionalSummary: string,
 }
 
+export interface Description {
+    description: string;
+}
+
 export interface Education {
     grade: string,
     school: string,
@@ -78,6 +82,7 @@ export interface Link {
 
 export interface cvData {
     personalInfo: PersonalInfo,
+    description: Description,
     education: Education[],
     workExperience: WorkExperience[],
     certifications: Certification[],
