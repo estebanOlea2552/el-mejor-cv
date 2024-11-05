@@ -1,54 +1,25 @@
 <!-- General Container -->
-<div
-fxLayout="column"
-fxLayoutAlign="start center"
-class="general-container">
+<div fxLayout="column" fxLayoutAlign="start center" class="general-container">
     <!-- Sidenav -->
-    <mat-sidenav-container>
-        <mat-sidenav
-        #sidenav mode="over"
-        opened="false">
-            <mat-nav-list>
-                <mat-list-item routerLink="p-info">Información Personal</mat-list-item>
-                <mat-list-item routerLink="desc">Resúmen Profesional</mat-list-item>
-                <mat-list-item routerLink="ed">Educación</mat-list-item>
-                <mat-list-item routerLink="work-exp">Experiencia Laboral</mat-list-item>
-                <mat-list-item routerLink="cert">Certificaciones</mat-list-item>
-                <mat-list-item routerLink="skills">Habilidades</mat-list-item>
-                <mat-list-item routerLink="lang">Idiomas</mat-list-item>
-                <mat-list-item routerLink="vol-works">Voluntariados</mat-list-item>
-                <mat-list-item routerLink="ref">Referencias</mat-list-item>
-                <mat-list-item routerLink="links">Links</mat-list-item>
-            </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-content>
-            <!-- Toolbar -->
-            <mat-toolbar>
-                <button mat-icon-button (click)="sidenav.toggle()">
-                    <mat-icon>menu</mat-icon>
-                </button>
-            </mat-toolbar>
-            <!-- Content -->
-            <div
-            fxLayout="column"
-            fxLayoutAlign="center center"
-            class="form-container">
-                <!-- Form -->
-                <form
-                class="form"
-                [formGroup]="cvFormGroup">
-                    <button
-                    type="button"
-                    mat-flat-button
-                    aria-label="Reset"
-                    (click)="resetForm()"
-                    style="margin: 1%;">
-                        Limpiar Formulario
-                    </button>
-                    <!-- Router -->
-                    <router-outlet></router-outlet>
-                </form>
-            </div>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+    <div class="mat-sidenav-container">
+        <!-- Content -->
+        <div
+        class="form-container"
+        fxLayout="column"
+        fxLayoutAlign="center center">
+            <!-- Form -->
+            <form class="form" [formGroup]="cvFormGroup">
+                <!-- <button
+                type="button"
+                mat-flat-button
+                aria-label="Reset"
+                (click)="resetForm()"
+                style="margin: 1%;">
+                    Limpiar Formulario
+                </button> -->
+                <!-- Router -->
+                <router-outlet></router-outlet>
+            </form>
+        </div>
+    </div>
 </div>

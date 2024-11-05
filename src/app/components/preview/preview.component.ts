@@ -1,5 +1,12 @@
 import { 
-  AfterViewInit, Component, ViewContainerRef, OnDestroy, ViewChild, ElementRef, Type, OnInit 
+  Component,
+  ViewContainerRef,
+  ElementRef,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  ViewChild,
+  Type
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -52,10 +59,6 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   // PanZoom instance
   protected panzoom!: PanzoomObject;
 
-  // Values for PanZoom's configuration
-  /* private previewWidth: number = 0;
-  private previewHeight: number = 0; */
-
   constructor(
     private templateService: TemplateRegistryService,
     private previewConnector: PreviewConnectorService,
@@ -84,7 +87,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.panzoom = Panzoom(this.preview.nativeElement, {
       animate: true,
       duration: 300,
-      startScale: 1, //
+      startScale: 1,
       minScale: 1.2,
       maxScale: 1.8,
       easing: 'ease-in',
@@ -126,8 +129,8 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
     const template = this.templateService.getTemplateById(templateId);
     if (template) {
       this.container.clear();
-      /* const componentRef = this.container.createComponent(template.component as Type<any>);
-      (componentRef.instance as any).cvPreview = this.cvDataPreview; */
+      const componentRef = this.container.createComponent(template.component as Type<any>);
+      (componentRef.instance as any).cvPreview = this.cvDataPreview;
     }
   }
 
@@ -135,13 +138,9 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   private setPanInitPosition() {
     const previewWidth = this.previewContainer.nativeElement.clientWidth;
     const previewHeight = this.previewContainer.nativeElement.clientHeight;
-    console.log(previewWidth + " " + previewHeight)
     this.panzoom.setOptions({
-      // This values need more precision
-      // startX: (this.previewWidth),
-      // startY: (this.previewHeight)
-      startX: 0,
-      startY: 0
+      startX: previewWidth / 12,
+      startY: previewHeight / 6
     })
   }
   protected zoomIn(): void {

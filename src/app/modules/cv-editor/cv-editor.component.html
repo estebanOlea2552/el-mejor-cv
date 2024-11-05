@@ -1,7 +1,34 @@
-<div
-fxLayout="column"
-fxLayoutAlign="center center"
-class="general-container">
-    <app-form></app-form>
-    <!-- <preview></preview> -->
+<div fxLayout="column" fxLayoutAlign="center center" class="general-container">
+    <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div class="buttons-container">
+            <button mat-flat-button (click)="showEditor()">
+                Editor
+            </button>
+            <button mat-flat-button (click)="showPreview()">
+                Preview
+            </button>
+        </div>
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over" opened="false">
+            <mat-nav-list>
+                <mat-list-item routerLink="p-info">Información Personal</mat-list-item>
+                <mat-list-item routerLink="desc">Resúmen Profesional</mat-list-item>
+                <mat-list-item routerLink="ed">Educación</mat-list-item>
+                <mat-list-item routerLink="work-exp">Experiencia Laboral</mat-list-item>
+                <mat-list-item routerLink="cert">Certificaciones</mat-list-item>
+                <mat-list-item routerLink="skills">Habilidades</mat-list-item>
+                <mat-list-item routerLink="lang">Idiomas</mat-list-item>
+                <mat-list-item routerLink="vol-works">Voluntariados</mat-list-item>
+                <mat-list-item routerLink="ref">Referencias</mat-list-item>
+                <mat-list-item routerLink="links">Links</mat-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <ng-container #dynamicView></ng-container>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

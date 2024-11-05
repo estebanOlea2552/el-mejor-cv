@@ -5,6 +5,12 @@
     padding: 0;
 }
 
-/* .form-container, .preview-container {
+.buttons-container {
+    margin-left: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+button {
     width: 50%;
-} */
+}
