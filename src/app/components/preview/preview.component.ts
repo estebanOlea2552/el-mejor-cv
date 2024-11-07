@@ -25,7 +25,7 @@ import { TemplateRegistryService } from 'src/app/services/template-registry.serv
 import { templateSelector } from 'src/app/state/selectors/template.selectors';
 
 @Component({
-  selector: 'preview',
+  selector: 'app-preview',
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.css'],
   standalone: true,
@@ -97,7 +97,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setPanInitPosition();
 
     // Init Wheel Event listener
-    /* this.previewContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
+    this.previewContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
       event.preventDefault();
       const zoomFactor = event.deltaY < 0 ? 1.05 : 0.01;
       const currentScale = this.panzoom?.getScale();
@@ -111,7 +111,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       this.panzoom.zoom(
         newScale, { animate: true, focal: { x: 250, y: 250 } }
       );
-    }); */
+    });
   } 
 
   // Updates the cvDataPreview in real time

@@ -13,7 +13,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 
 @Component({
     selector: 'certifications',
-    template: `<mat-card>
+    template: `
+    <mat-card class="form-card">
     <mat-card-header>
         <mat-card-title>
             Exámenes y Certificaciones
@@ -46,14 +47,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     </div>
     </mat-card-content>
 </mat-card>`,
-    styles: [`
-            .form-card {
-                background-color: var(--light-gray);
-                margin-top: 3%;
-                padding: 1%;
-                border-radius: 1%;
-            }
-        `],
+    styles: [``],
     standalone: true,
     imports: [
         CommonModule,

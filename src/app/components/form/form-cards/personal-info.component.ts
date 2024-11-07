@@ -12,16 +12,13 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 @Component({
     selector: 'personal-info',
     template: `
-    <mat-card>
+    <mat-card class="form-card">
         <mat-card-header>
             <mat-card-title>
                 Información General
             </mat-card-title>
-            <mat-card-subtitle (click)="toggleVisible()">
-                Añadir resúmen
-            </mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content *ngIf="isVisible" @slideInOut>
+        <mat-card-content>
             <text-line
                 [groupName]="personalInfoGroup"
                 controlName="name"
@@ -73,11 +70,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         </mat-accordion>
     </mat-card-content>
 </mat-card>`,
-    styles: [`
-            mat-card-content {
-                background-color: var(--secondary);
-            }
-        `],
+    styles: [``],
     standalone: true,
     imports: [
         CommonModule,
@@ -93,16 +86,11 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 export class PersonalInfoComponent implements OnInit {
     cvFormGroup!: FormGroup;
     personalInfoGroup!: FormGroup;
-    isVisible: boolean = false;
 
     constructor(private form: FormService){}
 
     ngOnInit(): void {
         this.cvFormGroup = this.form.getFormGroup();
         this.personalInfoGroup = this.cvFormGroup.get('personalInfo') as FormGroup;
-    }
-
-    toggleVisible() {
-        this.isVisible = !this.isVisible;
     }
 }

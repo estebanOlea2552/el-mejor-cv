@@ -4,7 +4,7 @@ import { PreloadAllModules, provideRouter, withPreloading } from '@angular/route
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './app/state/app.state';
-import { APP_ROUTES } from './app/appRoutes';
+import { APP_ROUTES } from './app/app-routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 bootstrapApplication(AppComponent, {
@@ -12,6 +12,6 @@ bootstrapApplication(AppComponent, {
     provideAnimations(),
     provideRouter(APP_ROUTES, withPreloading(PreloadAllModules)),
     provideStore(ROOT_REDUCERS),
-    provideStoreDevtools({ name: 'TEST' }) // Configuración de DevTools
+    provideStoreDevtools({ name: 'TEST' })
   ]
 }).catch(err => console.error(err));

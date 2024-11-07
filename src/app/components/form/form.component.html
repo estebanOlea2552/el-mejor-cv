@@ -1,25 +1,3 @@
-<!-- General Container -->
-<div fxLayout="column" fxLayoutAlign="start center" class="general-container">
-    <!-- Sidenav -->
-    <div class="mat-sidenav-container">
-        <!-- Content -->
-        <div
-        class="form-container"
-        fxLayout="column"
-        fxLayoutAlign="center center">
-            <!-- Form -->
-            <form class="form" [formGroup]="cvFormGroup">
-                <!-- <button
-                type="button"
-                mat-flat-button
-                aria-label="Reset"
-                (click)="resetForm()"
-                style="margin: 1%;">
-                    Limpiar Formulario
-                </button> -->
-                <!-- Router -->
-                <router-outlet></router-outlet>
-            </form>
-        </div>
-    </div>
-</div>
+<form class="form" [formGroup]="cvFormGroup">
+    <router-outlet></router-outlet>
+</form>

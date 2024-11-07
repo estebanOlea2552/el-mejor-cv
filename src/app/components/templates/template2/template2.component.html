@@ -1,6 +1,6 @@
 <div class="cv-container" #cvContent>
-  <div class="general-info-container">
-    <h6>Nombre</h6>
+  <div class="item p-info">
+    <h4>Nombre</h4>
     <span>{{ cvPreview.personalInfo.name }}</span>
     <h6>Apellido</h6>
     <span>{{ cvPreview.personalInfo.lastname }}</span>
@@ -24,8 +24,13 @@
     <span [innerHTML]="cvPreview.personalInfo.professionalSummary"></span>
   </div>
 
-  <h6>Experiencia</h6>
-  <div class="work-exp-container" *ngFor="let exp of cvPreview.workExperience">
+  <div class="item desc">
+    <h4>Descripción</h4>
+    <span>{{ cvPreview.description.description }}</span>
+  </div>
+
+  <div class="item work-exp" *ngFor="let exp of cvPreview.workExperience">
+    <h4>Experiencia</h4>
     <h6>Posición</h6>
     <span>{{ exp.position }}</span>
     <h6>Organización</h6>
@@ -44,8 +49,8 @@
     <span [innerHTML]="exp.description"></span>
   </div>
 
-  <h6>Educación</h6>
-  <div class="academic-bg-container" *ngFor="let school of cvPreview.education">
+  <div class="item ed" *ngFor="let school of cvPreview.education">
+    <h4>Educación</h4>
     <h6>Título</h6>
     <span>{{ school.grade }}</span>
     <h6>Institución</h6>
@@ -64,8 +69,8 @@
     <span [innerHTML]="school.description"></span>
   </div>
 
-  <h6>Exámenes y certificaciones</h6>
-  <div class="certifications-containter" *ngFor="let cert of cvPreview.certifications">
+  <div class="item cert" *ngFor="let cert of cvPreview.certifications">
+    <h4>Exámenes y certificaciones</h4>
     <h6>Título</h6>
     <span>{{ cert.title }}</span>
     <h6>Institución</h6>
@@ -74,24 +79,24 @@
     <span>{{ cert.average }}</span>
   </div>
 
-  <h6>Habilidades</h6>
-  <div class="skills-container" *ngFor="let skill of cvPreview.skills">
+  <div class="item skills" *ngFor="let skill of cvPreview.skills">
+    <h4>Habilidades</h4>
     <h6>Habilidad</h6>
     <span>{{ skill.skill }}</span>
     <h6>Nivel</h6>
     <span>{{ skill.level }}</span>
   </div>
 
-  <h6>Idiomas</h6>
-  <div class="languages-containter" *ngFor="let lang of cvPreview.languages">
+  <div class="item lang" *ngFor="let lang of cvPreview.languages">
+    <h4>Idiomas</h4>
     <h6>Idioma</h6>
     <span>{{ lang.language }}</span>
     <h6>Nivel</h6>
     <span>{{ lang.level }}</span>
   </div>
 
-  <h6>Voluntariado</h6>
-  <div class="vol-containter" *ngFor="let vol of cvPreview.volunteerWorks">
+  <div class="item vol-works" *ngFor="let vol of cvPreview.volunteerWorks">
+    <h4>Voluntariado</h4>
     <h6>Puesto</h6>
     <span>{{ vol.position }}</span>
     <h6>Organización</h6>
@@ -106,8 +111,8 @@
     <span [innerHTML]="vol.description"></span>
   </div>
 
-  <h6>Referencias</h6>
-  <div class="ref-containter" *ngFor="let ref of cvPreview.references">
+  <div class="item ref" *ngFor="let ref of cvPreview.references">
+    <h4>Referencias</h4>
     <h6>Nombre Completo</h6>
     <span>{{ ref.name }}</span>
     <h6>Organización</h6>
@@ -118,8 +123,8 @@
     <span>{{ ref.phone }}</span>
   </div>
 
-  <h6>Enlaces</h6>
-  <div class="link-containter" *ngFor="let link of cvPreview.links">
+  <div class="item links" *ngFor="let link of cvPreview.links">
+    <h4>Enlaces</h4>
     <h6>Enlace</h6>
     <span>{{ link.link }}</span>
   </div>

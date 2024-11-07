@@ -31,13 +31,6 @@ import { FormService } from 'src/app/services/form.service';
     ReactiveFormsModule,
     RouterOutlet,
     RouterLink,
-    MatIconModule,
-    MatButtonModule,
-    MatListModule,
-    FlexLayoutModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule
 ],
 animations: [ slideInOutAnimation ]
 })

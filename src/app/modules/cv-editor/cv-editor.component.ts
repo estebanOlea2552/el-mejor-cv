@@ -1,6 +1,5 @@
-import { Component, HostListener, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
-import { SubscriptionLike } from 'rxjs';
+import { AfterViewInit, Component, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormComponent } from 'src/app/components/form/form.component';
 import { PreviewComponent } from 'src/app/components/preview/preview.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -10,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-cv-editor',
@@ -29,42 +29,39 @@ import { RouterLink } from '@angular/router';
     RouterLink
   ]
 })
-export class CvEditorComponent implements OnInit, OnDestroy {
-  protected notification: string = "Cuidado! Si sales del editor, tus datos se perderán";
-  // Location returns an object of type "SubscriptionLike"
-  private locationSubscription!: SubscriptionLike;
-
+export class CvEditorComponent implements OnInit, AfterViewInit {
   @ViewChild('dynamicView', { read: ViewContainerRef, static: true})
   protected dynamicView!: ViewContainerRef;
+  protected prevIsVisible: boolean = false;
 
-  constructor(
-    private location: Location,){}
+  isMobile!: boolean;
 
-  /* @HostListener('window:beforeunload', ['$event'])
-  beforeunloadNotification($event: any):void {
-    $event.returnValue = this.notification;
-  } */
+  constructor(private breakPointObserver: BreakpointObserver){}
 
   ngOnInit(): void {
-    /* this.locationSubscription = this.location.subscribe(() => {
-      alert(this.notification);
-    }) */
+    // Determines the device the app is running on
+    this.breakPointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+    .subscribe(value => this.isMobile = value.matches);
   }
 
-  showEditor():void {
-    this.loadComponent(FormComponent);
+  ngAfterViewInit(): void {
+    if(this.isMobile) {
+      this.alternateViews();
+    }
   }
 
-  showPreview():void {
-    this.loadComponent(PreviewComponent);
+  alternateViews():void {
+    this.prevIsVisible = !this.prevIsVisible;
+    if (this.prevIsVisible) {
+      this.loadComponent(PreviewComponent);
+    }
+    else {
+      this.loadComponent(FormComponent);
+    }
   }
 
   loadComponent(component: Type<any>) {
     this.dynamicView.clear();
     this.dynamicView.createComponent(component);
-  }
-
-  ngOnDestroy(): void {
-    /* this.locationSubscription.unsubscribe(); */
   }
 }

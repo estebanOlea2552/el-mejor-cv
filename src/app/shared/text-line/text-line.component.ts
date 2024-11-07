@@ -17,7 +17,7 @@ import { MatInputModule } from '@angular/material/input';
   `,
   styles: [`
     mat-form-field {
-      width: 100%;
+      width: 30%;
       margin-bottom: 1rem;
     }  
   `],

@@ -22,16 +22,17 @@ export const APP_ROUTES: Routes = [
     { path: 'editor',
         loadComponent: () => import('./modules/cv-editor/cv-editor.component').then(m => m.CvEditorComponent),
         children: [
-            {path: 'p-info', component: PersonalInfoComponent},
+            {path: '', redirectTo: 'pinfo', pathMatch: 'full'},
+            {path: 'pinfo', component: PersonalInfoComponent},
             {path: 'desc', component: DescriptionComponent},
             {path: 'ed', component: EducationComponent},
-            {path: 'work-exp', component: WorkExperienceComponent},
+            {path: 'workexp', component: WorkExperienceComponent},
             {path: 'cert', component: CertificationsComponent},
             {path: 'skills', component: SkillsComponent},
             {path: 'lang', component: LanguagesComponent},
-            {path: 'vol-works', component: VolunteerWorksComponent},
+            {path: 'volworks', component: VolunteerWorksComponent},
             {path: 'ref', component: ReferencesComponent},
-            {path: 'links', component: LinksComponent}
+            {path: 'links', component: LinksComponent},
         ]
     }
 ]

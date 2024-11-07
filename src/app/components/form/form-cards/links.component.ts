@@ -14,7 +14,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 
 @Component({
     selector: 'links',
-    template: `<mat-card>
+    template: `
+    <mat-card class="form-card">
     <mat-card-header>
         <mat-card-title>
             Enlaces
@@ -40,9 +41,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         </div>
     </mat-card-content>
 </mat-card>`,
-    styles: [`
-        
-        `],
+    styles: [``],
     standalone: true,
     imports: [
         CommonModule,
