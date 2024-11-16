@@ -1,18 +1,16 @@
-<div
-class="general-container"
-fxLayout="column">
+<div class="general-container">
     <header>
         <h1>Administrador de Plantillas</h1>
     </header>
-    <main
-    fxLayout="column"
-    fxLayoutAlign="center center">
+    <main>
         <app-template-selector></app-template-selector>
+    </main>
+    <div class="button-container">
         <button
         mat-stroked-button
         [disabled]="!templateIsSelected"
-        (click)="navigateTo('/editor')">
+        routerLink="/editor">
             Comenzar!
         </button>
-    </main>
+    </div>
 </div>

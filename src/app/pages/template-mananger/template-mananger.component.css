@@ -1,0 +1,33 @@
+.general-container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 80% 1fr;
+    background-color: rgb(196, 168, 131);
+}
+
+header {
+    grid-column: 1/4;
+    background-color: var(--primary);
+    color: var(--font-white);
+}
+
+main {
+    grid-column: 1/4;
+    height: 100%;
+    align-content: center;
+    background-color: darkmagenta;
+}
+
+.button-container {
+    grid-column: 1/4;
+    display: flex;
+    justify-content: center;
+    background-color: brown;
+}
+
+button {
+    margin-top: 1%;
+    width: 20%;
+}

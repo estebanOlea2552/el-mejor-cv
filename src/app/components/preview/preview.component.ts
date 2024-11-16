@@ -23,6 +23,7 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
 import { ExportService } from 'src/app/services/export.service';
 import { TemplateRegistryService } from 'src/app/services/template-registry.service';
 import { templateSelector } from 'src/app/state/selectors/template.selectors';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-preview',
@@ -59,7 +60,11 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   // PanZoom instance
   protected panzoom!: PanzoomObject;
 
+  // Variable for panzoom's config
+  isMobile!: boolean;
+
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private templateService: TemplateRegistryService,
     private previewConnector: PreviewConnectorService,
     private store: Store,
@@ -74,6 +79,10 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
         this.updatePreview(cvData.controlName, cvData.value);
       });
 
+    // Detect mobile devices
+    this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+    .subscribe(result => this.isMobile = result.matches);
+
     this.updateSelectedTemplate('template1');
     
     // Template selector from the Store
@@ -87,17 +96,22 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.panzoom = Panzoom(this.preview.nativeElement, {
       animate: true,
       duration: 300,
-      startScale: 1,
-      minScale: 1.2,
+      minScale: 0.8,
       maxScale: 1.8,
       easing: 'ease-in',
     });
+
+    if(this.isMobile) {
+      this.panzoom.setOptions({
+        startScale: 0.8
+      })
+    }
 
     // Defines a center position to the panzoom element
     this.setPanInitPosition();
 
     // Init Wheel Event listener
-    this.previewContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
+    /* this.previewContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
       event.preventDefault();
       const zoomFactor = event.deltaY < 0 ? 1.05 : 0.01;
       const currentScale = this.panzoom?.getScale();
@@ -111,7 +125,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       this.panzoom.zoom(
         newScale, { animate: true, focal: { x: 250, y: 250 } }
       );
-    });
+    }); */
   } 
 
   // Updates the cvDataPreview in real time
@@ -138,11 +152,20 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   private setPanInitPosition() {
     const previewWidth = this.previewContainer.nativeElement.clientWidth;
     const previewHeight = this.previewContainer.nativeElement.clientHeight;
-    this.panzoom.setOptions({
-      startX: previewWidth / 12,
-      startY: previewHeight / 6
-    })
+
+    if(this.isMobile) {
+      this.panzoom.setOptions({
+        startX: previewWidth / 60,
+        startY: previewHeight /6
+      })
+    } else {
+      this.panzoom.setOptions({
+        startX: previewWidth / 5,
+        startY: previewHeight / 7
+      })
+    }
   }
+
   protected zoomIn(): void {
     this.panzoom?.zoomIn()
   }

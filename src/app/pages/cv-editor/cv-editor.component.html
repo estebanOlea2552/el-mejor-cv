@@ -1,0 +1,57 @@
+<div class="general-container">
+    <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div class="buttons-container">
+            <button mat-flat-button (click)="alternateViews()">
+                Preview
+            </button>
+        </div>
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over" opened="false">
+            <mat-nav-list>
+                <mat-list-item (click)="changeSelectedCard('pinfo')">
+                    Información Personal
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('desc')">
+                    Resúmen Profesional
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('ed')">
+                    Educación
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('workexp')">
+                    Experiencia Laboral
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('cert')">
+                    Certificaciones
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('skills')">
+                    Habilidades
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('lang')">
+                    Idiomas
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('volworks')">
+                    Voluntariados
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('ref')">
+                    Referencias
+                </mat-list-item>
+                <mat-list-item (click)="changeSelectedCard('links')">
+                    Links
+                </mat-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div *ngIf="!isMobile" class="dynamic-container">
+                <!-- The formComponent has an @Input variable that can store the selectedCard from the sidenav -->
+                <app-form [selectedCard]="selectedCard"></app-form>
+                <app-preview></app-preview>
+            </div>
+                <!-- In this case, the selectedCard value is sent during the construction of the formComponent -->
+            <ng-container #dynamicView></ng-container>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

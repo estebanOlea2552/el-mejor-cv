@@ -13,15 +13,15 @@ import { DescriptionComponent } from "./components/form/form-cards/description.c
 export const APP_ROUTES: Routes = [
     {
       path: '',
-      loadComponent: () => import('./modules/home-page/home-page.component').then(m => m.HomePageComponent)
+      loadComponent: () => import('./pages/home-page/home-page.component').then(m => m.HomePageComponent)
     }
     ,
     { path: 'template-mananger',
-      loadComponent: () => import('./modules/template-mananger/template-mananger.component').then(m => m.TemplateManangerComponent)
+      loadComponent: () => import('./pages/template-mananger/template-mananger.component').then(m => m.TemplateManangerComponent)
     },
     { path: 'editor',
-        loadComponent: () => import('./modules/cv-editor/cv-editor.component').then(m => m.CvEditorComponent),
-        children: [
+        loadComponent: () => import('./pages/cv-editor/cv-editor.component').then(m => m.CvEditorComponent),
+        /* children: [
             {path: '', redirectTo: 'pinfo', pathMatch: 'full'},
             {path: 'pinfo', component: PersonalInfoComponent},
             {path: 'desc', component: DescriptionComponent},
@@ -33,6 +33,6 @@ export const APP_ROUTES: Routes = [
             {path: 'volworks', component: VolunteerWorksComponent},
             {path: 'ref', component: ReferencesComponent},
             {path: 'links', component: LinksComponent},
-        ]
+        ] */
     }
 ]

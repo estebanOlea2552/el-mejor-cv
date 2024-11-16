@@ -1,14 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-//Material Imports
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Internal App Files
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
@@ -16,8 +8,17 @@ import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { distinctUntilChanged } from 'rxjs';
 import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
-import { RouterLink, RouterOutlet } from '@angular/router';
 import { FormService } from 'src/app/services/form.service';
+import { PersonalInfoComponent } from './form-cards/personal-info.component';
+import { DescriptionComponent } from './form-cards/description.component';
+import { EducationComponent } from './form-cards/education.component';
+import { WorkExperienceComponent } from './form-cards/work-experience.component';
+import { CertificationsComponent } from './form-cards/certifications.component';
+import { SkillsComponent } from './form-cards/skills.component';
+import { LanguagesComponent } from './form-cards/languages.component';
+import { VolunteerWorksComponent } from './form-cards/volunteer-works.component';
+import { ReferencesComponent } from './form-cards/references.component';
+import { LinksComponent } from './form-cards/links.component';
 
 
 @Component({
@@ -29,12 +30,17 @@ import { FormService } from 'src/app/services/form.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterOutlet,
-    RouterLink,
-],
-animations: [ slideInOutAnimation ]
+    /* RouterOutlet */
+  ],
+  animations: [slideInOutAnimation]
 })
-export class FormComponent implements OnInit {  
+export class FormComponent implements OnInit, OnChanges {
+  // Element where the Form Items are rendered
+  @ViewChild('dynamicView', { read: ViewContainerRef, static: true })
+  dynamicView!: ViewContainerRef;
+
+  @Input() selectedCard: string = "";
+
   // FormGroup Declaration
   protected cvFormGroup: FormGroup;
 
@@ -83,6 +89,70 @@ export class FormComponent implements OnInit {
     this.initFormListeners();
     // Send the cvFormGroup data to children components
     this.formService.setFormGroup(this.cvFormGroup);
+    this.cardHandler();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['selectedCard']){
+      console.log('In Form, selectedCard was changed. New value: ' + this.selectedCard);
+      this.cardHandler();
+    }
+  }
+
+  // Switch for any possible card
+  private cardHandler(): void {
+    switch (this.selectedCard) {
+      case 'pinfo':
+        this.renderComponent(PersonalInfoComponent);
+        console.log('Switch: pinfo')
+        break
+      case 'desc':
+        this.renderComponent(DescriptionComponent);
+        console.log('Switch: desc')
+        break
+      case 'ed':
+        this.renderComponent(EducationComponent);
+        console.log('Switch: ed')
+        break
+      case 'workexp':
+        this.renderComponent(WorkExperienceComponent);
+        console.log('Switch: workexp')
+        break
+      case 'cert':
+        this.renderComponent(CertificationsComponent);
+        console.log('Switch: cert')
+        break
+      case 'skills':
+        this.renderComponent(SkillsComponent);
+        console.log('Switch: skills')
+        break
+      case 'lang':
+        this.renderComponent(LanguagesComponent);
+        console.log('Switch: lang')
+        break
+      case 'volworks':
+        this.renderComponent(VolunteerWorksComponent);
+        console.log('Switch: volworks')
+        break
+      case 'ref':
+        this.renderComponent(ReferencesComponent);
+        console.log('Switch: ref')
+        break
+      case 'links':
+        this.renderComponent(LinksComponent);
+        console.log('Switch: links')
+        break
+      default:
+        this.renderComponent(PersonalInfoComponent);
+        console.log('Switch: default');
+        break;
+    }
+  }
+
+  // Dynamic render of components
+  private renderComponent(component: Type<any>) {
+    this.dynamicView.clear();
+    this.dynamicView.createComponent(component);
   }
 
   // PersonalInfo
@@ -149,7 +219,7 @@ export class FormComponent implements OnInit {
       average: [cert.average || '']
     });
   }
-  
+
   // Skills FormArray
   private createSkill(skill: any = {}): FormGroup {
     return this.formBuilder.group({
@@ -236,7 +306,7 @@ export class FormComponent implements OnInit {
     this.previewConnector.updateCvData(controlName, value);
   }
 
-  protected resetForm(){
+  protected resetForm() {
     this.cvFormGroup.reset();
   }
 }

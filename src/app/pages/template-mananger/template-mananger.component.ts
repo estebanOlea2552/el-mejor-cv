@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { TemplateSelectorComponent } from 'src/app/components/template-selector/template-selector.component';
@@ -14,6 +14,7 @@ import { templateSelector } from 'src/app/state/selectors/template.selectors';
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     TemplateSelectorComponent,
     MatButtonModule
   ]
@@ -22,7 +23,7 @@ export class TemplateManangerComponent implements AfterViewInit {
   storeSubscription!: Subscription;
   templateIsSelected: boolean = false;
 
-  constructor(private router: Router, private store: Store) { }
+  constructor(private store: Store) { }
 
   ngAfterViewInit(): void {
     this.storeSubscription = this.store.select(templateSelector).subscribe((templateId) => {
@@ -30,9 +31,5 @@ export class TemplateManangerComponent implements AfterViewInit {
         this.templateIsSelected = true;
       }
     })
-  }
-
-  navigateTo(route: any) {
-    this.router.navigate([route]);
   }
 }

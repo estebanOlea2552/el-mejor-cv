@@ -26,7 +26,7 @@
 
   <div class="item desc">
     <h4>Descripción</h4>
-    <span>{{ cvPreview.description.description }}</span>
+    <span [innerHTML]="cvPreview.description.description"></span>
   </div>
 
   <div class="item work-exp" *ngFor="let exp of cvPreview.workExperience">

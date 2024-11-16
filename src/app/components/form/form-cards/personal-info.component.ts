@@ -1,9 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { MatExpansionModule } from '@angular/material/expansion';
-import { slideInOutAnimation } from "src/app/animations/slide-in-out";
 import { FormService } from "src/app/services/form.service";
 
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
@@ -74,14 +73,12 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     standalone: true,
     imports: [
         CommonModule,
-        FormsModule,
         ReactiveFormsModule,
         MatCardModule,
         TextLineComponent,
         NumInputComponent,
         MatExpansionModule
     ],
-    animations: [ slideInOutAnimation ]
 })
 export class PersonalInfoComponent implements OnInit {
     cvFormGroup!: FormGroup;

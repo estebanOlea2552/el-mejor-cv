@@ -1,9 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { slideInOutAnimation } from "src/app/animations/slide-in-out";
 import { FormService } from "src/app/services/form.service";
 import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
@@ -19,11 +18,8 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
         <mat-card-title>
             Educación
         </mat-card-title>
-        <mat-card-subtitle (click)="toggleVisible()">
-            Añadir Estudios
-        </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content *ngIf="isVisible" @slideInOut>
+    <mat-card-content>
         <div [formGroup]="cvFormGroup">
             <div formArrayName="education">
                 <div *ngFor="let control of educationGroup.controls, let i=index" [formGroupName]="i" class="form-card">
@@ -74,7 +70,6 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
     standalone: true,
     imports: [
         CommonModule,
-        FormsModule,
         ReactiveFormsModule,
         MatCardModule,
         MatButtonModule,
@@ -83,13 +78,11 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
         NumInputComponent,
         TextLineComponent,
     ],
-    animations: [slideInOutAnimation]
 })
 export class EducationComponent implements OnInit {
     cvFormGroup!: FormGroup;
     educationGroup!: FormArray;
     eduDataInit: any = cvDataInit.education;
-    isVisible: boolean = false;
 
     constructor(private fb: FormBuilder, private form: FormService) { }
 
@@ -97,10 +90,6 @@ export class EducationComponent implements OnInit {
         this.cvFormGroup = this.form.getFormGroup();
         this.educationGroup = this.cvFormGroup.get('education') as FormArray;
         this.createEducation();
-    }
-
-    toggleVisible() {
-        this.isVisible = !this.isVisible;
     }
 
     getFormGroup(index: number): FormGroup {

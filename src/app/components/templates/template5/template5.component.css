@@ -3,7 +3,7 @@
     width: calc(595.28pt * 0.5);
     height: calc(841.89pt * 0.5);
     box-sizing: border-box;
-    background-color: rgb(254, 245, 143);
+    background-color: rgb(178, 143, 254);
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);

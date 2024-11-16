@@ -1,15 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { slideInOutAnimation } from "src/app/animations/slide-in-out";
 import { cvDataInit } from "src/app/model/cv-data-init";
 import { FormService } from "src/app/services/form.service";
-import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
 import { LevelComponent } from "src/app/shared/level/level.component";
-import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
-import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component";
 import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
 
 @Component({
@@ -20,11 +16,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         <mat-card-title>
             Habilidades
         </mat-card-title>
-        <mat-card-subtitle (click)="toggleVisible()">
-            Añadir Habilidades
-        </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content *ngIf="isVisible" @slideInOut>
+    <mat-card-content>
         <div [formGroup]="cvFormGroup">
         <div formArrayName="skills">
             <div *ngFor="let skill of skillGroup.controls, let i=index" [formGroupName]="i">
@@ -48,23 +41,17 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     standalone: true,
     imports: [
         CommonModule,
-        FormsModule,
         ReactiveFormsModule,
         MatCardModule,
-        ParagraphComponent,
-        InitEndDateComponent,
-        NumInputComponent,
         TextLineComponent,
         LevelComponent,
         MatButtonModule
-    ],
-    animations: [ slideInOutAnimation ]
+    ]
 })
 export class SkillsComponent {
     cvFormGroup!: FormGroup;
     skillGroup!: FormArray;
     skillDataInit: any = cvDataInit.skills;
-    isVisible: boolean = false;
 
     constructor(private fb: FormBuilder, private form: FormService) { }
 
@@ -72,10 +59,6 @@ export class SkillsComponent {
         this.cvFormGroup = this.form.getFormGroup();
         this.skillGroup = this.cvFormGroup.get('skills') as FormArray;
         this.createSkill();
-    }
-
-    toggleVisible() {
-        this.isVisible = !this.isVisible;
     }
 
     getFormGroup(index: number): FormGroup {

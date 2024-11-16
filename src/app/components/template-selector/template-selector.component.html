@@ -1,9 +1,25 @@
-<h2>Menú de selección de plantillas</h2>
-<mat-chip-listbox>
-  <mat-chip-option
-  *ngFor="let template of templates"
-  [selected]="selectedTemplate.templateName === template.templateName" 
-  (click)="selectTemp(template.id)">
-  {{ template.templateName }}
-  </mat-chip-option>
-</mat-chip-listbox>
+<div class="general-container">
+  <h2>Elige la plantilla que mejor se adapte a tu estilo!</h2>
+  <div class="template-filter">
+    <span>Filtro</span>
+    <span>Filtro</span>
+    <span>Filtro</span>
+    <span>Filtro</span>
+    <span>Filtro</span>
+  </div>
+  <div class="card-container"
+  [ngClass]="{'card-container-mobile': isMobile}">
+    <mat-card
+    *ngFor="let template of templates"
+    [class.selected-card]="selectedTemplate.templateName === template.templateName" 
+    (click)="selectTemp(template.id)"
+    class="template-card"
+    [ngClass]="{'template-card-mobile': isMobile}">
+      <mat-card-header>
+        <mat-card-title>
+          {{ template.templateName }}
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>

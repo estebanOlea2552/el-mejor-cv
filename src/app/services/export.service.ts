@@ -14,7 +14,7 @@ export class ExportService {
 
 constructor() { }
   
-  public setCvToExport(cv: ElementRef){
+  public setCvToExport(cv: ElementRef) {
     this.cvToExport = cv;
   }
 
@@ -27,8 +27,7 @@ constructor() { }
     const pdfWidth = this.doc.internal.pageSize.getWidth();
     this.doc.html(content, {
       callback: (doc) => {
-        /* This line will be technical debt */
-        doc.deletePage(2);
+        doc.deletePage(2); /* Trash code */
         doc.save('documento.pdf');
       },
       x: 0,
