@@ -1,12 +1,12 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { distinctUntilChanged } from 'rxjs';
 
-// Internal App Files
+// Internal App imports
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
-import { distinctUntilChanged } from 'rxjs';
 import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
 import { FormService } from 'src/app/services/form.service';
 import { PersonalInfoComponent } from './form-cards/personal-info.component';
@@ -143,7 +143,8 @@ export class FormComponent implements OnInit, OnChanges {
         console.log('Switch: links')
         break
       default:
-        this.renderComponent(PersonalInfoComponent);
+        /* this.renderComponent(PersonalInfoComponent); */
+        this.renderComponent(EducationComponent);
         console.log('Switch: default');
         break;
     }

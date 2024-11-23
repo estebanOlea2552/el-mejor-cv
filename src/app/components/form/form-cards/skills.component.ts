@@ -11,33 +11,41 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 @Component({
     selector: 'skills',
     template: `
-    <mat-card class="form-card">
-    <mat-card-header>
-        <mat-card-title>
-            Habilidades
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div [formGroup]="cvFormGroup">
-        <div formArrayName="skills">
-            <div *ngFor="let skill of skillGroup.controls, let i=index" [formGroupName]="i">
-                <text-line [groupName]="getFormGroup(i)" controlName="skill"
-                label="Habilidad">
-            </text-line>
-            <level [groupName]="getFormGroup(i)" controlName="level" label="Nivel">
-                </level>
-                <button mat-button (click)="removeSkill(i)">
-                    remove
-                </button>
-            </div>
-            <button mat-button (click)="addSkill()">
-                add
-            </button>
-        </div>
-        </div>
-    </mat-card-content>
-</mat-card>`,
-    styles: [``],
+        <mat-card class="form-card">
+            <mat-card-header>
+                <mat-card-title>
+                    Habilidades
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div [formGroup]="cvFormGroup">
+                <div formArrayName="skills">
+                    <div *ngFor="let skill of skillGroup.controls, let i=index" [formGroupName]="i">
+                        <text-line [groupName]="getFormGroup(i)" controlName="skill"
+                        label="Habilidad">
+                    </text-line>
+                    <level [groupName]="getFormGroup(i)" controlName="level" label="Nivel">
+                        </level>
+                        <button mat-button (click)="removeSkill(i)">
+                            remove
+                        </button>
+                    </div>
+                    <button mat-button (click)="addSkill()">
+                        add
+                    </button>
+                </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    `,
+    styles: [`
+            .content {
+                display: block;
+                width: 100%;
+                height: 120%;
+                background-color: grey;
+            }
+        `],
     standalone: true,
     imports: [
         CommonModule,

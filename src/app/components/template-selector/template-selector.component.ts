@@ -44,6 +44,5 @@ export class TemplateSelectorComponent implements OnInit {
       id: templateId,
     };
     this.store.dispatch(selectTemplate({ template: this.selectedTemplate }));
-    console.log(this.selectedTemplate.id);
   }
 }

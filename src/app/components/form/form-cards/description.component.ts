@@ -14,13 +14,20 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                     Resúmen Profesional
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content class="content">
                 <paragraph [groupName]="descGroup" controlName="description">
                 </paragraph>
             </mat-card-content>
         </mat-card>
     `,
-    styles: [``],
+    styles: [`
+            .content {
+                display: block;
+                width: 100%;
+                height: 120%;
+                background-color: grey;
+            }
+        `],
     standalone: true,
     imports: [
         CommonModule,

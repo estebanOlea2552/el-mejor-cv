@@ -10,7 +10,7 @@
         </div>
     </mat-toolbar>
     <mat-sidenav-container>
-        <mat-sidenav #sidenav mode="over" opened="false">
+        <mat-sidenav #sidenav mode="side" opened="false">
             <mat-nav-list>
                 <mat-list-item (click)="changeSelectedCard('pinfo')">
                     Información Personal
@@ -45,12 +45,12 @@
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-            <div *ngIf="!isMobile" class="dynamic-container">
+            <div *ngIf="!isMobile" class="desktop-container">
                 <!-- The formComponent has an @Input variable that can store the selectedCard from the sidenav -->
                 <app-form [selectedCard]="selectedCard"></app-form>
                 <app-preview></app-preview>
             </div>
-                <!-- In this case, the selectedCard value is sent during the construction of the formComponent -->
+            <!-- In this case, the selectedCard value is sent during the construction of the formComponent -->
             <ng-container #dynamicView></ng-container>
         </mat-sidenav-content>
     </mat-sidenav-container>

@@ -12,61 +12,68 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 @Component({
     selector: 'work-exp',
     template: `
-    <mat-card class="form-card">
-    <mat-card-header>
-        <mat-card-title>
-            Experiencia Laboral
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div [formGroup]="cvFormGroup">
-        <div formArrayName="workExperience">
-            <div *ngFor="let experience of wExpGroup.controls, let i=index"
-                [formGroupName]="i">
-                <text-line 
-                    [groupName]="getFormGroup(i)" 
-                    controlName="position"
-                    label="Posición">
-                </text-line>
-                <text-line
-                    [groupName]="getFormGroup(i)"
-                    controlName="organization"
-                    label="Empresa">
-                </text-line>
-                <text-line
-                    [groupName]="getFormGroup(i)"
-                    controlName="location"
-                    label="Ubicación">
-                </text-line>
-                <text-line
-                    [groupName]="getFormGroup(i)"
-                    controlName="workingDay"
-                    label="Jornada">
-                </text-line>
-                <init-end-date 
-                    [groupName]="getFormGroup(i)"
-                    initMControl="wExpInitMonth"
-                    initYControl="wExpInitYear"
-                    endMControl="wExpEndMonth"
-                    endYControl="wExpEndYear">
-                </init-end-date>
-                <paragraph
-                    [groupName]="getFormGroup(i)"
-                    controlName="description">
-                </paragraph>
-                <button mat-button (click)="removeWExp(i)">
-                    remove
-                </button>
-            </div>
-            <button mat-button (click)="addWExp()">
-                add
-            </button>
-        </div>
-        </div>
-    </mat-card-content>
-    </mat-card>
+        <mat-card class="form-card">
+            <mat-card-header>
+                <mat-card-title>
+                    Experiencia Laboral
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div [formGroup]="cvFormGroup">
+                <div formArrayName="workExperience">
+                    <div *ngFor="let experience of wExpGroup.controls, let i=index"
+                        [formGroupName]="i">
+                        <text-line 
+                            [groupName]="getFormGroup(i)" 
+                            controlName="position"
+                            label="Posición">
+                        </text-line>
+                        <text-line
+                            [groupName]="getFormGroup(i)"
+                            controlName="organization"
+                            label="Empresa">
+                        </text-line>
+                        <text-line
+                            [groupName]="getFormGroup(i)"
+                            controlName="location"
+                            label="Ubicación">
+                        </text-line>
+                        <text-line
+                            [groupName]="getFormGroup(i)"
+                            controlName="workingDay"
+                            label="Jornada">
+                        </text-line>
+                        <init-end-date 
+                            [groupName]="getFormGroup(i)"
+                            initMControl="wExpInitMonth"
+                            initYControl="wExpInitYear"
+                            endMControl="wExpEndMonth"
+                            endYControl="wExpEndYear">
+                        </init-end-date>
+                        <paragraph
+                            [groupName]="getFormGroup(i)"
+                            controlName="description">
+                        </paragraph>
+                        <button mat-button (click)="removeWExp(i)">
+                            remove
+                        </button>
+                    </div>
+                    <button mat-button (click)="addWExp()">
+                        add
+                    </button>
+                </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
     `,
-    styles: [``],
+    styles: [`
+            .content {
+                display: block;
+                width: 100%;
+                height: 120%;
+                background-color: grey;
+            }
+        `],
     standalone: true,
     imports: [
         CommonModule,

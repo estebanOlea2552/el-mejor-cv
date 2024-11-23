@@ -13,60 +13,67 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
 @Component({
     selector: 'education',
     template: `
-    <mat-card class="form-card">
-    <mat-card-header>
-        <mat-card-title>
-            Educación
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div [formGroup]="cvFormGroup">
-            <div formArrayName="education">
-                <div *ngFor="let control of educationGroup.controls, let i=index" [formGroupName]="i" class="form-card">
-                    <text-line
-                        [groupName]="getFormGroup(i)"
-                        controlName="grade"
-                        label="Título">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup(i)"
-                        controlName="school"
-                        label="Escuela">
-                    </text-line>
-                    <text-line
-                        [groupName]="getFormGroup(i)"
-                        controlName="type"
-                        label="Tipo">
-                    </text-line>
-                    <num-input
-                        [groupName]="getFormGroup(i)"
-                        controlName="average"
-                        label="Promedio académico">
-                    </num-input>
-                    <init-end-date
-                        [groupName]="getFormGroup(i)"
-                        initMControl="edInitMonth"
-                        initYControl="edInitYear"
-                        endMControl="edEndMonth"
-                        endYControl="edEndYear">
-                    </init-end-date>
-                    <paragraph
-                        [groupName]="getFormGroup(i)"
-                        controlName="description">
-                    </paragraph>
-                    <button mat-button (click)="removeEducation(i)">
-                        remove
-                    </button>
+        <div class="form-card">
+            <mat-card-header>
+                <mat-card-title>
+                    Educación
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div [formGroup]="cvFormGroup">
+                    <div formArrayName="education">
+                        <div *ngFor="let control of educationGroup.controls, let i=index" [formGroupName]="i">
+                            <text-line
+                                [groupName]="getFormGroup(i)"
+                                controlName="grade"
+                                label="Título">
+                            </text-line>
+                            <text-line
+                                [groupName]="getFormGroup(i)"
+                                controlName="school"
+                                label="Escuela">
+                            </text-line>
+                            <text-line
+                                [groupName]="getFormGroup(i)"
+                                controlName="type"
+                                label="Tipo">
+                            </text-line>
+                            <num-input
+                                [groupName]="getFormGroup(i)"
+                                controlName="average"
+                                label="Promedio académico">
+                            </num-input>
+                            <init-end-date
+                                [groupName]="getFormGroup(i)"
+                                initMControl="edInitMonth"
+                                initYControl="edInitYear"
+                                endMControl="edEndMonth"
+                                endYControl="edEndYear">
+                            </init-end-date>
+                            <paragraph
+                                [groupName]="getFormGroup(i)"
+                                controlName="description">
+                            </paragraph>
+                            <button mat-button (click)="removeEducation(i)">
+                                remove
+                            </button>
+                        </div>
+                        <button mat-button (click)="addEducation()">
+                            add
+                        </button>
+                    </div>
                 </div>
-                <button mat-button (click)="addEducation()">
-                    add
-                </button>
-            </div>
+            </mat-card-content>
         </div>
-    </mat-card-content>
-</mat-card>
-`,
-    styles: [``],
+    `,
+    styles: [`     
+        .content {
+            display: block;
+            width: 100%;
+            height: 120%;
+            background-color: grey;
+        }
+    `],
     standalone: true,
     imports: [
         CommonModule,
@@ -111,11 +118,11 @@ export class EducationComponent implements OnInit {
         })
     }
 
-    addEducation():void {
+    addEducation(): void {
         this.educationGroup.push(this.createEducation());
     }
 
-    removeEducation(index: number):void {
+    removeEducation(index: number): void {
         this.educationGroup.removeAt(index);
     }
 }

@@ -1,5 +1,27 @@
 .general-container {
+    width: 100%;
+    height: 100%;
     background-color: slateblue;
+}
+
+mat-sidenav-content {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(62, 62, 255);
+}
+
+mat-sidenav-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(95, 160, 103);
+}
+
+.desktop-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 239, 95);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 mat-toolbar {
@@ -10,22 +32,8 @@ mat-toolbar {
     z-index: 2;
 }
 
-mat-sidenav-container {
-    background-color: rgb(95, 130, 160);
-}
-
-mat-sidenav-content {
-    height: 100vh;
-}
-
 mat-nav-list {
-    padding-top: 35%;
-}
-
-.dynamic-container {
-    max-width: 100vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin-top: 35%;
 }
 
 .buttons-container {

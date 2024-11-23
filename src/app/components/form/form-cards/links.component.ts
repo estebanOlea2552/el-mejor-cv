@@ -11,30 +11,38 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 @Component({
     selector: 'links',
     template: `
-    <mat-card class="form-card">
-    <mat-card-header>
-        <mat-card-title>
-            Enlaces
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div [formGroup]="cvFormGroup">
-        <div formArrayName="links">
-            <div *ngFor="let control of linksGroup.controls, let i=index" [formGroupName]="i">
-                <text-line [groupName]="getFormGroup(i)" controlName="link" label="Enlace">
-                </text-line>
-                <button mat-button (click)="removeLinks(i)">
-                    remove
-                </button>
-            </div>
-            <button mat-button (click)="addLinks()">
-                add
-            </button>
-        </div>
-        </div>
-    </mat-card-content>
-</mat-card>`,
-    styles: [``],
+        <mat-card class="form-card">
+            <mat-card-header>
+                <mat-card-title>
+                    Enlaces
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div [formGroup]="cvFormGroup">
+                <div formArrayName="links">
+                    <div *ngFor="let control of linksGroup.controls, let i=index" [formGroupName]="i">
+                        <text-line [groupName]="getFormGroup(i)" controlName="link" label="Enlace">
+                        </text-line>
+                        <button mat-button (click)="removeLinks(i)">
+                            remove
+                        </button>
+                    </div>
+                    <button mat-button (click)="addLinks()">
+                        add
+                    </button>
+                </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    `,
+    styles: [`
+            .content {
+                display: block;
+                width: 100%;
+                height: 120%;
+                background-color: grey;
+            }
+        `],
     standalone: true,
     imports: [
         CommonModule,

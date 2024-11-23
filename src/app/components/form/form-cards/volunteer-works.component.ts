@@ -12,41 +12,49 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 @Component({
     selector: 'vol-works',
     template: `
-    <mat-card class="form-card">
-    <mat-card-header>
-        <mat-card-title>
-            Voluntariados
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div [formGroup]="cvFormGroup">
-        <div formArrayName="volunteerWorks">
-            <div *ngFor="let control of volWorkGroup.controls, let i=index" [formGroupName]="i">
-                <text-line [groupName]="getFormGroup(i)" controlName="position"
-                    label="Puesto">
-                </text-line>
-                <text-line [groupName]="getFormGroup(i)"
-                    controlName="organization" label="Organización">
-                </text-line>
-                <init-end-date [groupName]="getFormGroup(i)"
-                    initMControl="vWInitMonth" initYControl="vWInitYear" endMControl="vWEndMonth"
-                    endYControl="vWEndYear">
-                </init-end-date>
-                <paragraph [groupName]="getFormGroup(i)"
-                    controlName="description">
-                </paragraph>
-                <button mat-button (click)="removeVolWork(i)">
-                    remove
-                </button>
-            </div>
-            <button mat-button (click)="addVolWork()">
-                add
-            </button>
-        </div>
-        </div>
-    </mat-card-content>
-</mat-card>`,
-    styles: [``],
+        <mat-card class="form-card">
+            <mat-card-header>
+                <mat-card-title>
+                    Voluntariados
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div [formGroup]="cvFormGroup">
+                <div formArrayName="volunteerWorks">
+                    <div *ngFor="let control of volWorkGroup.controls, let i=index" [formGroupName]="i">
+                        <text-line [groupName]="getFormGroup(i)" controlName="position"
+                            label="Puesto">
+                        </text-line>
+                        <text-line [groupName]="getFormGroup(i)"
+                            controlName="organization" label="Organización">
+                        </text-line>
+                        <init-end-date [groupName]="getFormGroup(i)"
+                            initMControl="vWInitMonth" initYControl="vWInitYear" endMControl="vWEndMonth"
+                            endYControl="vWEndYear">
+                        </init-end-date>
+                        <paragraph [groupName]="getFormGroup(i)"
+                            controlName="description">
+                        </paragraph>
+                        <button mat-button (click)="removeVolWork(i)">
+                            remove
+                        </button>
+                    </div>
+                    <button mat-button (click)="addVolWork()">
+                        add
+                    </button>
+                </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    `,
+    styles: [`
+            .content {
+                display: block;
+                width: 100%;
+                height: 120%;
+                background-color: grey;
+            }
+        `],
     standalone: true,
     imports: [
         CommonModule,
