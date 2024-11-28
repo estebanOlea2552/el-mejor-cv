@@ -8,19 +8,28 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'text-line',
   template: `
-    <mat-form-field [formGroup]="groupName">
+    <mat-form-field [formGroup]="groupName" class="form-field">
       <mat-label>{{ label }}</mat-label>
       <input
         matInput
-        [formControlName]="controlName">
+        [formControlName]="controlName"
+        class="input">
     </mat-form-field>
   `,
   styles: [`
-    mat-form-field {
-      width: 30%;
-      margin-bottom: 1rem;
-    }  
-  `],
+      .form-field {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        /* background-color: crimson; */
+      }
+      .input {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+    `],
   standalone: true,
   imports: [
     CommonModule,

@@ -9,25 +9,18 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
     selector: 'description',
     template: `
         <mat-card class="form-card">
-            <mat-card-header>
+            <mat-card-header class="form-card-header">
                 <mat-card-title>
                     Resúmen Profesional
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content class="content">
+            <mat-card-content class="form-card-content">
                 <paragraph [groupName]="descGroup" controlName="description">
                 </paragraph>
             </mat-card-content>
         </mat-card>
     `,
-    styles: [`
-            .content {
-                display: block;
-                width: 100%;
-                height: 120%;
-                background-color: grey;
-            }
-        `],
+    styles: [``],
     standalone: true,
     imports: [
         CommonModule,

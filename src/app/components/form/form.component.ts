@@ -143,8 +143,8 @@ export class FormComponent implements OnInit, OnChanges {
         console.log('Switch: links')
         break
       default:
-        /* this.renderComponent(PersonalInfoComponent); */
-        this.renderComponent(EducationComponent);
+        this.renderComponent(PersonalInfoComponent);
+       /*  this.renderComponent(EducationComponent); */
         console.log('Switch: default');
         break;
     }

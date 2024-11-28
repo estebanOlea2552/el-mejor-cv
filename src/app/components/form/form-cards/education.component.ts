@@ -13,13 +13,13 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
 @Component({
     selector: 'education',
     template: `
-        <div class="form-card">
-            <mat-card-header>
+        <mat-card class="form-card">
+            <mat-card-header class="form-card-header">
                 <mat-card-title>
                     Educación
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content class="content">
+            <mat-card-content class="form-card-content">
                 <div [formGroup]="cvFormGroup">
                     <div formArrayName="education">
                         <div *ngFor="let control of educationGroup.controls, let i=index" [formGroupName]="i">
@@ -64,16 +64,9 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
                     </div>
                 </div>
             </mat-card-content>
-        </div>
+        </mat-card>
     `,
-    styles: [`     
-        .content {
-            display: block;
-            width: 100%;
-            height: 120%;
-            background-color: grey;
-        }
-    `],
+    styles: [``],
     standalone: true,
     imports: [
         CommonModule,
