@@ -11,7 +11,40 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 @Component({
     selector: 'certifications',
     template: `
-        <mat-card class="form-card">
+        <div class="container" [formGroup]="cvFormGroup">
+            <div class="header">
+                <h2>Exámenes y Certificaciones</h2>
+            </div>
+            <div class="input-group-container" formArrayName="certifications">
+                <div
+                class="input-list-container"
+                *ngFor="let control of certGroup.controls, let i=index" [formGroupName]="i"
+                [formGroupName]="i">
+                    <div class="input">
+                        <text-line
+                        [groupName]="getFormGroup(i)"
+                        controlName="title"
+                        label="Título">
+                        </text-line>
+                    </div>
+                    <div class="input">
+                        <text-line
+                        [groupName]="getFormGroup(i)"
+                        controlName="institution"
+                        label="Institución">
+                        </text-line>
+                    </div>
+                    <div class="input">
+                        <num-input
+                        [groupName]="getFormGroup(i)"
+                        controlName="average"
+                        label="Puntaje">
+                        </num-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <mat-card class="form-card">
             <mat-card-header class="form-card-header">
                 <mat-card-title>
                     Exámenes y Certificaciones
@@ -21,15 +54,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 <div [formGroup]="cvFormGroup">
                 <div formArrayName="certifications">
                     <div *ngFor="let control of certGroup.controls, let i=index" [formGroupName]="i">
-                        <text-line [groupName]="getFormGroup(i)" controlName="title"
-                            label="Título">
-                        </text-line>
-                        <text-line [groupName]="getFormGroup(i)" controlName="institution"
-                            label="Institución">
-                        </text-line>
-                        <num-input [groupName]="getFormGroup(i)" controlName="average"
-                            label="Puntaje">
-                        </num-input>
                         <button mat-button (click)="removeCert(i)">
                             remove
                         </button>
@@ -40,9 +64,55 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 </div>
             </div>
             </mat-card-content>
-        </mat-card>
+        </mat-card> -->
     `,
-    styles: [``],
+    styles: [`
+        .container {
+            background-color: aquamarine;
+            box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            margin: 0;
+            padding: 10%;
+            width: 100%;
+            height: 100vh; /* Otorga una medida precisa para calcular la altura y manejar el overflow-y */
+            overflow-x: hidden; /* Oculta un overflow-x existente que debería solucionar */
+            overflow-y: auto;
+        }
+        .header {
+            border: 2px solid black;
+            width: 100%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+        h2 {
+            margin-left: 5%;
+            margin-top: 2%;
+        }
+        .input-group-container {
+            /* background-color: green; */
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .input-list-container {
+            border: 2px solid black;
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 3%;
+            margin-bottom: 3%;
+        }
+        .input {
+            width: 100%;
+            border: 2px solid grey;
+            transform: scale(0.9);
+            box-sizing: border-box;
+        }
+    `],
     standalone: true,
     imports: [
         CommonModule,

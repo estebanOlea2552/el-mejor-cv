@@ -11,7 +11,26 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 @Component({
     selector: 'links',
     template: `
-        <mat-card class="form-card">
+        <div class="container" [formGroup]="cvFormGroup">
+            <div class="header">
+                <h2>Referencias</h2>
+            </div>
+            <div class="input-group-container" formArrayName="links">
+                <div
+                class="input-list-container"
+                *ngFor="let control of linksGroup.controls, let i=index" [formGroupName]="i"
+                [formGroupName]="i">
+                    <div class="input">
+                        <text-line
+                        [groupName]="getFormGroup(i)"
+                        controlName="link"
+                        label="Enlace">
+                        </text-line>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <mat-card class="form-card">
             <mat-card-header class="form-card-header">
                 <mat-card-title>
                     Enlaces
@@ -33,9 +52,55 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 </div>
                 </div>
             </mat-card-content>
-        </mat-card>
+        </mat-card> -->
     `,
-    styles: [``],
+    styles: [`
+            .container {
+                background-color: aquamarine;
+                box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                margin: 0;
+                padding: 10%;
+                width: 100%;
+                height: 100vh; /* Otorga una medida precisa para calcular la altura y manejar el overflow-y */
+                overflow-x: hidden; /* Oculta un overflow-x existente que debería solucionar */
+                overflow-y: auto;
+            }
+            .header {
+                border: 2px solid black;
+                width: 100%;
+                margin-top: 5%;
+                margin-bottom: 5%;
+            }
+            h2 {
+                margin-left: 5%;
+                margin-top: 2%;
+            }
+            .input-group-container {
+                /* background-color: green; */
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .input-list-container {
+                border: 2px solid black;
+                width: 100%;
+                height: auto;
+                box-sizing: border-box;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                padding: 3%;
+                margin-bottom: 3%;
+            }
+            .input {
+                width: 100%;
+                border: 2px solid grey;
+                transform: scale(0.9);
+                box-sizing: border-box;
+            }
+        `],
     standalone: true,
     imports: [
         CommonModule,

@@ -15,50 +15,51 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             <div class="header">
                 <h2>Información Personal</h2>
             </div>
-            <div class="input-container input-cont-desktop">
+            <div class="input-container">
                 <div class="input name">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="name"
-                        label="Nombre"
-                        class="">
+                        label="Nombre">
                     </text-line>
                 </div>
                 <div class="input lastname">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="lastname"
-                        label="Apellido"
-                        class="">
+                        label="Apellido">
                     </text-line>
                 </div>
                 <div class="input job-position">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="jobPosition"
-                        label="Puesto"
-                        class="">
+                        label="Puesto">
                     </text-line>
                 </div>
                 <div class="input email">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="email"
-                        label="Email"
-                        class="">
+                        label="Email">
                     </text-line>
                 </div>
                 <div class="input phone">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="phone"
-                        label="Teléfono"
-                        class="">
+                        label="Teléfono">
                     </text-line>
                 </div>
+                <div class="input photo">
+                    <div class="photo-place">
+                        Foto
+                    </div>
+                </div>
             </div>
-            <mat-accordion class="accordion acc-desktop">
-                <mat-expansion-panel>
+            <div class="accordion-container">
+                <mat-accordion class="accordion acc-desktop">
+                    <mat-expansion-panel>
                         <mat-expansion-panel-header>
                             Agregar más información
                         </mat-expansion-panel-header>
@@ -92,78 +93,65 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         label="Edad"
                         class="">
                         </num-input>
-                </mat-expansion-panel>
-            </mat-accordion>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
         </div>
     `,
     styles: [`
-            mat-card, mat-card-header, mat-card-content {
-                margin: 0;
-                padding: 0;
-            }
             .container {
-                width: 100%;
-                height: 100%;
-                /* background-color: aquamarine; */
+                background-color: aquamarine;
+                box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
                 display: flex;
                 flex-direction: column;
                 justify-content: start;
                 align-items: center;
                 margin: 0;
-                padding-top: 12%;
-                overflow-y: scroll;
+                padding: 10%;
+                width: 100%;
+                height: 100vh; /* Otorga una medida precisa para calcular la altura y manejar el overflow-y */
+                overflow-x: hidden; /* Oculta un overflow-x existente que debería solucionar */
+                overflow-y: auto;
             }
             .header {
-                /* background-color: hotpink; */
-                width: 80%;
-                display: flex;
-                justify-content: start;
-                align-items: center
+                border: 2px solid black;
+                width: 100%;
+                margin-top: 5%;
+                margin-bottom: 5%;
             }
             h2 {
                 margin-left: 5%;
                 margin-top: 2%;
             }
-            .input-cont-desktop {
-                width: 80%;
-                
-                margin: 2%;
-            }
-            .input-cont-mobile {
-                width: 100%;
-            }
             .input-container {
-                height: 50%;
-                min-height: 50%;
-                /* background-color: hotpink; */
+                box-sizing: border-box;
+                border: 2px solid black;
+                width: 100%;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                justify-items: center;
-                align-items: center;
-                padding: 0;
+                padding: 3%;
+                margin-bottom: 3%;
             }
             .input {
                 width: 100%;
-                /* transform: scale(0.9); */
-                /* background-color: purple; */
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+                border: 2px solid grey;
+                transform: scale(0.9);
             }
-            .input-mobile {
-                transform: scale(0.9); 
-            }
-            .acc-desktop {
-                width: 80%;
-                margin: 2%;
-            }
-            .acc-mobile {
-                width: 100%;
-            }
-            .accordion {
-                display: block;
+            .photo {
                 box-sizing: border-box;
+            }
+            .photo-place {
+                border: 2px solid grey;
+                width: 50%;
+                height: 100%;
+                box-sizing: border-box;
+            }
+            .accordion-container {
+                box-sizing: border-box;
+                border: 2px solid black;
+                width: 100%;
+                padding: 3%;
+                margin-top: 3%;
             }
         `],
     standalone: true,

@@ -10,63 +10,105 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 @Component({
   selector: 'init-end-date',
   template: `
-    <div [formGroup]="groupName">
-      <mat-form-field>
-        <mat-label>Mes</mat-label>
-        <mat-select
-          [(value)]="initMonthSelected"
-          [formControlName]="initMControl">
-          <div *ngFor="let month of months">
-            <mat-option [value]="month">{{ month }}</mat-option>
-          </div>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Año</mat-label>
-        <mat-select 
-          [(value)]="initYearSelected"
-          [formControlName]="initYControl">
-          <div *ngFor="let year of years">
-            <mat-option [value]="year">{{ year }}</mat-option>
-          </div>
-        </mat-select>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <mat-label>Mes</mat-label>
-        <mat-select 
-          [disabled]="inCourse"
-          [(value)]="endMonthSelected"
-          [formControlName]="endMControl">
-          <div *ngFor="let month of months">
-            <mat-option [value]="month">{{ month }}</mat-option>
-          </div>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Año</mat-label>
-        <mat-select 
-          [disabled]="inCourse"
-          [(value)]="endYearSelected"
-          [formControlName]="endYControl">
-          <div *ngFor="let year of years">
-            <mat-option [value]="year">{{ year }}</mat-option>
-          </div>
-        </mat-select>
-      </mat-form-field>
-      <mat-checkbox 
-      [checked]="inCourse" 
-      (change)="this.inCourse = !this.inCourse;">
-        Presente
-      </mat-checkbox>
-      {{ initMonthSelected }}
-      {{ initYearSelected }}
-      {{ endMonthSelected }}
-      {{ endYearSelected }}
-      {{ inCourse }}
+    <div [formGroup]="groupName" class="form-group-container">
+      <div class="ed-start-container">
+        <h3>Fecha de inicio</h3>
+        <mat-form-field class="form-field">
+          <mat-label>Mes</mat-label>
+          <mat-select
+            [(value)]="initMonthSelected"
+            [formControlName]="initMControl">
+            <div *ngFor="let month of months">
+              <mat-option [value]="month">{{ month }}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Año</mat-label>
+          <mat-select 
+            [(value)]="initYearSelected"
+            [formControlName]="initYControl">
+            <div *ngFor="let year of years">
+              <mat-option [value]="year">{{ year }}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="ed-end-container">
+      <h3>Fecha de finalización</h3>
+        <mat-form-field class="form-field">
+          <mat-label>Mes</mat-label>
+          <mat-select 
+            [disabled]="inCourse"
+            [(value)]="endMonthSelected"
+            [formControlName]="endMControl">
+            <div *ngFor="let month of months">
+              <mat-option [value]="month">{{ month }}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Año</mat-label>
+          <mat-select 
+            [disabled]="inCourse"
+            [(value)]="endYearSelected"
+            [formControlName]="endYControl">
+            <div *ngFor="let year of years">
+              <mat-option [value]="year">{{ year }}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+        <div class="checkbox-container">
+          <mat-checkbox 
+          [checked]="inCourse" 
+          (change)="this.inCourse = !this.inCourse;"
+          class="checkbox">
+            <span>Presente</span>
+          </mat-checkbox>
+        </div>
+      </div>
     </div>
   `,
-  styles: [`* {color: black}`],
+  styles: [`
+      .form-group-container {
+        width: auto;
+        /* display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center; */
+        background-color: aquamarine;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .ed-start-container {
+        border: 2px solid grey;
+        box-sizing: border-box;
+        /* background-color: yellow; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .ed-end-container {
+        border: 2px solid grey;
+        box-sizing: border-box;
+        /* background-color: yellow; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .form-field {
+        /* width: 45%; */
+        /* background-color: crimson; */
+        border: 2px solid grey;
+        transform: scale(0.9);
+      }
+      .checkbox-container {
+        width: 100%;
+        align-self: start;
+        margin-left: 5%;
+      }
+    `],
   standalone: true,
   imports: [
     CommonModule,
