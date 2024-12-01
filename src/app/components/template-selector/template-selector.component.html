@@ -1,27 +1,29 @@
 <div class="general-container">
-  <h2>Elige la plantilla que mejor se adapte a tu estilo!</h2>
-  <div class="template-filter">
-    <span>Filtro</span>
-    <span>Filtro</span>
-    <span>Filtro</span>
-    <span>Filtro</span>
-    <span>Filtro</span>
+  <div [ngClass]="{'title-mobile': isMobile, 'title-desktop': !isMobile}">
+    <h2>Elige la plantilla que mejor se adapte a tu estilo!</h2>
   </div>
-  <div class="card-container"
-  [ngClass]="{'card-container-mobile': isMobile}">
-    <mat-card
+  <div [ngClass]="{'filter-container-mobile': isMobile, 'filter-container-desktop': !isMobile}">
+    <span class="filter-item">Filtro</span>
+    <span class="filter-item">Filtro</span>
+    <span class="filter-item">Filtro</span>
+    <span class="filter-item">Filtro</span>
+    <span class="filter-item">Filtro</span>
+  </div>
+  <div
+  [ngClass]="{'templates-container-mobile': isMobile, 'templates-container-desktop': !isMobile}">
+    <div
     *ngFor="let template of templates"
-    (click)="selectTemp(template.id)"
-    class="template-card"
-    [ngClass]="{'template-card-mobile': isMobile}">
-      <mat-card-header>
-        <mat-card-title>
-          {{ template.templateName }}
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Some content</p>
-      </mat-card-content>
-    </mat-card>
+    class="template-card">
+      <mat-card (click)="selectTemp(template.id)">
+        <mat-card-header>
+          <mat-card-title>
+            {{ template.templateName }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>

@@ -22,7 +22,7 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
     `,
     styles: [`
             .container {
-                background-color: aquamarine;
+                /* background-color: aquamarine; */
                 box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
                 display: flex;
                 flex-direction: column;

@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
@@ -15,7 +16,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             <div class="header">
                 <h2>Información Personal</h2>
             </div>
-            <div class="input-container">
+            <div class="input-container" [ngClass]="{'input-container-desktop': !isMobile}">
                 <div class="input name">
                     <text-line
                         [groupName]="personalInfoGroup"
@@ -100,7 +101,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     `,
     styles: [`
             .container {
-                background-color: aquamarine;
+                /* background-color: aquamarine; */
                 box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
                 display: flex;
                 flex-direction: column;
@@ -127,10 +128,13 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 box-sizing: border-box;
                 border: 2px solid black;
                 width: 100%;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+                
                 padding: 3%;
                 margin-bottom: 3%;
+            }
+            .input-container-desktop {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
             .input {
                 width: 100%;
@@ -167,11 +171,20 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 export class PersonalInfoComponent implements OnInit {
     cvFormGroup!: FormGroup;
     personalInfoGroup!: FormGroup;
+    isMobile: boolean = true;
 
-    constructor(private form: FormService){}
+    constructor(
+        private form: FormService,
+        private breakpointObserver: BreakpointObserver
+    ){}
 
     ngOnInit(): void {
         this.cvFormGroup = this.form.getFormGroup();
         this.personalInfoGroup = this.cvFormGroup.get('personalInfo') as FormGroup;
+
+        this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+        .subscribe(result => {
+            this.isMobile = result.matches;
+        });
     }
 }

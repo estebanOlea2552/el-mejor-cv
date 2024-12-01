@@ -6,11 +6,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'init-end-date',
   template: `
-    <div [formGroup]="groupName" class="form-group-container">
+    <div
+    [formGroup]="groupName"
+    class="form-group-container"
+    [ngClass]="{'form-group-container-desktop': !isMobile, 'form-group-container-mobile': isMobile}">
       <div class="ed-start-container">
         <h3>Fecha de inicio</h3>
         <mat-form-field class="form-field">
@@ -72,19 +76,20 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styles: [`
       .form-group-container {
         width: auto;
-        /* display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center; */
-        background-color: aquamarine;
         box-sizing: border-box;
+      }
+      .form-group-container-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .form-group-container-desktop {
         display: grid;
         grid-template-columns: 1fr 1fr;
       }
       .ed-start-container {
         border: 2px solid grey;
         box-sizing: border-box;
-        /* background-color: yellow; */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -92,14 +97,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
       .ed-end-container {
         border: 2px solid grey;
         box-sizing: border-box;
-        /* background-color: yellow; */
         display: flex;
         flex-direction: column;
         align-items: center;
       }
       .form-field {
-        /* width: 45%; */
-        /* background-color: crimson; */
         border: 2px solid grey;
         transform: scale(0.9);
       }
@@ -145,10 +147,15 @@ export class InitEndDateComponent implements OnInit {
   protected endMonthSelected: string = "";
   protected endYearSelected: number | undefined;
   protected inCourse: boolean = false;
+  protected isMobile: boolean = true;
   
-  constructor() { }
+  constructor(private breakpointObserver: BreakpointObserver) { }
   
   ngOnInit() {
+    this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+    .subscribe(result => {
+      this.isMobile = result.matches;
+    });
     this.loadYears();
   }
   

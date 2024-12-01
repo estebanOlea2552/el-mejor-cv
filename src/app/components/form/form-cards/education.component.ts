@@ -9,6 +9,7 @@ import { NumInputComponent } from "src/app/shared/num-input/num-input.component"
 import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component";
 import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
 import { cvDataInit } from 'src/app/model/cv-data-init';
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 
 @Component({
     selector: 'education',
@@ -20,6 +21,7 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
             <div class="input-group-container" formArrayName="education">
                 <div
                 class="input-list-container"
+                [ngClass]="{'input-list-container-desktop': !isMobile}"
                 *ngFor="let control of educationGroup.controls, let i=index"
                 [formGroupName]="i">
                     <div class="input">
@@ -71,7 +73,6 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
     `,
     styles: [`
             .container {
-                background-color: aquamarine;
                 box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
                 display: flex;
                 flex-direction: column;
@@ -95,7 +96,6 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
                 margin-top: 2%;
             }
             .input-group-container {
-                /* background-color: green; */
                 width: 100%;
                 box-sizing: border-box;
             }
@@ -104,10 +104,12 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
                 width: 100%;
                 height: auto;
                 box-sizing: border-box;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
                 padding: 3%;
                 margin-bottom: 3%;
+            }
+            .input-list-container-desktop {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
             .input {
                 width: 100%;
@@ -148,13 +150,21 @@ export class EducationComponent implements OnInit {
     cvFormGroup!: FormGroup;
     educationGroup!: FormArray;
     eduDataInit: any = cvDataInit.education;
+    isMobile: boolean = true;
 
-    constructor(private fb: FormBuilder, private form: FormService) { }
+    constructor(
+        private fb: FormBuilder, private form: FormService,
+        private breakpointObserver: BreakpointObserver
+    ) { }
 
     ngOnInit(): void {
         this.cvFormGroup = this.form.getFormGroup();
         this.educationGroup = this.cvFormGroup.get('education') as FormArray;
         this.createEducation();
+        this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+        .subscribe(result => {
+            this.isMobile = result.matches;
+        });
     }
 
     getFormGroup(index: number): FormGroup {

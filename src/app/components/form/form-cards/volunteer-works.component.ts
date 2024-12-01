@@ -1,3 +1,4 @@
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
@@ -19,6 +20,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             <div class="input-group-container" formArrayName="volunteerWorks">
                 <div
                 class="input-list-container"
+                [ngClass]="{'input-list-container-desktop': !isMobile}"
                 *ngFor="let control of volWorkGroup.controls, let i=index"
                 [formGroupName]="i">
                     <div class="input">
@@ -53,44 +55,9 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 </div>
             </div>
         </div>
-        <!-- <mat-card class="form-card">
-            <mat-card-header class="form-card-header">
-                <mat-card-title>
-                    Voluntariados
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="form-card-content">
-                <div [formGroup]="cvFormGroup">
-                <div formArrayName="volunteerWorks">
-                    <div *ngFor="let control of volWorkGroup.controls, let i=index" [formGroupName]="i">
-                        <text-line [groupName]="getFormGroup(i)" controlName="position"
-                            label="Puesto">
-                        </text-line>
-                        <text-line [groupName]="getFormGroup(i)"
-                            controlName="organization" label="Organización">
-                        </text-line>
-                        <init-end-date [groupName]="getFormGroup(i)"
-                            initMControl="vWInitMonth" initYControl="vWInitYear" endMControl="vWEndMonth"
-                            endYControl="vWEndYear">
-                        </init-end-date>
-                        <paragraph [groupName]="getFormGroup(i)"
-                            controlName="description">
-                        </paragraph>
-                        <button mat-button (click)="removeVolWork(i)">
-                            remove
-                        </button>
-                    </div>
-                    <button mat-button (click)="addVolWork()">
-                        add
-                    </button>
-                </div>
-                </div>
-            </mat-card-content>
-        </mat-card> -->
     `,
     styles: [`
             .container {
-                background-color: aquamarine;
                 box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
                 display: flex;
                 flex-direction: column;
@@ -114,7 +81,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 margin-top: 2%;
             }
             .input-group-container {
-                /* background-color: green; */
                 width: 100%;
                 box-sizing: border-box;
             }
@@ -123,10 +89,12 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 width: 100%;
                 height: auto;
                 box-sizing: border-box;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
                 padding: 3%;
                 margin-bottom: 3%;
+            }
+            .input-list-container-desktop {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
             .input {
                 width: 100%;
@@ -166,13 +134,22 @@ export class VolunteerWorksComponent {
     cvFormGroup!: FormGroup;
     volWorkGroup!: FormArray;
     volWorkDataInit: any = cvDataInit.volunteerWorks;
+    isMobile: boolean = true;
 
-    constructor(private fb: FormBuilder, private form: FormService) { }
+    constructor(
+        private fb: FormBuilder, 
+        private form: FormService,
+        private breakpointObserver: BreakpointObserver
+    ) { }
 
     ngOnInit(): void {
         this.cvFormGroup = this.form.getFormGroup();
         this.volWorkGroup = this.cvFormGroup.get('volunteerWorks') as FormArray;
         this.createVolWork();
+        this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+        .subscribe(result => {
+            this.isMobile = result.matches;
+        });
     }
 
     getFormGroup(index: number): FormGroup {
