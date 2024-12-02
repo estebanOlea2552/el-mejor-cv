@@ -10,6 +10,7 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
 import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
     selector: 'education',
@@ -67,13 +68,32 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
                         controlName="description">
                         </paragraph>
                     </div>
+                    <div
+                    [ngClass]="{
+                        'card-button-container-mobile': isMobile, 'card-button-container-desktop': !isMobile
+                    }">
+                        <button mat-flat-button (click)="removeEducation(i)" class="card-button">
+                            <mat-icon>close</mat-icon>
+                            Eliminar
+                        </button>
+                        <button mat-flat-button (click)="resetEducation(i)" class="card-button">
+                            <mat-icon>undo</mat-icon>
+                            Reiniciar campos
+                        </button>
+                    </div>
                 </div>
+            </div>
+            <div class="button-container">
+                <button mat-flat-button (click)="addEducation()">
+                    <mat-icon>add</mat-icon>
+                    Añadir estudios
+                </button>
             </div>
         </div>
     `,
     styles: [`
             .container {
-                box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
                 justify-content: start;
@@ -81,12 +101,12 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
                 margin: 0;
                 padding: 10%;
                 width: 100%;
-                height: 100vh; /* Otorga una medida precisa para calcular la altura y manejar el overflow-y */
-                overflow-x: hidden; /* Oculta un overflow-x existente que debería solucionar */
+                height: 100vh;
+                overflow-x: hidden;
                 overflow-y: auto;
             }
             .header {
-                border: 2px solid black;
+                border: 2px solid grey;
                 width: 100%;
                 margin-top: 5%;
                 margin-bottom: 5%;
@@ -100,7 +120,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
                 box-sizing: border-box;
             }
             .input-list-container {
-                border: 2px solid black;
+                border: 2px solid grey;
                 width: 100%;
                 height: auto;
                 box-sizing: border-box;
@@ -113,7 +133,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
             }
             .input {
                 width: 100%;
-                border: 2px solid grey;
+                /* border: 2px solid grey; */
                 transform: scale(0.9);
                 box-sizing: border-box;
             }
@@ -133,6 +153,29 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
                 margin-top: 3%;
                 margin-bottom: 3%;
             }
+            .card-button-container-mobile {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            .card-button-container-mobile > button {
+                width: 70%;
+                margin: 1%;
+                transform: scale(0.9);
+            }
+            .card-button-container-desktop {
+                grid-column: 1 / 3;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            .card-button-container-desktop > button {
+                width: 100%;
+                margin: 1%;
+                transform: scale(0.9);
+            }
         `],
     standalone: true,
     imports: [
@@ -140,6 +183,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
         ReactiveFormsModule,
         MatCardModule,
         MatButtonModule,
+        MatIconModule,
         ParagraphComponent,
         InitEndDateComponent,
         NumInputComponent,
@@ -192,5 +236,10 @@ export class EducationComponent implements OnInit {
 
     removeEducation(index: number): void {
         this.educationGroup.removeAt(index);
+    }
+
+    resetEducation(index: number): void {
+        const educationGroup = this.getFormGroup(index);
+        educationGroup.reset();
     }
 }

@@ -2,8 +2,10 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from "@angular/material/icon";
 import { FormService } from "src/app/services/form.service";
 
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
@@ -17,92 +19,104 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 <h2>Información Personal</h2>
             </div>
             <div class="input-container" [ngClass]="{'input-container-desktop': !isMobile}">
-                <div class="input name">
+                <div class="input">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="name"
                         label="Nombre">
                     </text-line>
                 </div>
-                <div class="input lastname">
+                <div class="input">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="lastname"
                         label="Apellido">
                     </text-line>
                 </div>
-                <div class="input job-position">
+                <div class="input">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="jobPosition"
                         label="Puesto">
                     </text-line>
                 </div>
-                <div class="input email">
+                <div class="input">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="email"
                         label="Email">
                     </text-line>
                 </div>
-                <div class="input phone">
+                <div class="input">
                     <text-line
                         [groupName]="personalInfoGroup"
                         controlName="phone"
                         label="Teléfono">
                     </text-line>
                 </div>
-                <div class="input photo">
+                <div class="input">
                     <div class="photo-place">
                         Foto
                     </div>
                 </div>
-            </div>
-            <div class="accordion-container">
-                <mat-accordion class="accordion acc-desktop">
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                            Agregar más información
-                        </mat-expansion-panel-header>
-                        <text-line
-                        [groupName]="personalInfoGroup"
-                        controlName="country"
-                        label="País"
-                        class="">
-                        </text-line>
-                        <text-line
-                        [groupName]="personalInfoGroup"
-                        controlName="stateProvince"
-                        label="Estado/Provincia"
-                        class="">
-                        </text-line>
-                        <text-line
-                        [groupName]="personalInfoGroup"
-                        controlName="city"
-                        label="Ciudad"
-                        class="">
-                        </text-line>
-                        <text-line
-                        [groupName]="personalInfoGroup"
-                        controlName="nationality"
-                        label="Nacionalidad"
-                        class="">
-                        </text-line>
-                        <num-input
-                        [groupName]="personalInfoGroup"
-                        controlName="age"
-                        label="Edad"
-                        class="">
-                        </num-input>
-                    </mat-expansion-panel>
-                </mat-accordion>
+                <div class="accordion-container">
+                    <mat-accordion class="accordion">
+                        <mat-expansion-panel >
+                            <mat-expansion-panel-header>
+                                Agregar más información
+                            </mat-expansion-panel-header>
+                            <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
+                                <div class="input">
+                                    <text-line
+                                    [groupName]="personalInfoGroup"
+                                    controlName="country"
+                                    label="País">
+                                    </text-line>
+                                </div>
+                                <div class="input">
+                                    <text-line
+                                    [groupName]="personalInfoGroup"
+                                    controlName="stateProvince"
+                                    label="Estado/Provincia">
+                                    </text-line>
+                                </div>
+                                <div class="input">
+                                    <text-line
+                                    [groupName]="personalInfoGroup"
+                                    controlName="city"
+                                    label="Ciudad">
+                                    </text-line>
+                                </div>
+                                <div class="input">
+                                    <text-line
+                                    [groupName]="personalInfoGroup"
+                                    controlName="nationality"
+                                    label="Nacionalidad">
+                                    </text-line>
+                                </div>
+                                <div class="input">
+                                    <num-input
+                                    [groupName]="personalInfoGroup"
+                                    controlName="age"
+                                    label="Edad">
+                                    </num-input>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+                <div class="card-button-container">      
+                    <button mat-flat-button (click)="resetPInfo()" class="card-button">
+                        <mat-icon>undo</mat-icon>
+                        Reiniciar campos
+                    </button>
+                </div>
             </div>
         </div>
     `,
     styles: [`
             .container {
-                /* background-color: aquamarine; */
-                box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
                 justify-content: start;
@@ -110,12 +124,12 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 margin: 0;
                 padding: 10%;
                 width: 100%;
-                height: 100vh; /* Otorga una medida precisa para calcular la altura y manejar el overflow-y */
-                overflow-x: hidden; /* Oculta un overflow-x existente que debería solucionar */
+                height: 100vh;
+                overflow-x: hidden;
                 overflow-y: auto;
             }
             .header {
-                border: 2px solid black;
+                border: 2px solid grey;
                 width: 100%;
                 margin-top: 5%;
                 margin-bottom: 5%;
@@ -126,9 +140,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .input-container {
                 box-sizing: border-box;
-                border: 2px solid black;
+                border: 2px solid grey;
                 width: 100%;
-                
                 padding: 3%;
                 margin-bottom: 3%;
             }
@@ -138,7 +151,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .input {
                 width: 100%;
-                border: 2px solid grey;
+                /* border: 2px solid grey; */
                 transform: scale(0.9);
             }
             .photo {
@@ -151,11 +164,30 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 box-sizing: border-box;
             }
             .accordion-container {
+                grid-column: 1 / 3;
                 box-sizing: border-box;
-                border: 2px solid black;
                 width: 100%;
-                padding: 3%;
                 margin-top: 3%;
+            }
+            .accordion-content {
+                box-sizing: border-box;
+                width: 100%;
+            }
+            .accordion-content-desktop {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            .card-button-container {
+                grid-column: 1 / 3;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+            .card-button-container > button {
+                width: 70%;
+                margin: 1%;
+                transform: scale(0.9);
             }
         `],
     standalone: true,
@@ -163,6 +195,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         CommonModule,
         ReactiveFormsModule,
         MatCardModule,
+        MatButtonModule,
+        MatIconModule,
         TextLineComponent,
         NumInputComponent,
         MatExpansionModule
@@ -186,5 +220,9 @@ export class PersonalInfoComponent implements OnInit {
         .subscribe(result => {
             this.isMobile = result.matches;
         });
+    }
+
+    resetPInfo():void {
+        this.personalInfoGroup.reset();
     }
 }

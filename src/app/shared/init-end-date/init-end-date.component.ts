@@ -88,21 +88,21 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
         grid-template-columns: 1fr 1fr;
       }
       .ed-start-container {
-        border: 2px solid grey;
+        /* border: 2px solid grey; */
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
       }
       .ed-end-container {
-        border: 2px solid grey;
+        /* border: 2px solid grey; */
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
       }
       .form-field {
-        border: 2px solid grey;
+        /* border: 2px solid grey; */
         transform: scale(0.9);
       }
       .checkbox-container {

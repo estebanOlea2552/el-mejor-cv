@@ -4,6 +4,7 @@ import { Component } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { MatIconModule } from "@angular/material/icon";
 import { cvDataInit } from "src/app/model/cv-data-init";
 import { FormService } from "src/app/services/form.service";
 import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
@@ -66,13 +67,32 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         controlName="description">
                         </paragraph>
                     </div>
+                    <div
+                    [ngClass]="{
+                        'card-button-container-mobile': isMobile, 'card-button-container-desktop': !isMobile
+                    }">
+                        <button mat-flat-button (click)="removeWExp(i)" class="card-button">
+                            <mat-icon>close</mat-icon>
+                            Eliminar
+                        </button>
+                        <button mat-flat-button (click)="resetWExp(i)" class="card-button">
+                            <mat-icon>undo</mat-icon>
+                            Reiniciar campos
+                        </button>
+                    </div>
                 </div>
+            </div>
+            <div class="button-container">
+                <button mat-flat-button (click)="addWExp()">
+                    <mat-icon>add</mat-icon>
+                    Añadir experiencia laboral
+                </button>
             </div>
         </div>
     `,
     styles: [`
         .container {
-            box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             justify-content: start;
@@ -80,12 +100,12 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             margin: 0;
             padding: 10%;
             width: 100%;
-            height: 100vh; /* Otorga una medida precisa para calcular la altura y manejar el overflow-y */
-            overflow-x: hidden; /* Oculta un overflow-x existente que debería solucionar */
+            height: 100vh;
+            overflow-x: hidden;
             overflow-y: auto;
         }
         .header {
-            border: 2px solid black;
+            border: 2px solid grey;
             width: 100%;
             margin-top: 5%;
             margin-bottom: 5%;
@@ -99,7 +119,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             box-sizing: border-box;
         }
         .input-list-container {
-            border: 2px solid black;
+            border: 2px solid grey;
             width: 100%;
             height: auto;
             box-sizing: border-box;
@@ -112,7 +132,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         }
         .input {
             width: 100%;
-            border: 2px solid grey;
+            /* border: 2px solid grey; */
             transform: scale(0.9);
             box-sizing: border-box;
         }
@@ -132,13 +152,36 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             margin-top: 3%;
             margin-bottom: 3%;
         }
-
+        .card-button-container-mobile {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .card-button-container-mobile > button {
+            width: 70%;
+            margin: 1%;
+            transform: scale(0.9);
+        }
+        .card-button-container-desktop {
+            grid-column: 1 / 3;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .card-button-container-desktop > button {
+            width: 100%;
+            margin: 1%;
+            transform: scale(0.9);
+        }
     `],
     standalone: true,
     imports: [
         CommonModule,
         ReactiveFormsModule,
         MatCardModule,
+        MatIconModule,
         ParagraphComponent,
         InitEndDateComponent,
         TextLineComponent,
@@ -192,5 +235,10 @@ export class WorkExperienceComponent {
 
     removeWExp(index: number): void {
         this.wExpGroup.removeAt(index);
+    }
+
+    resetWExp(index: number): void {
+        const wExpGroup = this.getFormGroup(index);
+        wExpGroup.reset();
     }
 }

@@ -22,8 +22,7 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
     `,
     styles: [`
             .container {
-                /* background-color: aquamarine; */
-                box-sizing: border-box; /* evita que las cajas internas sean empujadas fuera del contenedor por el padding; */
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
                 justify-content: start;
@@ -31,12 +30,12 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 margin: 0;
                 padding: 10%;
                 width: 100%;
-                height: 100vh; /* Otorga una medida precisa para calcular la altura y manejar el overflow-y */
-                overflow-x: hidden; /* Oculta un overflow-x existente que debería solucionar */
+                height: 100vh; 
+                overflow-x: hidden;
                 overflow-y: auto;
             }
             .header {
-                border: 2px solid black;
+                border: 2px solid grey;
                 width: 100%;
                 margin-top: 5%;
                 margin-bottom: 5%;
@@ -46,7 +45,7 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 margin-top: 2%;
             }
             .input-container {
-                border: 2px solid black;
+                /* border: 2px solid black; */
                 width: 100%;
                 padding: 3%;
             }
