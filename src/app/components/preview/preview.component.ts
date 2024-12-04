@@ -24,6 +24,7 @@ import { ExportService } from 'src/app/services/export.service';
 import { TemplateRegistryService } from 'src/app/services/template-registry.service';
 import { templateSelector } from 'src/app/state/selectors/template.selectors';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-preview',
@@ -34,6 +35,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     CommonModule,
     MatFormFieldModule,
     MatCardModule,
+    MatIconModule,
     MatButtonModule
   ]
 })
@@ -81,7 +83,9 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Detect mobile devices
     this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
-    .subscribe(result => this.isMobile = result.matches);
+    .subscribe(
+      result => this.isMobile = result.matches
+    );
 
     this.updateSelectedTemplate('template1');
     

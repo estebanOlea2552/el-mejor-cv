@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { ExportService } from 'src/app/services/export.service';
 
 @Component({
   selector: 'app-cv-editor',
@@ -45,7 +46,8 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
 
   constructor(
     private breakPointObserver: BreakpointObserver,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private exportCv: ExportService
   ) { };
 
   ngOnInit(): void {
@@ -94,5 +96,9 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
     if (this.formComponentRef && this.isMobile) {
       this.formComponentRef.setInput('selectedCard', cardName);
     }
+  }
+
+  export():void {
+    this.exportCv.generatePdf();
   }
 }

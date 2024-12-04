@@ -2,10 +2,15 @@
     <div #preview class="preview">
         <ng-container #templateContainer></ng-container>
     </div>
-    <!-- <div class="buttons-container">
-        <button (click)="zoomIn()" mat-stroked-button>+</button>
-        <button (click)="zoomOut()" mat-stroked-button>-</button>
-        <button (click)="reset()" mat-stroked-button>Reset</button>
-        <button class="generate-button" mat-stroked-button (click)="export()">Genearte</button>
-    </div> -->
+    <div [ngClass]="{'side-container-mobile': isMobile, 'side-container-desktop':!isMobile}">
+        <div [ngClass]="{'buttons-container-mobile': isMobile, 'buttons-container-desktop':!isMobile}">
+            <button (click)="zoomIn()" mat-icon-button class="zoom-in">
+                <mat-icon>zoom_in</mat-icon>
+            </button>
+            <button (click)="zoomOut()" mat-icon-button class="zoom-out">
+                <mat-icon>zoom_out</mat-icon>
+            </button>
+        </div>
+        <!-- <button class="generate-button" mat-stroked-button (click)="export()">Genearte</button> -->
+    </div>
 </div>
