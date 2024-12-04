@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -89,6 +89,18 @@ import { MatIconModule } from "@angular/material/icon";
                     Añadir estudios
                 </button>
             </div>
+            <div
+            class="prev-next-container"
+            [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
+                <button mat-flat-button class="prev" (click)="changeSelectedCard('desc')">
+                    <mat-icon>chevron_left</mat-icon>
+                    Anterior
+                </button>
+                <button mat-flat-button class="next" (click)="changeSelectedCard('workexp')">
+                    <mat-icon>chevron_right</mat-icon>
+                    Siguiente
+                </button>
+            </div>
         </div>
     `,
     styles: [`
@@ -176,6 +188,32 @@ import { MatIconModule } from "@angular/material/icon";
                 margin: 1%;
                 transform: scale(0.9);
             }
+            .prev-next-container-mobile {
+                width: 80%;
+            }
+            .prev-next-container-desktop {
+                width: 50%;
+            }
+            .prev-next-container {
+                box-sizing: border-box;
+                position: absolute;
+                bottom: 1%;
+                display: flex;
+                justify-content: space-between;
+            }
+            .prev {
+                margin-left: 3%;
+            }
+            .next {
+                margin-right: 3%;
+            }
+            .next mat-icon {
+                order: 2;
+                margin-left: 8px;
+            }
+            .next span {
+                order: 1;
+            }
         `],
     standalone: true,
     imports: [
@@ -195,6 +233,8 @@ export class EducationComponent implements OnInit {
     educationGroup!: FormArray;
     eduDataInit: any = cvDataInit.education;
     isMobile: boolean = true;
+    @ViewChild(ParagraphComponent) paragraphComponent!: ParagraphComponent;
+    @Output() selectedCard = new EventEmitter<string>();
 
     constructor(
         private fb: FormBuilder, private form: FormService,
@@ -241,5 +281,10 @@ export class EducationComponent implements OnInit {
     resetEducation(index: number): void {
         const educationGroup = this.getFormGroup(index);
         educationGroup.reset();
+        this.paragraphComponent.resetParagraph();
+    }
+
+    changeSelectedCard(cardName: string) {
+        this.selectedCard.emit(cardName);
     }
 }

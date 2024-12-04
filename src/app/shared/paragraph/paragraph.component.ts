@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -24,18 +24,15 @@ import { Jodit } from 'jodit';
     MatInputModule
   ]
 })
-export class ParagraphComponent implements OnInit, AfterViewInit {
+export class ParagraphComponent implements AfterViewInit, OnDestroy {
   @Input() groupName!: FormGroup;
   @Input() controlName!: string;
   @ViewChild('textEditor') textEditor!: ElementRef;
   editor: Jodit | undefined;
 
   constructor() { }
-
-  ngOnInit() {
-  }
   
-  ngAfterViewInit(): void {
+  ngAfterViewInit():void {
     const editorConfig = {
       buttons: ['bold', 'italic', 'underline', 'ul', 'left', 'undo', 'redo'],
       toolbarSticky: false,
@@ -57,5 +54,16 @@ export class ParagraphComponent implements OnInit, AfterViewInit {
       const content = this.editor?.value; // Obtains the editor's content
       this.groupName.get(this.controlName)?.setValue(content); // Update the formControl
     });
+  }
+
+  ngOnDestroy():void {
+    this.editor?.destruct();
+  }
+
+  public resetParagraph(): void {
+    if(this.editor) {
+      this.editor.value = '';
+      this.groupName.get(this.controlName)?.setValue('');
+    }
   }
 }

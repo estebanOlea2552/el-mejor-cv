@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -106,11 +106,19 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                     </mat-accordion>
                 </div>
                 <div class="card-button-container">      
-                    <button mat-flat-button (click)="resetPInfo()" class="card-button">
+                    <button mat-flat-button (click)="resetPInfo()">
                         <mat-icon>undo</mat-icon>
                         Reiniciar campos
                     </button>
                 </div>
+            </div>
+            <div
+            class="prev-next-container"
+            [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
+                <button mat-flat-button class="next" (click)="changeSelectedCard('desc')">
+                    Siguiente
+                    <mat-icon>chevron_right</mat-icon>
+                </button>
             </div>
         </div>
     `,
@@ -189,6 +197,29 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 margin: 1%;
                 transform: scale(0.9);
             }
+            .prev-next-container-mobile {
+                width: 80%;
+            }
+            .prev-next-container-desktop {
+                width: 50%;
+            }
+            .prev-next-container {
+                box-sizing: border-box;
+                position: absolute;
+                bottom: 1%;
+                display: flex;
+                justify-content: end;
+            }
+            .next {
+                margin-right: 3%;
+            }
+            .next mat-icon {
+                order: 2;
+                margin-left: 8px;
+            }
+            .next span {
+                order: 1;
+            }
         `],
     standalone: true,
     imports: [
@@ -206,6 +237,7 @@ export class PersonalInfoComponent implements OnInit {
     cvFormGroup!: FormGroup;
     personalInfoGroup!: FormGroup;
     isMobile: boolean = true;
+    @Output() selectedCard = new EventEmitter<string>();
 
     constructor(
         private form: FormService,
@@ -224,5 +256,9 @@ export class PersonalInfoComponent implements OnInit {
 
     resetPInfo():void {
         this.personalInfoGroup.reset();
+    }
+
+    changeSelectedCard(cardName: string) {
+        this.selectedCard.emit(cardName);
     }
 }

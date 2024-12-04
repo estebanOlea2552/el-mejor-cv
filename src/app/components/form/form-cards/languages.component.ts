@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -56,6 +56,18 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 <button mat-flat-button (click)="addLang()">
                     <mat-icon>add</mat-icon>
                     Añadir idioma
+                </button>
+            </div>
+            <div
+            class="prev-next-container"
+            [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
+                <button mat-flat-button class="prev" (click)="changeSelectedCard('skills')">
+                    <mat-icon>chevron_left</mat-icon>
+                    Anterior
+                </button>
+                <button mat-flat-button class="next" (click)="changeSelectedCard('volworks')">
+                    <mat-icon>chevron_right</mat-icon>
+                    Siguiente
                 </button>
             </div>
         </div>
@@ -129,6 +141,32 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 margin: 1%;
                 transform: scale(0.9);
             }
+            .prev-next-container-mobile {
+                width: 80%;
+            }
+            .prev-next-container-desktop {
+                width: 50%;
+            }
+            .prev-next-container {
+                box-sizing: border-box;
+                position: absolute;
+                bottom: 1%;
+                display: flex;
+                justify-content: space-between;
+            }
+            .prev {
+                margin-left: 3%;
+            }
+            .next {
+                margin-right: 3%;
+            }
+            .next mat-icon {
+                order: 2;
+                margin-left: 8px;
+            }
+            .next span {
+                order: 1;
+            }
         `],
     standalone: true,
     imports: [
@@ -146,6 +184,7 @@ export class LanguagesComponent {
     langGroup!: FormArray;
     langDataInit: any = cvDataInit.languages;
     isMobile: boolean = true;
+    @Output() selectedCard = new EventEmitter<string>();
 
     constructor(
         private fb: FormBuilder, 
@@ -185,5 +224,9 @@ export class LanguagesComponent {
     resetLang(index: number): void {
         const langGroup = this.getFormGroup(index);
         langGroup.reset();
+    }
+
+    changeSelectedCard(cardName: string) {
+        this.selectedCard.emit(cardName);
     }
 }

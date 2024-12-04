@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -86,6 +86,18 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 <button mat-flat-button (click)="addWExp()">
                     <mat-icon>add</mat-icon>
                     Añadir experiencia laboral
+                </button>
+            </div>
+            <div
+            class="prev-next-container"
+            [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
+                <button mat-flat-button class="prev" (click)="changeSelectedCard('ed')">
+                    <mat-icon>chevron_left</mat-icon>
+                    Anterior
+                </button>
+                <button mat-flat-button class="next" (click)="changeSelectedCard('cert')">
+                    Siguiente
+                    <mat-icon>chevron_right</mat-icon>
                 </button>
             </div>
         </div>
@@ -175,6 +187,32 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             margin: 1%;
             transform: scale(0.9);
         }
+        .prev-next-container-mobile {
+            width: 80%;
+        }
+        .prev-next-container-desktop {
+            width: 50%;
+        }
+        .prev-next-container {
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 1%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .prev {
+            margin-left: 3%;
+        }
+        .next {
+            margin-right: 3%;
+        }
+        .next mat-icon {
+            order: 2;
+            margin-left: 8px;
+        }
+        .next span {
+            order: 1;
+        }
     `],
     standalone: true,
     imports: [
@@ -193,6 +231,8 @@ export class WorkExperienceComponent {
     wExpGroup!: FormArray;
     wExpDataInit: any = cvDataInit.workExperience;
     isMobile: boolean = true;
+    @ViewChild(ParagraphComponent) paragraphComponent!: ParagraphComponent;
+    @Output() selectedCard = new EventEmitter<string>();
 
     constructor(
         private fb: FormBuilder,
@@ -240,5 +280,10 @@ export class WorkExperienceComponent {
     resetWExp(index: number): void {
         const wExpGroup = this.getFormGroup(index);
         wExpGroup.reset();
+        this.paragraphComponent.resetParagraph();
+    }
+
+    changeSelectedCard(cardName: string) {
+        this.selectedCard.emit(cardName);
     }
 }

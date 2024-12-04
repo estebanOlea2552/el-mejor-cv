@@ -1,41 +1,70 @@
 .general-container {
     width: 100%;
     height: 100%;
-    /* background-color: slateblue; */
 }
 
-mat-sidenav-content {
+.sidenav-container {
     width: 100%;
     height: 100%;
-    /* background-color: rgb(62, 62, 255); */
 }
 
-mat-sidenav-container {
+.sidenav {
+    width: auto;
+    height: 100%;
+}
+
+.nav-list-desktop {
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30%;
+}
+
+.nav-list-mobile {
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 28%;  
+    border: 2px solid grey;
+}
+
+.sidenav-content {
     width: 100%;
     height: 100%;
-    /* background-color: rgb(95, 160, 103); */
 }
 
 .desktop-container {
     width: 100%;
     height: 100%;
-    /* background-color: rgb(255, 239, 95); */
     display: grid;
     grid-template-columns: 1fr 1fr;
     overflow: hidden;
 }
 
-mat-toolbar {
+.toolbar-desktop {
     /* This style ensures that the toolbar does not cause overflow in the rest of the content. */
+    width: 50%;
     position: absolute; 
     top: 0;
     left: 0;
     z-index: 2;
 }
 
-mat-nav-list {
-    margin-top: 35%;
+.toolbar-desktop > .buttons-container {
+    visibility: hidden;
 }
+
+.toolbar-mobile {
+    /* This style ensures that the toolbar does not cause overflow in the rest of the content. */
+    width: 100%;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
 
 .buttons-container {
     margin-left: auto;

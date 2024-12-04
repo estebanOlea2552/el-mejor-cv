@@ -37,8 +37,8 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
   protected dynamicView!: ViewContainerRef;
 
   // FormComponent and PreviewComponent instances
-  private formComponentRef: ComponentRef<FormComponent> | null = null;
-  private previewComponentRef: ComponentRef<PreviewComponent> | null = null;
+  protected formComponentRef: ComponentRef<FormComponent> | null = null;
+  protected previewComponentRef: ComponentRef<PreviewComponent> | null = null;
 
   // Stores the selected card from the sidenav
   protected selectedCard: string = "";
@@ -53,8 +53,6 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('selectedCard first value: ' + this.selectedCard);
-    console.log('Prev is visible: ' + this.prevIsVisible);
     this.cdr.detectChanges();
   }
 
@@ -72,14 +70,11 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
   }
 
   alternateViews(): void {
-    console.log('The alternate function was activated')
     this.prevIsVisible = !this.prevIsVisible;
     if (this.prevIsVisible) {
-      console.log('Prev is true');
       this.loadComponent(PreviewComponent);
     }
     else {
-      console.log('Prev is false')
       this.loadComponent(FormComponent);
     }
   }
@@ -88,17 +83,14 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
     this.dynamicView.clear();
     if (component === FormComponent) {
       this.formComponentRef = this.dynamicView.createComponent(component);
-      console.log('Form component was created');
     }
     else if (component === PreviewComponent) {
       this.previewComponentRef = this.dynamicView.createComponent(component);
-      console.log('Preview component was created');
     }
   }
 
   changeSelectedCard(cardName: string): void {
     this.selectedCard = cardName;
-    console.log('The selected card was changed, new value: ' + this.selectedCard)
     if (this.formComponentRef && this.isMobile) {
       this.formComponentRef.setInput('selectedCard', cardName);
     }

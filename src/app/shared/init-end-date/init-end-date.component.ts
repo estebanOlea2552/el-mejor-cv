@@ -16,7 +16,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     class="form-group-container"
     [ngClass]="{'form-group-container-desktop': !isMobile, 'form-group-container-mobile': isMobile}">
       <div class="ed-start-container">
-        <h3>Fecha de inicio</h3>
+        <span class="date-title">Fecha de inicio</span>
         <mat-form-field class="form-field">
           <mat-label>Mes</mat-label>
           <mat-select
@@ -39,7 +39,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
         </mat-form-field>
       </div>
       <div class="ed-end-container">
-      <h3>Fecha de finalización</h3>
+        <span class="date-title">Fecha de finalización</span>
         <mat-form-field class="form-field">
           <mat-label>Mes</mat-label>
           <mat-select 
@@ -95,20 +95,23 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
         align-items: center;
       }
       .ed-end-container {
-        /* border: 2px solid grey; */
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
       }
+      .date-title {
+        padding: 3%;
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 500;
+      }
       .form-field {
-        /* border: 2px solid grey; */
         transform: scale(0.9);
       }
       .checkbox-container {
         width: 100%;
+        text-align: center;
         align-self: start;
-        margin-left: 5%;
       }
     `],
   standalone: true,

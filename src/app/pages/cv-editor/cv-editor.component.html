@@ -1,5 +1,5 @@
 <div class="general-container">
-    <mat-toolbar>
+    <mat-toolbar [ngClass]="{'toolbar-mobile': isMobile, 'toolbar-desktop': !isMobile}">
         <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
@@ -9,9 +9,9 @@
             </button>
         </div>
     </mat-toolbar>
-    <mat-sidenav-container>
-        <mat-sidenav #sidenav mode="over" opened="false">
-            <mat-nav-list>
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #sidenav mode="over" opened="false" class="sidenav">
+            <mat-nav-list [ngClass]="{'nav-list-mobile': isMobile, 'nav-list-desktop': !isMobile}">
                 <mat-list-item (click)="changeSelectedCard('pinfo')">
                     Información Personal
                 </mat-list-item>
@@ -44,7 +44,7 @@
                 </mat-list-item>
             </mat-nav-list>
         </mat-sidenav>
-        <mat-sidenav-content>
+        <mat-sidenav-content class="sidenav-content">
             <div *ngIf="!isMobile" class="desktop-container">
                 <!-- The formComponent has an @Input variable that can store the selectedCard from the sidenav -->
                 <app-form [selectedCard]="selectedCard"></app-form>

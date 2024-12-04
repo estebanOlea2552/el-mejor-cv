@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -15,7 +15,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     template: `
         <div class="container" [formGroup]="cvFormGroup">
             <div class="header">
-                <h2>Referencias</h2>
+                <h2>Links</h2>
             </div>
             <div class="input-group-container" formArrayName="links">
                 <div
@@ -49,6 +49,14 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 <button mat-flat-button (click)="addLinks()">
                     <mat-icon>add</mat-icon>
                     Añadir link
+                </button>
+            </div>
+            <div
+            class="prev-next-container"
+            [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
+                <button mat-flat-button class="prev" (click)="changeSelectedCard('ref')">
+                    Anterior
+                    <mat-icon>chevron_left</mat-icon>
                 </button>
             </div>
         </div>
@@ -123,6 +131,22 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 margin: 1%;
                 transform: scale(0.9);
             }
+            .prev-next-container-mobile {
+                width: 80%;
+            }
+            .prev-next-container-desktop {
+                width: 50%;
+            }
+            .prev-next-container {
+                box-sizing: border-box;
+                position: absolute;
+                bottom: 1%;
+                display: flex;
+                justify-content: start;
+            }
+            .prev {
+                margin-left: 3%;
+            }
         `],
     standalone: true,
     imports: [
@@ -140,6 +164,7 @@ export class LinksComponent {
     linksGroup!: FormArray;
     linksDataInit: any = cvDataInit.links;
     isMobile: boolean = true;
+    @Output() selectedCard = new EventEmitter<string>();
 
     constructor(
         private fb: FormBuilder,
@@ -178,5 +203,9 @@ export class LinksComponent {
     resetLinks(index: number): void {
         const linksGroup = this.getFormGroup(index);
         linksGroup.reset();
+    }
+
+    changeSelectedCard(cardName: string) {
+        this.selectedCard.emit(cardName);
     }
 }

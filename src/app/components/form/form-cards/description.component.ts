@@ -1,7 +1,10 @@
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output, ViewChild } from "@angular/core";
 import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { MatIconModule } from "@angular/material/icon";
 import { FormService } from "src/app/services/form.service";
 import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component";
 
@@ -17,6 +20,24 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 [groupName]="descGroup"
                 controlName="description">
                 </paragraph>       
+                <div class="card-button-container">
+                    <button mat-flat-button (click)="resetDesc()">
+                        <mat-icon>undo</mat-icon>
+                        Reiniciar campo
+                    </button>
+                </div>
+            </div>
+            <div
+            class="prev-next-container"
+            [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
+                <button mat-flat-button class="prev" (click)="changeSelectedCard('pinfo')">
+                    <mat-icon>chevron_left</mat-icon>
+                    <span>Anterior</span>
+                </button>
+                <button mat-flat-button class="next" (click)="changeSelectedCard('ed')">
+                    <mat-icon>chevron_right</mat-icon>
+                    <span>Siguiente</span>
+                </button>
             </div>
         </div>
     `,
@@ -45,9 +66,48 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 margin-top: 2%;
             }
             .input-container {
-                /* border: 2px solid black; */
+                border: 1px solid grey;
                 width: 100%;
                 padding: 3%;
+            }
+            .card-button-container {
+                grid-column: 1 / 3;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+            .card-button-container > button {
+                width: 70%;
+                margin: 1%;
+                transform: scale(0.9);
+            }
+            .prev-next-container-mobile {
+                width: 80%;
+            }
+            .prev-next-container-desktop {
+                width: 50%;
+            }
+            .prev-next-container {
+                box-sizing: border-box;
+                position: absolute;
+                bottom: 1%;
+                display: flex;
+                justify-content: space-between;
+            }
+            .prev {
+                margin-left: 3%;
+            }
+            .next {
+                margin-right: 3%;
+            }
+            .next mat-icon {
+                order: 2;
+                margin-left: 8px;
+            }
+
+            .next span {
+                order: 1;
             }
         `],
     standalone: true,
@@ -56,17 +116,38 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
         FormsModule,
         ReactiveFormsModule,
         MatCardModule,
+        MatButtonModule,
+        MatIconModule,
         ParagraphComponent
     ],
 })
 export class DescriptionComponent {
     cvFormGroup!: FormGroup;
     descGroup!: FormGroup;
+    isMobile: boolean = true;
+    @ViewChild(ParagraphComponent) paragraphComponent!: ParagraphComponent;
+    @Output() selectedCard = new EventEmitter<string>();
 
-    constructor(private form: FormService) { }
+    constructor(
+        private form: FormService,
+        private breakpointObserver: BreakpointObserver
+    ) { }
 
     ngOnInit(): void {
         this.cvFormGroup = this.form.getFormGroup();
         this.descGroup = this.cvFormGroup.get('description') as FormGroup;
+
+        this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+        .subscribe(result => {
+            this.isMobile = result.matches;
+        });
+    }
+
+    resetDesc():void {
+        this.paragraphComponent.resetParagraph();
+    }
+
+    changeSelectedCard(cardName: string) {
+        this.selectedCard.emit(cardName);
     }
 }

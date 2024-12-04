@@ -30,7 +30,6 @@ import { LinksComponent } from './form-cards/links.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    /* RouterOutlet */
   ],
   animations: [slideInOutAnimation]
 })
@@ -87,6 +86,7 @@ export class FormComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.initFormListeners();
+
     // Send the cvFormGroup data to children components
     this.formService.setFormGroup(this.cvFormGroup);
     this.cardHandler();
@@ -94,7 +94,6 @@ export class FormComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['selectedCard']){
-      console.log('In Form, selectedCard was changed. New value: ' + this.selectedCard);
       this.cardHandler();
     }
   }
@@ -104,48 +103,36 @@ export class FormComponent implements OnInit, OnChanges {
     switch (this.selectedCard) {
       case 'pinfo':
         this.renderComponent(PersonalInfoComponent);
-        console.log('Switch: pinfo')
         break
       case 'desc':
         this.renderComponent(DescriptionComponent);
-        console.log('Switch: desc')
         break
       case 'ed':
         this.renderComponent(EducationComponent);
-        console.log('Switch: ed')
         break
       case 'workexp':
         this.renderComponent(WorkExperienceComponent);
-        console.log('Switch: workexp')
         break
       case 'cert':
         this.renderComponent(CertificationsComponent);
-        console.log('Switch: cert')
         break
       case 'skills':
         this.renderComponent(SkillsComponent);
-        console.log('Switch: skills')
         break
       case 'lang':
         this.renderComponent(LanguagesComponent);
-        console.log('Switch: lang')
         break
       case 'volworks':
         this.renderComponent(VolunteerWorksComponent);
-        console.log('Switch: volworks')
         break
       case 'ref':
         this.renderComponent(ReferencesComponent);
-        console.log('Switch: ref')
         break
       case 'links':
         this.renderComponent(LinksComponent);
-        console.log('Switch: links')
         break
       default:
         this.renderComponent(PersonalInfoComponent);
-       /*  this.renderComponent(EducationComponent); */
-        console.log('Switch: default');
         break;
     }
   }
@@ -153,7 +140,14 @@ export class FormComponent implements OnInit, OnChanges {
   // Dynamic render of components
   private renderComponent(component: Type<any>) {
     this.dynamicView.clear();
-    this.dynamicView.createComponent(component);
+    const renderedCard = this.dynamicView.createComponent(component);
+    
+    /* When the next or prev button is activated in a child component, 
+    the event is received here and the selected card is navigated to. */
+    renderedCard.instance.selectedCard?.subscribe((selectedCard: string) => {
+      this.selectedCard = selectedCard;
+      this.cardHandler();
+    })
   }
 
   // PersonalInfo
@@ -305,9 +299,5 @@ export class FormComponent implements OnInit, OnChanges {
       (this.cvDataInput as any)[keys[0]][keys[1]] = value;
     }
     this.previewConnector.updateCvData(controlName, value);
-  }
-
-  protected resetForm() {
-    this.cvFormGroup.reset();
   }
 }
