@@ -6,22 +6,25 @@ import { Store } from '@ngrx/store';
 import { selectTemplate } from 'src/app/state/actions/template.action';
 import { MatCardModule } from '@angular/material/card';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-template-selector',
   templateUrl: './template-selector.component.html',
   styleUrls: ['./template-selector.component.css'],
   standalone: true,
-  imports: [ CommonModule, MatCardModule ]
+  imports: [ CommonModule, MatCardModule, MatButtonModule, RouterLink ]
 })
 export class TemplateSelectorComponent implements OnInit {
-  protected isMobile: boolean = false;
-  protected templates: Template[] = [];
-  protected selectedTemplate: Template = {
+  templates: Template[] = [];
+  selectedTemplate: Template = {
     id: "",
     templateName: "",
     component: ""
   };
+  isMobile: boolean = true;
+  selectedTemplateIndex: number | null = null;
 
   constructor (
     private breakpointObserver: BreakpointObserver,
@@ -38,11 +41,16 @@ export class TemplateSelectorComponent implements OnInit {
     this.templates = this.templateRegistry.getTemplates();
   }
 
-  protected selectTemp(templateId: string):void {
+  selectTemp(templateId: string, index: number):void {
     this.selectedTemplate = {
       ...this.selectedTemplate,
       id: templateId,
     };
     this.store.dispatch(selectTemplate({ template: this.selectedTemplate }));
+    if(index === this.selectedTemplateIndex) {
+      this.selectedTemplateIndex = null; 
+    } else {
+      this.selectedTemplateIndex = index;
+    }
   }
 }

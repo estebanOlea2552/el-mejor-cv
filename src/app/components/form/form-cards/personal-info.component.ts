@@ -15,10 +15,10 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     selector: 'personal-info',
     template: `
         <div class="container">
-            <div class="header">
+            <mat-card class="header">
                 <h2>Información Personal</h2>
-            </div>
-            <div class="input-container" [ngClass]="{'input-container-desktop': !isMobile}">
+            </mat-card>
+            <mat-card class="input-container" [ngClass]="{'input-container-desktop': !isMobile}">
                 <div class="input">
                     <text-line
                         [groupName]="personalInfoGroup"
@@ -56,7 +56,10 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 </div>
                 <div class="input">
                     <div class="photo-place">
-                        Foto
+                        <button mat-flat-button class="photo">
+                            <mat-icon>add_photo_alternate</mat-icon>
+                            Subir Foto
+                        </button>
                     </div>
                 </div>
                 <div class="accordion-container">
@@ -111,7 +114,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         Reiniciar campos
                     </button>
                 </div>
-            </div>
+            </mat-card>
             <div
             class="prev-next-container"
             [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
@@ -137,7 +140,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 overflow-y: auto;
             }
             .header {
-                border: 2px solid grey;
                 width: 100%;
                 margin-top: 5%;
                 margin-bottom: 5%;
@@ -148,7 +150,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .input-container {
                 box-sizing: border-box;
-                border: 2px solid grey;
                 width: 100%;
                 padding: 3%;
                 margin-bottom: 3%;
@@ -159,17 +160,23 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .input {
                 width: 100%;
-                /* border: 2px solid grey; */
                 transform: scale(0.9);
             }
             .photo {
                 box-sizing: border-box;
             }
             .photo-place {
-                border: 2px solid grey;
-                width: 50%;
-                height: 100%;
+                /* border: 2px solid grey; */
+                width: 100%;
+                height: 75%;
                 box-sizing: border-box;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+            }
+            .photo {
+                height: 100%;
+                border: 1px solid rgba(0, 0, 0, 0.2);
             }
             .accordion-container {
                 grid-column: 1 / 3;

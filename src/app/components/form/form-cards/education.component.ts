@@ -16,11 +16,11 @@ import { MatIconModule } from "@angular/material/icon";
     selector: 'education',
     template: `
         <div class="container" [formGroup]="cvFormGroup">
-            <div class="header">
+            <mat-card class="header">
                 <h2>Educación</h2>
-            </div>
+            </mat-card>
             <div class="input-group-container" formArrayName="education">
-                <div
+                <mat-card
                 class="input-list-container"
                 [ngClass]="{'input-list-container-desktop': !isMobile}"
                 *ngFor="let control of educationGroup.controls, let i=index"
@@ -81,7 +81,7 @@ import { MatIconModule } from "@angular/material/icon";
                             Reiniciar campos
                         </button>
                     </div>
-                </div>
+                </mat-card>
             </div>
             <div class="button-container">
                 <button mat-flat-button (click)="addEducation()">
@@ -118,7 +118,6 @@ import { MatIconModule } from "@angular/material/icon";
                 overflow-y: auto;
             }
             .header {
-                border: 2px solid grey;
                 width: 100%;
                 margin-top: 5%;
                 margin-bottom: 5%;
@@ -132,7 +131,6 @@ import { MatIconModule } from "@angular/material/icon";
                 box-sizing: border-box;
             }
             .input-list-container {
-                border: 2px solid grey;
                 width: 100%;
                 height: auto;
                 box-sizing: border-box;
@@ -145,13 +143,11 @@ import { MatIconModule } from "@angular/material/icon";
             }
             .input {
                 width: 100%;
-                /* border: 2px solid grey; */
                 transform: scale(0.9);
                 box-sizing: border-box;
             }
             .date-container {
                 width: 100%;
-                border: 2px solid grey;
                 box-sizing: border-box;
                 grid-column: 1 / 3;
                 margin-top: 3%;
@@ -159,7 +155,6 @@ import { MatIconModule } from "@angular/material/icon";
             }
             .paragraph-container {
                 width: 100%;
-                border: 2px solid grey;
                 box-sizing: border-box;
                 grid-column: 1 / 3;
                 margin-top: 3%;

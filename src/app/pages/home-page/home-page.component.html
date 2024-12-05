@@ -1,13 +1,35 @@
 <div
-class="general-container"
-fxLayout="column">
-    <header>
-        <h1>CV Maker Online</h1>
-    </header>
-    <main>
-        <button mat-stroked-button (click)="navigateTo('template-mananger')">Comenzar!</button>
+class="general-container">
+    <main-header></main-header>
+    <main class="main">
+        <div class="get-start">
+            <div class="welcome">
+                <div class="welcome-message">
+                    <p>
+                        Hola! Soy una app para crear CVs
+                    </p>
+                </div>
+                <div class="welcome-button">
+                    <button mat-stroked-button (click)="navigateTo('template-mananger')">Comenzar!</button>
+                </div>
+            </div>
+            <div class="pic-container">
+                <mat-icon class="mat-icon">account_box</mat-icon>
+            </div>
+        </div>
+        <div class="content">
+            <mat-card class="professionals">
+                <h3>Para todo tipo de profesionales</h3>
+            </mat-card>
+            <mat-card class="free-use">
+                <h3>Totalmente grátis</h3>
+            </mat-card>
+            <mat-card class="templates-based">
+                <h3>Basado en plantillas</h3>
+            </mat-card>
+            <mat-card class="steps">
+                <h3>En tres simples pasos</h3>
+            </mat-card>
+        </div>
     </main>
-    <footer>
-        <!-- this is going to be a component -->
-    </footer>
 </div>

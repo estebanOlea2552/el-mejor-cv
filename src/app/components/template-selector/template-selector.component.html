@@ -12,16 +12,18 @@
   <div
   [ngClass]="{'templates-container-mobile': isMobile, 'templates-container-desktop': !isMobile}">
     <div
-    *ngFor="let template of templates"
+    *ngFor="let template of templates, let i = index"
     class="template-card">
-      <mat-card (click)="selectTemp(template.id)">
-        <mat-card-header>
-          <mat-card-title>
+      <mat-card class="card" (click)="selectTemp(template.id, i)">
+        <mat-card-header class="card-header">
+          <mat-card-title class="card-title">
             {{ template.templateName }}
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          
+        <mat-card-content class="card-content">
+          <div class="template-is-selected" *ngIf="i === selectedTemplateIndex">
+            <button mat-flat-button routerLink="/editor">Usar esta plantilla</button>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>

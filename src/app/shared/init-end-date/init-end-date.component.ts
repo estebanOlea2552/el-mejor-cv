@@ -77,6 +77,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
       .form-group-container {
         width: auto;
         box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
       }
       .form-group-container-mobile {
         display: flex;

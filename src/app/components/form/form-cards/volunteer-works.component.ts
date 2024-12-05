@@ -15,11 +15,11 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     selector: 'vol-works',
     template: `
         <div class="container" [formGroup]="cvFormGroup">
-            <div class="header">
+            <mat-card class="header">
                 <h2>Trabajos Voluntarios</h2>
-            </div>
+            </mat-card>
             <div class="input-group-container" formArrayName="volunteerWorks">
-                <div
+                <mat-card
                 class="input-list-container"
                 [ngClass]="{'input-list-container-desktop': !isMobile}"
                 *ngFor="let control of volWorkGroup.controls, let i=index"
@@ -66,7 +66,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                             Reiniciar campos
                         </button>
                     </div>
-                </div>
+                </mat-card>
             </div>
             <div class="button-container">
                 <button mat-flat-button (click)="addVolWork()">
@@ -103,7 +103,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 overflow-y: auto;
             }
             .header {
-                border: 2px solid grey;
                 width: 100%;
                 margin-top: 5%;
                 margin-bottom: 5%;
@@ -117,7 +116,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 box-sizing: border-box;
             }
             .input-list-container {
-                border: 2px solid grey;
                 width: 100%;
                 height: auto;
                 box-sizing: border-box;
@@ -130,13 +128,12 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .input {
                 width: 100%;
-                /* border: 2px solid grey; */
                 transform: scale(0.9);
                 box-sizing: border-box;
             }
             .date-container {
                 width: 100%;
-                border: 2px solid grey;
+                border-radius: 4px;
                 box-sizing: border-box;
                 grid-column: 1 / 3;
                 margin-top: 3%;
@@ -144,7 +141,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .paragraph-container {
                 width: 100%;
-                border: 2px solid grey;
                 box-sizing: border-box;
                 grid-column: 1 / 3;
                 margin-top: 3%;

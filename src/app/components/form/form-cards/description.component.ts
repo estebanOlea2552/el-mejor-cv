@@ -12,10 +12,10 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
     selector: 'description',
     template: `
         <div class="container">
-            <div class="header">
+            <mat-card class="header">
                 <h2>Resúmen Profesional</h2>
-            </div>
-            <div class="input-container">              
+            </mat-card>
+            <mat-card class="input-container">              
                 <paragraph
                 [groupName]="descGroup"
                 controlName="description">
@@ -26,7 +26,7 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                         Reiniciar campo
                     </button>
                 </div>
-            </div>
+            </mat-card>
             <div
             class="prev-next-container"
             [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
@@ -56,7 +56,6 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 overflow-y: auto;
             }
             .header {
-                border: 2px solid grey;
                 width: 100%;
                 margin-top: 5%;
                 margin-bottom: 5%;
@@ -66,7 +65,6 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 margin-top: 2%;
             }
             .input-container {
-                border: 1px solid grey;
                 width: 100%;
                 padding: 3%;
             }

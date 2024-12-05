@@ -14,11 +14,11 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     selector: 'skills',
     template: `
         <div class="container" [formGroup]="cvFormGroup">
-            <div class="header">
+            <mat-card class="header">
                 <h2>Habilidades</h2>
-            </div>
+            </mat-card>
             <div class="input-group-container" formArrayName="skills">
-                <div
+                <mat-card
                 class="input-list-container"
                 [ngClass]="{'input-list-container-desktop': !isMobile}"
                 *ngFor="let skill of skillGroup.controls, let i=index" [formGroupName]="i"
@@ -50,7 +50,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                             Reiniciar campos
                         </button>
                     </div>
-                </div>
+                </mat-card>
             </div>
             <div class="button-container">
                 <button mat-flat-button (click)="addSkill()">
@@ -87,7 +87,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             overflow-y: auto;
         }
         .header {
-            border: 2px solid grey;
             width: 100%;
             margin-top: 5%;
             margin-bottom: 5%;
@@ -101,7 +100,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             box-sizing: border-box;
         }
         .input-list-container {
-            border: 2px solid grey;
             width: 100%;
             height: auto;
             box-sizing: border-box;

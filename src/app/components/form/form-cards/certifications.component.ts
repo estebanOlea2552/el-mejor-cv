@@ -14,11 +14,11 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     selector: 'certifications',
     template: `
         <div class="container" [formGroup]="cvFormGroup">
-            <div class="header">
+            <mat-card class="header">
                 <h2>Exámenes y Certificaciones</h2>
-            </div>
+            </mat-card>
             <div class="input-group-container" formArrayName="certifications">
-                <div
+                <mat-card
                 class="input-list-container"
                 [ngClass]="{'input-list-container-desktop': !isMobile}"
                 *ngFor="let control of certGroup.controls, let i=index" [formGroupName]="i"
@@ -57,7 +57,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                             Reiniciar campos
                         </button>
                     </div>
-                </div>
+                </mat-card>
             </div>
             <div class="button-container">
                 <button mat-flat-button (click)="addCert()">
@@ -94,7 +94,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             overflow-y: auto;
         }
         .header {
-            border: 2px solid grey;
             width: 100%;
             margin-top: 5%;
             margin-bottom: 5%;
@@ -108,7 +107,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             box-sizing: border-box;
         }
         .input-list-container {
-            border: 2px solid grey;
             width: 100%;
             height: auto;
             box-sizing: border-box;
@@ -121,7 +119,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         }
         .input {
             width: 100%;
-            /* border: 2px solid grey; */
             transform: scale(0.9);
             box-sizing: border-box;
         }
