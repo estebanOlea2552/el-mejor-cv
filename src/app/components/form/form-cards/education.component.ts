@@ -36,7 +36,7 @@ import { MatIconModule } from "@angular/material/icon";
                         <text-line
                         [groupName]="getFormGroup(i)"
                         controlName="school"
-                        label="Escuela">
+                        label="Institución">
                         </text-line>
                     </div>
                     <div class="input">

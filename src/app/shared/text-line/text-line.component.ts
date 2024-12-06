@@ -14,6 +14,9 @@ import { MatInputModule } from '@angular/material/input';
         matInput
         [formControlName]="controlName"
         class="input">
+        <mat-error class="error" *ngIf="this.groupName.get(this.controlName)?.invalid">
+          Cuidado! D:
+        </mat-error>
     </mat-form-field>
   `,
   styles: [`
@@ -22,11 +25,15 @@ import { MatInputModule } from '@angular/material/input';
         height: 100%;
         margin: 0;
         padding: 0;
+        background-color: blue;
       }
       .input {
         width: 100%;
         height: 100%;
         margin: 0;
+      }
+      .error {
+        transform: scale(1.2);
       }
     `],
   standalone: true,
@@ -37,14 +44,10 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule
   ]
 })
-export class TextLineComponent implements OnInit {
+export class TextLineComponent {
   @Input() public groupName!: FormGroup; 
   @Input() public controlName!: string; 
   @Input() public label!: string;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-  
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs';
 
 // Internal App imports
@@ -19,7 +19,6 @@ import { LanguagesComponent } from './form-cards/languages.component';
 import { VolunteerWorksComponent } from './form-cards/volunteer-works.component';
 import { ReferencesComponent } from './form-cards/references.component';
 import { LinksComponent } from './form-cards/links.component';
-
 
 @Component({
   selector: 'app-form',
@@ -153,72 +152,72 @@ export class FormComponent implements OnInit, OnChanges {
   // PersonalInfo
   private createPersonalInfo(): FormGroup {
     return this.formBuilder.group({
-      name: [this.cvDataInput.personalInfo.name],
-      lastname: [this.cvDataInput.personalInfo.lastname],
-      jobPosition: [this.cvDataInput.personalInfo.jobPosition],
-      email: [this.cvDataInput.personalInfo.email],
-      phone: [this.cvDataInput.personalInfo.phone],
+      name: [this.cvDataInput.personalInfo.name, [Validators.maxLength(50), Validators.pattern('^[^0-9]+$')]],
+      lastname: [this.cvDataInput.personalInfo.lastname, [Validators.maxLength(50), Validators.pattern('^[^0-9]+$')]],
+      jobPosition: [this.cvDataInput.personalInfo.jobPosition, Validators.maxLength(50)],
+      email: [this.cvDataInput.personalInfo.email, Validators.email],
+      phone: [this.cvDataInput.personalInfo.phone, [Validators.maxLength(15), Validators.pattern('^[^a-zA-Z]*$')]],
       country: [this.cvDataInput.personalInfo.country],
       stateProvince: [this.cvDataInput.personalInfo.stateProvince],
       city: [this.cvDataInput.personalInfo.city],
       nationality: [this.cvDataInput.personalInfo.nationality],
-      age: [this.cvDataInput.personalInfo.age],
-      professionalSummary: [this.cvDataInput.personalInfo.professionalSummary]
+      age: [this.cvDataInput.personalInfo.age, Validators.maxLength(2)],
+      professionalSummary: [this.cvDataInput.personalInfo.professionalSummary] // Delete this
     });
   }
 
   // Description
   private createDescription(): FormGroup {
     return this.formBuilder.group({
-      description: [this.cvDataInput.description.description]
+      description: [this.cvDataInput.description.description, Validators.maxLength(1000)]
     })
   }
 
   // Education FormArray
   private createEducation(edu: any = {}): FormGroup {
     return this.formBuilder.group({
-      grade: [edu.grade || ''],
-      school: [edu.school || ''],
-      type: [edu.type || ''],
-      average: [edu.average || ''],
+      grade: [edu.grade || '', Validators.maxLength(150)],
+      school: [edu.school || '', Validators.maxLength(150)],
+      type: [edu.type || '', Validators.maxLength(150)],
+      average: [edu.average || '', Validators.maxLength(3)],
       edInitMonth: [edu.edInitMonth || ''],
       edInitYear: [edu.edInitYear || ''],
       edEndMonth: [edu.edEndMonth || ''],
       edEndYear: [edu.edEndYear || ''],
       inCourse: [edu.inCourse || ''],
-      description: [edu.description || '']
+      description: [edu.description || '', Validators.maxLength(1000)]
     });
   }
 
   // Work Experience FormArray
   private createWorkExp(wExp: any = {}): FormGroup {
     return this.formBuilder.group({
-      position: [wExp.position || ''],
-      organization: [wExp.organization || ''],
+      position: [wExp.position || '', Validators.maxLength(150)],
+      organization: [wExp.organization || '', Validators.maxLength(150)],
       location: [wExp.location || ''],
-      workingDay: [wExp.worKingDay || ''],
+      workingDay: [wExp.worKingDay || '', Validators.maxLength(50)],
       wExpInitMonth: [wExp.wExpInitMonth || ''],
       wExpInitYear: [wExp.wExpInitYear || ''],
       wExpEndMonth: [wExp.wExpEndMonth || ''],
       wExpEndYear: [wExp.wExpEndYear || ''],
       inCourse: [wExp.inCourse || ''],
-      description: [wExp.description || '']
+      description: [wExp.description || '', Validators.maxLength(1000)]
     });
   }
 
   // Certifications FormArray
   private createCertification(cert: any = {}): FormGroup {
     return this.formBuilder.group({
-      title: [cert.title || ''],
-      institution: [cert.institution || ''],
-      average: [cert.average || '']
+      title: [cert.title || '', Validators.maxLength(150)],
+      institution: [cert.institution || '', Validators.maxLength(150)],
+      average: [cert.average || '', Validators.maxLength(4)]
     });
   }
 
   // Skills FormArray
   private createSkill(skill: any = {}): FormGroup {
     return this.formBuilder.group({
-      skill: [skill.skill || ''],
+      skill: [skill.skill || '', Validators.maxLength(150)],
       level: [skill.level || '']
     });
   }
@@ -226,7 +225,7 @@ export class FormComponent implements OnInit, OnChanges {
   // Languages FormArray
   private createLanguage(lang: any = {}): FormGroup {
     return this.formBuilder.group({
-      language: [lang.language || ''],
+      language: [lang.language || '', Validators.maxLength(50)],
       level: [lang.level || '']
     });
   }
@@ -234,14 +233,14 @@ export class FormComponent implements OnInit, OnChanges {
   // Volunteer Works FormArray
   private createVolunteerWork(vWork: any = {}): FormGroup {
     return this.formBuilder.group({
-      position: [vWork.position || ''],
-      organization: [vWork.organization || ''],
+      position: [vWork.position || '', Validators.maxLength(150)],
+      organization: [vWork.organization || '', Validators.maxLength(150)],
       vWInitMonth: [vWork.vWInitMonth || ''],
       vWInitYear: [vWork.vWInitYear || ''],
       vWEndMonth: [vWork.vWEndMonth || ''],
       vWEndYear: [vWork.vWEndYear || ''],
       inCourse: [vWork.inCourse || ''],
-      description: [vWork.description || '']
+      description: [vWork.description || '', Validators.maxLength(1000)]
     });
   }
 
@@ -249,8 +248,8 @@ export class FormComponent implements OnInit, OnChanges {
   private createReference(ref: any = {}): FormGroup {
     return this.formBuilder.group({
       name: [ref.name || ''],
-      organization: [ref.organization || ''],
-      email: [ref.email || ''],
+      organization: [ref.organization || '', Validators.maxLength(150)],
+      email: [ref.email || '', Validators.email],
       phone: [ref.phone || '']
     });
   }
