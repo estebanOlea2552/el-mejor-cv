@@ -25,7 +25,6 @@ import { MatInputModule } from '@angular/material/input';
         height: 100%;
         margin: 0;
         padding: 0;
-        background-color: blue;
       }
       .input {
         width: 100%;

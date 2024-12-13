@@ -37,6 +37,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
             </div>
           </mat-select>
         </mat-form-field>
+        <div>
+          <button mat-flat-button>Limpiar</button>
+        </div>
       </div>
       <div class="ed-end-container">
         <span class="date-title">Fecha de finalización</span>
@@ -65,7 +68,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
         <div class="checkbox-container">
           <mat-checkbox 
           [checked]="inCourse" 
-          (change)="this.inCourse = !this.inCourse;"
+          (change)="this.inCourse = !this.inCourse"
+          formControlName="inCourse"
           class="checkbox">
             <span>Presente</span>
           </mat-checkbox>
@@ -90,7 +94,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
         grid-template-columns: 1fr 1fr;
       }
       .ed-start-container {
-        /* border: 2px solid grey; */
         box-sizing: border-box;
         display: flex;
         flex-direction: column;

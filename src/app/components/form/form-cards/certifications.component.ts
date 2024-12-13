@@ -21,8 +21,10 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 <mat-card
                 class="input-list-container"
                 [ngClass]="{'input-list-container-desktop': !isMobile}"
-                *ngFor="let control of certGroup.controls, let i=index" [formGroupName]="i"
-                [formGroupName]="i">
+                *ngFor="let control of certGroup.controls, let i=index" [formGroupName]="i">
+                    <div class="dynamic-title-container">
+                        <h3 class="dynamic-title"></h3>
+                    </div>
                     <div class="input">
                         <text-line
                         [groupName]="getFormGroup(i)"
@@ -117,6 +119,13 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             display: grid;
             grid-template-columns: 1fr 1fr;
         }
+        
+        .dynamic-title-container {
+            width: 100%;
+            background-color: red;
+            grid-column: 1 / 3;
+        }
+
         .input {
             width: 100%;
             transform: scale(0.9);
@@ -191,7 +200,7 @@ export class CertificationsComponent {
     @Output() selectedCard = new EventEmitter<string>();
 
     constructor(
-        private fb: FormBuilder, 
+        private fb: FormBuilder,
         private form: FormService,
         private breakpointObserver: BreakpointObserver
     ) { }
@@ -202,9 +211,9 @@ export class CertificationsComponent {
         this.createCert();
 
         this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
-        .subscribe(result => {
-            this.isMobile = result.matches;
-        });
+            .subscribe(result => {
+                this.isMobile = result.matches;
+            });
     }
 
     getFormGroup(index: number): FormGroup {
@@ -213,9 +222,9 @@ export class CertificationsComponent {
 
     createCert(): FormGroup {
         return this.fb.group({
-            title: [this.certDataInit.map((cert: any) => cert.title) ||''],
-            institution: [this.certDataInit.map((cert: any) => cert.institution) ||''],
-            average: [this.certDataInit.map((cert: any) => cert.average) ||'']
+            title: [this.certDataInit.map((cert: any) => cert.title) || ''],
+            institution: [this.certDataInit.map((cert: any) => cert.institution) || ''],
+            average: [this.certDataInit.map((cert: any) => cert.average) || '']
         })
     }
 
@@ -230,6 +239,7 @@ export class CertificationsComponent {
     resetCert(index: number): void {
         const certGroup = this.getFormGroup(index);
         certGroup.reset();
+
     }
 
     changeSelectedCard(cardName: string) {

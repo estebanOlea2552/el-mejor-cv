@@ -19,5 +19,9 @@ export class Template1Component implements OnInit {
 
   ngOnInit(): void {
     this.exportCv.setCvToExport(this.cvContent);
+    for (let index = 0; index < this.cvPreview.workExperience.length; index++) {
+      const element = this.cvPreview.workExperience[index];
+      console.log(element);
+    }
   }
 }

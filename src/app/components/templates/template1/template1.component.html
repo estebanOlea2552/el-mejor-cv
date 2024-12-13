@@ -1,131 +1,126 @@
 <div class="cv-container" #cvContent>
-  <div class="item p-info">
-    <h4>Nombre</h4>
-    <span>{{ cvPreview.personalInfo.name }}</span>
-    <h6>Apellido</h6>
-    <span>{{ cvPreview.personalInfo.lastname }}</span>
-    <h6>Posición</h6>
-    <span>{{ cvPreview.personalInfo.jobPosition }}</span>
-    <h6>Email</h6>
-    <span>{{ cvPreview.personalInfo.email }}</span>
-    <h6>Teléfono</h6>
-    <span>{{ cvPreview.personalInfo.phone }}</span>
-    <h6>País</h6>
-    <span>{{ cvPreview.personalInfo.country }}</span>
-    <h6>Estado/Provincia</h6>
-    <span>{{ cvPreview.personalInfo.stateProvince }}</span>
-    <h6>Ciudad</h6>
-    <span>{{ cvPreview.personalInfo.city }}</span>
-    <h6>Nacionalidad</h6>
-    <span>{{ cvPreview.personalInfo.nationality }}</span>
-    <h6>Edad</h6>
-    <span>{{ cvPreview.personalInfo.age }}</span>
-    <h6>Sobre mí</h6>
-    <span [innerHTML]="cvPreview.personalInfo.professionalSummary"></span>
-  </div>
+  <div class="cv-content">
 
-  <div class="item desc">
-    <h4>Descripción</h4>
-    <span [innerHTML]="cvPreview.description.description"></span>
-  </div>
+    <!-- Personal Info -->
+    <div class="name-lastname font-size-XL bold">
+      {{ cvPreview.personalInfo.name }}
+      {{ cvPreview.personalInfo.lastname }}
+    </div>
+    <div class="job-position font-size-small bold">
+      {{ cvPreview.personalInfo.jobPosition }}
+    </div>
+    <div class="city-state-country font-size-small">
+      {{ cvPreview.personalInfo.city }}, {{ cvPreview.personalInfo.stateProvince }}, {{ cvPreview.personalInfo.country }}
+    </div>
+    <div class="email-phone-container font-size-small">
+      <div class="phone bold">
+        {{ cvPreview.personalInfo.phone }}
+      </div>
+      <div class="email bold">
+        {{ cvPreview.personalInfo.email }}
+      </div>
+    </div>
+    
+    <hr>
 
-  <div class="item work-exp" *ngFor="let exp of cvPreview.workExperience">
-    <h4>Experiencia</h4>
-    <h6>Posición</h6>
-    <span>{{ exp.position }}</span>
-    <h6>Organización</h6>
-    <span>{{ exp.organization }}</span>
-    <h6>Ubicación</h6>
-    <span>{{ exp.location }}</span>
-    <h6>Jornada</h6>
-    <span>{{ exp.workingDay }}</span>
-    <h6>Inicio</h6>
-    <span>{{ exp.wExpInitMonth }}</span>
-    <span>{{ exp.wExpInitYear }}</span>
-    <h6>Fin</h6>
-    <span>{{ exp.wExpEndMonth }}</span>
-    <span>{{ exp.wExpEndYear }}</span>
-    <h6>Descripción</h6>
-    <span [innerHTML]="exp.description"></span>
-  </div>
+    <!-- Description -->
+    <div class="description_container" *ngIf="cvPreview.description.description.length >= 1">
+      <div class="description_title font-size-medium bold">
+        <span>Perfil</span>
+      </div>
+      <div
+      class="description_content paragraph font-size-small"
+      [innerHTML]="cvPreview.description.description">
+      </div>
+    </div>
+    
+    <hr>
 
-  <div class="item ed" *ngFor="let school of cvPreview.education">
-    <h4>Educación</h4>
-    <h6>Título</h6>
-    <span>{{ school.grade }}</span>
-    <h6>Institución</h6>
-    <span>{{ school.school }}</span>
-    <h6>Tipo</h6>
-    <span>{{ school.type }}</span>
-    <h6>Promedio Académico</h6>
-    <span>{{ school.average }}</span>
-    <h6>Inicio</h6>
-    <span>{{ school.edInitMonth }}</span>
-    <span>{{ school.edInitYear }}</span>
-    <h6>Fin</h6>
-    <span>{{ school.edEndMonth }}</span>
-    <span>{{ school.edEndYear }}</span>
-    <h6>Descripción</h6>
-    <span [innerHTML]="school.description"></span>
-  </div>
+    <!-- Work Experience -->
+    <div class="work-exp_title font-size-medium bold">
+      <span>Experiencia Laboral</span>
+    </div>
+    <div class="work-exp_container" *ngFor="let exp of cvPreview.workExperience">
+      <div class="work-exp_content">
+        <div class="work-exp_row">
+          <div class="work-exp_left-container">
+            <div class="work-exp_position bold">
+              <strong>• </strong>{{ exp.position }}
+            </div>
+            <div class="work-exp_organization bold">, {{ exp.organization }} </div>
+          </div>
+          <div class="work-exp_dots-container">
+            <div class="work-exp_dots"></div>
+          </div>
 
-  <div class="item cert" *ngFor="let cert of cvPreview.certifications">
-    <h4>Exámenes y certificaciones</h4>
-    <h6>Título</h6>
-    <span>{{ cert.title }}</span>
-    <h6>Institución</h6>
-    <span>{{ cert.institution }}</span>
-    <h6>Nivel</h6>
-    <span>{{ cert.average }}</span>
-  </div>
+          <div class="work-exp_right-container">
+            <div class="work-exp_initM-initY-endM-endY font-size-small">
+              {{ exp.wExpInitMonth }}
+              {{ exp.wExpInitYear }}
+              --
+              {{ exp.wExpEndMonth }}
+              {{ exp.wExpEndYear }}
+            </div>
+            <div class="work-exp_location font-size-small">
+              {{ exp.location }}
+            </div>
+          </div>
+        </div>
+        <div
+        class="work-exp_description paragraph font-size-small"
+        [innerHTML]="exp.description"></div>
+      </div>
+    </div>
 
-  <div class="item skills" *ngFor="let skill of cvPreview.skills">
-    <h4>Habilidades</h4>
-    <h6>Habilidad</h6>
-    <span>{{ skill.skill }}</span>
-    <h6>Nivel</h6>
-    <span>{{ skill.level }}</span>
-  </div>
+    <!-- Education -->
+    <div class="ed_title font-size-medium bold">
+      <span>Educación</span>
+    </div>
+    <div class="ed_container" *ngFor="let ed of cvPreview.education">
+      <div class="ed_content">
+        <div class="ed_row">
+          <div class="ed_left-container">
+            <div class="ed_grade bold">
+              <strong>• </strong>{{ed.grade}}
+            </div>
+            <div class="ed_school font-size-small">{{ed.school}}</div>
+          </div>
+          <div class="ed_dots-container">
+            <div class="ed_dots"></div>
+          </div>
+          <div class="ed_right-container">
+            <div class="ed_initM-initY-endM-endY font-size-small">
+                {{ ed.edInitMonth }}
+                {{ ed.edInitYear }}
+                --
+                {{ ed.edEndMonth }}
+                {{ ed.edEndYear }}
+            </div>
+          </div>
+        </div>
+        <div
+        class="ed_description paragraph font-size-small"
+        [innerHTML]="ed.description">
+        </div>
+      </div>  
+    </div>
 
-  <div class="item lang" *ngFor="let lang of cvPreview.languages">
-    <h4>Idiomas</h4>
-    <h6>Idioma</h6>
-    <span>{{ lang.language }}</span>
-    <h6>Nivel</h6>
-    <span>{{ lang.level }}</span>
-  </div>
-
-  <div class="item vol-works" *ngFor="let vol of cvPreview.volunteerWorks">
-    <h4>Voluntariado</h4>
-    <h6>Puesto</h6>
-    <span>{{ vol.position }}</span>
-    <h6>Organización</h6>
-    <span>{{ vol.organization }}</span>
-    <h6>Inicio</h6>
-    <span>{{ vol.vWInitMonth }}</span>
-    <span>{{ vol.vWInitYear }}</span>
-    <h6>Fin</h6>
-    <span>{{ vol.vWEndMonth }}</span>
-    <span>{{ vol.vWEndYear }}</span>
-    <h6>Descripción</h6>
-    <span [innerHTML]="vol.description"></span>
-  </div>
-
-  <div class="item ref" *ngFor="let ref of cvPreview.references">
-    <h4>Referencias</h4>
-    <h6>Nombre Completo</h6>
-    <span>{{ ref.name }}</span>
-    <h6>Organización</h6>
-    <span>{{ ref.organization }}</span>
-    <h6>Email</h6>
-    <span>{{ ref.email }}</span>
-    <h6>Teléfono</h6>
-    <span>{{ ref.phone }}</span>
-  </div>
-
-  <div class="item links" *ngFor="let link of cvPreview.links">
-    <h4>Enlaces</h4>
-    <h6>Enlace</h6>
-    <span>{{ link.link }}</span>
+    <!-- Skills -->
+    <div class="skills_title font-size-medium bold">
+      <span>Habilidades</span>
+    </div>
+    <div class="skills_container">
+        <div class="skill-level-container" *ngFor="let skill of cvPreview.skills">
+          <div class="skill font-size-small">
+            {{ skill.skill }}
+          </div>
+          <div class="skills_dots-container">
+            <div class="skills_dots"></div>
+          </div>
+          <div class="level font-size-small bold">
+            {{ skill.level }}
+          </div>
+        </div>
+    </div>
   </div>
 </div>
