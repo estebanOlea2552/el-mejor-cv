@@ -48,13 +48,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                     </text-line>
                 </div>
                 <div class="input">
-                    <text-line
-                        [groupName]="personalInfoGroup"
-                        controlName="phone"
-                        label="Teléfono">
-                    </text-line>
-                </div>
-                <div class="input">
                     <div class="photo-place">
                         <button mat-flat-button class="photo">
                             <mat-icon>add_photo_alternate</mat-icon>
@@ -64,23 +57,16 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 </div>
                 <div class="accordion-container">
                     <mat-accordion class="accordion">
-                        <mat-expansion-panel >
+                        <mat-expansion-panel>
                             <mat-expansion-panel-header>
                                 Agregar más información
                             </mat-expansion-panel-header>
                             <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
                                 <div class="input">
                                     <text-line
-                                    [groupName]="personalInfoGroup"
-                                    controlName="country"
-                                    label="País">
-                                    </text-line>
-                                </div>
-                                <div class="input">
-                                    <text-line
-                                    [groupName]="personalInfoGroup"
-                                    controlName="stateProvince"
-                                    label="Estado/Provincia">
+                                        [groupName]="personalInfoGroup"
+                                        controlName="phone"
+                                        label="Teléfono">
                                     </text-line>
                                 </div>
                                 <div class="input">
@@ -93,8 +79,15 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                                 <div class="input">
                                     <text-line
                                     [groupName]="personalInfoGroup"
-                                    controlName="nationality"
-                                    label="Nacionalidad">
+                                    controlName="stateProvince"
+                                    label="Estado/Provincia">
+                                    </text-line>
+                                </div>
+                                <div class="input">
+                                    <text-line
+                                    [groupName]="personalInfoGroup"
+                                    controlName="country"
+                                    label="País">
                                     </text-line>
                                 </div>
                                 <div class="input">
@@ -162,20 +155,17 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 width: 100%;
                 transform: scale(0.9);
             }
-            .photo {
-                box-sizing: border-box;
-            }
             .photo-place {
-                /* border: 2px solid grey; */
                 width: 100%;
-                height: 75%;
+                height: 100%;
                 box-sizing: border-box;
                 display: flex;
                 justify-content: start;
                 align-items: center;
             }
             .photo {
-                height: 100%;
+                box-sizing: border-box;
+                height: 4em;
                 border: 1px solid rgba(0, 0, 0, 0.2);
             }
             .accordion-container {
@@ -212,10 +202,15 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .prev-next-container {
                 box-sizing: border-box;
-                position: absolute;
-                bottom: 1%;
+                /* position: absolute;
+                bottom: 1%; */
                 display: flex;
-                justify-content: end;
+                /* margin-top: 3%; */
+                justify-content: space-between;
+                border: 1px solid black
+            }
+            /* .prev {
+                margin-left: 3%;
             }
             .next {
                 margin-right: 3%;
@@ -226,7 +221,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .next span {
                 order: 1;
-            }
+            } */
         `],
     standalone: true,
     imports: [

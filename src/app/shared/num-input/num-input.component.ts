@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'num-input',
   template: `
-  <mat-form-field [formGroup]="groupName">
+  <mat-form-field [formGroup]="groupName" class="form-field">
     <mat-label>{{ label }}</mat-label>
     <input
     matInput
@@ -15,7 +15,19 @@ import { MatInputModule } from '@angular/material/input';
     [formControlName]="controlName"
     />
   </mat-form-field>`,
-  styles: [''],
+  styles: [`
+      .form-field {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .input {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+    `],
   standalone: true,
   imports: [
     MatInputModule,

@@ -4,6 +4,7 @@ import { Component, EventEmitter, Output, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { MatExpansionModule } from "@angular/material/expansion";
 import { MatIconModule } from "@angular/material/icon";
 import { cvDataInit } from "src/app/model/cv-data-init";
 import { FormService } from "src/app/services/form.service";
@@ -38,20 +39,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         label="Empresa">
                         </text-line>
                     </div>
-                    <div class="input">
-                        <text-line
-                        [groupName]="getFormGroup(i)"
-                        controlName="location"
-                        label="Ubicación">
-                        </text-line>
-                    </div>
-                    <div class="input">
-                        <text-line
-                        [groupName]="getFormGroup(i)"
-                        controlName="workingDay"
-                        label="Jornada">
-                        </text-line>
-                    </div>
+                    
                     <div class="date-container">
                         <init-end-date 
                         [groupName]="getFormGroup(i)"
@@ -61,12 +49,35 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         endYControl="wExpEndYear">
                         </init-end-date>
                     </div>
-                    <div class="paragraph-container">
-                        <paragraph
-                        [groupName]="getFormGroup(i)"
-                        controlName="description">
-                        </paragraph>
-                    </div>
+                    <mat-accordion class="accordion-container">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                Agregar más información
+                            </mat-expansion-panel-header>
+                            <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
+                                <div class="input">
+                                    <text-line
+                                    [groupName]="getFormGroup(i)"
+                                    controlName="location"
+                                    label="Ubicación">
+                                    </text-line>
+                                </div>
+                                <div class="input">
+                                    <text-line
+                                    [groupName]="getFormGroup(i)"
+                                    controlName="workingDay"
+                                    label="Jornada">
+                                    </text-line>
+                                </div>
+                                <div class="paragraph-container">
+                                    <paragraph
+                                    [groupName]="getFormGroup(i)"
+                                    controlName="description">
+                                    </paragraph>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
                     <div
                     [ngClass]="{
                         'card-button-container-mobile': isMobile, 'card-button-container-desktop': !isMobile
@@ -152,6 +163,20 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             margin-top: 3%;
             margin-bottom: 3%;
         }
+        .accordion-container {
+            grid-column: 1 / 3;
+            box-sizing: border-box;
+            width: 100%;
+            margin-top: 3%;
+        }
+        .accordion-content {
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .accordion-content-desktop {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
         .paragraph-container {
             width: 100%;
             box-sizing: border-box;
@@ -190,13 +215,15 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         }
         .prev-next-container {
             box-sizing: border-box;
-            position: absolute;
-            bottom: 1%;
+            /* position: absolute;
+            bottom: 1%; */
             display: flex;
+            margin-top: 3%;
             justify-content: space-between;
+            border: 1px solid black
         }
-        .prev {
-            margin-left: 3%;
+        /* .prev {
+               margin-left: 3%;
         }
         .next {
             margin-right: 3%;
@@ -207,7 +234,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         }
         .next span {
             order: 1;
-        }
+        } */
     `],
     standalone: true,
     imports: [
@@ -218,7 +245,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         ParagraphComponent,
         InitEndDateComponent,
         TextLineComponent,
-        MatButtonModule
+        MatButtonModule,
+        MatExpansionModule
     ]
 })
 export class WorkExperienceComponent {

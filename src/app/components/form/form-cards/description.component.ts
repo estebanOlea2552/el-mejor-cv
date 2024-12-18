@@ -88,12 +88,14 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
             }
             .prev-next-container {
                 box-sizing: border-box;
-                position: absolute;
-                bottom: 1%;
+                /* position: absolute;
+                bottom: 1%; */
                 display: flex;
+                margin-top: 3%;
                 justify-content: space-between;
+                border: 1px solid black
             }
-            .prev {
+            /* .prev {
                 margin-left: 3%;
             }
             .next {
@@ -103,10 +105,9 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 order: 2;
                 margin-left: 8px;
             }
-
             .next span {
                 order: 1;
-            }
+            } */
         `],
     standalone: true,
     imports: [

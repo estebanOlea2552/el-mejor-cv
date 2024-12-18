@@ -14,9 +14,9 @@ import { MatInputModule } from '@angular/material/input';
         matInput
         [formControlName]="controlName"
         class="input">
-        <mat-error class="error" *ngIf="this.groupName.get(this.controlName)?.invalid">
+        <!-- <mat-error class="error" *ngIf="this.groupName.get(this.controlName)?.invalid">
           Cuidado! D:
-        </mat-error>
+        </mat-error> -->
     </mat-form-field>
   `,
   styles: [`

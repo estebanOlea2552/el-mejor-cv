@@ -18,10 +18,14 @@ export class Template1Component implements OnInit {
   constructor(private exportCv: ExportService) {}
 
   ngOnInit(): void {
+    /* Takes the cvContent element as HTML and sends it to the Export Service */
     this.exportCv.setCvToExport(this.cvContent);
-    for (let index = 0; index < this.cvPreview.workExperience.length; index++) {
-      const element = this.cvPreview.workExperience[index];
-      console.log(element);
-    }
+  }
+
+  /* Recibe un campo de cvPreview (object) y la clave de dicho campo (keys) que se desea evaluar */
+  hasValues(object: any, keys: string[]): boolean {
+    if (!object) return false; /* Si el campo no existe dentro de cvPreview, devuelve false */
+    return keys.some(key => !!String(object[key] ?? '').trim());
+    /* .some() verifica si al menos un elemento cumlpe la condición, la función anónima devuelve false si object[key] no contiene ningún valor */
   }
 }

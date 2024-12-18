@@ -7,7 +7,6 @@ import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { cvDataInit } from "src/app/model/cv-data-init";
 import { FormService } from "src/app/services/form.service";
-import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
 import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
 
 @Component({
@@ -22,9 +21,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 class="input-list-container"
                 [ngClass]="{'input-list-container-desktop': !isMobile}"
                 *ngFor="let control of certGroup.controls, let i=index" [formGroupName]="i">
-                    <div class="dynamic-title-container">
-                        <h3 class="dynamic-title"></h3>
-                    </div>
                     <div class="input">
                         <text-line
                         [groupName]="getFormGroup(i)"
@@ -39,13 +35,15 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         label="Institución">
                         </text-line>
                     </div>
-                    <div class="input">
+
+                    <!-- This has to be deleted from all the CV interface -->
+                    <!-- <div class="input">
                         <num-input
                         [groupName]="getFormGroup(i)"
                         controlName="average"
                         label="Puntaje">
                         </num-input>
-                    </div>
+                    </div> -->
                     <div
                     [ngClass]="{
                         'card-button-container-mobile': isMobile, 'card-button-container-desktop': !isMobile
@@ -187,7 +185,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         ReactiveFormsModule,
         MatCardModule,
         MatIconModule,
-        NumInputComponent,
         TextLineComponent,
         MatButtonModule
     ],

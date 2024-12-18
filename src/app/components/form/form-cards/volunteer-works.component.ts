@@ -8,7 +8,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { cvDataInit } from "src/app/model/cv-data-init";
 import { FormService } from "src/app/services/form.service";
 import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
-import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component";
 import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
 
 @Component({
@@ -46,12 +45,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         endMControl="vWEndMonth"
                         endYControl="vWEndYear">
                         </init-end-date>
-                    </div>
-                    <div class="paragraph-container">
-                        <paragraph
-                        [groupName]="getFormGroup(i)"
-                        controlName="description">
-                        </paragraph>
                     </div>
                     <div
                     [ngClass]="{
@@ -202,7 +195,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         ReactiveFormsModule,
         MatCardModule,
         MatIconModule,
-        ParagraphComponent,
         InitEndDateComponent,
         TextLineComponent,
         MatButtonModule
@@ -213,7 +205,6 @@ export class VolunteerWorksComponent {
     volWorkGroup!: FormArray;
     volWorkDataInit: any = cvDataInit.volunteerWorks;
     isMobile: boolean = true;
-    @ViewChild(ParagraphComponent) paragraphComponent!: ParagraphComponent;
     @Output() selectedCard = new EventEmitter<string>();
 
     constructor(
@@ -261,7 +252,6 @@ export class VolunteerWorksComponent {
     resetVolWork(index: number): void {
         const volWorkGroup = this.getFormGroup(index);
         volWorkGroup.reset();
-        this.paragraphComponent.resetParagraph();
     }
 
     changeSelectedCard(cardName: string) {

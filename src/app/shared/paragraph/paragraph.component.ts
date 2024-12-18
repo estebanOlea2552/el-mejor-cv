@@ -22,7 +22,7 @@ import { Jodit } from 'jodit';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule
-  ]
+  ],
 })
 export class ParagraphComponent implements AfterViewInit, OnDestroy {
   @Input() groupName!: FormGroup;
@@ -34,10 +34,11 @@ export class ParagraphComponent implements AfterViewInit, OnDestroy {
   
   ngAfterViewInit():void {
     const editorConfig = {
-      buttons: ['bold', 'italic', 'underline', 'ul', 'left', 'undo', 'redo'],
+      buttons: ['bold', 'italic', 'underline', , 'undo', 'redo'],
+      /* 'left','right', 'center' 'ul'*/
       toolbarSticky: false,
       height: 'auto',
-      minHeight: 300,
+      minHeight: 230,
       maxHeight: '100%',
       width: '100%',
       allowResizeX: false,
@@ -45,8 +46,10 @@ export class ParagraphComponent implements AfterViewInit, OnDestroy {
       showWordsCounter: false,
       showCharsCounter: false,
       placeholder: 'Escriba su texto aquí...',
-      tabIndex: 0
+      tabIndex: 0,
+      enter: "BR"
     };
+    
 
     this.editor = Jodit.make(this.textEditor.nativeElement, editorConfig);
 

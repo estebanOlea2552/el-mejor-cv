@@ -11,6 +11,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { MatIconModule } from "@angular/material/icon";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @Component({
     selector: 'education',
@@ -39,20 +40,7 @@ import { MatIconModule } from "@angular/material/icon";
                         label="Institución">
                         </text-line>
                     </div>
-                    <div class="input">
-                        <text-line
-                        [groupName]="getFormGroup(i)"
-                        controlName="type"
-                        label="Tipo">
-                        </text-line>
-                    </div>
-                    <div class="input">
-                        <num-input
-                        [groupName]="getFormGroup(i)"
-                        controlName="average"
-                        label="Promedio académico">
-                        </num-input>
-                    </div>
+                   
                     <div class="date-container">    
                         <init-end-date
                         [groupName]="getFormGroup(i)"
@@ -61,12 +49,37 @@ import { MatIconModule } from "@angular/material/icon";
                         endMControl="edEndMonth"
                         endYControl="edEndYear">
                         </init-end-date>
-                    </div>
-                    <div class="paragraph-container">
-                        <paragraph
-                        [groupName]="getFormGroup(i)"
-                        controlName="description">
-                        </paragraph>
+                    </div>   
+                    <div class="accordion-container">
+                        <mat-accordion>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    Agregar más información
+                                </mat-expansion-panel-header>
+                                <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
+                                     <div class="input">
+                                        <text-line
+                                        [groupName]="getFormGroup(i)"
+                                        controlName="type"
+                                        label="Tipo">
+                                        </text-line>
+                                    </div>
+                                    <div class="input">
+                                        <num-input
+                                        [groupName]="getFormGroup(i)"
+                                        controlName="average"
+                                        label="Promedio académico">
+                                        </num-input>
+                                    </div>
+                                    <div class="paragraph-container">
+                                        <paragraph
+                                        [groupName]="getFormGroup(i)"
+                                        controlName="description">
+                                        </paragraph>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
                     </div>
                     <div
                     [ngClass]="{
@@ -153,6 +166,20 @@ import { MatIconModule } from "@angular/material/icon";
                 margin-top: 3%;
                 margin-bottom: 3%;
             }
+            .accordion-container {
+                grid-column: 1 / 3;
+                box-sizing: border-box;
+                width: 100%;
+                margin-top: 3%;
+            }
+            .accordion-content {
+                box-sizing: border-box;
+                width: 100%;
+            }
+            .accordion-content-desktop {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
             .paragraph-container {
                 width: 100%;
                 box-sizing: border-box;
@@ -191,12 +218,14 @@ import { MatIconModule } from "@angular/material/icon";
             }
             .prev-next-container {
                 box-sizing: border-box;
-                position: absolute;
-                bottom: 1%;
+                /* position: absolute;
+                bottom: 1%; */
                 display: flex;
+                margin-top: 3%;
                 justify-content: space-between;
+                border: 1px solid black
             }
-            .prev {
+            /* .prev {
                 margin-left: 3%;
             }
             .next {
@@ -208,7 +237,7 @@ import { MatIconModule } from "@angular/material/icon";
             }
             .next span {
                 order: 1;
-            }
+            } */
         `],
     standalone: true,
     imports: [
@@ -217,6 +246,7 @@ import { MatIconModule } from "@angular/material/icon";
         MatCardModule,
         MatButtonModule,
         MatIconModule,
+        MatExpansionModule,
         ParagraphComponent,
         InitEndDateComponent,
         NumInputComponent,
