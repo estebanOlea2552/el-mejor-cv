@@ -7,9 +7,7 @@ export interface PersonalInfo {
     country: string,
     stateProvince: string,
     city: string,
-    nationality: string,
     age: string
-    professionalSummary: string,
 }
 
 export interface Description {
@@ -45,7 +43,6 @@ export interface WorkExperience {
 export interface Certification {
     title: string;
     institution: string
-    average: string;
 }
 
 export interface Skill {

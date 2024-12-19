@@ -81,7 +81,7 @@ export class FormComponent implements OnInit, OnChanges {
         )
       }
     );
-  };
+  }
 
   ngOnInit(): void {
     this.initFormListeners();
@@ -160,9 +160,7 @@ export class FormComponent implements OnInit, OnChanges {
       country: [this.cvDataInput.personalInfo.country],
       stateProvince: [this.cvDataInput.personalInfo.stateProvince],
       city: [this.cvDataInput.personalInfo.city],
-      nationality: [this.cvDataInput.personalInfo.nationality],
       age: [this.cvDataInput.personalInfo.age, Validators.maxLength(2)],
-      professionalSummary: [this.cvDataInput.personalInfo.professionalSummary] // Delete this
     });
   }
 
@@ -195,7 +193,7 @@ export class FormComponent implements OnInit, OnChanges {
       position: [wExp.position || '', Validators.maxLength(150)],
       organization: [wExp.organization || '', Validators.maxLength(150)],
       location: [wExp.location || ''],
-      workingDay: [wExp.worKingDay || '', Validators.maxLength(50)],
+      workingDay: [wExp.workingDay || '', Validators.maxLength(50)],
       wExpInitMonth: [wExp.wExpInitMonth || ''],
       wExpInitYear: [wExp.wExpInitYear || ''],
       wExpEndMonth: [wExp.wExpEndMonth || ''],
@@ -210,7 +208,6 @@ export class FormComponent implements OnInit, OnChanges {
     return this.formBuilder.group({
       title: [cert.title || '', Validators.maxLength(150)],
       institution: [cert.institution || '', Validators.maxLength(150)],
-      average: [cert.average || '', Validators.maxLength(4)]
     });
   }
 
