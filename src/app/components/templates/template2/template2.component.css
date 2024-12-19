@@ -1,57 +1,178 @@
+/* AUXILIARY CLASSES */
+.font-size-large {
+    font-size: 10pt;
+}
+.font-size-medium {
+    font-size: 6pt;
+}
+.font-size-small {
+    font-size: 4pt;
+}
+.bold {
+    font-weight: bold;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.border {
+    border: 1px solid black;
+}
+.bx {
+    box-sizing: border-box;
+}
+.d-inline-blc {
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+}
+.less-line-height {
+    line-height: 0.5 !important; /* override .d-inline-blc class  */
+}
+.top-fill {
+    width: 100%;
+    height: 66pt; /* arbitrary value to fill the top of the page */
+}
+.paragraph {
+    display: inline-block;
+    line-height: 6pt;
+}
+.section-title {
+    width: 100%;
+    margin-bottom: 5pt;
+    border-bottom: 1.5pt solid black;
+}
+.row {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.list-description {
+    margin: 5pt;
+}
+hr {
+    width: 100%;
+    box-shadow: none;
+    text-shadow: none;
+    border: 1px solid black;
+    margin-bottom: 7pt;
+    margin-top: 0;
+}
+
+/* SPECIFIC CLASSES */
 .cv-container {
     /* A4 format, reduced by the expression * 0.5 to scale the element into the view */
     width: calc(595.28pt * 0.5);
     height: calc(841.89pt * 0.5);
     box-sizing: border-box;
-    background-color: rgb(254, 143, 230);
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-auto-flow: row;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.item {
-    border: 2px solid rgb(133, 26, 90);
+.cv-content {
     width: 100%;
-    max-width: 100%;
-    min-width: 100%;
     height: 100%;
-    max-height: 100%;
-    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
-h4 {
-    margin: 1%;
-    padding: 0;
-    font-size: 80%;
-    font-weight: 500;
+.name-lastname-container {
+    position: absolute;
+    top: 20pt;
+    left: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-h6 {
-    margin: 1%;
-    padding: 0;
-    font-size: 60%;
-    font-weight: 500;
+.name-lastname-frame {
+    margin-left: 70pt;
+    margin-right: 70pt;
+    height: 45pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1pt solid black;
 }
 
-span {
-    display: block;
-    margin: 1%;
-    padding: 0;
+.name-lastname, .job-position {
+    margin: 2pt;
 }
 
-/* .general-info-container {
-    background-color: rgb(0, 187, 255);
+.left-container {
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 20pt;
+    padding-right: 5pt;
+    grid-column: 1 / 2;
+    background-color: #efefef;
 }
 
-.academic-bg-container {
-    background-color: rgb(151, 234, 255);
+.details_content {
+    display: flex;
+    flex-direction: column;
 }
 
-.work-exp-container {
-    background-color: rgb(236, 253, 255);
+.detail_item-title, .detail_item {
+    display: inline-block;
+    text-align: start;
+    line-height: 1;
+    margin-bottom: 1pt;
 }
 
-.skills-container {
-    background-color: rgb(151, 234, 255);
-} */
+.detail_item {
+    margin-top: 1pt;
+    margin-bottom: 6pt;
+}
+
+.right-container {
+    height: 100%;
+    box-sizing: border-box;
+    padding-right: 20pt;
+    padding-left: 5pt;
+    grid-column: 2 / 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.work-exp_content {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-institution {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4pt;
+    margin-bottom: 4pt;
+}
+
+.skills_content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.skill-level-container {
+    margin-bottom: 6pt;
+}
+
+.links_title {
+    width: 100%;
+    text-align: end;
+    margin-top: auto;
+}
+
+.links_list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 20pt;
+}
+
+.links_container {
+    margin-bottom: 1pt;
+}

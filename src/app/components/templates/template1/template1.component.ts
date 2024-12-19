@@ -9,23 +9,23 @@ import { ExportService } from 'src/app/services/export.service';
   templateUrl: './template1.component.html',
   styleUrls: ['./template1.component.css'],
   standalone: true,
-  imports: [ CommonModule ]
+  imports: [CommonModule]
 })
 export class Template1Component implements OnInit {
-  @ViewChild('cvContent', {static: true}) cvContent!: ElementRef;
+  @ViewChild('cvContent', { static: true }) cvContent!: ElementRef;
   @Input() cvPreview: cvData = cvDataInit;
 
-  constructor(private exportCv: ExportService) {}
+  constructor(private exportCv: ExportService) { }
 
   ngOnInit(): void {
     /* Takes the cvContent element as HTML and sends it to the Export Service */
     this.exportCv.setCvToExport(this.cvContent);
   }
 
-  /* Recibe un campo de cvPreview (object) y la clave de dicho campo (keys) que se desea evaluar */
+  /* Receives a field from cvPreview (object) and the key of that field (keys) to be evaluated */
   hasValues(object: any, keys: string[]): boolean {
-    if (!object) return false; /* Si el campo no existe dentro de cvPreview, devuelve false */
+    if (!object) return false; /* If the field does not exist within cvPreview, returns false */
     return keys.some(key => !!String(object[key] ?? '').trim());
-    /* .some() verifica si al menos un elemento cumlpe la condición, la función anónima devuelve false si object[key] no contiene ningún valor */
+    /* .some() checks if at least one element meets the condition, the anonymous function returns false if object[key] does not contain any value */
   }
 }

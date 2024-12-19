@@ -1,8 +1,4 @@
 /* AUXILIARY CLASSES */
-.paragraph {
-    line-height: 6pt;
-    margin-bottom: 5pt;
-}
 .font-size-large {
     font-size: 11pt;
 }
@@ -28,6 +24,10 @@
     display: inline-block;
     text-align: center;
     line-height: 1;
+}
+.paragraph {
+    line-height: 6pt;
+    margin-bottom: 5pt;
 }
 .section-title {
     background-color: rgb(230, 230, 230);
@@ -79,8 +79,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    gap: 2pt;
-    
+    gap: 2pt;   
 }
 .item {
     display: inline-block;
@@ -118,7 +117,6 @@ hr {
 .cv-container {
     width: calc(595.28pt * 0.5); /* A4 format, reduced by the expression * 0.5 to scale the element into the view */
     height: calc(841.89pt * 0.5);
-
     box-sizing: border-box;
     background-color: #fff;
     display: flex;

@@ -18,7 +18,13 @@ export class Template2Component implements OnInit {
   constructor(private exportCv: ExportService){}
 
   ngOnInit(): void {
+    /* Takes the cvContent element as HTML and sends it to the Export Service */
     this.exportCv.setCvToExport(this.cvContent);
   }
 
+  hasValues(object: any, keys: string[]): boolean {
+    if (!object) return false; /* If the field does not exist within cvPreview, returns false */
+    return keys.some(key => !!String(object[key] ?? '').trim());
+    /* .some() checks if at least one element meets the condition, the anonymous function returns false if object[key] does not contain any value */
+  }
 }
