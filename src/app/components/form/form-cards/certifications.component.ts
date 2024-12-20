@@ -35,15 +35,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         label="Institución">
                         </text-line>
                     </div>
-
-                    <!-- This has to be deleted from all the CV interface -->
-                    <!-- <div class="input">
-                        <num-input
-                        [groupName]="getFormGroup(i)"
-                        controlName="average"
-                        label="Puntaje">
-                        </num-input>
-                    </div> -->
                     <div
                     [ngClass]="{
                         'card-button-container-mobile': isMobile, 'card-button-container-desktop': !isMobile
@@ -68,7 +59,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             <div
             class="prev-next-container"
             [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
-                <button mat-flat-button class="prev" (click)="changeSelectedCard('workexp')">
+                <button mat-flat-button class="prev" (click)="changeSelectedCard('ed')">
                     <mat-icon>chevron_left</mat-icon>
                     Anterior
                 </button>
@@ -95,8 +86,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         }
         .header {
             width: 100%;
-            margin-top: 5%;
-            margin-bottom: 5%;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
         h2 {
             margin-left: 5%;
@@ -160,10 +151,9 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         }
         .prev-next-container {
             box-sizing: border-box;
-            position: absolute;
-            bottom: 1%;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
+            margin-top: 4rem;
         }
         .prev {
             margin-left: 3%;

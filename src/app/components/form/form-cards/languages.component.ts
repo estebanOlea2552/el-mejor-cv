@@ -88,8 +88,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .header {
                 width: 100%;
-                margin-top: 5%;
-                margin-bottom: 5%;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
             }
             h2 {
                 margin-left: 5%;
@@ -147,10 +147,9 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .prev-next-container {
                 box-sizing: border-box;
-                position: absolute;
-                bottom: 1%;
                 display: flex;
-                justify-content: space-between;
+                justify-content: space-around;
+                margin-top: 4rem;
             }
             .prev {
                 margin-left: 3%;

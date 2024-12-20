@@ -66,6 +66,8 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
           this.isMobile = value.matches
           if (this.isMobile) {
             this.loadComponent(FormComponent);
+          } else {
+            this.dynamicView.clear();
           }
         }
       );

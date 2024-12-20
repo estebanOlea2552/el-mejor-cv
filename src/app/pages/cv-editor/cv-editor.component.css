@@ -19,7 +19,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 30%;
+    padding-top: 4.5em;
+    /* padding-top: 8em; */
 }
 
 .nav-list-mobile {
@@ -27,7 +28,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 28%;  
+    padding-top: 4.5em;
+    /* padding-top: 7.5em;  */ 
     border: 2px solid grey;
 }
 
@@ -44,6 +46,9 @@
     overflow: hidden;
 }
 
+.toolbar-desktop, .toolbar-mobile {
+    height: 3em;
+}
 .toolbar-desktop {
     /* This style ensures that the toolbar does not cause overflow in the rest of the content. */
     width: 50%;

@@ -34,7 +34,7 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                     <mat-icon>chevron_left</mat-icon>
                     <span>Anterior</span>
                 </button>
-                <button mat-flat-button class="next" (click)="changeSelectedCard('ed')">
+                <button mat-flat-button class="next" (click)="changeSelectedCard('workexp')">
                     <mat-icon>chevron_right</mat-icon>
                     <span>Siguiente</span>
                 </button>
@@ -57,8 +57,8 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
             }
             .header {
                 width: 100%;
-                margin-top: 5%;
-                margin-bottom: 5%;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
             }
             h2 {
                 margin-left: 5%;
@@ -88,14 +88,11 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
             }
             .prev-next-container {
                 box-sizing: border-box;
-                /* position: absolute;
-                bottom: 1%; */
                 display: flex;
-                margin-top: 3%;
-                justify-content: space-between;
-                border: 1px solid black
+                justify-content: space-around;
+                margin-top: 4rem;
             }
-            /* .prev {
+            .prev {
                 margin-left: 3%;
             }
             .next {
@@ -107,7 +104,7 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
             }
             .next span {
                 order: 1;
-            } */
+            }
         `],
     standalone: true,
     imports: [

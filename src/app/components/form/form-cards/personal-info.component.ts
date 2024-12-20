@@ -120,22 +120,23 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     `,
     styles: [`
             .container {
+                width: 100%;
+                height: 100vh;
                 box-sizing: border-box;
+                margin: 0;
+                padding: 10%;
+                position: relative;
                 display: flex;
                 flex-direction: column;
                 justify-content: start;
                 align-items: center;
-                margin: 0;
-                padding: 10%;
-                width: 100%;
-                height: 100vh;
                 overflow-x: hidden;
                 overflow-y: auto;
             }
             .header {
                 width: 100%;
-                margin-top: 5%;
-                margin-bottom: 5%;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
             }
             h2 {
                 margin-left: 5%;
@@ -145,7 +146,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 box-sizing: border-box;
                 width: 100%;
                 padding: 3%;
-                margin-bottom: 3%;
             }
             .input-container-desktop {
                 display: grid;
@@ -202,14 +202,11 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .prev-next-container {
                 box-sizing: border-box;
-                /* position: absolute;
-                bottom: 1%; */
                 display: flex;
-                /* margin-top: 3%; */
-                justify-content: space-between;
-                border: 1px solid black
+                justify-content: space-around;
+                margin-top: 4rem;
             }
-            /* .prev {
+            .prev {
                 margin-left: 3%;
             }
             .next {
@@ -221,7 +218,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .next span {
                 order: 1;
-            } */
+            }
         `],
     standalone: true,
     imports: [

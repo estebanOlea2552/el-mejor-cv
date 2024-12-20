@@ -105,11 +105,11 @@ import { MatExpansionModule } from "@angular/material/expansion";
             <div
             class="prev-next-container"
             [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
-                <button mat-flat-button class="prev" (click)="changeSelectedCard('desc')">
+                <button mat-flat-button class="prev" (click)="changeSelectedCard('workexp')">
                     <mat-icon>chevron_left</mat-icon>
                     Anterior
                 </button>
-                <button mat-flat-button class="next" (click)="changeSelectedCard('workexp')">
+                <button mat-flat-button class="next" (click)="changeSelectedCard('cert')">
                     <mat-icon>chevron_right</mat-icon>
                     Siguiente
                 </button>
@@ -132,8 +132,8 @@ import { MatExpansionModule } from "@angular/material/expansion";
             }
             .header {
                 width: 100%;
-                margin-top: 5%;
-                margin-bottom: 5%;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
             }
             h2 {
                 margin-left: 5%;
@@ -218,14 +218,11 @@ import { MatExpansionModule } from "@angular/material/expansion";
             }
             .prev-next-container {
                 box-sizing: border-box;
-                /* position: absolute;
-                bottom: 1%; */
                 display: flex;
-                margin-top: 3%;
-                justify-content: space-between;
-                border: 1px solid black
+                justify-content: space-around;
+                margin-top: 4rem;
             }
-            /* .prev {
+            .prev {
                 margin-left: 3%;
             }
             .next {
@@ -237,7 +234,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
             }
             .next span {
                 order: 1;
-            } */
+            }
         `],
     standalone: true,
     imports: [
