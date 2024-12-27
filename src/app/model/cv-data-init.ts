@@ -1,4 +1,4 @@
-export const cvDataInit = {
+/* export const cvDataInit = {
     personalInfo: {
         name: '',
         lastname: '',
@@ -68,19 +68,20 @@ export const cvDataInit = {
     links: [{
         link: ''
     }]
-}
+} */
 
-/* export const cvDataInit = {
+export const cvDataInit = {
     personalInfo: {
         name: 'Esteban',
         lastname: 'Olea',
         jobPosition: 'Desarrollador Frontend',
         email: 'e.danielolea@gmail.com',
+        picture: '',
         phone: '3814741791',
         country: 'Argentina',
         stateProvince: 'Tucumán,',
-        city: '',
-        age: '24',
+        city: 'SM de Tucumán',
+        age: '',
     },
     description: {
         description: 'Soy un apasionado de la informática con más de 2 años de experiencia en la industria digital. Me encanta aprender sobre tecnología para luego desafiarme a través de proyectos complejos que requieran de soluciones creativas y eficientes. Mi objetivo en un equipo es aportar todo el conocimiento que poseo sobre desarrollo de software y colaborar con mis compañeros para crear los mejores productos digitales posibles.'
@@ -89,26 +90,26 @@ export const cvDataInit = {
         {
             grade: 'Programador Universitario',
             school: 'UNT - Facultad de Ciencias Exáctas',
-            type: '',
+            type: 'Universitario',
             average: '',
             edInitMonth: 'Marzo',
             edInitYear: '2022',
             edEndMonth: 'Noviembre',
             edEndYear: '2024',
             inCourse: '',
-            description: ''
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ea, provident nihil repellat asperiores nemo velit voluptatem sequi, natus a, ipsum laboriosam placeat quae labore officiis exercitationem voluptatibus aliquid magnam.'
         },
         {
             grade: 'Tec. en Medios Audiovisuales',
             school: 'UNT - EUCVyTV',
-            type: '',
+            type: 'Universitario',
             average: '',
             edInitMonth: 'Marzo',
             edInitYear: '2022',
             edEndMonth: 'Noviembre',
             edEndYear: '2024',
             inCourse: '',
-            description: ''
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ea, provident nihil repellat asperiores nemo velit voluptatem sequi, natus a, ipsum laboriosam placeat quae labore officiis exercitationem voluptatibus aliquid magnam.'
         }
     ],
     workExperience: [
@@ -116,7 +117,7 @@ export const cvDataInit = {
             position: 'Desarrollador Web,',
             organization: 'Freelance',
             location: 'Remoto',
-            workingDay: '',
+            workingDay: 'Part-Time',
             wExpInitMonth: 'Diciembre',
             wExpInitYear: '2022',
             wExpEndMonth: 'Diciembre',
@@ -128,7 +129,7 @@ export const cvDataInit = {
             position: 'Editor de Contenidos Multimedia,',
             organization: 'Hand 1990 Cloth Store',
             location: 'Buenos Aires',
-            workingDay: '',
+            workingDay: 'Full-Time',
             wExpInitMonth: 'Diciembre',
             wExpInitYear: '2022',
             wExpEndMonth: 'Diciembre',
@@ -140,52 +141,49 @@ export const cvDataInit = {
     certifications: [
         {
             title: 'Full-Stack JR',
-            institution: 'Argentina Programa',
-            average: ''
+            institution: 'Argentina Programa'
         },
         {
             title: 'Principiante en Programación',
-            institution: 'ORACLE Next Education',
-            average: ''
+            institution: 'ORACLE Next Education'
         },
         {
             title: 'Fundamentos de la Programación',
-            institution: 'UTN-Facultad Regional de Bs.As',
-            average: ''
+            institution: 'UTN-Facultad Regional de Bs.As'
         },
-        ],
-            skills: [
+    ],
+    skills: [
         {
             skill: 'Javascript',
-            level: 'Experto'
+            level: ''
         },
         {
             skill: 'Typescript',
-            level: 'Experto'
+            level: ''
         },
         {
             skill: 'Angular',
-            level: 'Experto'
+            level: ''
         },
         {
             skill: 'Node.Js',
-            level: 'Experto'
+            level: ''
         },
         {
             skill: 'MySQL',
-            level: 'Experto'
+            level: ''
         },
         {
             skill: 'Git',
-            level: 'Experto'
+            level: ''
         },
         {
             skill: 'Github',
-            level: 'Experto'
+            level: ''
         },
         {
             skill: 'Docker',
-            level: 'Experto'
+            level: ''
         }
     ],
     languages: [
@@ -218,4 +216,4 @@ export const cvDataInit = {
             link: 'www.esteban-olea-portfolio.web.app'
         }
     ]
-} */
+}

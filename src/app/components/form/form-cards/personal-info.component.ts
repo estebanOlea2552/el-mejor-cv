@@ -1,3 +1,4 @@
+import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
@@ -6,7 +7,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
 import { FormService } from "src/app/services/form.service";
+import { ProfilePictureService } from "src/app/services/profile-picture.service";
 
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
 import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
@@ -48,11 +51,23 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                     </text-line>
                 </div>
                 <div class="input">
-                    <div class="photo-place">
-                        <button mat-flat-button class="photo">
-                            <mat-icon>add_photo_alternate</mat-icon>
-                            Subir Foto
+                    <div
+                    class="photo-place"
+                    [formGroup]="personalInfoGroup">
+                        <button class="photo" mat-flat-button (click)="fileInput.click()">
+                            <mat-icon>image</mat-icon>
+                            Subir una foto
                         </button>
+                        <button mat-icon-button class="photo-clear" (click)="clearFileSelected()">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                        <input
+                        hidden
+                        type="file"
+                        #fileInput
+                        (change)="onFileSelected($event)"
+                        formControlName="picture"
+                        accept="image/*">
                     </div>
                 </div>
                 <div class="accordion-container">
@@ -160,10 +175,11 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 height: 100%;
                 box-sizing: border-box;
                 display: flex;
-                justify-content: start;
+                justify-content: space-between;
                 align-items: center;
             }
             .photo {
+                width: 80%;
                 box-sizing: border-box;
                 height: 4em;
                 border: 1px solid rgba(0, 0, 0, 0.2);
@@ -227,9 +243,11 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         MatCardModule,
         MatButtonModule,
         MatIconModule,
+        MatInputModule,
+        MatExpansionModule,
         TextLineComponent,
         NumInputComponent,
-        MatExpansionModule
+        NgxMatFileInputModule
     ],
 })
 export class PersonalInfoComponent implements OnInit {
@@ -240,7 +258,8 @@ export class PersonalInfoComponent implements OnInit {
 
     constructor(
         private form: FormService,
-        private breakpointObserver: BreakpointObserver
+        private breakpointObserver: BreakpointObserver,
+        private pictureService: ProfilePictureService // This service sould be replaced by NGRX
     ){}
 
     ngOnInit(): void {
@@ -251,6 +270,14 @@ export class PersonalInfoComponent implements OnInit {
         .subscribe(result => {
             this.isMobile = result.matches;
         });
+    }
+
+    onFileSelected(event: any) {
+        this.pictureService.updatePicture(event.target.files[0]);
+    }
+
+    clearFileSelected(): void {
+        this.pictureService.clearPicture();
     }
 
     resetPInfo():void {

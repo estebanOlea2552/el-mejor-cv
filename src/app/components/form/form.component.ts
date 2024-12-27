@@ -156,6 +156,7 @@ export class FormComponent implements OnInit, OnChanges {
       lastname: [this.cvDataInput.personalInfo.lastname, [Validators.maxLength(50), Validators.pattern('^[^0-9]+$')]],
       jobPosition: [this.cvDataInput.personalInfo.jobPosition, Validators.maxLength(50)],
       email: [this.cvDataInput.personalInfo.email, Validators.email],
+      picture: [this.cvDataInput.personalInfo.picture],
       phone: [this.cvDataInput.personalInfo.phone, [Validators.maxLength(15), Validators.pattern('^[^a-zA-Z]*$')]],
       country: [this.cvDataInput.personalInfo.country],
       stateProvince: [this.cvDataInput.personalInfo.stateProvince],

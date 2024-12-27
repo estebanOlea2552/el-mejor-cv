@@ -3,6 +3,7 @@ export interface PersonalInfo {
     lastname: string,
     jobPosition: string,
     email: string,
+    picture: string
     phone: string,
     country: string,
     stateProvince: string,
