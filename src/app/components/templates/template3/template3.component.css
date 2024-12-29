@@ -78,7 +78,6 @@
 }
 
 /* SPECIFIC CLASSES */
-
 .cv-container {
     /* A4 format, reduced by the expression * 0.5 to scale the element into the view */
     width: calc(595.28pt * 0.5);
@@ -98,6 +97,7 @@
     
     grid-template-columns: 1fr 1fr 1fr;
 }
+
 .left-container {
     height: 100%;
     box-sizing: border-box;
@@ -173,6 +173,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .photo {
     max-width: 100%;
     max-height: 100%;

@@ -4,6 +4,7 @@
         lastname: '',
         jobPosition: '',
         email: '',
+        picture: '',
         phone: '',
         country: '',
         stateProvince: '',
@@ -118,7 +119,7 @@ export const cvDataInit = {
             organization: 'Freelance',
             location: 'Remoto',
             workingDay: 'Part-Time',
-            wExpInitMonth: 'Diciembre',
+            wExpInitMonth: 'Enero',
             wExpInitYear: '2022',
             wExpEndMonth: 'Diciembre',
             wExpEndYear: '2024',
@@ -130,7 +131,7 @@ export const cvDataInit = {
             organization: 'Hand 1990 Cloth Store',
             location: 'Buenos Aires',
             workingDay: 'Full-Time',
-            wExpInitMonth: 'Diciembre',
+            wExpInitMonth: 'Enero',
             wExpInitYear: '2022',
             wExpEndMonth: 'Diciembre',
             wExpEndYear: '2024',
@@ -202,12 +203,20 @@ export const cvDataInit = {
         inCourse: '',
         description: ''
     }],
-    references: [{
-        name: '',
-        organization: '',
-        email: '',
-        phone: ''
-    }],
+    references: [
+        {
+            name: 'Alex Frutos Mocsary',
+            organization: 'Cuzito Inc.',
+            email: 'alexfrutosmocsary@gmail.com',
+            phone: '3814741791'
+        },
+        {
+            name: 'Alex Frutos Mocsary',
+            organization: 'Cuzito Inc.',
+            email: 'alexfrutosmocsary@gmail.com',
+            phone: '3814741791'
+        }
+    ],
     links: [
         {
             link: 'www.linkedin.com/in/esteban-olea-58b6151bb'

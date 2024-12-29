@@ -50,14 +50,6 @@
 .list-description {
     margin: 5pt;
 }
-hr {
-    width: 100%;
-    box-shadow: none;
-    text-shadow: none;
-    border: 1px solid black;
-    margin-bottom: 7pt;
-    margin-top: 0;
-}
 
 /* SPECIFIC CLASSES */
 .cv-container {
