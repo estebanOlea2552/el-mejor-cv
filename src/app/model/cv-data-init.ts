@@ -82,7 +82,7 @@ export const cvDataInit = {
         country: 'Argentina',
         stateProvince: 'Tucumán,',
         city: 'SM de Tucumán',
-        age: '',
+        age: '24',
     },
     description: {
         description: 'Soy un apasionado de la informática con más de 2 años de experiencia en la industria digital. Me encanta aprender sobre tecnología para luego desafiarme a través de proyectos complejos que requieran de soluciones creativas y eficientes. Mi objetivo en un equipo es aportar todo el conocimiento que poseo sobre desarrollo de software y colaborar con mis compañeros para crear los mejores productos digitales posibles.'
