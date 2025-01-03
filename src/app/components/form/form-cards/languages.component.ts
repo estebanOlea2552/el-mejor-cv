@@ -112,7 +112,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .input {
                 width: 100%;
-                /* border: 2px solid grey; */
                 transform: scale(0.9);
                 box-sizing: border-box;
             }
@@ -205,13 +204,17 @@ export class LanguagesComponent {
 
     createLang(): FormGroup {
         return this.fb.group({
-            language: [this.langDataInit.map((lang: any) => lang.language) || ''],
-            level: [this.langDataInit.map((lang: any) => lang.level) || '']
+            /* language: [this.langDataInit.map((lang: any) => lang.language) || ''], */
+            /* level: [this.langDataInit.map((lang: any) => lang.level) || ''] */
+            language: [''],
+            level: ['']
         });
     }
 
     addLang(): void {
+        const index = this.langGroup.length;
         this.langGroup.push(this.createLang());
+        this.resetLang(index);
     }
 
     removeLang(index: number): void {

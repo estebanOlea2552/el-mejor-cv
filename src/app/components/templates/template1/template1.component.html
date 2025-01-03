@@ -35,11 +35,6 @@
         *ngIf="hasValues(cvPreview.personalInfo, ['phone'])">
           +54-{{ cvPreview.personalInfo.phone }}
         </div>
-        <!-- <div
-        class="bold d-inline-blc"
-        *ngIf="hasValues(cvPreview.personalInfo, ['nationality'])">
-          {{ cvPreview.personalInfo.nationality }}
-        </div> -->
         <div
         class="bold d-inline-blc"
         *ngIf="hasValues(cvPreview.personalInfo, ['age'])">
@@ -101,12 +96,17 @@
             'wExpInitMonth', 'wExpInitYear', 'wExpEndMonth', 'wExpEndYear', 'location', 'workingDay'
             ])">
             <div class="d-inline-blc font-size-small">
-              {{ exp.wExpInitMonth }}
-              {{ exp.wExpInitYear }}
-              <!-- Dynamic separator -->
-              <span *ngIf="hasValues(cvPreview.workExperience[i], ['wExpEndMonth'])">-</span>
-              {{ exp.wExpEndMonth }}
-              {{ exp.wExpEndYear }}
+              {{ exp.wExpInitMonth }} {{ exp.wExpInitYear }}
+              <span
+              *ngIf="hasValues(cvPreview.workExperience[i], ['wExpEndMonth', 'wExpEndYear']) && exp.inCourse !== 'true'"
+              class="d-inline-blc">
+                - {{ exp.wExpEndMonth }} {{ exp.wExpEndYear }}
+              </span>
+              <span
+              *ngIf="exp.inCourse === 'true'"
+              class="d-inline-blc">
+                - Presente
+              </span>
             </div>
             <div class="work-exp_location font-size-small">
               {{ exp.location }}
@@ -141,11 +141,17 @@
           </div>
           <div class="ed_right-container">
             <div class="ed_initM-initY-endM-endY font-size-small d-inline-blc">
-              {{ ed.edInitMonth }}
-              {{ ed.edInitYear }}
-              <span *ngIf="hasValues(cvPreview.education[i], ['edEndMonth'])">-</span>
-              {{ ed.edEndMonth }}
-              {{ ed.edEndYear }}
+              {{ ed.edInitMonth }} {{ ed.edInitYear }}
+              <span
+              *ngIf="hasValues(cvPreview.education[i], ['edEndMonth', 'edEndYear']) && ed.inCourse !== 'true'"
+              class="d-inline-blc">
+                - {{ ed.edEndMonth }} {{ ed.edEndYear }}
+              </span>
+              <span
+              *ngIf="ed.inCourse === 'true'"
+              class="d-inline-blc">
+                - Presente
+              </span>
             </div>
             <div class="ed_average">
               {{ed.average}}

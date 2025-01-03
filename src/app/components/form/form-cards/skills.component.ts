@@ -204,13 +204,17 @@ export class SkillsComponent {
 
     createSkill(): FormGroup {
         return this.fb.group({
-            skill: [this.skillDataInit.map((skill: any) => skill.skill) || ''],
-            level: [this.skillDataInit.map((skill: any) => skill.level) || '']
+            /* skill: [this.skillDataInit.map((skill: any) => skill.skill) || ''], */
+            /* level: [this.skillDataInit.map((skill: any) => skill.level) || ''] */
+            skill: [''],
+            level: ['']
           });
     }
 
     addSkill(): void {
+        const index = this.skillGroup.length;
         this.skillGroup.push(this.createSkill());
+        this.resetSkill(index);
     }
 
     removeSkill(index: number): void {

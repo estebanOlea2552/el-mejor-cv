@@ -118,8 +118,13 @@
                 </span> 
                 <span
                 class="d-inline-blc font-size-small italic"
-                *ngIf="hasValues(cvPreview.workExperience[i], ['wExpEndMonth', 'wExpEndYear'])"> 
-                  {{ exp.wExpEndMonth }} {{ exp.wExpEndYear }}
+                *ngIf="hasValues(cvPreview.workExperience[i], ['wExpEndMonth', 'wExpEndYear']) && exp.inCourse !== 'true'"> 
+                  - {{ exp.wExpEndMonth }} {{ exp.wExpEndYear }}
+                </span>
+                <span
+                *ngIf="exp.inCourse === 'true'"
+                class="d-inline-blc font-size-small italic">
+                  - Presente
                 </span>
               </div>
             </div>
@@ -164,8 +169,13 @@
                 </span> 
                 <span
                 class="d-inline-blc font-size-small italic"
-                *ngIf="hasValues(cvPreview.education[i], ['edEndMonth', 'edEndYear'])"> 
+                *ngIf="hasValues(cvPreview.education[i], ['edEndMonth', 'edEndYear']) && ed.inCourse !== 'true'"> 
                   {{ ed.edEndMonth }} {{ ed.edEndYear }}
+                </span>
+                <span
+                class="d-inline-blc font-size-small italic"
+                *ngIf="ed.inCourse === 'true'"> 
+                  - Presente
                 </span>
               </div>
             </div>

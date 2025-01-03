@@ -48,9 +48,17 @@
               *ngIf="hasValues(cvPreview.workExperience[i], [
                 'wExpInitMonth', 'wExpInitYear', 'wExpEndMonth', 'wExpEndYear'
                 ])">
-                {{ workExp.wExpInitMonth }} {{ workExp.wExpInitYear }}
-                -
-                {{ workExp.wExpEndMonth }} {{ workExp.wExpEndYear }}
+                  {{ workExp.wExpInitMonth }} {{ workExp.wExpInitYear }}
+                <span
+                *ngIf="hasValues(cvPreview.workExperience[i], ['wExpEndMonth', 'wExpEndYear']) && workExp.inCourse !== 'true'"
+                class="d-inline-blc">
+                  - {{ workExp.wExpEndMonth }} {{ workExp.wExpEndYear }}
+                </span>
+                <span
+                *ngIf="workExp.inCourse === 'true'"
+                class="d-inline-blc">
+                  - Presente
+                </span>
               </div>
             </div>
             <div
@@ -89,8 +97,16 @@
               <div class="font-size-small bold">{{ ed.grade }}</div>
               <div class="font-size-small" *ngIf="hasValues(cvPreview.education[i], ['edInitMonth', 'edInitYear', 'edEndMonth', 'edEndYear'])">
                 {{ ed.edInitMonth }} {{ ed.edInitYear }}
-                -
-                {{ ed.edEndMonth }} {{ ed.edEndYear }}
+                <span
+                *ngIf="hasValues(cvPreview.education[i], ['edEndMonth', 'edEndYear']) && ed.inCourse !== 'true'"
+                class="d-inline-blc">
+                  - {{ ed.edEndMonth }} {{ ed.edEndYear }}
+                </span>
+                <span
+                *ngIf="ed.inCourse === 'true'"
+                class="d-inline-blc">
+                  - Presente
+                </span>
               </div>
             </div>
             <div

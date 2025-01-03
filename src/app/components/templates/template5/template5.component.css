@@ -85,12 +85,21 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 2pt;
     margin-bottom: 2pt;
 }
 .paragraph {
     display: inline-block;
     line-height: 6pt;
+}
+.init-month-year {
+    margin-right: 2pt;
+}
+.date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* SPECIFIC CLASSES */

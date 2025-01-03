@@ -29,6 +29,7 @@ export class Template5Component implements OnInit {
     this.pictureSubscription = this.pictureService.picture$.subscribe(picture => {
       this.pictureUrl = picture;
     });
+    console.log(this.cvPreview.workExperience[0].inCourse);
   }
 
   hasValues(object: any, keys: string[]): boolean {

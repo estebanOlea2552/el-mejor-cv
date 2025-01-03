@@ -184,12 +184,15 @@ export class LinksComponent {
 
     createLinks(): FormGroup {
         return this.fb.group({
-            link: [this.linksDataInit.map((link: any) => link.link) || '']
+            /* link: [this.linksDataInit.map((link: any) => link.link) || ''] */
+            link: ['']
         });
     }
 
     addLinks(): void {
+        const index = this.linksGroup.length;
         this.linksGroup.push(this.createLinks());
+        this.resetLinks(index);
     }
 
     removeLinks(index: number): void {

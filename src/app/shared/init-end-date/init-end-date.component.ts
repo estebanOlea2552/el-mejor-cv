@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -66,18 +66,27 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
           </mat-select>
         </mat-form-field>
         <div class="checkbox-container">
-          <mat-checkbox 
-          [checked]="inCourse" 
-          (change)="this.inCourse = !this.inCourse"
-          formControlName="inCourse"
-          class="checkbox">
+          <mat-checkbox
+          class="checkbox"
+          [checked]="inCourse"
+          (click)="alternateInCourse()"
+          (change)="this.inCourse = !this.inCourse">
             <span>Presente</span>
           </mat-checkbox>
+          <input
+          class="display-none"
+          type="text"
+          name="inCourse"
+          id="inCourse"
+          formControlName="inCourse">
         </div>
       </div>
     </div>
   `,
   styles: [`
+      .display-none {
+        display: none;
+      }
       .form-group-container {
         width: auto;
         box-sizing: border-box;
@@ -130,12 +139,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   ]
 })
 export class InitEndDateComponent implements OnInit {
-  @Input() public groupName!: FormGroup;
-  @Input() public initMControl!: string;
-  @Input() public initYControl!: string;
-  @Input() public endMControl!: string;
-  @Input() public endYControl!: string;
-  protected months: string[] = [
+  @Input() groupName!: FormGroup;
+  @Input() initMControl!: string;
+  @Input() initYControl!: string;
+  @Input() endMControl!: string;
+  @Input() endYControl!: string;
+  months: string[] = [
     'Enero',
     'Febrero',
     'Marzo',
@@ -149,13 +158,13 @@ export class InitEndDateComponent implements OnInit {
     'Noviembre',
     'Diciembre'
   ];
-  protected years: number[] = [];
-  protected initMonthSelected: string = "";
-  protected initYearSelected: number | undefined;
-  protected endMonthSelected: string = "";
-  protected endYearSelected: number | undefined;
-  protected inCourse: boolean = false;
-  protected isMobile: boolean = true;
+  years: number[] = [];
+  initMonthSelected: string = "";
+  initYearSelected: number | undefined;
+  endMonthSelected: string = "";
+  endYearSelected: number | undefined;
+  inCourse: boolean = false;
+  isMobile: boolean = true;
   
   constructor(private breakpointObserver: BreakpointObserver) { }
   
@@ -173,6 +182,14 @@ export class InitEndDateComponent implements OnInit {
     const limitYear: number = 1950;
     for (let i = actualYear; i >= limitYear; i--) {
       this.years.push(i);
+    }
+  }
+
+  alternateInCourse(): void {
+    if (this.inCourse) {
+      this.groupName.controls['inCourse'].setValue('true');
+    } else {
+      this.groupName.controls['inCourse'].setValue('false');
     }
   }
 }

@@ -205,13 +205,24 @@
               <div class="row d-inline-blc">
                 <span class="d-inline-blc font-size-medium bold">
                   {{ exp.position }}
-                </span>
-                <span
-                class="d-inline-blc font-size-medium bold"
-                *ngIf="hasValues(cvPreview.workExperience[i], ['wExpInitMonth', 'wExpInitYear', 'wExpEndMonth', 'wExpEndYear'])">
-                  {{ exp.wExpInitMonth }} {{ exp.wExpInitYear }}
-                  {{ exp.wExpEndMonth }} {{ exp.wExpEndYear }}
-                </span>
+                </span>           
+                <div class="date">
+                  <span
+                  class="init-month-year d-inline-blc font-size-medium bold"
+                  *ngIf="hasValues(cvPreview.workExperience[i], ['wExpInitMonth', 'wExpInitYear'])">
+                    {{ exp.wExpInitMonth }} {{ exp.wExpInitYear }}
+                  </span>
+                  <span
+                  class="d-inline-blc font-size-medium bold"
+                  *ngIf="hasValues(cvPreview.workExperience[i], ['wExpEndMonth', 'wExpEndYear']) && exp.inCourse !== 'true'">
+                    - {{ exp.wExpEndMonth }} {{ exp.wExpEndYear }}
+                  </span>
+                  <span
+                  class="d-inline-blc font-size-medium bold"
+                  *ngIf="exp.inCourse === 'true'">
+                    - Presente
+                  </span>
+                </div>
               </div>
               <div
               class="row d-inline-blc"
@@ -256,12 +267,23 @@
               <span class="d-inline-blc font-size-medium bold">
                 {{ ed.grade }}
               </span>
-              <span
-              class="d-inline-blc font-size-medium bold"
-              *ngIf="hasValues(cvPreview.education[i], ['edInitMonth', 'edInitYear', 'edEndMonth', 'edEndYear'])">
-                {{ ed.edInitMonth }} {{ ed.edInitYear }}
-                {{ ed.edEndMonth }} {{ ed.edEndYear }}
-              </span>
+              <div class="date">
+                <span
+                class="init-month-year d-inline-blc font-size-medium bold"
+                *ngIf="hasValues(cvPreview.education[i], ['edInitMonth', 'edInitYear'])">
+                  {{ ed.edInitMonth }} {{ ed.edInitYear }}
+                </span>
+                <span
+                class="d-inline-blc font-size-medium bold"
+                *ngIf="hasValues(cvPreview.education[i], ['edEndMonth', 'edEndYear']) && ed.inCourse !== 'true'">
+                  - {{ ed.edEndMonth }} {{ ed.edEndYear }}
+                </span>
+                <span
+                class="d-inline-blc font-size-medium bold"
+                *ngIf="ed.inCourse === 'true'">
+                  - Presente
+                </span>
+              </div>
             </div>
             <div class="row d-inline-blc">
               <span class="d-inline-blc font-size-small bold">

@@ -229,19 +229,29 @@ export class VolunteerWorksComponent {
 
     createVolWork(): FormGroup {
         return this.fb.group({
-            position: [this.volWorkDataInit.map((volWork: any) => volWork.position) || ''],
-            organization: [this.volWorkDataInit.map((volWork: any) => volWork.organization) || ''],
-            vWInitMonth: [this.volWorkDataInit.map((volWork: any) => volWork.vWInitMonth) || ''],
-            vWInitYear: [this.volWorkDataInit.map((volWork: any) => volWork.vWInitYear) || ''],
-            vWEndMonth: [this.volWorkDataInit.map((volWork: any) => volWork.vWEndMonth) || ''],
-            vWEndYear: [this.volWorkDataInit.map((volWork: any) => volWork.vWEndYear) || ''],
-            inCourse: [this.volWorkDataInit.map((volWork: any) => volWork.inCourse) || ''],
-            description: [this.volWorkDataInit.map((volWork: any) => volWork.description) || '']
+            /* position: [this.volWorkDataInit.map((volWork: any) => volWork.position) || ''], */
+            /* organization: [this.volWorkDataInit.map((volWork: any) => volWork.organization) || ''], */
+            /* vWInitMonth: [this.volWorkDataInit.map((volWork: any) => volWork.vWInitMonth) || ''], */
+            /* vWInitYear: [this.volWorkDataInit.map((volWork: any) => volWork.vWInitYear) || ''], */
+            /* vWEndMonth: [this.volWorkDataInit.map((volWork: any) => volWork.vWEndMonth) || ''], */
+            /* vWEndYear: [this.volWorkDataInit.map((volWork: any) => volWork.vWEndYear) || ''], */
+            /* inCourse: [this.volWorkDataInit.map((volWork: any) => volWork.inCourse) || ''], */
+            /* description: [this.volWorkDataInit.map((volWork: any) => volWork.description) || ''] */
+            position: [''],
+            organization: [''],
+            vWInitMonth: [''],
+            vWInitYear: [''],
+            vWEndMonth: [''],
+            vWEndYear: [''],
+            inCourse: [''],
+            description: ['']
         });
     }
 
     addVolWork(): void {
+        const index = this.volWorkGroup.length;
         this.volWorkGroup.push(this.createVolWork());
+        this.resetVolWork(index);
     }
 
     removeVolWork(index: number): void {

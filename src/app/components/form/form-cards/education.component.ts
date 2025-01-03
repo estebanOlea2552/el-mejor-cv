@@ -279,21 +279,33 @@ export class EducationComponent implements OnInit {
 
     createEducation(): FormGroup {
         return this.fb.group({
-            grade: [this.eduDataInit.map((edu: any) => edu.grade) || ''],
-            school: [this.eduDataInit.map((edu: any) => edu.school) || ''],
-            type: [this.eduDataInit.map((edu: any) => edu.type) || ''],
-            average: [this.eduDataInit.map((edu: any) => edu.average) || ''],
-            edInitMonth: [this.eduDataInit.map((edu: any) => edu.edInitMonth) || ''],
-            edInitYear: [this.eduDataInit.map((edu: any) => edu.edInitYear) || ''],
-            edEndMonth: [this.eduDataInit.map((edu: any) => edu.edEndMonth) || ''],
-            edEndYear: [this.eduDataInit.map((edu: any) => edu.edEndYear) || ''],
-            inCourse: [this.eduDataInit.map((edu: any) => edu.inCourse) || ''],
-            description: [this.eduDataInit.map((edu: any) => edu.description) || '']
+            /* grade: [this.eduDataInit.map((edu: any) => edu.grade) || ''], */
+            /* school: [this.eduDataInit.map((edu: any) => edu.school) || ''], */
+            /* type: [this.eduDataInit.map((edu: any) => edu.type) || ''], */
+            /* average: [this.eduDataInit.map((edu: any) => edu.average) || ''], */
+            /* edInitMonth: [this.eduDataInit.map((edu: any) => edu.edInitMonth) || ''], */
+            /* edInitYear: [this.eduDataInit.map((edu: any) => edu.edInitYear) || ''], */
+            /* edEndMonth: [this.eduDataInit.map((edu: any) => edu.edEndMonth) || ''], */
+            /* edEndYear: [this.eduDataInit.map((edu: any) => edu.edEndYear) || ''], */
+            /* inCourse: [this.eduDataInit.map((edu: any) => edu.inCourse) || ''], */
+            /* description: [this.eduDataInit.map((edu: any) => edu.description) || ''] */
+            grade: [''],
+            school: [''],
+            type: [''],
+            average: [''],
+            edInitMonth: [''],
+            edInitYear: [''],
+            edEndMonth: [''],
+            edEndYear: [''],
+            inCourse: [''],
+            description: ['']
         })
     }
 
     addEducation(): void {
+        const index = this.educationGroup.length;
         this.educationGroup.push(this.createEducation());
+        this.resetEducation(index);
     }
 
     removeEducation(index: number): void {

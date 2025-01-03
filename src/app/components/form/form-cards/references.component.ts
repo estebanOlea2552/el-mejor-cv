@@ -125,7 +125,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .input {
                 width: 100%;
-                /* border: 2px solid grey; */
                 transform: scale(0.9);
                 box-sizing: border-box;
             }
@@ -217,15 +216,21 @@ export class ReferencesComponent {
 
     createRef(): FormGroup {
         return this.fb.group({
-            name: [this.refDataInit.map((ref: any) => ref.name) || ''],
-            organization: [this.refDataInit.map((ref: any) => ref.organization) || ''],
-            email: [this.refDataInit.map((ref: any) => ref.email) || ''],
-            phone: [this.refDataInit.map((ref: any) => ref.phone) || '']
+            /* name: [this.refDataInit.map((ref: any) => ref.name) || ''], */
+            /* organization: [this.refDataInit.map((ref: any) => ref.organization) || ''], */
+            /* email: [this.refDataInit.map((ref: any) => ref.email) || ''], */
+            /* phone: [this.refDataInit.map((ref: any) => ref.phone) || ''] */
+            name: [''],
+            organization: [''],
+            email: [''],
+            phone: ['']
         });
     }
 
     addRef(): void {
+        const index = this.refGroup.length;
         this.refGroup.push(this.createRef());
+        this.resetRef(index);
     }
 
     removeRef(index: number): void {

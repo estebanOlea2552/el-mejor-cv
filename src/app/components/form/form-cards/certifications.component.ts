@@ -75,7 +75,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            justify-content: start;
+            justify-content: flex-start;
             align-items: center;
             margin: 0;
             padding: 10%;
@@ -209,14 +209,19 @@ export class CertificationsComponent {
 
     createCert(): FormGroup {
         return this.fb.group({
-            title: [this.certDataInit.map((cert: any) => cert.title) || ''],
-            institution: [this.certDataInit.map((cert: any) => cert.institution) || ''],
-            average: [this.certDataInit.map((cert: any) => cert.average) || '']
+            /* title: [this.certDataInit.map((cert: any) => cert.title) || ''], */
+            /* institution: [this.certDataInit.map((cert: any) => cert.institution) || ''], */
+            /* average: [this.certDataInit.map((cert: any) => cert.average) || ''] */
+            title: [''],
+            institution: [''],
+            average: ['']
         })
     }
 
     addCert(): void {
+        const index = this.certGroup.length;
         this.certGroup.push(this.createCert());
+        this.resetCert(index);
     }
 
     removeCert(index: number): void {

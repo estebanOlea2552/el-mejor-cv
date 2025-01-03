@@ -21,6 +21,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             </mat-card>
             <div class="input-group-container" formArrayName="workExperience">
                 <mat-card
+                #formArray
                 class="input-list-container"
                 [ngClass]="{'input-list-container-desktop': !isMobile}"
                 *ngFor="let experience of wExpGroup.controls, let i=index"
@@ -276,6 +277,16 @@ export class WorkExperienceComponent {
 
     createWExp(): FormGroup {
         return this.fb.group({
+            /* position: [this.wExpDataInit.map((wExp: any) => wExp.position) || ''], */
+            /* organization: [this.wExpDataInit.map((wExp: any) => wExp.organization) || ''], */
+            /* location: [this.wExpDataInit.map((wExp: any) => wExp.location) || ''], */
+            /* workingDay: [this.wExpDataInit.map((wExp: any) => wExp.worKingDay) || ''], */
+            /* wExpInitMonth: [this.wExpDataInit.map((wExp: any) => wExp.wExpInitMonth) || ''], */
+            /* wExpInitYear: [this.wExpDataInit.map((wExp: any) => wExp.wExpInitYear) || ''], */
+            /* wExpEndMonth: [this.wExpDataInit.map((wExp: any) => wExp.wExpEndMonth) || ''], */
+            /* wExpEndYear: [this.wExpDataInit.map((wExp: any) => wExp.wExpEndYear) || ''], */
+            /* inCourse: [this.wExpDataInit.map((wExp: any) => wExp.inCourse) || ''], */
+            /* description: [this.wExpDataInit.map((wExp: any) => wExp.description) || ''] */
             position: [this.wExpDataInit.map((wExp: any) => wExp.position) || ''],
             organization: [this.wExpDataInit.map((wExp: any) => wExp.organization) || ''],
             location: [this.wExpDataInit.map((wExp: any) => wExp.location) || ''],
@@ -290,7 +301,9 @@ export class WorkExperienceComponent {
     }
 
     addWExp(): void {
+        const index: number = this.wExpGroup.length;
         this.wExpGroup.push(this.createWExp());
+        this.resetWExp(index);
     }
 
     removeWExp(index: number): void {
