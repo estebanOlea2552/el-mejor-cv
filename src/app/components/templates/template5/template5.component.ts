@@ -5,6 +5,9 @@ import { cvDataInit } from 'src/app/model/cv-data-init';
 import { ExportService } from 'src/app/services/export.service';
 import { ProfilePictureService } from 'src/app/services/profile-picture.service';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { themeSelector } from 'src/app/state/selectors/selected-template.selectors';
 
 @Component({
   selector: 'app-template5',
@@ -18,10 +21,13 @@ export class Template5Component implements OnInit {
   @Input() cvPreview: cvData = cvDataInit;
   pictureUrl: string | null = null;
   pictureSubscription: Subscription = new Subscription();
+  templateThemeSubscription: Subscription = new Subscription();
+  
 
   constructor(
     private exportCv: ExportService,
-        private pictureService: ProfilePictureService // This service sould be replaced by NGRX
+    private store: Store<AppState>,
+    private pictureService: ProfilePictureService // This service sould be replaced by NGRX
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +35,10 @@ export class Template5Component implements OnInit {
     this.pictureSubscription = this.pictureService.picture$.subscribe(picture => {
       this.pictureUrl = picture;
     });
-    console.log(this.cvPreview.workExperience[0].inCourse);
+
+    this.templateThemeSubscription = this.store.select(themeSelector).subscribe(theme => {
+      console.log('Theme selected: ', theme);
+    })
   }
 
   hasValues(object: any, keys: string[]): boolean {
@@ -40,5 +49,6 @@ export class Template5Component implements OnInit {
 
   ngOnDestroy(): void {
     this.pictureSubscription.unsubscribe();
+    this.templateThemeSubscription.unsubscribe();
   }
 }

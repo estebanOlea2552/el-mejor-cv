@@ -2,19 +2,12 @@
   <div [ngClass]="{'title-mobile': isMobile, 'title-desktop': !isMobile}">
     <h2>Elige la plantilla que mejor se adapte a tu estilo!</h2>
   </div>
-  <!-- <div [ngClass]="{'filter-container-mobile': isMobile, 'filter-container-desktop': !isMobile}">
-    <span class="filter-item">Filtro</span>
-    <span class="filter-item">Filtro</span>
-    <span class="filter-item">Filtro</span>
-    <span class="filter-item">Filtro</span>
-    <span class="filter-item">Filtro</span>
-  </div> -->
   <div
   [ngClass]="{'templates-container-mobile': isMobile, 'templates-container-desktop': !isMobile}">
     <div
-    *ngFor="let template of templates, let i = index"
+    *ngFor="let template of templatesList, let i = index"
     class="template-card">
-      <mat-card class="card" (click)="selectTemp(template.id, i)">
+      <mat-card class="card" (click)="selectTemplate(i)">
         <mat-card-header class="card-header">
           <mat-card-title class="card-title">
             {{ template.templateName }}

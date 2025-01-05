@@ -11,7 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import Panzoom, { PanzoomObject } from '@panzoom/panzoom';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -22,9 +22,11 @@ import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init'; 
 import { ExportService } from 'src/app/services/export.service';
 import { TemplateRegistryService } from 'src/app/services/template-registry.service';
-import { templateSelector } from 'src/app/state/selectors/template.selectors';
+import { templateSelector } from 'src/app/state/selectors/selected-template.selectors';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
+import { AppState } from 'src/app/state/app.state';
+import { selectTemplateTheme } from 'src/app/state/actions/selected-template.action';
 
 @Component({
   selector: 'app-preview',
@@ -52,8 +54,10 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('preview', { static: false })
   private preview!: ElementRef; 
 
-  // Subscriptions for managing the observable data of cvData
+  // Subscription to the cvData of the previewConnector 
   private cvDataSubscription: Subscription | undefined;
+
+  // Subscription to the templateSelector of the Store
   private templateSelectorSubscription: Subscription | undefined;
 
   // Initialization of the cvPreview object
@@ -69,7 +73,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
     private breakpointObserver: BreakpointObserver,
     private templateService: TemplateRegistryService,
     private previewConnector: PreviewConnectorService,
-    private store: Store,
+    private store: Store<AppState>,
     private exportCv: ExportService,
   ) { }
   
@@ -87,12 +91,13 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       result => this.isMobile = result.matches
     );
 
-    this.updateSelectedTemplate('template5');
+    this.updateSelectedTemplate('t04');
     
     // Template selector from the Store
     this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
       this.updateSelectedTemplate(templateId);
-    });
+    })
+    
   }
 
   ngAfterViewInit(): void {
@@ -150,6 +155,13 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       const componentRef = this.container.createComponent(template.component as Type<any>);
       (componentRef.instance as any).cvPreview = this.cvDataPreview;
     }
+  }
+
+  // NGRX Template theme selector
+  protected selectTheme(theme: string): void {
+    this.store.dispatch(
+      selectTemplateTheme({ theme: theme })
+    )
   }
 
   // Panzoom methods

@@ -5,7 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { TemplateSelectorComponent } from 'src/app/components/template-selector/template-selector.component';
-import { templateSelector } from 'src/app/state/selectors/template.selectors';
+import { templateSelector } from 'src/app/state/selectors/selected-template.selectors';
 
 @Component({
   selector: 'app-template-mananger',

@@ -12,11 +12,11 @@ import { Template5Component } from '../components/templates/template5/template5.
 })
 export class TemplateRegistryService {
   private templates: Template[] = [
-    { id: 'template1', templateName: 'Template 1', component: Template1Component },
-    { id: 'template2', templateName: 'Template 2', component: Template2Component },
-    { id: 'template3', templateName: 'Template 3', component: Template3Component },
-    { id: 'template4', templateName: 'Template 4', component: Template4Component },
-    { id: 'template5', templateName: 'Template 5', component: Template5Component }
+    { id: 't01', templateName: 'Clean', component: Template1Component },
+    { id: 't02', templateName: 'Minimalist', component: Template2Component },
+    { id: 't03', templateName: 'Classic', component: Template3Component },
+    { id: 't04', templateName: 'Modern', component: Template4Component },
+    { id: 't05', templateName: 'Creative', component: Template5Component }
   ]
 
   public getTemplates(): Template[] {
