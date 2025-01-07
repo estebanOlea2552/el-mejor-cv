@@ -1,33 +1,32 @@
 /* AUXILIARY CLASSES */
-.font-size-title {
-    font-size: 16pt;
-    font-weight: bold;
-}
-.font-size-large {
-    font-size: 6pt;
-}
-.font-size-medium {
-    font-size: 5pt;
-}
-.font-size-small {
-    font-size: 4pt;
-}
-.serif {
-    font-family: serif;
-}
-.bold {
-    font-weight: bold;
-    color: #707070;
-}
-.light_color {
-    color: #707070;
-}
-.uppercase {
-    text-transform: uppercase;
-}
-.italic {
-    font-style: italic;
-}
+
+/* font classes */
+    .font-size-title {
+        font-size: 16pt;
+        font-weight: bold;
+    }
+    .font-size-large {
+        font-size: 6pt;
+    }
+    .font-size-medium {
+        font-size: 5pt;
+    }
+    .font-size-small {
+        font-size: 4pt;
+    }
+    .serif {
+        font-family: serif;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    .uppercase {
+        text-transform: uppercase;
+    }
+    .italic {
+        font-style: italic;
+    }
+
 .mt-1 {
     margin-top: 1pt;
 }
@@ -64,7 +63,6 @@
     height: 2pt;
     margin-right: 4pt;
     border-radius: 50%;
-    background-color: #707070;;
 }
 .icon {
     width: 6pt;
@@ -74,7 +72,6 @@
 .title_container {
     width: 100%;
     display: flex;
-    color: #707070;
     margin-top: 6pt;
     margin-bottom: 4pt;
 }
@@ -132,7 +129,6 @@
     height: 88%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    color: #101010;
 }
 
 /* LEFT SIDE */
@@ -155,7 +151,6 @@
     width: 50pt;
     height: 50pt;
     border-radius: 50%;
-    background-color: #fff;
 }
 .photo {
     width: 100%;
@@ -171,9 +166,6 @@
     align-items: center;
     margin-top: 4pt;
     margin-bottom: 4pt;
-}
-.skills_title, .links_title, .lang_title, .work-exp_title, .ed_title, .cert_title, .ref_title {
-    color: #707070;
 }
 .skills_list, .lang_list, .links_list {
     display: flex;

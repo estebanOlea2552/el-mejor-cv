@@ -2,7 +2,7 @@
   <div class="cv-content">
 
     <!-- LEFT SIDE -->
-    <div class="left-container bx" *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])">
+    <div class="left-container bx">
 
       <!-- NAME -->
       <div class="name-lastname_container bx">
@@ -40,7 +40,7 @@
             <div
             class="row row-mb d-inline-blc"
             *ngIf="hasValues(cvPreview.workExperience[i], ['position'])">
-              <div class="font-size-small bold">
+              <div class="text-color-black font-size-small bold">
                 {{ workExp.position }}
               </div>
               <div
@@ -94,7 +94,9 @@
             <div
             class="row row-mb d-inline-blc"
             *ngIf="hasValues(cvPreview.education[i], ['grade'])">
-              <div class="font-size-small bold">{{ ed.grade }}</div>
+              <div class="text-color-black font-size-small bold">
+                {{ ed.grade }}
+              </div>
               <div class="font-size-small" *ngIf="hasValues(cvPreview.education[i], ['edInitMonth', 'edInitYear', 'edEndMonth', 'edEndYear'])">
                 {{ ed.edInitMonth }} {{ ed.edInitYear }}
                 <span
@@ -135,7 +137,7 @@
       *ngIf="hasValues(cvPreview.certifications[0], ['title'])">
         <div class="cert_list left-padding" *ngFor="let cert of cvPreview.certifications; let i = index">
             <div class="row d-inline-blc">
-              <div class="font-size-small bold">
+              <div class="text-color-black font-size-small bold">
                 {{ cert.title }}
               </div>
               <div class="font-size-small" *ngIf="hasValues(cvPreview.certifications[0], ['institution'])">
@@ -156,7 +158,7 @@
       *ngIf="hasValues(cvPreview.references[0], ['name', 'organization'])">
         <div class="ref_list left-padding" *ngFor="let ref of cvPreview.references; let i = index">
             <div class="row row-mb d-inline-blc">
-              <div class="font-size-small bold">
+              <div class="text-color-black font-size-small bold">
                 {{ ref.name }}
               </div>
               <div class="font-size-small" *ngIf="hasValues(cvPreview.references[i], ['phone'])">
@@ -176,7 +178,7 @@
     </div>
 
     <!-- RIGHT SIDE -->
-    <div class="right-container bx" *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])">
+    <div class="right-container bx">
 
       <!-- PROFILE PHOTO -->
       <div class="top-fill" *ngIf="pictureUrl === null"></div>
@@ -194,7 +196,7 @@
       class="details right-padding bx"
       *ngIf="hasValues(cvPreview.personalInfo, ['city', 'stateProvince', 'country', 'age', 'email', 'phone'])">
         <span
-        class="details_title d-inline-blc font-size-small bold"
+        class="details_title text-color-white d-inline-blc font-size-small bold"
         *ngIf="hasValues(cvPreview.personalInfo, ['city', 'stateProvince', 'country'])">
           Dirección
         </span>
@@ -206,7 +208,7 @@
           {{ cvPreview.personalInfo.country }}
         </span>
         <span
-        class="details_title d-inline-blc font-size-small bold"
+        class="details_title text-color-white d-inline-blc font-size-small bold"
         *ngIf="hasValues(cvPreview.personalInfo, ['age'])">
           Edad
         </span>
@@ -216,7 +218,7 @@
           {{ cvPreview.personalInfo.age }} años
         </span>
         <span
-        class="details_title d-inline-blc font-size-small bold"
+        class="details_title text-color-white d-inline-blc font-size-small bold"
         *ngIf="hasValues(cvPreview.personalInfo, ['email'])">
           Email
         </span>
@@ -226,7 +228,7 @@
           {{ cvPreview.personalInfo.email }}
         </span>
         <span
-        class="details_title d-inline-blc font-size-small bold"
+        class="details_title text-color-white d-inline-blc font-size-small bold"
         *ngIf="hasValues(cvPreview.personalInfo, ['phone'])">
           Teléfono
         </span>

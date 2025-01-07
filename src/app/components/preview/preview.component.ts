@@ -91,13 +91,12 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       result => this.isMobile = result.matches
     );
 
-    this.updateSelectedTemplate('t04');
+    this.updateSelectedTemplate('t05');
     
     // Template selector from the Store
     this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
       this.updateSelectedTemplate(templateId);
     })
-    
   }
 
   ngAfterViewInit(): void {

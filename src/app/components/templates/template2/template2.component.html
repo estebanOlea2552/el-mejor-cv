@@ -2,18 +2,20 @@
   <div class="cv-content">
 
     <!-- NAME FRAME -->
-    <div class="name-lastname-container" *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])">
+    <div class="name-lastname-container" >
       <div class="name-lastname-frame">
         <div class="name-lastname d-inline-blc font-size-large bold uppercase">
           {{ cvPreview.personalInfo.name }} {{ cvPreview.personalInfo.lastname }}
         </div>
-        <div class="job-position d-inline-blc font-size-medium uppercase">
+        <div
+        class="job-position d-inline-blc font-size-medium uppercase"
+        *ngIf="hasValues(cvPreview.personalInfo, ['jobPosition'])">
           {{ cvPreview.personalInfo.jobPosition }}
         </div>
       </div>
     </div>
     <!-- LEFT CONTAINER -->
-    <div class="left-container" *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])">
+    <div class="left-container">
       <!-- TOP FILL -->
       <div class="top-fill"></div>
 

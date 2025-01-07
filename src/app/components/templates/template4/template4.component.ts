@@ -8,7 +8,9 @@ import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
 import { themeSelector } from 'src/app/state/selectors/selected-template.selectors';
-import { theme01, theme02 } from 'src/app/components/templates/template4/template4-themes';
+import {
+  template4_theme01, template4_theme02, template4_theme03, template4_theme04, template4_theme05, template4_theme06
+} from 'src/app/components/templates/template4/template4-themes';
 
 @Component({
   selector: 'app-template4',
@@ -23,10 +25,19 @@ export class Template4Component implements OnInit, OnDestroy {
   pictureUrl: string | null = null;
   pictureSubscription: Subscription = new Subscription();
   templateThemeSubscription: Subscription = new Subscription();
+  themes: Record<string, string> = {
+    'theme01': template4_theme01,
+    'theme02': template4_theme02,
+    'theme03': template4_theme03,
+    'theme04': template4_theme04,
+    'theme05': template4_theme05,
+    'theme06': template4_theme06,
+  }
+  style: HTMLStyleElement = document.createElement('style');
 
   constructor(
     private exportCv: ExportService,
-    private pictureService: ProfilePictureService, // This service sould be replaced by NGRX
+    private pictureService: ProfilePictureService, // TODO: Replace ProfilePictureService with NGRX state management
     private store: Store<AppState>
   ) { }
 
@@ -49,23 +60,14 @@ export class Template4Component implements OnInit, OnDestroy {
   }
 
   changeTheme(theme: string) {
-    const style = document.createElement('style');
-    switch (theme) {
-      case 'theme01':
-        style.textContent = theme01;
-        break;
-      case 'theme02':
-        style.textContent = theme02;
-        break;
-      default:
-        style.textContent = theme01;
-        break;
+    this.style.textContent = this.themes[theme] || this.themes['theme01'];
+    if (!document.head.contains(this.style)) {
+      document.head.appendChild(this.style);
     }
-    
-    document.head.appendChild(style);
   }
 
   ngOnDestroy(): void {
+    this.style.remove();
     this.pictureSubscription.unsubscribe();
     this.templateThemeSubscription.unsubscribe();
   }

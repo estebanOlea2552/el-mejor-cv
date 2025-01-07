@@ -1,7 +1,7 @@
 <div class="cv-container" #cvContent>
   <img
   class="background-image"
-  src="../../../../assets/images/template-5_background.png"
+  [src]="currentBackgroundImage"
   alt="background image">
   <div class="cv-content bx">
     <div class="grid-container bx">
@@ -71,7 +71,7 @@
         <div
         class="title_container bx"
         *ngIf="hasValues(cvPreview.skills[0], ['skill'])">
-          <span class="font-size-large serif uppercase bold">
+          <span class="title font-size-large serif uppercase bold">
             habilidades
           </span>
         </div>
@@ -102,7 +102,7 @@
         <div
         class="title_container bx"
         *ngIf="hasValues(cvPreview.languages[0], ['language'])">
-          <span class="font-size-large serif uppercase bold">
+          <span class="title font-size-large serif uppercase bold">
             idiomas
           </span>
         </div>
@@ -133,7 +133,7 @@
         <div
         class="title_container bx"
         *ngIf="hasValues(cvPreview.links[0], ['link'])">
-          <span class="font-size-large serif uppercase bold">
+          <span class="title font-size-large serif uppercase bold">
             links
           </span>
         </div>
@@ -164,15 +164,15 @@
         class="name-lastname_container"
         *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])">
           <span
-          class="d-inline-blc font-size-title serif"
+          class="name d-inline-blc font-size-title serif"
           *ngIf="hasValues(cvPreview.personalInfo, ['name'])">
             {{cvPreview.personalInfo.name}}
           </span>
-          <span class="d-inline-blc font-size-title serif mb-1"
+          <span class="lastname d-inline-blc font-size-title serif mb-1"
           *ngIf="hasValues(cvPreview.personalInfo, ['lastname'])">
             {{cvPreview.personalInfo.lastname}}
           </span>
-          <span class="d-inline-blc font-size-large serif mt-1 bold"
+          <span class="job-position d-inline-blc font-size-large serif mt-1 bold"
           *ngIf="hasValues(cvPreview.personalInfo, ['jobPosition'])">
             {{cvPreview.personalInfo.jobPosition}}
           </span>
@@ -190,7 +190,7 @@
         <div
         class="title_container"
         *ngIf="hasValues(cvPreview.workExperience[0], ['position', 'organization'])">
-          <span class="font-size-large serif uppercase bold">
+          <span class="title font-size-large serif uppercase bold">
             experiencia laboral
           </span>
         </div>
@@ -250,7 +250,7 @@
         <div
         class="title_container"
         *ngIf="hasValues(cvPreview.education[0], ['grade', 'school'])">
-          <span class="font-size-large serif uppercase bold">
+          <span class="title font-size-large serif uppercase bold">
             educación
           </span>
         </div>
@@ -309,7 +309,7 @@
         <div
         class="title_container"
         *ngIf="hasValues(cvPreview.certifications[0], ['title', 'institution'])">
-          <span class="font-size-large serif uppercase bold">
+          <span class="title font-size-large serif uppercase bold">
             certificaciones
           </span>
         </div>
@@ -338,7 +338,7 @@
         <div
         class="title_container"
         *ngIf="hasValues(cvPreview.references[0], ['name', 'organization'])">
-          <span class="font-size-large serif uppercase bold">
+          <span class="title font-size-large serif uppercase bold">
             referencias
           </span>
         </div>
