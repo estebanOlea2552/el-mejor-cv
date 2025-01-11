@@ -11,6 +11,7 @@ import { themeSelector } from 'src/app/state/selectors/selected-template.selecto
 import {
   template4_theme01, template4_theme02, template4_theme03, template4_theme04, template4_theme05, template4_theme06
 } from 'src/app/components/templates/template4/template4-themes';
+import { notifyOverflow } from 'src/app/state/actions/selected-template.action';
 
 @Component({
   selector: 'app-template4',
@@ -20,8 +21,12 @@ import {
   imports: [CommonModule]
 })
 export class Template4Component implements OnInit, OnDestroy {
-  @ViewChild('cvContent', { static: true }) cvContent!: ElementRef;
+  @ViewChild('cvContainer', { static: true }) cvContainer!: ElementRef;
+  @ViewChild('leftContainer', { static: true }) leftContainer!: ElementRef;
+  @ViewChild('rightContainer', { static: true }) rightContainer!: ElementRef;
   @Input() cvPreview: cvData = cvDataInit;
+  resizeObserver!: ResizeObserver;
+  overflowDetected: boolean = false;
   pictureUrl: string | null = null;
   pictureSubscription: Subscription = new Subscription();
   templateThemeSubscription: Subscription = new Subscription();
@@ -42,7 +47,7 @@ export class Template4Component implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.exportCv.setCvToExport(this.cvContent);
+    this.exportCv.setCvToExport(this.cvContainer);
     this.pictureSubscription = this.pictureService.picture$.subscribe(picture => {
       this.pictureUrl = picture;
     });
@@ -51,6 +56,14 @@ export class Template4Component implements OnInit, OnDestroy {
       console.log('Theme selected: ', theme);
       this.changeTheme(theme);
     })
+
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        this.alertOverflow(entry);
+      }
+    })
+    this.resizeObserver.observe(this.leftContainer.nativeElement as HTMLElement);
+    this.resizeObserver.observe(this.rightContainer.nativeElement as HTMLElement);
   }
 
   hasValues(object: any, keys: string[]): boolean {
@@ -66,9 +79,27 @@ export class Template4Component implements OnInit, OnDestroy {
     }
   }
 
+  alertOverflow(entry: ResizeObserverEntry): void {
+    if (entry.contentRect.height >= 562) {
+      this.overflowDetected = true;
+      this.store.dispatch(notifyOverflow({ hasOverflow: this.overflowDetected }));
+
+    } else if (entry.contentRect.height < 562) {
+      this.overflowDetected = false;
+      this.store.dispatch(notifyOverflow({ hasOverflow: this.overflowDetected }));
+    }
+  }
+
   ngOnDestroy(): void {
     this.style.remove();
-    this.pictureSubscription.unsubscribe();
-    this.templateThemeSubscription.unsubscribe();
+    if (this.pictureSubscription) {
+      this.pictureSubscription.unsubscribe();
+    }
+    if (this.templateThemeSubscription) {
+      this.templateThemeSubscription.unsubscribe();
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 }

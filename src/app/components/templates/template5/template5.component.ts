@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { themeSelector } from 'src/app/state/selectors/selected-template.selectors';
-import { 
+import {
   template5_theme01,
   template5_theme02,
   template5_theme03,
@@ -16,6 +16,7 @@ import {
   template5_theme05,
   template5_theme06
 } from './template5-themes';
+import { notifyOverflow } from 'src/app/state/actions/selected-template.action';
 
 
 @Component({
@@ -26,8 +27,12 @@ import {
   imports: [CommonModule]
 })
 export class Template5Component implements OnInit {
-  @ViewChild('cvContent', { static: true }) cvContent!: ElementRef;
+  @ViewChild('cvContainer', { static: true }) cvContainer!: ElementRef;
+  @ViewChild('leftContainer', { static: true }) leftContainer!: ElementRef;
+  @ViewChild('rightContainer', { static: true }) rightContainer!: ElementRef;
   @Input() cvPreview: cvData = cvDataInit;
+  resizeObserver!: ResizeObserver;
+  overflowDetected: boolean = false;
   pictureUrl: string | null = null;
   pictureSubscription: Subscription = new Subscription();
   templateThemeSubscription: Subscription = new Subscription();
@@ -47,7 +52,7 @@ export class Template5Component implements OnInit {
     'theme05': '../../../../assets/images/template5_background05.png',
     'theme06': '../../../../assets/images/template5_background06.png',
   }
-  currentBackgroundImage!: string; 
+  currentBackgroundImage!: string;
   style: HTMLStyleElement = document.createElement('style');
 
   constructor(
@@ -57,7 +62,7 @@ export class Template5Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.exportCv.setCvToExport(this.cvContent);
+    this.exportCv.setCvToExport(this.cvContainer);
     this.pictureSubscription = this.pictureService.picture$.subscribe(picture => {
       this.pictureUrl = picture;
     });
@@ -65,6 +70,14 @@ export class Template5Component implements OnInit {
     this.templateThemeSubscription = this.store.select(themeSelector).subscribe(theme => {
       this.changeTheme(theme);
     })
+
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        this.alertOverflow(entry);
+      }
+    })
+    this.resizeObserver.observe(this.leftContainer.nativeElement as HTMLElement);
+    this.resizeObserver.observe(this.rightContainer.nativeElement as HTMLElement);
   }
 
   hasValues(object: any, keys: string[]): boolean {
@@ -76,14 +89,32 @@ export class Template5Component implements OnInit {
   changeTheme(theme: string): void {
     this.style.textContent = this.themes[theme] || this.themes['theme01'];
     this.currentBackgroundImage = this.backgroundImageMap[theme] || this.backgroundImageMap['theme01'];
-    if(!document.head.contains(this.style)) {
+    if (!document.head.contains(this.style)) {
       document.head.appendChild(this.style);
+    }
+  }
+
+  alertOverflow(entry: ResizeObserverEntry): void {
+    if (entry.contentRect.height >= 510) {
+      this.overflowDetected = true;
+      this.store.dispatch(notifyOverflow({ hasOverflow: this.overflowDetected }));
+
+    } else if (entry.contentRect.height < 510) {
+      this.overflowDetected = false;
+      this.store.dispatch(notifyOverflow({ hasOverflow: this.overflowDetected }));
     }
   }
 
   ngOnDestroy(): void {
     this.style.remove();
+    if (this.pictureSubscription) {
     this.pictureSubscription.unsubscribe();
-    this.templateThemeSubscription.unsubscribe();
+    }
+    if (this.templateThemeSubscription) {
+      this.templateThemeSubscription.unsubscribe();
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 }

@@ -71,8 +71,7 @@
     z-index: 2;
 }
 
-
-.buttons-container {
+.buttons-container, .notifier-container {
     margin-left: auto;
     display: flex;
     justify-content: space-evenly;

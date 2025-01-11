@@ -1,4 +1,7 @@
 /* AUXILIARY CLASSES */
+.border {
+    border: 1px solid black;
+}
 
 /* font classes */
 .font-size-large {
@@ -20,56 +23,6 @@
         font-style: italic;
     }
 
-    /* color classes */
-    /* .right-container {
-        background-color: #828282;
-        color: #f2f2f2;
-    }
-    .name-lastname_container {
-        background-color: #dfdfdf;
-    }
-    .name-lastname {
-        color: #202020;
-    }
-    .job-position {
-        color: #202020;
-    }
-    .profile-photo {
-        border: 2pt solid #f2f2f2;
-        background-color: #f2f2f2;
-    }
-    .left-title {
-        background-color: #dfdfdf;
-    }
-    .left-title .title {
-        color: #202020;
-    }
-    .position {
-        color: #020202;
-    }
-    .right-title {
-        background-color: #828282;
-    }
-    .right-title .title {
-        color: #f2f2f2;
-    }
-    .text-color-primary {
-        color: #828282;
-    }
-    .text-color-secondary {
-        color: #dfdfdf;
-    }
-    .text-color-black {
-        color: #202020;
-    }
-    .text-color-white {
-        color: #f2f2f2;
-    } */
-
-
-.border {
-    border: 1px solid black;
-}
 .bx {
     box-sizing: border-box;
 }
@@ -124,6 +77,10 @@
 .row-mb {
     margin-bottom: 2pt;
 }
+.bottom-fill {
+    width: 100%;
+    height: 16pt;
+}
 
 /* SPECIFIC CLASSES */
 .cv-container {
@@ -134,19 +91,25 @@
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 
 .cv-content {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: calc(595.28pt * 0.5);
+    height: calc(841.89pt * 0.5);
     display: grid;
+    justify-items: start;
+    align-items: start;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 .left-container {
-    height: 100%;
+    height: auto;
     box-sizing: border-box;
     grid-column: 1 / 3;
     display: flex;
@@ -156,7 +119,7 @@
 
 .name-lastname_container {
     width: 100%;
-    height: 15%;
+    height: 70pt;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -195,7 +158,7 @@
 
 .top-fill {
     width: 100%;
-    height: 15%;
+    height: 70pt;
 }
 
 .profile-photo_container {
@@ -235,4 +198,14 @@
 
 .skills_list-container, .lang_list-container, .links_list-container {
     margin-top: 2pt;
+}
+
+.overflow-line {
+    position: absolute;
+    left: 0;
+    bottom: 11pt;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid rgba(255, 0, 0, 0.7);
+    box-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
 }

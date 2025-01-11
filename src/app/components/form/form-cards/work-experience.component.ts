@@ -313,7 +313,6 @@ export class WorkExperienceComponent {
     resetWExp(index: number): void {
         const wExpGroup = this.getFormGroup(index);
         wExpGroup.reset();
-        this.paragraphComponent.resetParagraph();
     }
 
     changeSelectedCard(cardName: string) {

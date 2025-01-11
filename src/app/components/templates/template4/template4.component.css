@@ -109,6 +109,11 @@
     margin-right: 2pt;
 }
 
+.bottom-fill {
+    width: 100%;
+    height: 11pt;
+}
+
 /* SPECIFIC CLASSES */
 .cv-container {
     /* A4 format, reduced by the expression * 0.5 to scale the element into the view */
@@ -279,4 +284,14 @@
 .skill, .lang, .link {
     display: flex;
     justify-content: space-between;
+}
+
+.overflow-line {
+    position: absolute;
+    left: 0;
+    bottom: 11pt;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid rgba(255, 0, 0, 0.7);
+    box-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
 }

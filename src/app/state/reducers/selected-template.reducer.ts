@@ -1,11 +1,12 @@
 import { createReducer, on } from "@ngrx/store";
 import { SelectedTemplateState } from "src/app/model/state-model/selected-template-state";
-import { selectTemplate, selectTemplateTheme } from "../actions/selected-template.action";
+import { notifyOverflow, selectTemplate, selectTemplateTheme } from "../actions/selected-template.action";
 
 const initialState: SelectedTemplateState = {
     id: "",
     templateName: "",
-    theme: ""
+    theme: "",
+    hasOverflow: false
 }
 
 export const selectedTemplateReducer = createReducer(
@@ -21,6 +22,13 @@ export const selectedTemplateReducer = createReducer(
         return {
             ...state,
             theme: theme
+        }
+    }), 
+    on(notifyOverflow, (state, { hasOverflow }) => {
+        /* alert('AAAA: From reducer') */
+        return {
+            ...state,
+            hasOverflow: hasOverflow
         }
     })
 )

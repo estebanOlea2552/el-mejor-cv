@@ -23,7 +23,8 @@ export class TemplateSelectorComponent implements OnInit {
   selectedTemplate: SelectedTemplateState = {
     id: "",
     templateName: "",
-    theme: ""
+    theme: "",
+    hasOverflow: false
   };
   isMobile: boolean = true;
   selectedTemplateIndex: number | null = null;

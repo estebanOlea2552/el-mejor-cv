@@ -8,9 +8,10 @@ import { ProfilePictureService } from 'src/app/services/profile-picture.service'
 import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
 import { themeSelector } from 'src/app/state/selectors/selected-template.selectors';
-import { 
+import {
   template3_theme01, template3_theme02, template3_theme03, template3_theme04, template3_theme05, template3_theme06
- } from './template3-themes';
+} from './template3-themes';
+import { notifyOverflow } from 'src/app/state/actions/selected-template.action';
 
 @Component({
   selector: 'app-template3',
@@ -20,8 +21,12 @@ import {
   imports: [CommonModule]
 })
 export class Template3Component implements OnInit, OnDestroy {
-  @ViewChild('cvContent', { static: true }) cvContent!: ElementRef;
+  @ViewChild('cvContainer', { static: true }) cvContainer!: ElementRef;
+  @ViewChild('leftContainer', { static: true }) leftContainer!: ElementRef;
+  @ViewChild('rightContainer', { static: true }) rightContainer!: ElementRef;
   @Input() cvPreview: cvData = cvDataInit;
+  resizeObserver!: ResizeObserver;
+  overflowDetected: boolean = false;
   pictureUrl: string | null = null;
   pictureSubscription!: Subscription;
   templateThemeSubscription!: Subscription;
@@ -42,7 +47,7 @@ export class Template3Component implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.exportCv.setCvToExport(this.cvContent);
+    this.exportCv.setCvToExport(this.cvContainer);
     this.pictureSubscription = this.pictureService.picture$.subscribe(picture => {
       this.pictureUrl = picture;
     });
@@ -51,6 +56,14 @@ export class Template3Component implements OnInit, OnDestroy {
       console.log('Theme selected: ', theme);
       this.changeTheme(theme);
     })
+
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        this.alertOverflow(entry);
+      }
+    })
+    this.resizeObserver.observe(this.leftContainer.nativeElement as HTMLElement);
+    this.resizeObserver.observe(this.rightContainer.nativeElement as HTMLElement);
   }
 
   hasValues(object: any, keys: string[]): boolean {
@@ -66,9 +79,27 @@ export class Template3Component implements OnInit, OnDestroy {
     }
   }
 
+  alertOverflow(entry: ResizeObserverEntry): void {
+    if (entry.contentRect.height >= 562) {
+      this.overflowDetected = true;
+      this.store.dispatch(notifyOverflow({ hasOverflow: this.overflowDetected }));
+
+    } else if (entry.contentRect.height < 562) {
+      this.overflowDetected = false;
+      this.store.dispatch(notifyOverflow({ hasOverflow: this.overflowDetected }));
+    }
+  }
+
   ngOnDestroy(): void {
     this.style.remove();
-    this.pictureSubscription.unsubscribe();
-    this.templateThemeSubscription.unsubscribe();
+    if(this.pictureSubscription) {
+      this.pictureSubscription.unsubscribe();
+    }
+    if(this.templateThemeSubscription) {
+      this.templateThemeSubscription.unsubscribe();
+    }
+    if(this.resizeObserver){
+      this.resizeObserver.disconnect();
+    }
   }
 }

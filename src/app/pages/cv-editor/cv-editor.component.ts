@@ -9,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ExportService } from 'src/app/services/export.service';
+import { FormNotifierComponent } from 'src/app/components/form-notifier/form-notifier.component';
 
 @Component({
   selector: 'app-cv-editor',
@@ -19,6 +20,7 @@ import { ExportService } from 'src/app/services/export.service';
     CommonModule,
     FormComponent,
     PreviewComponent,
+    FormNotifierComponent,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,

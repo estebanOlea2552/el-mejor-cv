@@ -1,4 +1,4 @@
-export const cvDataInit = {
+/* export const cvDataInit = {
     personalInfo: {
         name: '',
         lastname: '',
@@ -85,9 +85,9 @@ export const cvDataInit = {
             link: ''
         }
     ]
-}
+} */
 
-/* export const cvDataInit = {
+export const cvDataInit = {
     personalInfo: {
         name: 'Esteban',
         lastname: 'Olea',
@@ -158,7 +158,7 @@ export const cvDataInit = {
     certifications: [
         {
             title: 'Full-Stack JR',
-            institution: 'Argentina Programa'
+            institution: 'Argentina Programa 4.0'
         },
         {
             title: 'Principiante en Programación',
@@ -172,38 +172,42 @@ export const cvDataInit = {
     skills: [
         {
             skill: 'Javascript',
-            level: ''
+            level: 'Experto'
         },
         {
             skill: 'Typescript',
-            level: ''
+            level: 'Experto'
         },
         {
             skill: 'Angular',
-            level: ''
+            level: 'Experto'
         },
         {
             skill: 'Node.Js',
-            level: ''
+            level: 'Experto'
         },
         {
             skill: 'MySQL',
-            level: ''
+            level: 'Experto'
         },
         {
             skill: 'Git',
-            level: ''
+            level: 'Experto'
         },
         {
             skill: 'Github',
-            level: ''
+            level: 'Experto'
         },
         {
             skill: 'Docker',
-            level: ''
+            level: 'Experto'
         }
     ],
     languages: [
+        {
+            language: 'Español',
+            level: 'Experto'
+        },
         {
             language: 'Inglés',
             level: 'Avanzado'
@@ -226,12 +230,6 @@ export const cvDataInit = {
             email: 'alexfrutosmocsary@gmail.com',
             phone: '3814741791'
         },
-        {
-            name: 'Alex Frutos Mocsary',
-            organization: 'Cuzito Inc.',
-            email: 'alexfrutosmocsary@gmail.com',
-            phone: '3814741791'
-        }
     ],
     links: [
         {
@@ -241,4 +239,4 @@ export const cvDataInit = {
             link: 'www.esteban-olea-portfolio.web.app'
         }
     ]
-} */
+}

@@ -315,7 +315,6 @@ export class EducationComponent implements OnInit {
     resetEducation(index: number): void {
         const educationGroup = this.getFormGroup(index);
         educationGroup.reset();
-        this.paragraphComponent.resetParagraph();
     }
 
     changeSelectedCard(cardName: string) {

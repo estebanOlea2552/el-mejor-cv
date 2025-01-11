@@ -122,11 +122,12 @@
     left: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 22pt;
 }
 .grid-container {
     width: 85%;
-    height: 88%;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -203,4 +204,13 @@
     justify-content: space-between;
     margin-top: 1pt;
     margin-bottom: 1pt;
+}
+.overflow-line {
+    position: absolute;
+    left: 0;
+    bottom: 18pt;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid rgba(255, 0, 0, 0.7);
+    box-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
 }

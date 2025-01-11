@@ -1,25 +1,29 @@
 /* AUXILIARY CLASSES */
-.font-size-large {
-    font-size: 11pt;
-}
-.font-size-medium {
-    font-size: 6pt;
-}
-.font-size-small {
-    font-size: 5pt;
-}
-.bold {
-    font-weight: bold;
-}
-.italic {
-    font-style: italic;
-}
+
 .border {
     border: 1px solid black;
 }
 .bx {
     box-sizing: border-box;
 }
+
+/* FONT CLASSES */
+    .font-size-large {
+        font-size: 9pt;
+    }
+    .font-size-medium {
+        font-size: 5pt;
+    }
+    .font-size-small {
+        font-size: 4pt;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    .italic {
+        font-style: italic;
+    }
+
 .d-inline-blc {
     display: inline-block;
     text-align: center;
@@ -29,81 +33,101 @@
     line-height: 6pt;
     margin-bottom: 5pt;
 }
-.section-title {
-    background-color: rgb(230, 230, 230);
+
+/* SECTION CLASSES */
+    .section-title {
+        background-color: rgb(230, 230, 230);
+        width: 100%;
+        height: 8pt;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        text-transform: uppercase;
+    }
+    .section-title > span {
+        margin-top: 1pt;
+        border-bottom: 1pt solid black;
+    }
+    .section-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .section-content {
+        width: 98%;
+        display: flex;
+        flex-direction: column;
+    }
+    .row_container {
+        width: 100%;
+        margin-top: 2pt;
+    }
+    .row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 2pt;
+        margin-top: 1pt;
+    }
+    .row_left-item {
+        display: inline-block;
+        line-height: 1;
+        text-align: start;
+    }
+    .row_dots {
+        box-sizing: border-box;
+        width: 100%;
+        height: 70%;
+        border-bottom: 1px dotted black;
+    }
+    .row_right-item {
+        display: inline-block;
+        line-height: 1;
+        text-align: end;
+    }
+    .list-item {
+        max-width: 40pt;
+    }
+
+/* LIST CLASSES */
+    .list_general-container {
+        display: flex;
+    }
+    .list_container {
+        box-sizing: border-box;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        gap: 5pt;
+        margin-top: 5pt;
+        margin-bottom: 5pt;
+        /* border: 1px solid black; */
+    }
+    .list_container > *:only-child {
+        grid-column: span 2;
+        /* border: 1px solid rgb(65, 65, 65); */
+    }
+
+.skills_container {
     width: 100%;
-    height: 10pt;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    text-transform: uppercase;
+    margin: 1pt;
 }
-.section-title > span {
-    padding: 1px;
-    border-bottom: 1px solid black;
-}
-.section-container {
+.lang_container {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 1pt;
 }
-.section-content {
-    width: 98%;
-    display: flex;
-    flex-direction: column;
-}
-.section-row {
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 2pt;
-    margin-top: 5pt;
-}
-.list_container {
-    box-sizing: border-box;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    gap: 5pt;
-    margin-top: 5pt;
-    margin-bottom: 5pt;
-}
-.list_container > *:only-child {
-    grid-column: span 2;
-  }
-.list-level-container {
-    box-sizing: border-box;
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 2pt;   
-}
-.item {
-    display: inline-block;
-    line-height: 1;
-    grid-column: 1 / 2;
-}
-.list_dots-container {
-    display: inline-block;
-    line-height: 1;
-    grid-column: 2 / 3;
-}
-.list_dots {
-    width: 100%;
-    margin-top: 3pt;
-    height: 1pt;
-    border-bottom: 1px dotted black;
-}
-.value {
-    display: inline-block;
-    line-height: 1;
-    grid-column: 3 / 4;
+.lang_list-container {
+    grid-template-columns: 1fr; /* overwrite */
 }
 
-hr {
+.cert_list-container {
+    grid-template-columns: 1fr 1fr;
+}
+
+.division-line {
     width: 100%;
     box-shadow: none;
     text-shadow: none;
@@ -121,42 +145,37 @@ hr {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-family: 'Times New Roman', Times, serif;
+    padding-top: 5%;
 }
-
-/* The real container for the resume data */
 .cv-content {
-    width: calc(595.28pt * 0.43); /* Float multiplier determines x and y margins */
-    height: calc(841.89pt * 0.45);
+    width: 90%;
+    height: auto;
 }
-
 .personal-info_container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .name-lastname {
     width: 80%; /* Ensures correct wrapping of first and last names */
     text-transform: uppercase;
 }
-
 .job-position {
     height: auto;
-    margin: 5pt;
+    margin-top: 4pt;
+    margin-bottom: 2pt;
 }
-
-.email-phone-container {
+.details_container {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 5pt;
 }
-
 .description_container {
     width: 100%;
     display: flex;
@@ -164,128 +183,84 @@ hr {
     justify-content: center;
     align-items: center;
 }
-
 .description_content {
     width: 95%;
-    margin-top: 5pt;
-    margin-bottom: 5pt;
-}
-
-/* Left and right containers are contained by a .section-row */
-.work-exp_left-container {
-    grid-column: 1 / 2;
-    display: flex;
-}
-
-.work-exp_dots-container {
-    grid-column: 2 / 3;
-    height: 100%;
-    width: 100%;
-}
-
-.work-exp_dots {
-    width: 100%;
     margin-top: 4pt;
-    height: 1pt;
-    border-bottom: 1px dotted black;
+    margin-bottom: 4pt;
 }
 
-.work-exp_right-container {
-    grid-column: 3 / 4;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin-top: 1pt;
-}
-
-.work-exp_location {
+/* WORK EXPERIENCE */
+.work-exp_location { 
+    margin-left: 4pt;
+    font-style: italic;
     display: inline-block;
     line-height: 1;
-    text-align: end;
-    height: 8pt;
-    font-style: italic;
 }
-
 .work-exp_description {
     box-sizing: border-box;
     width: 100%;
     text-align: start;
-    padding-left: 5pt;
-    padding-right: 5pt;
+    margin-top: 2pt;
+    padding-left: 4pt;
+    padding-right: 4pt;
     display: inline-block;
 }
 
-/* Left and right containers are contained by a .section-row */
-.ed_left-container {
-    grid-column: 1 / 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+/* EDUCATION */
+.ed_row {
+    margin-top: 2pt; /* hardcoded fix */
 }
-
-.ed_grade {
-    display: inline-block;
-    line-height: 1;
-}
-
 .ed_school {
     font-style: italic;
     display: inline-block;
-    margin-top: 3pt;
-    margin-left: 5pt;
-    margin-bottom: 3pt;
+    margin-left: 4pt;
     padding: 0;
     line-height: 1;
 }
-
-.ed_dots-container {
-    grid-column: 2 / 3;
-    height: 100%;
-    width: 100%;
-}
-
-.ed_dots {
-    width: 100%;
-    margin-top:4pt;
-    height: 1pt;
-    border-bottom: 1px dotted black;
-}
-
-.ed_right-container {
-    grid-column: 3 /4;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-}
-
-.ed_initM-initY-endM-endY {
-    margin-top: 1pt;
-}
-
 .ed_description {
     box-sizing: border-box;
     width: 100%;
     text-align: start;
-    padding-left: 5pt;
-    padding-right: 5pt;
+    margin-top: 2pt;
+    padding-left: 4pt;
+    padding-right: 4pt;
     display: inline-block;
 }
 
-.cert-margin-b {
-    margin-bottom: 5pt;
+/* REFERENCES */
+.ref_container {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* LINKS */
 .links-container {
-    width: 100%;
+    width: 50%;
     height: auto;
+    border-top: 1pt solid black;
+    margin-top: 8pt;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2pt;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
 .link {
-    font-size: 5pt;
+    font-size: 4pt;
+}
+
+.overflow-line {
+    position: absolute;
+    bottom: 27px;
+    width: 90%;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 0, 0, 0.7);
+    box-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
 }

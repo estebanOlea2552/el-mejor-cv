@@ -1,0 +1,15 @@
+<div
+class="snackbar"
+[class.show]="overflowDetected"
+[class.hide]="!overflowDetected"
+[class.snackbar-desktop]="isMobile"
+[class.snackbar-mobile]="isMobile">
+  <div class="notification-container">
+    <span class="title">Cuidado con los márgenes!</span>
+    <span class="message">
+      Parece que el CV está desbordado. Recomendamos limitar el contenido de tu currículum sólo a lo
+      esencial.
+    </span>
+  </div>
+  <button (click)="closeNotification()">Cerrar</button>
+</div>

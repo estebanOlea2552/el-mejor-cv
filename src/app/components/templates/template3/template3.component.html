@@ -1,8 +1,8 @@
-<div class="cv-container" #cvContent>
+<div class="cv-container" #cvContainer>
   <div class="cv-content">
 
     <!-- LEFT SIDE -->
-    <div class="left-container bx">
+    <div class="left-container bx" #leftContainer>
 
       <!-- NAME -->
       <div class="name-lastname_container bx">
@@ -175,10 +175,11 @@
             </div>
         </div>
       </div>
+    <div class="bottom-fill"></div>
     </div>
 
     <!-- RIGHT SIDE -->
-    <div class="right-container bx">
+    <div class="right-container bx" #rightContainer>
 
       <!-- PROFILE PHOTO -->
       <div class="top-fill" *ngIf="pictureUrl === null"></div>
@@ -292,6 +293,8 @@
           </div>
         </div>
       </div>
+      <div class="bottom-fill"></div>
     </div>
   </div>
+  <hr class="overflow-line" *ngIf="overflowDetected">
 </div>

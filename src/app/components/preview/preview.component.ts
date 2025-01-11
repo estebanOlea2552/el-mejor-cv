@@ -1,4 +1,4 @@
-import { 
+import {
   Component,
   ViewContainerRef,
   ElementRef,
@@ -11,7 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import Panzoom, { PanzoomObject } from '@panzoom/panzoom';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { cvData } from 'src/app/model/cv-data.model';
-import { cvDataInit } from 'src/app/model/cv-data-init'; 
+import { cvDataInit } from 'src/app/model/cv-data-init';
 import { ExportService } from 'src/app/services/export.service';
 import { TemplateRegistryService } from 'src/app/services/template-registry.service';
 import { templateSelector } from 'src/app/state/selectors/selected-template.selectors';
@@ -52,7 +52,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // HTML Element controlled by PanZoom functions
   @ViewChild('preview', { static: false })
-  private preview!: ElementRef; 
+  private preview!: ElementRef;
 
   // Subscription to the cvData of the previewConnector 
   private cvDataSubscription: Subscription | undefined;
@@ -76,7 +76,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
     private store: Store<AppState>,
     private exportCv: ExportService,
   ) { }
-  
+
 
   ngOnInit(): void {
     // Subscription to the cvData of the previewConnector
@@ -87,12 +87,12 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Detect mobile devices
     this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
-    .subscribe(
-      result => this.isMobile = result.matches
-    );
+      .subscribe(
+        result => this.isMobile = result.matches
+      );
 
     this.updateSelectedTemplate('t05');
-    
+
     // Template selector from the Store
     this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
       this.updateSelectedTemplate(templateId);
@@ -109,7 +109,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       easing: 'ease-in',
     });
 
-    if(this.isMobile) {
+    if (this.isMobile) {
       this.panzoom.setOptions({
         startScale: 0.8
       })
@@ -134,7 +134,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
         newScale, { animate: true, focal: { x: 250, y: 250 } }
       );
     }); */
-  } 
+  }
 
   // Updates the cvDataPreview in real time
   private updatePreview(controlName: string, value: any): void {
@@ -168,10 +168,10 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
     const previewWidth = this.previewContainer.nativeElement.clientWidth;
     const previewHeight = this.previewContainer.nativeElement.clientHeight;
 
-    if(this.isMobile) {
+    if (this.isMobile) {
       this.panzoom.setOptions({
         startX: previewWidth / 60,
-        startY: previewHeight /6
+        startY: previewHeight / 6
       })
     } else {
       this.panzoom.setOptions({

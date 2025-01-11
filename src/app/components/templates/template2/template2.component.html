@@ -1,8 +1,8 @@
-<div class="cv-container" #cvContent>
+<div class="cv-container" #cvContainer>
   <div class="cv-content">
 
     <!-- NAME FRAME -->
-    <div class="name-lastname-container" >
+    <div class="name-lastname-container">
       <div class="name-lastname-frame">
         <div class="name-lastname d-inline-blc font-size-large bold uppercase">
           {{ cvPreview.personalInfo.name }} {{ cvPreview.personalInfo.lastname }}
@@ -15,7 +15,7 @@
       </div>
     </div>
     <!-- LEFT CONTAINER -->
-    <div class="left-container">
+    <div class="left-container" #leftContainer>
       <!-- TOP FILL -->
       <div class="top-fill"></div>
 
@@ -66,7 +66,7 @@
             <span 
             class="detail_item font-size-small" 
             *ngIf="hasValues(cvPreview.personalInfo, ['age'])">
-              {{ cvPreview.personalInfo.age }}
+              {{ cvPreview.personalInfo.age }} años
             </span>
         </div>
       </div>
@@ -120,10 +120,11 @@
             <span class="detail_item font-size-small" *ngIf="hasValues(cvPreview.references[i], ['phone'])">{{ ref.phone }}</span>
           </div>
         </div>
+      <div class="bottom-fill"></div>
     </div>
 
     <!-- RIGHT CONTAINER -->
-    <div class="right-container" *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])">
+    <div class="right-container" *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])" #rightContainer>
       <!-- TOP FILL -->
       <div class="top-fill"></div>
 
@@ -249,6 +250,8 @@
           </div>
         </div>
       </div>
+      <div class="bottom-fill"></div>
     </div>
   </div>
+  <hr class="overflow-line" *ngIf="overflowDetected">
 </div>

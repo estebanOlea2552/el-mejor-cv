@@ -13,3 +13,8 @@ export const themeSelector = createSelector(
     templateDataFromStore,
     (selectedTemplate: SelectedTemplateState) => selectedTemplate.theme
 )
+
+export const overflowNotifySelector = createSelector(
+    templateDataFromStore,
+    (selectedTemplate: SelectedTemplateState) => selectedTemplate.hasOverflow
+)

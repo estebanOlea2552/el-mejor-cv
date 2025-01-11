@@ -10,3 +10,8 @@ export const selectTemplateTheme = createAction(
     '[Template Theme Selector] Select Template Theme',
     props<{ theme: string}>()
 )
+
+export const notifyOverflow = createAction(
+    '[Overflow Notification] Notify Overflow',
+    props<{ hasOverflow: boolean }>()
+)

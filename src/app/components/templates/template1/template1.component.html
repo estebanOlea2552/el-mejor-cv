@@ -1,104 +1,111 @@
-<div class="cv-container" #cvContent>
-  <div class="cv-content">
-    <!-- Personal Info -->
-    <div class="personal-info_container" >
-      <!-- Name and Lastname -->
+<div class="cv-container" #cvContainer>
+  <div class="cv-content" #cvContent>
+
+    <!-- PERSONAL INFO -->
+    <div class="personal-info_container">
+
+      <!-- NAME -->
       <div
-      class="name-lastname font-size-large d-inline-blc bold"
-      *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])">
-        {{ cvPreview.personalInfo.name }}
-        {{ cvPreview.personalInfo.lastname }}
+      class="name-lastname font-size-large d-inline-blc bold">
+        {{ cvPreview.personalInfo.name }} {{ cvPreview.personalInfo.lastname }}
       </div>
 
-      <!-- Job Position -->
       <div
       class="job-position font-size-small d-inline-blc bold"
       *ngIf="hasValues(cvPreview.personalInfo, ['jobPosition'])">
         {{ cvPreview.personalInfo.jobPosition }}
       </div>
 
-      <!-- City, State and Country -->
-      <div class="city-state-country font-size-small d-inline-blc" *ngIf="hasValues(cvPreview.personalInfo, ['city', 'stateProvince', 'country'])">
-        {{ cvPreview.personalInfo.city }} {{ cvPreview.personalInfo.stateProvince }} {{ cvPreview.personalInfo.country
-        }}
+      <div
+      class="font-size-small d-inline-blc"
+      *ngIf="hasValues(cvPreview.personalInfo, ['city', 'stateProvince', 'country'])">
+        {{ cvPreview.personalInfo.city }}
+        {{ cvPreview.personalInfo.stateProvince }}
+        {{ cvPreview.personalInfo.country}}
       </div>
 
-      <!-- Container for Email, Phone, Nat and Age -->
-      <div class="email-phone-container font-size-small">
-        <div
-        class="bold d-inline-blc"
-        *ngIf="hasValues(cvPreview.personalInfo, ['email'])">
-          {{ cvPreview.personalInfo.email }}
-        </div>
-        <div
-        class="bold d-inline-blc"
-        *ngIf="hasValues(cvPreview.personalInfo, ['phone'])">
-          +54-{{ cvPreview.personalInfo.phone }}
-        </div>
-        <div
-        class="bold d-inline-blc"
-        *ngIf="hasValues(cvPreview.personalInfo, ['age'])">
-          {{ cvPreview.personalInfo.age }} años
+      <!-- DETAILS -->
+      <div
+      class="details_container font-size-small"
+      >
+        <div class="row_container">
+          <div
+          class="row"
+          *ngIf="hasValues(cvPreview.personalInfo, ['email', 'phone'])">
+            <div
+            class="row_left-item d-inline-blc"
+            *ngIf="hasValues(cvPreview.personalInfo, ['email'])">
+              {{ cvPreview.personalInfo.email }}
+            </div>
+            <div
+            class="row_right-item d-inline-blc"
+            *ngIf="hasValues(cvPreview.personalInfo, ['phone'])">
+              {{ cvPreview.personalInfo.phone }}
+            </div>
+          </div>
+          <div
+          class="row"
+          *ngIf="hasValues(cvPreview.personalInfo, ['age'])">
+            <div class="row_left-item d-inline-blc">
+              {{ cvPreview.personalInfo.age }} años
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Division line -->
-    <hr *ngIf="hasValues(cvPreview.personalInfo, ['name', 'lastname'])">
+    <!-- division -->
+    <hr class="division-line">
     
-    <!-- Description -->
+    <!-- DESCRIPTION -->
     <div
     class="description_container"
     *ngIf="hasValues(cvPreview.description, ['description'])">
       <div class="section-title font-size-medium bold">
-        <span class="d-inline-blc">Perfil</span>
+        <span class="d-inline-blc">
+          Perfil
+        </span>
       </div>
-
-      <!-- Description element for the innerHTML directive -->
-      <div class="description_content paragraph font-size-small d-inline-blc" [innerHTML]="cvPreview.description.description">
+      <div
+      class="description_content paragraph font-size-small d-inline-blc"
+      [innerHTML]="cvPreview.description.description">
       </div>
-      <!-- Division line -->
-      <hr>
+      <!-- division -->
+      <hr class="division-line">
     </div>
 
-    <!-- Work Experience -->
+    <!-- WORK EXPERIENCE -->
     <div
     class="section-title font-size-medium bold"
     *ngIf="hasValues(cvPreview.workExperience[0], ['position'])">
-      <span class="d-inline-blc">Experiencia Laboral</span>
+      <span class="d-inline-blc">
+        Experiencia Laboral
+      </span>
     </div>
-
     <div
     class="section-container"
     *ngFor="let exp of cvPreview.workExperience, let i = index">
       <div
       class="section-content"
       *ngIf="hasValues(cvPreview.workExperience[i], ['position'])">
-
-        <div class="section-row">
-          <div class="work-exp_left-container">
-            <div class="d-inline-blc font-size-medium bold">
+        <div class="row_container bx">
+          <div class="row bx">
+            <div class="row_left-item font-size-medium bold">
               • {{ exp.position }} {{ exp.organization }}
             </div>
-          </div>
-
-          <div
-          class="work-exp_dots-container"
-          *ngIf="hasValues(cvPreview.workExperience[i], [
-            'wExpInitMonth', 'wExpInitYear', 'wExpEndMonth', 'wExpEndYear', 'location', 'workingDay'
-            ])">
-            <div class="work-exp_dots"></div>
-          </div>
-          
-          <div
-          class="work-exp_right-container"
-          *ngIf="hasValues(cvPreview.workExperience[i], [
-            'wExpInitMonth', 'wExpInitYear', 'wExpEndMonth', 'wExpEndYear', 'location', 'workingDay'
-            ])">
-            <div class="d-inline-blc font-size-small">
-              {{ exp.wExpInitMonth }} {{ exp.wExpInitYear }}
+            <div
+            class="row_dots"
+            *ngIf="hasValues(cvPreview.workExperience[i], ['wExpInitMonth','wExpInitYear','wExpEndMonth','wExpEndYear',])">
+            </div>
+            <div class="row_right-item font-size-medium">
+              <span>
+                {{ exp.wExpInitMonth }} {{ exp.wExpInitYear }}
+              </span>
               <span
-              *ngIf="hasValues(cvPreview.workExperience[i], ['wExpEndMonth', 'wExpEndYear']) && exp.inCourse !== 'true'"
+              *ngIf="
+                hasValues(cvPreview.workExperience[i], ['wExpEndMonth', 'wExpEndYear']) 
+                && 
+                exp.inCourse !== 'true'"
               class="d-inline-blc">
                 - {{ exp.wExpEndMonth }} {{ exp.wExpEndYear }}
               </span>
@@ -108,8 +115,12 @@
                 - Presente
               </span>
             </div>
-            <div class="work-exp_location font-size-small">
+          </div>
+          <div class="row bx">
+            <div class="work-exp_location row_left-item font-size-small">
               {{ exp.location }}
+            </div>
+            <div class="row_right-item font-size-small italic">
               {{ exp.workingDay}}
             </div>
           </div>
@@ -121,29 +132,38 @@
       </div>
     </div>
 
-    <!-- Education -->
-    <div class="section-title font-size-medium bold" *ngIf="hasValues(cvPreview.education[0], ['grade'])">
-      <span class="d-inline-blc">Educación</span>
+    <!-- EDUCATION -->
+    <div
+    class="section-title font-size-medium bold"
+    *ngIf="hasValues(cvPreview.education[0], ['grade'])">
+      <span class="d-inline-blc">
+        Educación
+      </span>
     </div>
-    <div class="section-container" *ngFor="let ed of cvPreview.education, let i = index">
-      <div class="section-content" *ngIf="hasValues(cvPreview.education[i], ['grade'])">
-        <div class="section-row">
-          <div class="ed_left-container">
-            <div class="ed_grade font-size-medium bold">
-              <strong>• </strong>{{ed.grade}}
+    <div
+    class="section-container"
+    *ngFor="let ed of cvPreview.education, let i = index">
+      <div
+      class="section-content"
+      *ngIf="hasValues(cvPreview.education[i], ['grade'])">
+        <div class="row_contaier ed_row bx">
+          <div class="row bx">
+            <div class="row_left-item font-size-medium bx bold">
+              • {{ed.grade}}
             </div>
-            <div class="ed_school font-size-small">
-              {{ed.school}} {{ ed.type }}
+            <div
+            class="row_dots"
+            *ngIf="hasValues(cvPreview.education[i], ['edInitMonth', 'edInitYear', 'edEndMonth', 'edEndYear'])">
             </div>
-          </div>
-          <div class="ed_dots-container" *ngIf="hasValues(cvPreview.education[i], ['edInitMonth', 'edInitYear', 'edEndMonth', 'edEndYear'])">
-            <div class="ed_dots"></div>
-          </div>
-          <div class="ed_right-container">
-            <div class="ed_initM-initY-endM-endY font-size-small d-inline-blc">
-              {{ ed.edInitMonth }} {{ ed.edInitYear }}
+            <div class="row_right-item font-size-small bx">
+              <span>
+                  {{ ed.edInitMonth }} {{ ed.edInitYear }}
+              </span>
               <span
-              *ngIf="hasValues(cvPreview.education[i], ['edEndMonth', 'edEndYear']) && ed.inCourse !== 'true'"
+              *ngIf="
+                hasValues(cvPreview.education[i], ['edEndMonth', 'edEndYear'])
+                &&
+                ed.inCourse !== 'true'"
               class="d-inline-blc">
                 - {{ ed.edEndMonth }} {{ ed.edEndYear }}
               </span>
@@ -153,10 +173,15 @@
                 - Presente
               </span>
             </div>
-            <div class="ed_average">
-              {{ed.average}}
-            </div>
           </div>
+          <div class="row bx">
+            <div class="ed_school row_left-item font-size-small">
+              {{ed.school}} {{ ed.type }}
+            </div>
+            <div class="row_right-item font-size-small">
+            {{ed.average}}
+          </div>
+          </div>  
         </div>
         <div
         class="ed_description paragraph font-size-small"
@@ -166,85 +191,141 @@
       </div>
     </div>
 
-    <!-- Certifications -->
-    <div class="section-title font-size-medium bold" *ngIf="hasValues(cvPreview.certifications[0], ['title'])">
-      <span class="d-inline-blc">Certificaciones</span>
+    <!-- CERTIFICATIONS -->
+    <div
+    class="section-title font-size-medium bold"
+    *ngIf="hasValues(cvPreview.certifications[0], ['title'])">
+      <span class="d-inline-blc">
+        Certificaciones
+      </span>
     </div>
-    <div class="section-container cert-margin-b" >
-      <div class="section-content" *ngFor="let cert of cvPreview.certifications, let i = index">
-        <div class="section-row" *ngIf="hasValues(cvPreview.certifications[i], ['title'])">
-          <div class="item font-size-small bold">
+    <div
+    class="list_container"
+    *ngIf="hasValues(cvPreview.certifications[0], ['title'])">
+        <div
+        class="row"
+        *ngFor="let cert of cvPreview.certifications, let i = index">
+          <div class="row_left-item font-size-small bx bold">
             • {{ cert.title }}
           </div>
-          <div class="list_dots-container" *ngIf="hasValues(cvPreview.certifications[i], ['institution'])">
-            <div class="list_dots"></div>
+          <div
+          class="row_dots"
+          *ngIf="hasValues(cvPreview.certifications[i], ['institution'])">
           </div>
-          <div class="value font-size-small">
+          <div class="row_right-item font-size-small bx">
             {{ cert.institution }}
           </div>
         </div>
-      </div>
     </div>
     
-    <!-- Skills -->
-    <div class="section-title font-size-medium bold" *ngIf="hasValues(cvPreview.skills[0], ['skill'])">
-      <span class="d-inline-blc">Habilidades</span>
+    <div class="list_general-container">
+
+      <!-- SKILLS -->
+      <div
+      class="skills_container"
+      *ngIf="hasValues(cvPreview.skills[0], ['skill'])">
+        <div
+        class="section-title font-size-medium bold"
+        *ngIf="hasValues(cvPreview.skills[0], ['skill'])">
+          <span class="d-inline-blc">
+            Habilidades
+          </span>
+        </div>
+        <div
+        class="list_container"
+        *ngIf="hasValues(cvPreview.skills[0], ['skill'])">
+          <div
+          class="row"
+          *ngFor="let skill of cvPreview.skills, let i = index">
+            <div class="row_left-item list-item font-size-small">
+              {{ skill.skill }}
+            </div>
+            <div
+            *ngIf="hasValues(cvPreview.skills[i], ['level'])"
+            class="row_dots">
+            </div>
+            <div class="row_right-item font-size-small bold italic">
+              {{ skill.level }}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- LANGUAGES -->
+      <div
+      class="lang_container"
+      *ngIf="hasValues(cvPreview.languages[0], ['language'])">
+        <div
+        class="section-title font-size-medium bold"
+        *ngIf="hasValues(cvPreview.languages[0], ['language'])">
+          <span class="d-inline-blc">
+            Idiomas
+          </span>
+        </div>
+        <div
+        class="list_container lang_list-container"
+        *ngIf="hasValues(cvPreview.languages[0], ['language'])">
+          <div
+          class="row"
+          *ngFor="let lang of cvPreview.languages, let i = index">
+            <div class="row_left-item font-size-small">
+              {{ lang.language }}
+            </div>
+            <div
+            class="row_dots"
+            *ngIf="hasValues(cvPreview.languages[i], ['level'])">
+            </div>
+            <div class="row_right-item font-size-small bold italic">
+              {{ lang.level }}
+            </div>
+          </div>
+        </div>  
+      </div>
     </div>
-    <div class="list_container" *ngIf="hasValues(cvPreview.skills[0], ['skill'])">
-      <div class="list-level-container" *ngFor="let skill of cvPreview.skills, let i = index">
-        <div class="item font-size-small">
-          {{ skill.skill }}
+
+    <!-- REFERENCES -->
+    <div
+    class="section-title font-size-medium bold"
+    *ngIf="hasValues(cvPreview.references[0], ['name'])">
+      <span class="d-inline-blc">
+        Referencias
+      </span>
+    </div>
+    <div
+    class="ref_container"
+    *ngIf="hasValues(cvPreview.references[0], ['name'])">
+      <div
+      class="row_container"
+      *ngFor="let ref of cvPreview.references, let i = index">
+        <div class="row">
+          <div class="row_left-item font-size-small bold">
+            {{ ref.name }}
+          </div>
+          <div class="row_right-item font-size-small">
+            {{ ref.email }}
+          </div>
         </div>
-        <div class="list_dots-container" *ngIf="hasValues(cvPreview.skills[i], ['level'])">
-          <div class="list_dots"></div>
-        </div>
-        <div class="value font-size-small bold italic">
-          {{ skill.level }}
+        <div class="row">
+          <div class="row_left-item font-size-small bold">
+            {{ ref.organization }}
+          </div>
+          <div class="row_right-item font-size-small">
+            {{ ref.phone }}
+          </div>
         </div>
       </div>
     </div>
-    
-    <!-- Languages -->
-    <div class="section-title font-size-medium bold" *ngIf="hasValues(cvPreview.languages[0], ['language'])">
-      <span class="d-inline-blc">Idiomas</span>
-    </div>
-    <div class="list_container" *ngIf="hasValues(cvPreview.languages[0], ['language'])">
-      <div class="list-level-container" *ngFor="let lang of cvPreview.languages, let i = index">
-        <div class="item font-size-small">
-          {{ lang.language }}
-        </div>
-        <div class="list_dots-container" *ngIf="hasValues(cvPreview.languages[i], ['level'])">
-          <div class="list_dots"></div>
-        </div>
-        <div class="value font-size-small bold italic">
-          {{ lang.level }}
-        </div>
-      </div>
-    </div>
-    
-    <!-- References -->
-    <div class="section-title font-size-medium bold" *ngIf="hasValues(cvPreview.references[0], ['name'])">
-      <span class="d-inline-blc">Referencias</span>
-    </div>
-    <div class="list_container" *ngIf="hasValues(cvPreview.references[0], ['name'])">
-      <div class="list-level-container" *ngFor="let ref of cvPreview.references, let i = index">
-        <div class="item font-size-small">
-          {{ ref.name }} {{ ref.organization }}
-        </div>
-        <div class="list_dots-container" *ngIf="hasValues(cvPreview.references[i], ['email', 'phone'])">
-          <div class="list_dots"></div>
-        </div>
-        <div class="value font-size-small bold italic">
-          {{ ref.email }}
-          {{ ref.phone }}
-        </div>
-      </div>
-    </div>
-    <!-- Links -->
-    <div class="links-container" *ngIf="hasValues(cvPreview.links[0], ['link'])">
-      <div class="link d-inline-blc" *ngFor="let link of cvPreview.links">
+
+    <!-- LINKS -->
+    <div
+    class="links-container"
+    *ngIf="hasValues(cvPreview.links[0], ['link'])">
+      <div
+      class="link d-inline-blc"
+      *ngFor="let link of cvPreview.links">
         {{ link.link }}
       </div>
     </div>
   </div>
+  <hr class="overflow-line" *ngIf="overflowDetected">
 </div>

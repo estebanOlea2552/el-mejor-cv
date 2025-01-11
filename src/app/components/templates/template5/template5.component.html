@@ -1,4 +1,4 @@
-<div class="cv-container" #cvContent>
+<div class="cv-container" #cvContainer>
   <img
   class="background-image"
   [src]="currentBackgroundImage"
@@ -7,7 +7,7 @@
     <div class="grid-container bx">
 
       <!-- LEFT-SIDE -->
-      <div class="left-side bx">
+      <div class="left-side bx" #leftContainer>
         <!-- PROFILE-PHOTO -->
         <div class="profile-photo_fill" *ngIf="pictureUrl === null"></div>
         <div class="profile-photo_container bx" *ngIf="pictureUrl !== null">
@@ -158,7 +158,7 @@
       </div>
       
       <!-- RIGHT-SIDE -->
-      <div class="right-side bx">
+      <div class="right-side bx" #rightContainer>
         <!-- NAME -->
         <div
         class="name-lastname_container"
@@ -377,4 +377,5 @@
       </div>
     </div>
   </div>
+  <hr class="overflow-line" *ngIf="overflowDetected">
 </div>
