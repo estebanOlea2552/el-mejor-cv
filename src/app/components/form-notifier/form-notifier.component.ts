@@ -39,7 +39,6 @@ export class FormNotifierComponent implements OnInit, OnDestroy {
       .subscribe(
         value => {
           this.isMobile = value.matches;
-          console.log(this.isMobile);
         }
       );
   }

@@ -33,11 +33,20 @@
 
 .buttons-container-mobile {
     display: flex;
+    justify-content: space-between;
 }
 
 .buttons-container-desktop {
+    height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: auto;
     margin-bottom: 10%;
+}
+.theme-selector {
+    margin-bottom: auto;
+}
+.zoom-in, .zoom-out {
+    margin-left: auto;
+    margin-right: auto;
 }

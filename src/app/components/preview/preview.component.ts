@@ -22,11 +22,12 @@ import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { ExportService } from 'src/app/services/export.service';
 import { TemplateRegistryService } from 'src/app/services/template-registry.service';
-import { templateSelector } from 'src/app/state/selectors/selected-template.selectors';
+import { templateSelector, themeSelector } from 'src/app/state/selectors/selected-template.selectors';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
 import { AppState } from 'src/app/state/app.state';
 import { selectTemplateTheme } from 'src/app/state/actions/selected-template.action';
+import { ThemeSelectorComponent } from '../theme-selector/theme-selector.component';
 
 @Component({
   selector: 'app-preview',
@@ -38,36 +39,33 @@ import { selectTemplateTheme } from 'src/app/state/actions/selected-template.act
     MatFormFieldModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    ThemeSelectorComponent
   ]
 })
 export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   // HTML Element where the preview is displayed
   @ViewChild('templateContainer', { read: ViewContainerRef, static: true })
   private container!: ViewContainerRef;
-
   // HTML Element containing PanZoom element
   @ViewChild('previewContainer', { static: false })
   private previewContainer!: ElementRef;
-
   // HTML Element controlled by PanZoom functions
   @ViewChild('preview', { static: false })
   private preview!: ElementRef;
 
-  // Subscription to the cvData of the previewConnector 
-  private cvDataSubscription: Subscription | undefined;
+  private cvDataSubscription: Subscription | undefined; //gets form data trought previewConnectorService
+  private templateSelectorSubscription: Subscription | undefined; // Subscription to the templateSelector of the Store
 
-  // Subscription to the templateSelector of the Store
-  private templateSelectorSubscription: Subscription | undefined;
+  protected cvDataPreview: cvData = cvDataInit; // Form data sent to each template for previewing
 
-  // Initialization of the cvPreview object
-  protected cvDataPreview: cvData = cvDataInit;
-
-  // PanZoom instance
   protected panzoom!: PanzoomObject;
-
-  // Variable for panzoom's config
   isMobile!: boolean;
+
+  //Theme buttons array
+  buttons: string[] = ['theme01', 'theme02', 'theme03', 'theme04', 'theme05', 'theme06'];
+
+  template: string = '';
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -79,7 +77,6 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // Subscription to the cvData of the previewConnector
     this.cvDataSubscription = this.previewConnector.cvDataInput$.
       subscribe((cvData) => {
         this.updatePreview(cvData.controlName, cvData.value);
@@ -91,11 +88,13 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
         result => this.isMobile = result.matches
       );
 
+    // Defines a default selected template
     this.updateSelectedTemplate('t05');
 
-    // Template selector from the Store
+    // Get selected Template from the Store
     this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
       this.updateSelectedTemplate(templateId);
+      this.template = templateId;
     })
   }
 

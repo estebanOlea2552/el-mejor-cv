@@ -4,6 +4,7 @@
     </div>
     <div [ngClass]="{'side-container-mobile': isMobile, 'side-container-desktop':!isMobile}">
         <div [ngClass]="{'buttons-container-mobile': isMobile, 'buttons-container-desktop':!isMobile}">
+            <theme-selector class="theme-selector"></theme-selector>
             <button (click)="zoomIn()" mat-icon-button class="zoom-in">
                 <mat-icon>zoom_in</mat-icon>
             </button>
@@ -11,12 +12,6 @@
                 <mat-icon>zoom_out</mat-icon>
             </button>
             <button class="generate-button" mat-stroked-button (click)="export()">:D</button>
-            <button mat-stroked-button (click)="selectTheme('theme01')">Theme 1</button>
-            <button mat-stroked-button (click)="selectTheme('theme02')">Theme 2</button>
-            <button mat-stroked-button (click)="selectTheme('theme03')">Theme 3</button>
-            <button mat-stroked-button (click)="selectTheme('theme04')">Theme 4</button>
-            <button mat-stroked-button (click)="selectTheme('theme05')">Theme 5</button>
-            <button mat-stroked-button (click)="selectTheme('theme06')">Theme 6</button>
         </div>
     </div>
 </div>
