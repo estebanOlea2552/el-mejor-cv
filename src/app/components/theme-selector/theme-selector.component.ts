@@ -58,10 +58,8 @@ const TEMPLATE_THEMES: Record<string, Theme[]> = {
       [ngClass]="{'theme-button-mobile': isMobile, 'theme-button-desktop': !isMobile}"
       *ngFor="let button of themeButtons"
       (click)="selectTheme(button.key)">
-        <!-- <div class="colors"> -->
           <div class="color-primary" [ngStyle]="{ 'background-color': button.colors[0] }"></div>
           <div class="color-secondary" [ngStyle]="{ 'background-color': button.colors[1] }"></div>
-        <!-- </div> -->
       </div>
      </div>
   `,

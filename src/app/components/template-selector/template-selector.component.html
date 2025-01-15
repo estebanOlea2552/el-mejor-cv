@@ -6,6 +6,7 @@
   [ngClass]="{'templates-container-mobile': isMobile, 'templates-container-desktop': !isMobile}">
     <div
     *ngFor="let template of templatesList, let i = index"
+    
     class="template-card">
       <mat-card class="card" (click)="selectTemplate(i)">
         <mat-card-header class="card-header">

@@ -16,7 +16,7 @@ import { SelectedTemplateState } from 'src/app/model/state-model/selected-templa
   templateUrl: './template-selector.component.html',
   styleUrls: ['./template-selector.component.css'],
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatButtonModule, RouterLink ]
+  imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink]
 })
 export class TemplateSelectorComponent implements OnInit {
   templatesList: Template[] = [];
@@ -29,11 +29,11 @@ export class TemplateSelectorComponent implements OnInit {
   isMobile: boolean = true;
   selectedTemplateIndex: number | null = null;
 
-  constructor (
+  constructor(
     private breakpointObserver: BreakpointObserver,
     private templateRegistry: TemplateRegistryService,
     private store: Store<AppState>
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Check if the device is mobile
@@ -46,7 +46,7 @@ export class TemplateSelectorComponent implements OnInit {
     this.templatesList = this.templateRegistry.getTemplates();
   }
 
-  selectTemplate(index: number):void {
+  selectTemplate(index: number): void {
     this.selectedTemplate = {
       ...this.selectedTemplate,
       id: this.templatesList[index].id,
@@ -56,8 +56,8 @@ export class TemplateSelectorComponent implements OnInit {
       selectTemplate({ template: this.selectedTemplate })
     );
 
-    if(index === this.selectedTemplateIndex) {
-      this.selectedTemplateIndex = null; 
+    if (index === this.selectedTemplateIndex) {
+      this.selectedTemplateIndex = null;
     } else {
       this.selectedTemplateIndex = index;
     }

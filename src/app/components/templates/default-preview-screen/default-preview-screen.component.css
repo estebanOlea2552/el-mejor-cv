@@ -1,0 +1,33 @@
+.general-container {
+    width: calc(595.28pt * 0.5);
+    height: calc(841.89pt * 0.5);
+    background-color: #cfcfcf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.message-container {
+    background-color: #fff;
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+}
+span {
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.7rem;
+    font-weight: 300;
+}
+button {
+    color: #fff !important;
+    font-weight: 700;
+    width: 90%;
+    font-size: 1rem;
+    margin: .7rem;
+    background-color: #808080;
+}

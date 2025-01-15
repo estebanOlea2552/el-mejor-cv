@@ -62,11 +62,6 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   protected panzoom!: PanzoomObject;
   isMobile!: boolean;
 
-  //Theme buttons array
-  buttons: string[] = ['theme01', 'theme02', 'theme03', 'theme04', 'theme05', 'theme06'];
-
-  template: string = '';
-
   constructor(
     private breakpointObserver: BreakpointObserver,
     private templateService: TemplateRegistryService,
@@ -89,12 +84,11 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       );
 
     // Defines a default selected template
-    this.updateSelectedTemplate('t05');
+    this.updateSelectedTemplate('t00');
 
     // Get selected Template from the Store
     this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
       this.updateSelectedTemplate(templateId);
-      this.template = templateId;
     })
   }
 
@@ -146,12 +140,20 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // Updates the selected template in real time
-  private updateSelectedTemplate(templateId: string): void {
-    const template = this.templateService.getTemplateById(templateId);
-    if (template) {
-      this.container.clear();
-      const componentRef = this.container.createComponent(template.component as Type<any>);
-      (componentRef.instance as any).cvPreview = this.cvDataPreview;
+  private updateSelectedTemplate(templateId: string ): void {
+    if(templateId === 't00') {
+      const defaultScreen = this.templateService.getDefaultScreen();
+      if(defaultScreen) {
+        this.container.clear();
+        this.container.createComponent(defaultScreen.component as Type<any>);
+      }
+    } else {
+      const template = this.templateService.getTemplateById(templateId);
+      if (template) {
+        this.container.clear();
+        const componentRef = this.container.createComponent(template.component as Type<any>);
+        (componentRef.instance as any).cvPreview = this.cvDataPreview;
+      }
     }
   }
 

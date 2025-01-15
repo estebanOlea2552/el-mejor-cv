@@ -15,7 +15,9 @@ export class ExportService {
 constructor() { }
   
   public setCvToExport(cv: ElementRef) {
-    this.cvToExport = cv;
+    if(cv) {
+      this.cvToExport = cv;
+    }
   }
 
   public generatePdf(): void {
@@ -28,7 +30,7 @@ constructor() { }
     this.doc.html(content, {
       callback: (doc) => {
         doc.deletePage(2); /* Trash code */
-        doc.save('documento.pdf');
+        doc.save('curriculum.pdf');
       },
       x: 0,
       y: 0,
