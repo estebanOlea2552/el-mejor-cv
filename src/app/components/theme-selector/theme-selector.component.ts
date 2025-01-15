@@ -69,6 +69,8 @@ const TEMPLATE_THEMES: Record<string, Theme[]> = {
     }
     .buttons-container-desktop {
       flex-direction: column;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
     }
     .buttons-container-mobile {
       flex-direction: row;
@@ -86,6 +88,8 @@ const TEMPLATE_THEMES: Record<string, Theme[]> = {
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
     .theme-button-mobile {
+      width: 1.5rem;
+      height: 1.5rem;
       margin-left: .2rem;
       margin-right: .2rem;
     }

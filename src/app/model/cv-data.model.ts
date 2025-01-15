@@ -56,17 +56,6 @@ export interface Language {
     level: string;
 }
 
-export interface VolunteerWork {
-    position: string;
-    organization: string;
-    vWInitMonth: string;
-    vWInitYear: string;
-    vWEndMonth: string;
-    vWEndYear: string;
-    inCourse: string;
-    description: string;
-}
-
 export interface Reference {
     name: string;
     organization: string;
@@ -86,7 +75,6 @@ export interface cvData {
     certifications: Certification[],
     skills: Skill[],
     languages: Language[],
-    volunteerWorks: VolunteerWork[],
     references: Reference[],
     links: Link[]
 }

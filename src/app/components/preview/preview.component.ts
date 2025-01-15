@@ -28,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppState } from 'src/app/state/app.state';
 import { selectTemplateTheme } from 'src/app/state/actions/selected-template.action';
 import { ThemeSelectorComponent } from '../theme-selector/theme-selector.component';
+import { ExportButtonComponent } from '../export-button/export-button.component';
 
 @Component({
   selector: 'app-preview',
@@ -40,7 +41,8 @@ import { ThemeSelectorComponent } from '../theme-selector/theme-selector.compone
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    ThemeSelectorComponent
+    ThemeSelectorComponent,
+    ExportButtonComponent
   ]
 })
 export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {

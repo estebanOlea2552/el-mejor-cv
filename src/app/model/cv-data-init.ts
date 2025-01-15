@@ -60,18 +60,6 @@
             level: ''
         }
     ],
-    volunteerWorks: [
-        {
-            position: '',
-            organization: '',
-            vWInitMonth: '',
-            vWInitYear: '',
-            vWEndMonth: '',
-            vWEndYear: '',
-            inCourse: '',
-            description: ''
-        }
-    ],
     references: [
         {
             name: '',
@@ -213,16 +201,6 @@ export const cvDataInit = {
             level: 'Avanzado'
         }
     ],
-    volunteerWorks: [{
-        position: '',
-        organization: '',
-        vWInitMonth: '',
-        vWInitYear: '',
-        vWEndMonth: '',
-        vWEndYear: '',
-        inCourse: '',
-        description: ''
-    }],
     references: [
         {
             name: 'Alex Frutos Mocsary',

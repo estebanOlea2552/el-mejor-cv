@@ -16,7 +16,6 @@ import { WorkExperienceComponent } from './form-cards/work-experience.component'
 import { CertificationsComponent } from './form-cards/certifications.component';
 import { SkillsComponent } from './form-cards/skills.component';
 import { LanguagesComponent } from './form-cards/languages.component';
-import { VolunteerWorksComponent } from './form-cards/volunteer-works.component';
 import { ReferencesComponent } from './form-cards/references.component';
 import { LinksComponent } from './form-cards/links.component';
 
@@ -70,9 +69,6 @@ export class FormComponent implements OnInit, OnChanges {
         languages: this.formBuilder.array(
           this.cvDataInput.languages.map(lang => this.createLanguage(lang))
         ),
-        volunteerWorks: this.formBuilder.array(
-          this.cvDataInput.volunteerWorks.map(vWork => this.createVolunteerWork(vWork))
-        ),
         references: this.formBuilder.array(
           this.cvDataInput.references.map(ref => this.createReference(ref))
         ),
@@ -120,9 +116,6 @@ export class FormComponent implements OnInit, OnChanges {
         break
       case 'lang':
         this.renderComponent(LanguagesComponent);
-        break
-      case 'volworks':
-        this.renderComponent(VolunteerWorksComponent);
         break
       case 'ref':
         this.renderComponent(ReferencesComponent);
@@ -225,20 +218,6 @@ export class FormComponent implements OnInit, OnChanges {
     return this.formBuilder.group({
       language: [lang.language || '', Validators.maxLength(50)],
       level: [lang.level || '']
-    });
-  }
-
-  // Volunteer Works FormArray
-  private createVolunteerWork(vWork: any = {}): FormGroup {
-    return this.formBuilder.group({
-      position: [vWork.position || '', Validators.maxLength(150)],
-      organization: [vWork.organization || '', Validators.maxLength(150)],
-      vWInitMonth: [vWork.vWInitMonth || ''],
-      vWInitYear: [vWork.vWInitYear || ''],
-      vWEndMonth: [vWork.vWEndMonth || ''],
-      vWEndYear: [vWork.vWEndYear || ''],
-      inCourse: [vWork.inCourse || ''],
-      description: [vWork.description || '', Validators.maxLength(1000)]
     });
   }
 

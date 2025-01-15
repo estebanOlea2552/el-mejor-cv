@@ -7,20 +7,20 @@
 .preview {
     width: calc(595.28pt * 0.5); /* A4 Format */
     height: calc(841.89pt * 0.5); /* A4 Format */
-    background-color: rgb(239, 188, 100);
 }
 
 .side-container-mobile {
+    box-sizing: border-box;
     height: 5%;
     width: 100%;
     position: absolute;
     bottom: 0;
     display: flex;
-    justify-content: center;
     background-color: #f1f1f1;
 }
 
 .side-container-desktop {
+    width: 4rem;
     height: 100vh;
     position: absolute;
     top: 0;
@@ -28,25 +28,64 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
+    align-items: center;
     background-color: #f1f1f1;
 }
 
 .buttons-container-mobile {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: center;
 }
 
 .buttons-container-desktop {
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: auto;
+    justify-content: flex-start;
     margin-bottom: 10%;
+    padding-bottom: .5rem;
 }
-.theme-selector {
-    margin-bottom: auto;
+
+.zoom-buttons-container {
+    display: flex;
 }
+
+.zoom-buttons-container-desktop {
+    height: 8rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.zoom-buttons-container-mobile {
+    flex-direction: row;
+    align-items: center;
+}
+
 .zoom-in, .zoom-out {
     margin-left: auto;
     margin-right: auto;
+}
+
+.theme-selector-container {
+    margin-bottom: auto;
+}
+
+.theme-selector-mobile {
+    margin-right: auto;
+}
+
+.theme-selector {
+    margin-top: 1rem;
+    margin-bottom: auto;
+}
+
+.generate-button {
+    background-color: #505050;
+}
+
+.download {
+    color: #f1f1f1;
 }

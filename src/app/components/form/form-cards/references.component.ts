@@ -74,7 +74,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             <div
             class="prev-next-container"
             [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
-                <button mat-flat-button class="prev" (click)="changeSelectedCard('volworks')">
+                <button mat-flat-button class="prev" (click)="changeSelectedCard('lang')">
                     <mat-icon>chevron_left</mat-icon>
                     Anterior
                 </button>

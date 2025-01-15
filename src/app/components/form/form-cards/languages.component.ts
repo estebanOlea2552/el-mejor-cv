@@ -65,7 +65,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                     <mat-icon>chevron_left</mat-icon>
                     Anterior
                 </button>
-                <button mat-flat-button class="next" (click)="changeSelectedCard('volworks')">
+                <button mat-flat-button class="next" (click)="changeSelectedCard('ref')">
                     <mat-icon>chevron_right</mat-icon>
                     Siguiente
                 </button>

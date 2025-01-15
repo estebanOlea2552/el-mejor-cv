@@ -8,7 +8,7 @@
 :root {
     --primary: rgb(50, 50, 50);
     --secondary: rgb(100, 100, 100);
-    --light-gray: rgb(180,180,180);
+    --light-gray: rgb(190,190,190);
     --font-white: rgb(210, 210, 210);
 }
 
@@ -22,4 +22,3 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     box-sizing: border-box;
 }
-
