@@ -8,11 +8,15 @@ import { MatCardModule } from "@angular/material/card";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { Store } from "@ngrx/store";
+import { Subscription } from "rxjs";
 import { FormService } from "src/app/services/form.service";
 import { ProfilePictureService } from "src/app/services/profile-picture.service";
 
 import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
 import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
+import { AppState } from "src/app/state/app.state";
+import { templateSelector } from "src/app/state/selectors/selected-template.selectors";
 
 @Component({
     selector: 'personal-info',
@@ -54,11 +58,16 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                     <div
                     class="photo-place"
                     [formGroup]="personalInfoGroup">
-                        <button class="photo" mat-flat-button (click)="fileInput.click()">
-                            <mat-icon>image</mat-icon>
-                            Subir una foto
-                        </button>
-                        <button mat-icon-button class="photo-clear" (click)="clearFileSelected()">
+                        <div class="photo_button-message-container">
+                            <button [disabled]="disableFileInput" class="photo" mat-flat-button (click)="fileInput.click()">
+                                <mat-icon>image</mat-icon>
+                                Subir una foto
+                            </button>
+                            <span class="photo-message" *ngIf="disableFileInput">
+                                Esta plantilla no soporta foto de perfil
+                            </span>
+                        </div>
+                        <button *ngIf="!disableFileInput" mat-icon-button class="photo-clear" (click)="clearFileSelected()">
                             <mat-icon>clear</mat-icon>
                         </button>
                         <input
@@ -175,14 +184,30 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 height: 100%;
                 box-sizing: border-box;
                 display: flex;
-                justify-content: space-between;
+                justify-content: space-between;                
+                align-items: center;
+            }
+            .photo_button-message-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
                 align-items: center;
             }
             .photo {
-                width: 80%;
+                width: 100%;
                 box-sizing: border-box;
                 height: 4em;
+                font-size: 1rem;
                 border: 1px solid rgba(0, 0, 0, 0.2);
+            }
+            .photo-message {
+                font-size: .8rem;
+                color: rgba(0, 0, 0, 0.5);
+                font-weight: 500;   
+                padding: .5rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                line-height: 1;
+                margin: .5rem;
             }
             .accordion-container {
                 grid-column: 1 / 3;
@@ -252,6 +277,9 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
 })
 export class PersonalInfoComponent implements OnInit {
     cvFormGroup!: FormGroup;
+    disableFileInput!: boolean;
+    isMobileSubscription!: Subscription;
+    templateSelectorSubscription!: Subscription;
     personalInfoGroup!: FormGroup;
     isMobile: boolean = true;
     @Output() selectedCard = new EventEmitter<string>();
@@ -259,17 +287,28 @@ export class PersonalInfoComponent implements OnInit {
     constructor(
         private form: FormService,
         private breakpointObserver: BreakpointObserver,
-        private pictureService: ProfilePictureService // This service sould be replaced by NGRX
-    ){}
+        private pictureService: ProfilePictureService, // This service sould be replaced by NGRX
+        private store: Store<AppState>
+    ) { }
 
     ngOnInit(): void {
         this.cvFormGroup = this.form.getFormGroup();
         this.personalInfoGroup = this.cvFormGroup.get('personalInfo') as FormGroup;
 
         this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
-        .subscribe(result => {
-            this.isMobile = result.matches;
-        });
+            .subscribe(result => {
+                this.isMobile = result.matches;
+            });
+
+        // Get selected Template from the Store
+        this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
+            /* t01 and t02 are templates that do not support profile pictures */
+            if(templateId === 't01' || templateId === 't02' || !templateId) {
+                this.disableFileInput = true;
+            } else {
+                this.disableFileInput = false;
+            }
+        })
     }
 
     onFileSelected(event: any) {
@@ -280,7 +319,7 @@ export class PersonalInfoComponent implements OnInit {
         this.pictureService.clearPicture();
     }
 
-    resetPInfo():void {
+    resetPInfo(): void {
         this.personalInfoGroup.reset();
     }
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'init-end-date',
@@ -16,69 +19,80 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     class="form-group-container"
     [ngClass]="{'form-group-container-desktop': !isMobile, 'form-group-container-mobile': isMobile}">
       <div class="ed-start-container">
-        <span class="date-title">Fecha de inicio</span>
-        <mat-form-field class="form-field">
-          <mat-label>Mes</mat-label>
-          <mat-select
-            [(value)]="initMonthSelected"
-            [formControlName]="initMControl">
-            <div *ngFor="let month of months">
-              <mat-option [value]="month">{{ month }}</mat-option>
-            </div>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Año</mat-label>
-          <mat-select 
-            [(value)]="initYearSelected"
-            [formControlName]="initYControl">
-            <div *ngFor="let year of years">
-              <mat-option [value]="year">{{ year }}</mat-option>
-            </div>
-          </mat-select>
-        </mat-form-field>
+        <div class="form-field-container">
+          <span class="date-title">Fecha de inicio</span>
+          <mat-form-field class="form-field">
+            <mat-label>Mes</mat-label>
+            <mat-select
+              [(value)]="initMonthSelected"
+              [formControlName]="initMControl">
+              <div *ngFor="let month of months">
+                <mat-option [value]="month">{{ month }}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Año</mat-label>
+            <mat-select 
+              [(value)]="initYearSelected"
+              [formControlName]="initYControl">
+              <div *ngFor="let year of years">
+                <mat-option [value]="year">{{ year }}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <div>
-          <button mat-flat-button>Limpiar</button>
+          <button class="clear-button" mat-icon-button (click)="clearInitDate()">
+            <mat-icon>clear</mat-icon>
+          </button>
         </div>
       </div>
       <div class="ed-end-container">
-        <span class="date-title">Fecha de finalización</span>
-        <mat-form-field class="form-field">
-          <mat-label>Mes</mat-label>
-          <mat-select 
-            [disabled]="inCourse"
-            [(value)]="endMonthSelected"
-            [formControlName]="endMControl">
-            <div *ngFor="let month of months">
-              <mat-option [value]="month">{{ month }}</mat-option>
-            </div>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Año</mat-label>
-          <mat-select 
-            [disabled]="inCourse"
-            [(value)]="endYearSelected"
-            [formControlName]="endYControl">
-            <div *ngFor="let year of years">
-              <mat-option [value]="year">{{ year }}</mat-option>
-            </div>
-          </mat-select>
-        </mat-form-field>
-        <div class="checkbox-container">
-          <mat-checkbox
-          class="checkbox"
-          [checked]="inCourse"
-          (click)="alternateInCourse()"
-          (change)="this.inCourse = !this.inCourse">
-            <span>Presente</span>
-          </mat-checkbox>
-          <input
-          class="display-none"
-          type="text"
-          name="inCourse"
-          id="inCourse"
-          formControlName="inCourse">
+        <div class="form-field-container">
+          <span class="date-title">Fecha de finalización</span>
+          <mat-form-field class="form-field">
+            <mat-label>Mes</mat-label>
+            <mat-select 
+              [disabled]="inCourse"
+              [(value)]="endMonthSelected"
+              [formControlName]="endMControl">
+              <div *ngFor="let month of months">
+                <mat-option [value]="month">{{ month }}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Año</mat-label>
+            <mat-select 
+              [disabled]="inCourse"
+              [(value)]="endYearSelected"
+              [formControlName]="endYControl">
+              <div *ngFor="let year of years">
+                <mat-option [value]="year">{{ year }}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+          <div class="checkbox-container">
+            <mat-checkbox
+            class="checkbox"
+            [checked]="inCourse"
+            (click)="alternateInCourse()"
+            (change)="this.inCourse = !this.inCourse">
+              <span>Presente</span>
+            </mat-checkbox>
+            <input
+            class="display-none"
+            type="text"
+            name="inCourse"
+            id="inCourse"
+            formControlName="inCourse">
+          </div>
+        </div>
+        <div>
+          <button class="clear-button" mat-icon-button (click)="clearEndDate()">
+            <mat-icon>clear</mat-icon>
+          </button>
         </div>
       </div>
     </div>
@@ -105,22 +119,32 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
       .ed-start-container {
         box-sizing: border-box;
         display: flex;
-        flex-direction: column;
         align-items: center;
+        justify-content: space-between;
       }
       .ed-end-container {
         box-sizing: border-box;
         display: flex;
-        flex-direction: column;
         align-items: center;
+        justify-content: space-between;
       }
       .date-title {
         padding: 3%;
         color: rgba(0, 0, 0, 0.87);
         font-weight: 500;
       }
+      .form-field-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
       .form-field {
         transform: scale(0.9);
+      }
+      .clear-button {
+        transform: scale(.8);
       }
       .checkbox-container {
         width: 100%;
@@ -133,12 +157,14 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatButtonModule,
     MatInputModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
   ]
 })
-export class InitEndDateComponent implements OnInit {
+export class InitEndDateComponent implements OnInit, OnDestroy {
   @Input() groupName!: FormGroup;
   @Input() initMControl!: string;
   @Input() initYControl!: string;
@@ -164,19 +190,20 @@ export class InitEndDateComponent implements OnInit {
   endMonthSelected: string = "";
   endYearSelected: number | undefined;
   inCourse: boolean = false;
+  isMobileSubscription!: Subscription;
   isMobile: boolean = true;
   
   constructor(private breakpointObserver: BreakpointObserver) { }
   
   ngOnInit() {
-    this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+    this.isMobileSubscription = this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
     .subscribe(result => {
       this.isMobile = result.matches;
     });
     this.loadYears();
   }
   
-  private loadYears(): void {
+  loadYears(): void {
     const date: Date = new Date;
     const actualYear: number = date.getFullYear();
     const limitYear: number = 1950;
@@ -185,11 +212,24 @@ export class InitEndDateComponent implements OnInit {
     }
   }
 
+  clearInitDate(): void {
+    this.groupName.controls[this.initMControl].reset();
+    this.groupName.controls[this.initYControl].reset();
+  }
+  clearEndDate(): void {
+    this.groupName.controls[this.endMControl].reset();
+    this.groupName.controls[this.endYControl].reset();
+  }
+  
   alternateInCourse(): void {
     if (this.inCourse) {
       this.groupName.controls['inCourse'].setValue('true');
     } else {
       this.groupName.controls['inCourse'].setValue('false');
     }
+  }
+
+  ngOnDestroy(): void {
+    this.isMobileSubscription.unsubscribe();
   }
 }
