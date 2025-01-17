@@ -75,8 +75,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                         type="file"
                         #fileInput
                         (change)="onFileSelected($event)"
-                        formControlName="picture"
-                        accept="image/*">
+                        accept=".jpg, .jpeg, .png">
                     </div>
                 </div>
                 <div class="accordion-container">
@@ -86,6 +85,12 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                                 Agregar más información
                             </mat-expansion-panel-header>
                             <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
+                                <div class="warn-message">
+                                    <p>
+                                        <strong>Recuerda:</strong>
+                                        Los siguientes datos son personales. No deberías compartirlos en tu currículum en ningún caso, a menos que sean explícitamente solicitados por tu empleador.
+                                    </p>
+                                </div>
                                 <div class="input">
                                     <text-line
                                         [groupName]="personalInfoGroup"
@@ -223,6 +228,18 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 display: grid;
                 grid-template-columns: 1fr 1fr;
             }
+            .warn-message {
+                background-color: #dfdfdf;
+                color: var(--primary);
+                width: 80%;
+                padding: 3%;
+                grid-column: 1 / 3;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 3%;
+                border-radius: 5px;
+                box-shadow: 2px 2px 5px -5px rgba(0, 0, 0, 0.5);
+            }
             .card-button-container {
                 grid-column: 1 / 3;
                 display: flex;
@@ -312,7 +329,11 @@ export class PersonalInfoComponent implements OnInit {
     }
 
     onFileSelected(event: any) {
-        this.pictureService.updatePicture(event.target.files[0]);
+        const file = event.target.files[0];
+        if (file) {
+            this.personalInfoGroup.get('picture')?.setValue(file);
+            this.pictureService.updatePicture(file);
+        }
     }
 
     clearFileSelected(): void {

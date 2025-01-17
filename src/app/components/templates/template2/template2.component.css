@@ -22,7 +22,7 @@
 }
 .d-inline-blc {
     display: inline-block;
-    text-align: center;
+    /* text-align: center; */
     line-height: 1;
 }
 .less-line-height {

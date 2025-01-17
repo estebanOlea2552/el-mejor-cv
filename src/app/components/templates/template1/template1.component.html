@@ -241,7 +241,7 @@
               {{ skill.skill }}
             </div>
             <div
-            *ngIf="hasValues(cvPreview.skills[i], ['level'])"
+            *ngIf="hasValues(cvPreview.skills[i], ['skill'])"
             class="row_dots">
             </div>
             <div class="row_right-item font-size-small bold italic">
@@ -273,7 +273,7 @@
             </div>
             <div
             class="row_dots"
-            *ngIf="hasValues(cvPreview.languages[i], ['level'])">
+            *ngIf="hasValues(cvPreview.languages[i], ['language'])">
             </div>
             <div class="row_right-item font-size-small bold italic">
               {{ lang.level }}
