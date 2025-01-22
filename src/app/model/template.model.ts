@@ -1,5 +1,6 @@
 export interface Template {
     id: string,
     templateName: string,
-    component: any
+    component: any,
+    miniaturesReg: string[]
 }

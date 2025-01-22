@@ -5,20 +5,31 @@
   <div
   [ngClass]="{'templates-container-mobile': isMobile, 'templates-container-desktop': !isMobile}">
     <div
-    *ngFor="let template of templatesList, let i = index"
-    
+    *ngFor="let template of templatesList; let i = index"
     class="template-card">
-      <mat-card class="card" (click)="selectTemplate(i)">
+      <mat-card class="card" >
         <mat-card-header class="card-header">
           <mat-card-title class="card-title">
             {{ template.templateName }}
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content class="card-content">
+        <mat-card-content
+        class="card-content" (click)="selectTemplate(i)">
+          <img
+          class="miniature"
+          [src]="'../../../assets/images/' + miniatures[i]" alt="">
           <div class="template-is-selected" *ngIf="i === selectedTemplateIndex">
             <button mat-flat-button routerLink="/editor">Usar esta plantilla</button>
           </div>
         </mat-card-content>
+        <div class="arrows-container">
+          <button (click)="prevMiniature(i)">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <button (click)="nextMiniature(i)">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
       </mat-card>
     </div>
   </div>

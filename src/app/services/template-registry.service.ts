@@ -13,14 +13,39 @@ import { DefaultPreviewScreenComponent } from '../components/templates/default-p
 })
 export class TemplateRegistryService {
   
-  private defaultScreen: Template = { id: 't00', templateName: 'default', component: DefaultPreviewScreenComponent };
+  private defaultScreen: Template = { id: 't00', templateName: 'default', component: DefaultPreviewScreenComponent, miniaturesReg: [''] };
   
   private templates: Template[] = [
-    { id: 't01', templateName: 'Clean', component: Template1Component },
-    { id: 't02', templateName: 'Minimalist', component: Template2Component },
-    { id: 't03', templateName: 'Classic', component: Template3Component },
-    { id: 't04', templateName: 'Modern', component: Template4Component },
-    { id: 't05', templateName: 'Creative', component: Template5Component }
+    { 
+      id: 't01', 
+      templateName: 'Clean', 
+      component: Template1Component, 
+      miniaturesReg: ['t01_a.svg']
+    },
+    { 
+      id: 't02', 
+      templateName: 'Minimalist', 
+      component: Template2Component, 
+      miniaturesReg: ['t02_a.svg']
+    },
+    { 
+      id: 't03', 
+      templateName: 'Classic', 
+      component: Template3Component, 
+      miniaturesReg: ['t03_a.svg', 't03_b.svg', 't03_c.svg', 't03_d.svg', 't03_e.svg']
+    },
+    { 
+      id: 't04', 
+      templateName: 'Modern', 
+      component: Template4Component, 
+      miniaturesReg: ['t04_a.svg', 't04_b.svg', 't04_c.svg', 't04_d.svg', 't04_e.svg']
+    },
+    { 
+      id: 't05', 
+      templateName: 'Creative', 
+      component: Template5Component, 
+      miniaturesReg: ['t05_a.svg', 't05_b.svg', 't05_c.svg', 't05_d.svg', 't05_e.svg']
+    }
   ]
 
   public getTemplates(): Template[] {

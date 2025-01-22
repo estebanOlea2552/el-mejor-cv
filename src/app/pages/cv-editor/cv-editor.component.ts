@@ -44,7 +44,7 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
   protected previewComponentRef: ComponentRef<PreviewComponent> | null = null;
 
   // Stores the selected card from the sidenav
-  protected selectedCard: string = "";
+  protected selectedCard: string = "pinfo";
 
   constructor(
     private breakPointObserver: BreakpointObserver,

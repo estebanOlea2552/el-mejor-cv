@@ -16,32 +16,68 @@
     <mat-sidenav-container class="sidenav-container">
         <mat-sidenav #sidenav mode="over" opened="false" class="sidenav">
             <mat-nav-list [ngClass]="{'nav-list-mobile': isMobile, 'nav-list-desktop': !isMobile}">
-                <mat-list-item (click)="changeSelectedCard('pinfo')">
-                    Información Personal
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('pinfo')" [ngClass]="{'selected': selectedCard === 'pinfo'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'pinfo'}">
+                        Información Personal
+                    </span>
                 </mat-list-item>
-                <mat-list-item (click)="changeSelectedCard('desc')">
-                    Resúmen Profesional
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('desc')" [ngClass]="{'selected': selectedCard === 'desc'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'desc'}">
+                        Resúmen Profesional
+                    </span>
                 </mat-list-item>
-                <mat-list-item (click)="changeSelectedCard('workexp')">
-                    Experiencia Laboral
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('workexp')" [ngClass]="{'selected': selectedCard === 'workexp'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'workexp'}">
+                        Experiencia Laboral
+                    </span>
                 </mat-list-item>
-                <mat-list-item (click)="changeSelectedCard('ed')">
-                    Educación
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('ed')" [ngClass]="{'selected': selectedCard === 'ed'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'ed'}">
+                        Educación
+                    </span>
                 </mat-list-item>
-                <mat-list-item (click)="changeSelectedCard('cert')">
-                    Certificaciones
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('cert')" [ngClass]="{'selected': selectedCard === 'cert'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'cert'}">
+                        Certificaciones
+                    </span>
                 </mat-list-item>
-                <mat-list-item (click)="changeSelectedCard('skills')">
-                    Habilidades
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('skills')" [ngClass]="{'selected': selectedCard === 'skills'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'skills'}">
+                        Habilidades
+                    </span>
                 </mat-list-item>
-                <mat-list-item (click)="changeSelectedCard('lang')">
-                    Idiomas
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('lang')" [ngClass]="{'selected': selectedCard === 'lang'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'lang'}">
+                        Idiomas
+                    </span>
                 </mat-list-item>
-                <mat-list-item (click)="changeSelectedCard('ref')">
-                    Referencias
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('ref')" [ngClass]="{'selected': selectedCard === 'ref'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'ref'}">
+                        Referencias
+                    </span>
                 </mat-list-item>
-                <mat-list-item (click)="changeSelectedCard('links')">
-                    Links
+                <mat-list-item
+                class="list-item"
+                (click)="changeSelectedCard('links')" [ngClass]="{'selected': selectedCard === 'links'}">
+                    <span [ngClass]="{'text-selected': selectedCard === 'links'}">
+                        Links
+                    </span>
                 </mat-list-item>
             </mat-nav-list>
         </mat-sidenav>

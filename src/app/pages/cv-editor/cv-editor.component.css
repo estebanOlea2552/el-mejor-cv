@@ -1,3 +1,4 @@
+
 .general-container {
     box-sizing: border-box;
     width: 100%;
@@ -20,7 +21,6 @@
     display: flex;
     flex-direction: column;
     padding-top: 4.5em;
-    /* padding-top: 8em; */
 }
 
 .nav-list-mobile {
@@ -29,8 +29,12 @@
     display: flex;
     flex-direction: column;
     padding-top: 4.5em;
-    /* padding-top: 7.5em;  */ 
     border: 2px solid grey;
+}
+
+/* mat-list-item element */
+.selected {
+    background-color: #dfdfdf;
 }
 
 .sidenav-content {
