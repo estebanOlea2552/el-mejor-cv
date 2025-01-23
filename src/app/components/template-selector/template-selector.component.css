@@ -79,7 +79,6 @@ h2 {
 .card {
     width: 250px;
     height: 400px;
-    /* height: auto; */
     display: grid;
     grid-template-rows: auto 1fr;
     justify-items: center;

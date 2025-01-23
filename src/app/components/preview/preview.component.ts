@@ -86,7 +86,7 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       );
 
     // Defines a default selected template
-    this.updateSelectedTemplate('t00');
+    this.updateSelectedTemplate('t00'); // Default template
 
     // Get selected Template from the Store
     this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {

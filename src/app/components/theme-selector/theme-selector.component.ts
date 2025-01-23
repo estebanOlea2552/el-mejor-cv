@@ -19,7 +19,12 @@ const TEMPLATE_THEMES: Record<string, Theme[]> = {
     { key: 'theme01', themeName: 'black-n-white', colors: ['#000000', '#ffffff'] },
   ],
   t02: [
-    { key: 'theme01', themeName: 'black-n-white', colors: ['#000000', '#efefef'] },
+    { key: 'theme01', themeName: 'ice-blue', colors: ['#425270', '#96BFE9'] },
+    { key: 'theme02', themeName: 'light-salmon', colors: ['#5D2A42', '#FFDCCC'] },
+    { key: 'theme03', themeName: 'concrete-blue', colors: ['#364156', '#C2CFD6'] },
+    { key: 'theme04', themeName: 'light-lime-green', colors: ['#366360', '#C6F2C0'] },
+    { key: 'theme05', themeName: 'pastel-purple', colors: ['#363663', '#BFAFF4'] },
+    { key: 'theme06', themeName: 'grey-n-white', colors: ['#000000', '#efefef'] },
   ],
   t03: [
     { key: 'theme01', themeName: 'dulce-de-leche', colors: ['#C17767', '#D3B99F'] },
@@ -38,12 +43,12 @@ const TEMPLATE_THEMES: Record<string, Theme[]> = {
     { key: 'theme06', themeName: 'grey-scale', colors: ['#505050', '#dfdfdf'] },
   ],
   t05: [
-    { key: 'theme01', themeName: 'BnW', colors: ['#585858', '#c9c9c9'] },
-    { key: 'theme02', themeName: 'BnW', colors: ['#66251F', '#ffc4bb'] },
-    { key: 'theme03', themeName: 'BnW', colors: ['#0F4D4D', '#93e4d2'] },
-    { key: 'theme04', themeName: 'BnW', colors: ['#0F2A4D', '#abc5f6'] },
-    { key: 'theme05', themeName: 'BnW', colors: ['#4D240F', '#f3ea92'] },
-    { key: 'theme06', themeName: 'BnW', colors: ['#aac4f5', '#ffc4bb'] },
+    { key: 'theme01', themeName: 'red-clouds', colors: ['#66251F', '#ffc4bb'] },
+    { key: 'theme02', themeName: 'green-clouds', colors: ['#0F4D4D', '#93e4d2'] },
+    { key: 'theme03', themeName: 'blue-clouds', colors: ['#0F2A4D', '#abc5f6'] },
+    { key: 'theme04', themeName: 'yellow-clouds', colors: ['#4D240F', '#f3ea92'] },
+    { key: 'theme05', themeName: 'rainbow-clouds', colors: ['#aac4f5', '#ffc4bb'] },
+    { key: 'theme06', themeName: 'grey-clouds', colors: ['#585858', '#c9c9c9'] },
   ]
 }
 

@@ -6,6 +6,11 @@ import { ExportService } from 'src/app/services/export.service';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { notifyOverflow } from 'src/app/state/actions/selected-template.action';
+import { Subscription } from 'rxjs';
+import {
+  template2_theme01, template2_theme02, template2_theme03, template2_theme04, template2_theme05, template2_theme06
+} from './template2-themes';
+import { themeSelector } from 'src/app/state/selectors/selected-template.selectors';
 
 @Component({
   selector: 'app-template2',
@@ -21,6 +26,16 @@ export class Template2Component implements OnInit, OnDestroy {
   @Input() cvPreview: cvData = cvDataInit;
   resizeObserver!: ResizeObserver;
   overflowDetected: boolean = false;
+  templateThemeSubscription!: Subscription;
+  themes: Record<string, string> = {
+    'theme01': template2_theme01,
+    'theme02': template2_theme02,
+    'theme03': template2_theme03,
+    'theme04': template2_theme04,
+    'theme05': template2_theme05,
+    'theme06': template2_theme06,
+  }
+  style: HTMLStyleElement = document.createElement('style');
 
   constructor(private exportCv: ExportService, private store: Store<AppState>) { }
 
@@ -31,6 +46,12 @@ export class Template2Component implements OnInit, OnDestroy {
         this.alertOverflow(entry);
       }
     })
+
+    this.templateThemeSubscription = this.store.select(themeSelector).subscribe(theme => {
+      console.log('Theme selected: ', theme);
+      this.changeTheme(theme);
+    })
+    
     this.resizeObserver.observe(this.leftContainer.nativeElement as HTMLElement);
     this.resizeObserver.observe(this.rightContainer.nativeElement as HTMLElement);
   }
@@ -52,7 +73,18 @@ export class Template2Component implements OnInit, OnDestroy {
     }
   }
 
+  changeTheme(theme: string) {
+    this.style.textContent = this.themes[theme] || this.themes['theme01'];
+    if (!document.head.contains(this.style)) {
+      document.head.appendChild(this.style);
+    }
+  }
+
   ngOnDestroy(): void {
+    this.style.remove();
+    if (this.templateThemeSubscription) {
+      this.templateThemeSubscription.unsubscribe();
+    }
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }

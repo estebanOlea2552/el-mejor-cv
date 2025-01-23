@@ -1,28 +1,30 @@
 /* AUXILIARY CLASSES */
-.font-size-large {
-    font-size: 10pt;
-}
-.font-size-medium {
-    font-size: 6pt;
-}
-.font-size-small {
-    font-size: 4pt;
-}
-.bold {
-    font-weight: bold;
-}
-.uppercase {
-    text-transform: uppercase;
-}
 .border {
     border: 1px solid black;
 }
+
+/* FONT CLASSES */
+    .font-size-large {
+        font-size: 10pt;
+    }
+    .font-size-medium {
+        font-size: 6pt;
+    }
+    .font-size-small {
+        font-size: 4pt;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    .uppercase {
+        text-transform: uppercase;
+    }
+
 .bx {
     box-sizing: border-box;
 }
 .d-inline-blc {
     display: inline-block;
-    /* text-align: center; */
     line-height: 1;
 }
 .less-line-height {
@@ -41,7 +43,6 @@
     margin-bottom: 3pt;
     line-height: 1;
     padding-bottom: 1pt;
-    border-bottom: 1.5pt solid black;
 }
 .row {
     height: auto;
@@ -95,7 +96,6 @@
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    border: 1pt solid black;
 }
 
 .name-lastname, .job-position {
@@ -112,7 +112,6 @@
     padding-left: 20pt;
     padding-right: 5pt;
     grid-column: 1 / 2;
-    background-color: #efefef;
 }
 
 .details_content {

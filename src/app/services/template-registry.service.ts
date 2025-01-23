@@ -26,7 +26,7 @@ export class TemplateRegistryService {
       id: 't02', 
       templateName: 'Minimalist', 
       component: Template2Component, 
-      miniaturesReg: ['t02_a.svg']
+      miniaturesReg: ['t02_a.svg', 't02_b.svg', 't02_c.svg', 't02_d.svg', 't02_e.svg']
     },
     { 
       id: 't03', 

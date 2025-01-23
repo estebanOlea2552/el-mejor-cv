@@ -62,6 +62,7 @@ export class Template3Component implements OnInit, OnDestroy {
         this.alertOverflow(entry);
       }
     })
+    
     this.resizeObserver.observe(this.leftContainer.nativeElement as HTMLElement);
     this.resizeObserver.observe(this.rightContainer.nativeElement as HTMLElement);
   }
