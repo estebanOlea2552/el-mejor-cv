@@ -15,7 +15,7 @@ import { themeSelector } from 'src/app/state/selectors/selected-template.selecto
 @Component({
   selector: 'app-template2',
   templateUrl: './template2.component.html',
-  styleUrls: ['./template2.component.css'],
+  styleUrls: ['./template2.component.scss'],
   standalone: true,
   imports: [CommonModule]
 })

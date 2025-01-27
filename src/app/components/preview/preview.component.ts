@@ -33,7 +33,7 @@ import { ExportButtonComponent } from '../export-button/export-button.component'
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.css'],
+  styleUrls: ['./preview.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

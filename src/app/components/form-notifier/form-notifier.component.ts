@@ -11,7 +11,7 @@ import { overflowNotifySelector } from 'src/app/state/selectors/selected-templat
 @Component({
   selector: 'form-notifier',
   templateUrl: './form-notifier.component.html',
-  styleUrls: ['./form-notifier.component.css'],
+  styleUrls: ['./form-notifier.component.scss'],
   standalone: true,
   imports: [CommonModule, MatCardModule, MatSnackBarModule],
 })

@@ -10,7 +10,7 @@ import { templateSelector } from 'src/app/state/selectors/selected-template.sele
 @Component({
   selector: 'app-template-mananger',
   templateUrl: './template-mananger.component.html',
-  styleUrls: ['./template-mananger.component.css'],
+  styleUrls: ['./template-mananger.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

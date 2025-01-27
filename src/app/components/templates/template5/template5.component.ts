@@ -22,7 +22,7 @@ import { notifyOverflow } from 'src/app/state/actions/selected-template.action';
 @Component({
   selector: 'app-template5',
   templateUrl: './template5.component.html',
-  styleUrls: ['./template5.component.css'],
+  styleUrls: ['./template5.component.scss'],
   standalone: true,
   imports: [CommonModule]
 })

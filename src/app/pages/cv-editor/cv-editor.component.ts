@@ -14,7 +14,7 @@ import { FormNotifierComponent } from 'src/app/components/form-notifier/form-not
 @Component({
   selector: 'app-cv-editor',
   templateUrl: './cv-editor.component.html',
-  styleUrls: ['./cv-editor.component.css'],
+  styleUrls: ['./cv-editor.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

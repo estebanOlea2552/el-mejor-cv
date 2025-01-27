@@ -22,7 +22,7 @@ import { LinksComponent } from './form-cards/links.component';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrls: ['./form.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

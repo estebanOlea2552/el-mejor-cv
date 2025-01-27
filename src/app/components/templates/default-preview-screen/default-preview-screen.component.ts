@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-default-preview-screen',
   templateUrl: './default-preview-screen.component.html',
-  styleUrls: ['./default-preview-screen.component.css'],
+  styleUrls: ['./default-preview-screen.component.scss'],
   standalone: true,
   imports: [RouterLink, MatButtonModule]
 })
