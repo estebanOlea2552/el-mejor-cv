@@ -157,7 +157,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 position: relative;
                 display: flex;
                 flex-direction: column;
-                justify-content: start;
+                justify-content: flex-start;
                 align-items: center;
                 overflow-x: hidden;
                 overflow-y: auto;

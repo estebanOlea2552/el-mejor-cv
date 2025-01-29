@@ -32,6 +32,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
+              "src/styles/theme.scss",
               "node_modules/jodit/es2021/jodit.min.css"
             ],
             "scripts": []
@@ -95,7 +96,8 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/styles/theme.scss"
             ],
             "scripts": []
           }

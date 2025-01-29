@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+@use '../styles/palette.scss';
+
+$my-primary: mat.define-palette(palette.$m2-primary);
+$my-secondary: mat.define-palette(palette.$m2-secondary);
+/* $my-accent: mat.define-palette(palette.$m2-accent, A200, A100, A400); */ // A200, A100, A400 are used for states like "hover", "active", etc.
+
+// The "warn" palette is optional and defaults to red if not specified.
+$my-warn: mat.define-palette(palette.$m2-error);
+
+$primary-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-secondary,
+      warn: $my-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+/* $my-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+  )
+); */
+
+@include mat.core();
+
+@include mat.all-component-themes($primary-theme);
+
+/* .dark {
+  @include mat.all-component-colors($my-dark-theme);
+} */

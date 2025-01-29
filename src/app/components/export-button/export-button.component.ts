@@ -18,13 +18,13 @@ import { ExportService } from 'src/app/services/export.service';
   `,
   styles: [`
   .generate-button {
-    background-color: #505050;
+    /* background-color: #505050; */
   }
   .generate-button-mobile {
     transform: scale(.7);
   }
   .download {
-      color: #f1f1f1;
+      /* color: #f1f1f1; */
   }
   `],
   standalone: true,
