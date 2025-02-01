@@ -1,83 +1,89 @@
 <div class="general-container">
     <mat-toolbar [ngClass]="{'toolbar-mobile': isMobile, 'toolbar-desktop': !isMobile}">
-        <button mat-icon-button (click)="sidenav.toggle()">
+        <button class="toolbar-button" mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <!-- <button mat-flat-button (click)="export()">Export</button> -->
         <div class="notifier-container">
             <form-notifier></form-notifier>
         </div>
-        <div class="buttons-container">
-            <button mat-flat-button (click)="alternateViews()">
-                Preview
-            </button>
-        </div>
+        <button class="preview-button" mat-flat-button (click)="alternateViews()">
+            Preview
+        </button>
     </mat-toolbar>
     <mat-sidenav-container class="sidenav-container">
         <mat-sidenav #sidenav mode="over" opened="false" class="sidenav">
-            <mat-nav-list [ngClass]="{'nav-list-mobile': isMobile, 'nav-list-desktop': !isMobile}">
+            <mat-nav-list class="nav-list" [ngClass]="{'nav-list-mobile': isMobile, 'nav-list-desktop': !isMobile}">
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('pinfo')" [ngClass]="{'selected': selectedCard === 'pinfo'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'pinfo'}">
-                        Información Personal
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">person</mat-icon>
+                        <span>Información Personal</span>
+                    </div>
                 </mat-list-item>
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('desc')" [ngClass]="{'selected': selectedCard === 'desc'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'desc'}">
-                        Resúmen Profesional
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">description</mat-icon>
+                        <span>Resúmen Profesional</span>
+                    </div>
                 </mat-list-item>
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('workexp')" [ngClass]="{'selected': selectedCard === 'workexp'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'workexp'}">
-                        Experiencia Laboral
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">work</mat-icon>
+                        <span>Experiencia Laboral</span>
+                    </div>
                 </mat-list-item>
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('ed')" [ngClass]="{'selected': selectedCard === 'ed'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'ed'}">
-                        Educación
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">school</mat-icon>
+                        <span>Educación</span>
+                    </div>
                 </mat-list-item>
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('cert')" [ngClass]="{'selected': selectedCard === 'cert'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'cert'}">
-                        Certificaciones
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">workspace_premium</mat-icon>
+                        <span>Certificaciones</span>
+                    </div>
                 </mat-list-item>
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('skills')" [ngClass]="{'selected': selectedCard === 'skills'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'skills'}">
-                        Habilidades
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">star</mat-icon>
+                        <span>Habilidades</span>
+                    </div>
                 </mat-list-item>
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('lang')" [ngClass]="{'selected': selectedCard === 'lang'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'lang'}">
-                        Idiomas
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">translate</mat-icon>
+                        <span>Idiomas</span>
+                    </div>
                 </mat-list-item>
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('ref')" [ngClass]="{'selected': selectedCard === 'ref'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'ref'}">
-                        Referencias
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">groups</mat-icon>
+                        <span>Referencias</span>
+                    </div>
                 </mat-list-item>
                 <mat-list-item
                 class="list-item"
                 (click)="changeSelectedCard('links')" [ngClass]="{'selected': selectedCard === 'links'}">
-                    <span [ngClass]="{'text-selected': selectedCard === 'links'}">
-                        Links
-                    </span>
+                    <div class="list-item-content">
+                        <mat-icon class="item-icon">link</mat-icon>
+                        <span>Links</span>
+                    </div>
                 </mat-list-item>
             </mat-nav-list>
         </mat-sidenav>

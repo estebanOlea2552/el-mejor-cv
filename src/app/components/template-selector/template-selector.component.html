@@ -1,6 +1,6 @@
 <div class="general-container">
   <div [ngClass]="{'title-mobile': isMobile, 'title-desktop': !isMobile}">
-    <h2>Elige la plantilla que mejor se adapte a tu estilo!</h2>
+    <h2 class="title">Elige una plantilla para <span class="title-color">comenzar!</span></h2>
   </div>
   <div
   [ngClass]="{'templates-container-mobile': isMobile, 'templates-container-desktop': !isMobile}">
@@ -19,7 +19,7 @@
           class="miniature"
           [src]="'../../../assets/images/' + miniatures[i]" alt="">
           <div class="template-is-selected" *ngIf="i === selectedTemplateIndex">
-            <button mat-flat-button routerLink="/editor">Usar esta plantilla</button>
+            <button class="select-button" mat-flat-button routerLink="/editor">Usar esta plantilla</button>
           </div>
         </mat-card-content>
         <div class="arrows-container">

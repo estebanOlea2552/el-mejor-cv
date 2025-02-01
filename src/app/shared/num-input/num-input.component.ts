@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
         width: 100%;
         height: 100%;
         margin: 0;
+        color: var(--black);
       }
     `],
   standalone: true,

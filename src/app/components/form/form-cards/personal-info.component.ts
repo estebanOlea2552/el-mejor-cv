@@ -23,6 +23,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
     template: `
         <div class="container">
             <mat-card class="header">
+                <mat-icon class="title-icon">person</mat-icon>
                 <h2>Información Personal</h2>
             </mat-card>
             <mat-card class="input-container" [ngClass]="{'input-container-desktop': !isMobile}">
@@ -59,7 +60,11 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                     class="photo-place"
                     [formGroup]="personalInfoGroup">
                         <div class="photo_button-message-container">
-                            <button [disabled]="disableFileInput" class="photo" mat-flat-button (click)="fileInput.click()">
+                            <button
+                            [disabled]="disableFileInput"
+                            [ngClass]="{'photo-disabled': disableFileInput}"
+                            class="photo" mat-flat-button
+                            (click)="fileInput.click()">
                                 <mat-icon>image</mat-icon>
                                 Subir una foto
                             </button>
@@ -67,8 +72,11 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                                 Esta plantilla no soporta foto de perfil
                             </span>
                         </div>
-                        <button *ngIf="!disableFileInput" mat-icon-button class="photo-clear" (click)="clearFileSelected()">
-                            <mat-icon>clear</mat-icon>
+                        <button
+                        *ngIf="!disableFileInput"
+                        mat-icon-button class="photo-clear"
+                        (click)="clearFileSelected()">
+                            <mat-icon>close</mat-icon>
                         </button>
                         <input
                         hidden
@@ -81,7 +89,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 <div class="accordion-container">
                     <mat-accordion class="accordion">
                         <mat-expansion-panel>
-                            <mat-expansion-panel-header>
+                            <mat-expansion-panel-header class="accordion-header">
                                 Agregar más información
                             </mat-expansion-panel-header>
                             <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
@@ -140,7 +148,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
             <div
             class="prev-next-container"
             [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
-                <button mat-flat-button class="next" (click)="changeSelectedCard('desc')">
+                <button mat-raised-button class="next" (click)="changeSelectedCard('desc')">
                     Siguiente
                     <mat-icon>chevron_right</mat-icon>
                 </button>
@@ -166,10 +174,20 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 width: 100%;
                 margin-top: 2rem;
                 margin-bottom: 2rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--cornflower-blue);
+            }
+            .title-icon {
+                color: var(--white);
             }
             h2 {
-                margin-left: 5%;
-                margin-top: 2%;
+                font-weight: 600;
+                color: var(--white);
+                margin-left: 1rem;
+                margin-top: 1rem;
             }
             .input-container {
                 box-sizing: border-box;
@@ -203,7 +221,17 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 box-sizing: border-box;
                 height: 4em;
                 font-size: 1rem;
-                border: 1px solid rgba(0, 0, 0, 0.2);
+                color: var(--white);
+                background-color: var(--cornflower-blue);
+            }
+            .photo-disabled {
+                opacity: .8;
+            }
+            .photo-clear {
+                margin-left: 1rem;
+                transform: scale(0.8);
+                background-color: var(--white);
+                color: var(--light-red);
             }
             .photo-message {
                 font-size: .8rem;
@@ -220,6 +248,9 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 width: 100%;
                 margin-top: 3%;
             }
+            .accordion-header {
+                color: var(--black);
+            }
             .accordion-content {
                 box-sizing: border-box;
                 width: 100%;
@@ -229,7 +260,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 grid-template-columns: 1fr 1fr;
             }
             .warn-message {
-                background-color: #dfdfdf;
+                background-color: var(--uranian-blue);
                 color: var(--primary);
                 width: 80%;
                 padding: 3%;
@@ -248,9 +279,14 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 align-items: center;
             }
             .card-button-container > button {
-                width: 70%;
-                margin: 1%;
+                width: 50%;
+                margin: 1rem;
+                background-color: var(--white);
                 transform: scale(0.9);
+                color: var(--medium-grey);
+            }
+            .card-button-container > button:hover {
+                color: var(--black);
             }
             .prev-next-container-mobile {
                 width: 80%;
@@ -264,11 +300,11 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 justify-content: space-around;
                 margin-top: 4rem;
             }
-            .prev {
-                margin-left: 3%;
-            }
             .next {
-                margin-right: 3%;
+                margin: 0;
+                padding-right: 5px;
+                background-color: var(--cornflower-blue);
+                color: var(--white);
             }
             .next mat-icon {
                 order: 2;

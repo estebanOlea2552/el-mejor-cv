@@ -15,6 +15,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
     template: `
         <div class="container" [formGroup]="cvFormGroup">
             <mat-card class="header">
+                <mat-icon class="title-icon">link</mat-icon>
                 <h2>Links</h2>
             </mat-card>
             <div class="input-group-container" formArrayName="links">
@@ -46,7 +47,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 </mat-card>
             </div>
             <div class="button-container">
-                <button mat-flat-button (click)="addLinks()">
+                <button class="add-button" mat-flat-button (click)="addLinks()">
                     <mat-icon>add</mat-icon>
                     Añadir link
                 </button>
@@ -54,7 +55,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             <div
             class="prev-next-container"
             [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
-                <button mat-flat-button class="prev" (click)="changeSelectedCard('ref')">
+                <button mat-raised-button class="prev" (click)="changeSelectedCard('ref')">
                     Anterior
                     <mat-icon>chevron_left</mat-icon>
                 </button>
@@ -79,10 +80,20 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                 width: 100%;
                 margin-top: 2rem;
                 margin-bottom: 2rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--cornflower-blue);
+            }
+            .title-icon {
+                color: var(--white);
             }
             h2 {
-                margin-left: 5%;
-                margin-top: 2%;
+                font-weight: 600;
+                color: var(--white);
+                margin-left: 1rem;
+                margin-top: 1rem;
             }
             .input-group-container {
                 width: 100%;
@@ -125,8 +136,23 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .card-button-container-desktop > button {
                 width: 100%;
-                margin: 1%;
+                margin: 1rem;
                 transform: scale(0.9);
+            }
+            .card-button {
+                background-color: var(--white);
+                color: var(--medium-grey);
+            }
+            .card-button:hover {
+                color: var(--black);
+            }
+            .add-button {
+                background-color: var(--cornflower-blue);
+                color: var(--white);
+                transition: transform 0.1s ease-in-out;
+            }
+            .add-button:hover {
+                transform: scale(1.02);
             }
             .prev-next-container-mobile {
                 width: 80%;
@@ -142,6 +168,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             }
             .prev {
                 margin-left: 3%;
+                background-color: var(--cornflower-blue);
+                color: var(--white);
             }
         `],
     standalone: true,

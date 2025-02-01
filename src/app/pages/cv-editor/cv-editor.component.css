@@ -1,8 +1,36 @@
-
 .general-container {
     box-sizing: border-box;
     width: 100%;
     height: 100%;
+}
+
+.toolbar-desktop, .toolbar-mobile {
+    height: 3em;
+    background-color: var(--cornflower-blue);
+    
+    .toolbar-button {
+        color: var(--white);
+    }
+}
+
+.toolbar-desktop {
+    width: 50%; /* This style ensures that the toolbar does not cause overflow in the rest of the content. */
+    position: absolute; 
+    top: 0;
+    left: 0;
+    z-index: 2;
+    
+    .preview-button {
+        visibility: hidden;
+    }
+}
+
+.toolbar-mobile {
+    /* width: 100%; */ /* This style ensures that the toolbar does not cause overflow in the rest of the content. */
+    position: absolute; 
+    top: 0;
+    left: 0;
+    z-index: 2;
 }
 
 .sidenav-container {
@@ -11,11 +39,11 @@
 }
 
 .sidenav {
-    width: auto;
-    height: 100%;
+    height: 100%;   
+    background-color: var(--cornflower-blue);
 }
 
-.nav-list-desktop {
+.nav-list {
     box-sizing: border-box;
     height: 100%;
     display: flex;
@@ -23,19 +51,33 @@
     padding-top: 4.5em;
 }
 
-.nav-list-mobile {
-    box-sizing: border-box;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 4.5em;
-    border: 2px solid grey;
+.mdc-list-item {
+    padding: 0;
 }
 
-/* mat-list-item element */
-/* .selected {
-    background-color: #dfdfdf;
-} */
+.list-item:hover {
+    background-color: var(--brandeis-blue);
+}
+
+.list-item-content {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
+}
+
+.list-item span {
+    color: var(--white);
+    font-weight: 500;
+    line-height: 2;
+}
+
+
+.item-icon {
+    color: var(--white);
+    margin-right: 1rem;
+}
 
 .sidenav-content {
     width: 100%;
@@ -50,38 +92,8 @@
     overflow: hidden;
 }
 
-.toolbar-desktop, .toolbar-mobile {
-    height: 3em;
-}
-.toolbar-desktop {
-    /* This style ensures that the toolbar does not cause overflow in the rest of the content. */
-    width: 50%;
-    position: absolute; 
-    top: 0;
-    left: 0;
-    z-index: 2;
-}
-
-.toolbar-desktop > .buttons-container {
-    visibility: hidden;
-}
-
-.toolbar-mobile {
-    /* This style ensures that the toolbar does not cause overflow in the rest of the content. */
-    width: 100%;
-    position: absolute; 
-    top: 0;
-    left: 0;
-    z-index: 2;
-}
-
 .buttons-container, .notifier-container {
     margin-left: auto;
     display: flex;
     justify-content: space-evenly;
-}
-
-button {
-    width: 50%;
-    margin: 1%;
 }

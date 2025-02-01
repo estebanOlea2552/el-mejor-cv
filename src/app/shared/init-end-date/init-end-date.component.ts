@@ -44,7 +44,7 @@ import { Subscription } from 'rxjs';
         </div>
         <div>
           <button class="clear-button" mat-icon-button (click)="clearInitDate()">
-            <mat-icon>clear</mat-icon>
+            <mat-icon>restart_alt</mat-icon>
           </button>
         </div>
       </div>
@@ -91,7 +91,7 @@ import { Subscription } from 'rxjs';
         </div>
         <div>
           <button class="clear-button" mat-icon-button (click)="clearEndDate()">
-            <mat-icon>clear</mat-icon>
+            <mat-icon>restart_alt</mat-icon>
           </button>
         </div>
       </div>
@@ -120,38 +120,50 @@ import { Subscription } from 'rxjs';
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
       }
       .ed-end-container {
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
       }
       .date-title {
-        padding: 3%;
-        color: rgba(0, 0, 0, 0.87);
+        font-size: .9rem;
+        padding: .2rem; 
+        margin-top: 1rem;
+        color: var(--black);
         font-weight: 500;
       }
       .form-field-container {
-        width: 100%;
+        width: 70%;
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        
       }
       .form-field {
-        transform: scale(0.9);
+        transform: scale(0.8);
       }
       .clear-button {
-        transform: scale(.8);
+        transform: scale(0.8);
+        margin-bottom: 1.5rem;
+        background-color: var(--white);
+        color: var(--light-red);
+        
       }
       .checkbox-container {
         width: 100%;
         text-align: center;
         align-self: start;
+        margin-bottom: 1rem;
       }
-    `],
+      .checkbox span {
+        color: var(--black);
+        line-height: 3;
+      }
+      `],
   standalone: true,
   imports: [
     CommonModule,

@@ -81,8 +81,8 @@ const TEMPLATE_THEMES: Record<string, Theme[]> = {
       flex-direction: row;
     }
     .theme-button {
-      width: 2rem;
-      height: 2rem;
+      width: 2.5rem;
+      height: 2.5rem;
       box-sizing: border-box;
       margin: auto;
       border-radius: 50%;
@@ -90,6 +90,7 @@ const TEMPLATE_THEMES: Record<string, Theme[]> = {
       display: flex;
       margin-top: .5rem;
       margin-bottom: .5rem;
+      border: 3px solid var(--white);
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
     .theme-button-mobile {

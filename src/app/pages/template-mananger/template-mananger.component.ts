@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { TemplateSelectorComponent } from 'src/app/components/template-selector/template-selector.component';
+import { MainHeaderComponent } from 'src/app/shared/main-header/main-header.component';
 import { templateSelector } from 'src/app/state/selectors/selected-template.selectors';
 
 @Component({
@@ -16,6 +17,7 @@ import { templateSelector } from 'src/app/state/selectors/selected-template.sele
     CommonModule,
     RouterLink,
     TemplateSelectorComponent,
+    MainHeaderComponent,
     MatButtonModule
   ]
 })

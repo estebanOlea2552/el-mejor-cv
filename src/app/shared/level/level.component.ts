@@ -30,7 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
       </button>
   </mat-form-field>
   `,
-  styles: [''],
+  styles: [``],
   standalone: true,
   imports: [
     CommonModule,

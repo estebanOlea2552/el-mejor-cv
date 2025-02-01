@@ -1,18 +1,22 @@
-/* AUXILIARY CLASSES */
-.border {
-    border: 1px solid black;
-}
-
 /* GENERAL CLASSES */
 
 :root {
-    --primary: rgb(50, 50, 50);
-    --secondary: rgb(100, 100, 100);
-    --light-gray: rgb(190,190,190);
-    --font-white: rgb(210, 210, 210);
+    --white: #F8F8F8;
+    --white-overlay: rgba(248, 248, 248, 0.2);
+    --black: #2f2f2f;
+    --black-overlay: rgba(47, 47, 47, 0.2);
+    --medium-grey: #a0a0a0;
+
+    --cornflower-blue: #5C95FF;
+    --brandeis-blue: #1F6DFF;
+    --uranian-blue: #B9E6FF;
+    --light-red: #F87575;
+    --bittersweet: #F65151;
+    --melon: #FFA9A3;
+    --cinereous: #7E6C6C;
 }
 
-html, body { 
+html, body {
     width: 100%;
     height: 100%;
 }

@@ -65,6 +65,21 @@
     text-align: center;
     margin-top: 2%;
 }
+.welcome-message {
+    background-color: var(--apricot);
+}
+.professionals {
+    background-color: var(--electric-blue);
+}
+.free-use {
+    background-color: var(--indigo);
+}
+.templates-based {
+    background-color: var(--deep-pink);
+}
+.steps {
+    background-color: var(--melon);
+}
 .professionals > h3, .free-use > h3, .templates-based > h3, .steps > h3 {
     font-size: x-large;
     font-weight: 500;

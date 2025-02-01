@@ -15,14 +15,16 @@ import { Component, Input, OnInit } from '@angular/core';
   styles: [`
       .header {
         width: 100%;
-        height: 10%;
+        height: 9vh;
         box-sizing: border-box;
         border: 1px solid rgba(0, 0, 0, 0.2);
         display: grid;
         grid-template-columns: 15% auto;
+        background-color: var(--cornflower-blue);
       }
       .logo-container {
-        background-color: grey;
+        /* background-color: var(--light-red); */
+        color: var(--white);
         width: 100%;
         height: 100%;
         display: flex;
@@ -30,7 +32,6 @@ import { Component, Input, OnInit } from '@angular/core';
         align-items: center;
       }
       .container {
-        /* background-color: var(--light-gray); */
         width: 100%;
         height: 100%;
         display: flex;

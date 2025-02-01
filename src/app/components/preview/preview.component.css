@@ -1,12 +1,16 @@
 .preview-container {
     width: 100%;
     height: 100vh; /* By default, this element is smaller than vh */
-    background-color: var(--light-gray);
+    background-color: var(--medium-grey);
 }
 
 .preview {
     width: calc(595.28pt * 0.5); /* A4 Format */
     height: calc(841.89pt * 0.5); /* A4 Format */
+}
+
+.side-container-desktop, .side-container-mobile {
+    background-color: var(--cornflower-blue);
 }
 
 .side-container-mobile {
@@ -16,9 +20,8 @@
     position: absolute;
     bottom: 0;
     display: flex;
-    background-color: #f1f1f1;
 }
-
+    
 .side-container-desktop {
     width: 4rem;
     height: 100vh;
@@ -29,7 +32,6 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    background-color: #f1f1f1;
 }
 
 .buttons-container-mobile {
@@ -67,6 +69,7 @@
 .zoom-in, .zoom-out {
     margin-left: auto;
     margin-right: auto;
+    color: var(--white);
 }
 
 .theme-selector-container {

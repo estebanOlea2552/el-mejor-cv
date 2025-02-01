@@ -13,6 +13,7 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
     template: `
         <div class="container">
             <mat-card class="header">
+                <mat-icon class="title-icon">description</mat-icon>
                 <h2>Resúmen Profesional</h2>
             </mat-card>
             <mat-card class="input-container">              
@@ -30,11 +31,11 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
             <div
             class="prev-next-container"
             [ngClass]="{'prev-next-container-mobile': isMobile, 'prev-next-container-desktop': !isMobile}">
-                <button mat-flat-button class="prev" (click)="changeSelectedCard('pinfo')">
+                <button mat-raised-button class="prev" (click)="changeSelectedCard('pinfo')">
                     <mat-icon>chevron_left</mat-icon>
                     <span>Anterior</span>
                 </button>
-                <button mat-flat-button class="next" (click)="changeSelectedCard('workexp')">
+                <button mat-raised-button class="next" (click)="changeSelectedCard('workexp')">
                     <mat-icon>chevron_right</mat-icon>
                     <span>Siguiente</span>
                 </button>
@@ -59,10 +60,20 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 width: 100%;
                 margin-top: 2rem;
                 margin-bottom: 2rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--cornflower-blue);
+            }
+            .title-icon {
+                color: var(--white);
             }
             h2 {
-                margin-left: 5%;
-                margin-top: 2%;
+                font-weight: 600;
+                color: var(--white);
+                margin-left: 1rem;
+                margin-top: 1rem;
             }
             .input-container {
                 width: 100%;
@@ -76,9 +87,14 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
                 align-items: center;
             }
             .card-button-container > button {
-                width: 70%;
-                margin: 1%;
+                width: 50%;
+                margin: 1rem;
+                background-color: var(--white);
                 transform: scale(0.9);
+                color: var(--medium-grey);
+            }
+            .card-button-container > button:hover {
+                color: var(--black);
             }
             .prev-next-container-mobile {
                 width: 80%;
@@ -94,9 +110,14 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
             }
             .prev {
                 margin-left: 3%;
+                background-color: var(--cornflower-blue);
+                color: var(--white);
             }
             .next {
-                margin-right: 3%;
+                margin: 0;
+                padding-right: 5px;
+                background-color: var(--cornflower-blue);
+                color: var(--white);
             }
             .next mat-icon {
                 order: 2;

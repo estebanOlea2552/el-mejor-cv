@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,9 +14,6 @@ import { MatInputModule } from '@angular/material/input';
         matInput
         [formControlName]="controlName"
         class="input">
-        <!-- <mat-error class="error" *ngIf="this.groupName.get(this.controlName)?.invalid">
-          Cuidado! D:
-        </mat-error> -->
     </mat-form-field>
   `,
   styles: [`
@@ -30,9 +27,7 @@ import { MatInputModule } from '@angular/material/input';
         width: 100%;
         height: 100%;
         margin: 0;
-      }
-      .error {
-        transform: scale(1.2);
+        color: var(--black);
       }
     `],
   standalone: true,
