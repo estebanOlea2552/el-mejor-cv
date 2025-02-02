@@ -10,10 +10,16 @@
     --cornflower-blue: #5C95FF;
     --brandeis-blue: #1F6DFF;
     --uranian-blue: #B9E6FF;
+    --cornflower-blue-alpha: rgba(92, 149, 255, 0.7);
     --light-red: #F87575;
     --bittersweet: #F65151;
     --melon: #FFA9A3;
     --cinereous: #7E6C6C;
+
+    scrollbar-color: var(--cornflower-blue) var(--cornflower-blue-alpha);
+    scroll-padding: 0;
+    scroll-margin: 0;
+    scroll-behavior: smooth;
 }
 html, body {
     width: 100%;

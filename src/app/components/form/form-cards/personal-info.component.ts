@@ -225,7 +225,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 background-color: var(--cornflower-blue);
             }
             .photo-disabled {
-                opacity: .8;
+                opacity: .7;
             }
             .photo-clear {
                 margin-left: 1rem;

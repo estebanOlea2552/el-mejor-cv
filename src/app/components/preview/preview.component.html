@@ -4,7 +4,8 @@
     </div>
     <div [ngClass]="{'side-container-mobile': isMobile, 'side-container-desktop':!isMobile}">
         <div [ngClass]="{'buttons-container-mobile': isMobile, 'buttons-container-desktop':!isMobile}">
-            <div class="zoom-buttons-container" [ngClass]="{'zoom-buttons-container-mobile': isMobile, 'zoom-buttons-container-desktop':!isMobile}">
+            <div class="zoom-buttons-container"
+                [ngClass]="{'zoom-buttons-container-mobile': isMobile, 'zoom-buttons-container-desktop':!isMobile}">
                 <button (click)="zoomIn()" mat-icon-button class="zoom-in">
                     <mat-icon>zoom_in</mat-icon>
                 </button>
