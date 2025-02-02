@@ -1,7 +1,9 @@
 .preview-container {
     width: 100%;
     height: 100vh; /* By default, this element is smaller than vh */
-    background-color: var(--medium-grey);
+    /* background-color: var(--medium-grey); */
+    background-image: url('../../../assets/images/dot-pattern.svg');
+    background-repeat: repeat;
 }
 
 .preview {
@@ -64,6 +66,10 @@
 .zoom-buttons-container-mobile {
     flex-direction: row;
     align-items: center;
+}
+.zoom-buttons-container-mobile .zoom-in,
+.zoom-buttons-container-mobile .zoom-out {
+    transform: scale(.7);
 }
 
 .zoom-in, .zoom-out {

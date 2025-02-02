@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ExportService } from 'src/app/services/export.service';
 import { FormNotifierComponent } from 'src/app/components/form-notifier/form-notifier.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cv-editor',
@@ -21,6 +22,7 @@ import { FormNotifierComponent } from 'src/app/components/form-notifier/form-not
     FormComponent,
     PreviewComponent,
     FormNotifierComponent,
+    RouterLink,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,

@@ -35,7 +35,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                         <level
                         [groupName]="getFormGroup(i)"
                         controlName="level"
-                        label="Nivel">
+                        label="Nivel"
+                        [isLangLevel]="false">
                         </level>
                     </div>
                     <div

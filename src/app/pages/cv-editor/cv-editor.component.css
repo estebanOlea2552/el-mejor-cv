@@ -11,6 +11,11 @@
     .toolbar-button {
         color: var(--white);
     }
+
+    .preview-button {
+        background-color: var(--bittersweet);
+        color: var(--white);
+    }
 }
 
 .toolbar-desktop {
@@ -57,6 +62,10 @@
 
 .list-item:hover {
     background-color: var(--brandeis-blue);
+}
+
+.back-item {
+    margin-top: auto;
 }
 
 .list-item-content {
