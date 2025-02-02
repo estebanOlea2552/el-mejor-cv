@@ -122,7 +122,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
                 box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
-                justify-content: start;
+                justify-content: flex-start;
                 align-items: center;
                 margin: 0;
                 padding: 10%;
