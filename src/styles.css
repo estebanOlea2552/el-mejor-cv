@@ -5,6 +5,7 @@
     --white-overlay: rgba(248, 248, 248, 0.2);
     --black: #2f2f2f;
     --black-overlay: rgba(47, 47, 47, 0.2);
+    --grey-alpha: rgba(0, 0, 0, 0.6);
     --medium-grey: #a0a0a0;
 
     --cornflower-blue: #5C95FF;
@@ -16,7 +17,6 @@
     --melon: #FFA9A3;
     --cinereous: #7E6C6C;
 
-    scrollbar-color: var(--cornflower-blue) var(--cornflower-blue-alpha);
     scroll-padding: 0;
     scroll-margin: 0;
     scroll-behavior: smooth;

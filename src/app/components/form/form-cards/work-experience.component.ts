@@ -53,7 +53,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
                     </div>
                     <mat-accordion class="accordion-container">
                         <mat-expansion-panel>
-                            <mat-expansion-panel-header>
+                            <mat-expansion-panel-header class="accordion-header">
                                 Agregar más información
                             </mat-expansion-panel-header>
                             <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
@@ -181,6 +181,9 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             width: 100%;
             margin-top: 3%;
         }
+        .accordion-header {
+            color: var(--grey-alpha)
+        }
         .accordion-content {
             box-sizing: border-box;
             width: 100%;
@@ -229,7 +232,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         .add-button {
             background-color: var(--cornflower-blue);
             color: var(--white);
-            transition: transform 0.1s ease-in-out;
+            transition: transform 0.1s ease;
         }
         .add-button:hover {
             transform: scale(1.02);

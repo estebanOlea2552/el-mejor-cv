@@ -159,7 +159,7 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
         .add-button {
             background-color: var(--cornflower-blue);
             color: var(--white);
-            transition: transform 0.1s ease-in-out;
+            transition: transform 0.1s ease;
         }
         .add-button:hover {
             transform: scale(1.02);

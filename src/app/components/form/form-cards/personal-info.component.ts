@@ -249,7 +249,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                 margin-top: 3%;
             }
             .accordion-header {
-                color: var(--black);
+                color: var(--grey-alpha);
             }
             .accordion-content {
                 box-sizing: border-box;
@@ -261,7 +261,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
             }
             .warn-message {
                 background-color: var(--uranian-blue);
-                color: var(--primary);
+                color: var(--grey-alpha);
                 width: 80%;
                 padding: 3%;
                 grid-column: 1 / 3;

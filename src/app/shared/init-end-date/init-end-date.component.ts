@@ -132,7 +132,7 @@ import { Subscription } from 'rxjs';
         font-size: .9rem;
         padding: .2rem; 
         margin-top: 1rem;
-        color: var(--black);
+        color: var(--grey-alpha);
         font-weight: 500;
       }
       .form-field-container {

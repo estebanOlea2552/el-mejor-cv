@@ -54,7 +54,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
                     <div class="accordion-container">
                         <mat-accordion>
                             <mat-expansion-panel>
-                                <mat-expansion-panel-header>
+                                <mat-expansion-panel-header class="accordion-header">
                                     Agregar más información
                                 </mat-expansion-panel-header>
                                 <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
@@ -183,6 +183,9 @@ import { MatExpansionModule } from "@angular/material/expansion";
                 width: 100%;
                 margin-top: 3%;
             }
+            .accordion-header {
+                color: var(--grey-alpha);
+            }
             .accordion-content {
                 box-sizing: border-box;
                 width: 100%;
@@ -231,7 +234,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
             .add-button {
                 background-color: var(--cornflower-blue);
                 color: var(--white);
-                transition: transform 0.1s ease-in-out;
+                transition: transform 0.1s ease;
             }
             .add-button:hover {
                 transform: scale(1.02);

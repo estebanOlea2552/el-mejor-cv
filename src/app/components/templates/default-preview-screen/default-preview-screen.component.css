@@ -29,5 +29,5 @@ button {
     width: 90%;
     font-size: 1rem;
     margin: .7rem;
-    background-color: #808080;
+    background-color: var(--cornflower-blue);
 }

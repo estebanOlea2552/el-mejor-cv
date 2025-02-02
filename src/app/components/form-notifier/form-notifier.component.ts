@@ -1,6 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
@@ -13,7 +14,7 @@ import { overflowNotifySelector } from 'src/app/state/selectors/selected-templat
   templateUrl: './form-notifier.component.html',
   styleUrls: ['./form-notifier.component.css'],
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatSnackBarModule],
+  imports: [CommonModule, MatCardModule, MatSnackBarModule, MatButtonModule],
 })
 export class FormNotifierComponent implements OnInit, OnDestroy {
   overflowDetected: boolean = false;
