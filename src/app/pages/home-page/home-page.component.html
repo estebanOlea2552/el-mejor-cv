@@ -1,35 +1,36 @@
-<div
-class="general-container">
+<div class="general-container">
     <main-header></main-header>
     <main class="main">
         <div class="get-start">
             <div class="welcome">
                 <div class="welcome-message">
-                    <p>
-                        Hola! Soy una app para crear CVs
-                    </p>
-                </div>
-                <div class="welcome-button">
-                    <button mat-stroked-button (click)="navigateTo('template-mananger')">Comenzar!</button>
+                    <h1 class="message_first-line">Aplica</h1>
+                    <h1 class="message_second-line">a tu empleo soñado</h1>
+                    <h1 class="message_third-line">con <span class="message_best-cv">El Mejor CV</span></h1>
+                    <p class="message_paragraph">
+                        Crea tu currículum profesional de forma gratuita con nuestra aplicación online. Personaliza tu CV con plantillas elegantes, edítalo fácilmente y descárgalo en PDF en segundos. ¡Destaca en el mundo laboral con un diseño eficaz y atractivo!
+                    </p>              
+                    <button
+                    class="message_button"
+                    mat-raised-button
+                    [routerLink]="['/template-mananger']">Comenzar!</button>
                 </div>
             </div>
-            <div class="side-image_container border">
+            <div class="side-image_container">
                 
             </div>
         </div>
-        <!-- <div class="content">
-            <mat-card class="professionals">
-                <h3>Para todo tipo de profesionales</h3>
-            </mat-card>
-            <mat-card class="free-use">
-                <h3>Totalmente grátis</h3>
-            </mat-card>
-            <mat-card class="templates-based">
-                <h3>Basado en plantillas</h3>
-            </mat-card>
-            <mat-card class="steps">
-                <h3>En tres simples pasos</h3>
-            </mat-card>
-        </div> -->
+        <mat-card class="professionals">
+            <h3>Para todo tipo de profesionales</h3>
+        </mat-card>
+        <mat-card class="free-use">
+            <h3>Totalmente grátis</h3>
+        </mat-card>
+        <mat-card class="templates-based">
+            <h3>Basado en plantillas</h3>
+        </mat-card>
+        <mat-card class="steps">
+            <h3>En tres simples pasos</h3>
+        </mat-card>
     </main>
 </div>

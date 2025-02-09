@@ -42,91 +42,14 @@ import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component
             </div>
         </div>
     `,
+    styleUrls: ['form-cards_styles.css'],
     styles: [`
-            .container {
-                box-sizing: border-box;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                margin: 0;
-                padding: 10%;
-                width: 100%;
-                height: 100vh; 
-                overflow-x: hidden;
-                overflow-y: auto;
-            }
-            .header {
-                width: 100%;
-                margin-top: 2rem;
-                margin-bottom: 2rem;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                background-color: var(--cornflower-blue);
-            }
-            .title-icon {
-                color: var(--white);
-            }
-            h2 {
-                font-weight: 600;
-                color: var(--white);
-                margin-left: 1rem;
-                margin-top: 1rem;
-            }
-            .input-container {
-                width: 100%;
-                padding: 3%;
-            }
-            .card-button-container {
-                grid-column: 1 / 3;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-            }
-            .card-button-container > button {
-                width: 50%;
-                margin: 1rem;
-                background-color: var(--white);
-                transform: scale(0.9);
-                color: var(--medium-grey);
-            }
-            .card-button-container > button:hover {
-                color: var(--black);
-            }
-            .prev-next-container-mobile {
-                width: 80%;
-            }
-            .prev-next-container-desktop {
-                width: 50%;
-            }
-            .prev-next-container {
-                box-sizing: border-box;
-                display: flex;
-                justify-content: space-around;
-                margin-top: 4rem;
-            }
-            .prev {
-                margin-left: 3%;
-                background-color: var(--cornflower-blue);
-                color: var(--white);
-            }
-            .next {
-                margin: 0;
-                padding-right: 5px;
-                background-color: var(--cornflower-blue);
-                color: var(--white);
-            }
-            .next mat-icon {
-                order: 2;
-                margin-left: 8px;
-            }
-            .next span {
-                order: 1;
-            }
-        `],
+        .input-container {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 3%;
+        }
+    `],
     standalone: true,
     imports: [
         CommonModule,

@@ -17,13 +17,11 @@ import { Component, Input, OnInit } from '@angular/core';
         width: 100%;
         height: 9vh;
         box-sizing: border-box;
-        border: 1px solid rgba(0, 0, 0, 0.2);
         display: grid;
         grid-template-columns: 15% auto;
-        background-color: var(--cornflower-blue);
+        background-color: var(--marian-blue);
       }
       .logo-container {
-        /* background-color: var(--light-red); */
         color: var(--white);
         width: 100%;
         height: 100%;

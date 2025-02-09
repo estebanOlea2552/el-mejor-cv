@@ -31,20 +31,21 @@ import { ExportService } from 'src/app/services/export.service';
       display: inline-block; /* Mantiene el tamaño exacto del botón */
     }
     .generate-button {
-      background-color: var(--bittersweet);
+      background-color: var(--phthalo-blue);
     }
     .generate-button-mobile {
       transform: scale(.7);
     }
     .download {
-      color: var(--white);
+      color: var(--tea-green);
     }
     .export-message {
       position: absolute;
       bottom: 100%; /* Lo coloca justo encima del botón */
       left: 0%; /* Centra horizontalmente respecto al botón */
       transform: translateX(-50%) translateY(-5px); /* Lo mueve 5px hacia arriba */
-      background-color: var(--bittersweet);
+      background-color: var(--phthalo-blue);
+      color: var(--tea-green);
       width: max-content;
       padding: 5px 10px;
       display: flex;

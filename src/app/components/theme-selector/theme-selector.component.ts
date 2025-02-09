@@ -90,7 +90,8 @@ const TEMPLATE_THEMES: Record<string, Theme[]> = {
       display: flex;
       margin-top: .5rem;
       margin-bottom: .5rem;
-      border: 3px solid var(--white);
+      border: 3px solid var(--black-overlay);
+      box-shadow: 1px 1px 2px var(--black-overlay);
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
     .theme-button-mobile {

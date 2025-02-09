@@ -1,7 +1,6 @@
 .border {
     border: 1px solid black;
 }
-
 .general-container {
     width: 100%;
     height: 100%;
@@ -10,12 +9,16 @@
 .main {
     width: 100%;
     height: 100%;
+    background-color: #fff;
 }
 .get-start {
+    box-sizing: border-box;
     width: 100%;
-    height: 90%;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    justify-items: center;
+    align-items: center;
 }
 .welcome {
     width: 100%;
@@ -24,25 +27,69 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: var(--uranian-blue);
 }
 .welcome-message {
     box-sizing: border-box;
-    width: 100%;
-    height: 50%;
-    margin-top: 20%;
+    margin-left: 15%;
+    margin-right: 30%;
+    padding: 1rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
-.welcome-message > p {
-    font-size: x-large;
-    font-weight: 500;
+.message_first-line, .message_second-line, .message_third-line {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: .8;
+    color: var(--black);
+}
+.message_best-cv {
+    --a: -45deg;
+    --t: .23em;
+    --_s: calc(var(--t) * cos(var(--a)));
+  
+    background:
+    linear-gradient(var(--a),
+    #0000 var(--_s),
+    currentColor 0 calc(100% - var(--_s)),
+    #0000 0) bottom/var(--i, 90%) var(--t) no-repeat;
+    
+    padding: 0 .25em calc(var(--t) + .1em);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition: .3s;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--ash-gray);
+    text-shadow: none;
+}
+.message_best-cv:hover {
+--i: 100%;
+}
+.message_paragraph {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    font-weight: 300;
+    margin-top: 2.5rem;
+}
+.mat-mdc-raised-button:not(:disabled) {
+    background-color: var(--phthalo-blue);
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+    width: 10rem;
+    margin-top: 1rem;
 }
 .side-image_container {
+    width: 100%;
+    height: 100%;
     grid-column: 9 / 13;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--tea-green);
 }
 .mat-icon {
     width: 500px;
@@ -63,20 +110,20 @@
     margin-top: 2%;
 }
 .welcome-message {
-    background-color: var(--apricot);
-}
+    /* background-color: var(--apricot);*/
+} 
 .professionals {
-    background-color: var(--electric-blue);
+    /* background-color: var(--electric-blue); */
 }
 .free-use {
-    background-color: var(--indigo);
-}
+    /* background-color: var(--indigo);*/
+} 
 .templates-based {
-    background-color: var(--deep-pink);
+    /* background-color: var(--deep-pink); */
 }
 .steps {
-    background-color: var(--melon);
-}
+    /* background-color: var(--melon);*/
+} 
 .professionals > h3, .free-use > h3, .templates-based > h3, .steps > h3 {
     font-size: x-large;
     font-weight: 500;
@@ -84,7 +131,6 @@
 }
 .footer {
     bottom: 0;
-    background-color: aqua;
     width: 100%;
     height: 30px;
 }

@@ -76,6 +76,7 @@ import { Subscription } from 'rxjs';
           <div class="checkbox-container">
             <mat-checkbox
             class="checkbox"
+            color="primary"
             [checked]="inCourse"
             (click)="alternateInCourse()"
             (change)="this.inCourse = !this.inCourse">
@@ -132,7 +133,7 @@ import { Subscription } from 'rxjs';
         font-size: .9rem;
         padding: .2rem; 
         margin-top: 1rem;
-        color: var(--grey-alpha);
+        color: var(--marian-blue);
         font-weight: 500;
       }
       .form-field-container {
@@ -150,7 +151,7 @@ import { Subscription } from 'rxjs';
         transform: scale(0.8);
         margin-bottom: 1.5rem;
         background-color: var(--white);
-        color: var(--light-red);
+        color: var(--marian-blue);
         
       }
       .checkbox-container {
@@ -158,6 +159,9 @@ import { Subscription } from 'rxjs';
         text-align: center;
         align-self: start;
         margin-bottom: 1rem;
+      }
+      .checkbox {
+        color: black;
       }
       .checkbox span {
         color: var(--black);

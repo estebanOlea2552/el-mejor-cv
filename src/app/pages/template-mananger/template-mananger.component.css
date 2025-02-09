@@ -4,6 +4,8 @@
     height: 100%;
     display: grid;
     grid-template-rows: 3rem 80% auto;
+    background-color: rgba(0, 42, 100, 0.05);
+    background-repeat: repeat;
 }
 
 header {

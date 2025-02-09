@@ -96,7 +96,7 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
                                 <div class="warn-message">
                                     <p>
                                         <strong>Recuerda:</strong>
-                                        Los siguientes datos son personales. No deberías compartirlos en tu currículum en ningún caso, a menos que sean explícitamente solicitados por tu empleador.
+                                        Los siguientes datos son personales y privados. En la mayoría de los casos, no deberías compartirlos en tu currículum a menos que tu empleador los solicite explícitamente.
                                     </p>
                                 </div>
                                 <div class="input">
@@ -155,165 +155,74 @@ import { templateSelector } from "src/app/state/selectors/selected-template.sele
             </div>
         </div>
     `,
+    styleUrls: ['form-cards_styles.css'],
     styles: [`
-            .container {
-                width: 100%;
-                height: 100vh;
-                box-sizing: border-box;
-                margin: 0;
-                padding: 10%;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                overflow-x: hidden;
-                overflow-y: auto;
-            }
-            .header {
-                width: 100%;
-                margin-top: 2rem;
-                margin-bottom: 2rem;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                background-color: var(--cornflower-blue);
-            }
-            .title-icon {
-                color: var(--white);
-            }
-            h2 {
-                font-weight: 600;
-                color: var(--white);
-                margin-left: 1rem;
-                margin-top: 1rem;
-            }
-            .input-container {
-                box-sizing: border-box;
-                width: 100%;
-                padding: 3%;
-            }
-            .input-container-desktop {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
-            .input {
-                width: 100%;
-                transform: scale(0.9);
-            }
-            .photo-place {
-                width: 100%;
-                height: 100%;
-                box-sizing: border-box;
-                display: flex;
-                justify-content: space-between;                
-                align-items: center;
-            }
-            .photo_button-message-container {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .photo {
-                width: 100%;
-                box-sizing: border-box;
-                height: 4em;
-                font-size: 1rem;
-                color: var(--white);
-                background-color: var(--cornflower-blue);
-            }
-            .photo-disabled {
-                opacity: .7;
-            }
-            .photo-clear {
-                margin-left: 1rem;
-                transform: scale(0.8);
-                background-color: var(--white);
-                color: var(--light-red);
-            }
-            .photo-message {
-                font-size: .8rem;
-                color: rgba(0, 0, 0, 0.5);
-                font-weight: 500;   
-                padding: .5rem;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-                line-height: 1;
-                margin: .5rem;
-            }
-            .accordion-container {
-                grid-column: 1 / 3;
-                box-sizing: border-box;
-                width: 100%;
-                margin-top: 3%;
-            }
-            .accordion-header {
-                color: var(--grey-alpha);
-            }
-            .accordion-content {
-                box-sizing: border-box;
-                width: 100%;
-            }
-            .accordion-content-desktop {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
-            .warn-message {
-                background-color: var(--uranian-blue);
-                color: var(--grey-alpha);
-                width: 80%;
-                padding: 3%;
-                grid-column: 1 / 3;
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 3%;
-                border-radius: 5px;
-                box-shadow: 2px 2px 5px -5px rgba(0, 0, 0, 0.5);
-            }
-            .card-button-container {
-                grid-column: 1 / 3;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-            }
-            .card-button-container > button {
-                width: 50%;
-                margin: 1rem;
-                background-color: var(--white);
-                transform: scale(0.9);
-                color: var(--medium-grey);
-            }
-            .card-button-container > button:hover {
-                color: var(--black);
-            }
-            .prev-next-container-mobile {
-                width: 80%;
-            }
-            .prev-next-container-desktop {
-                width: 50%;
-            }
-            .prev-next-container {
-                box-sizing: border-box;
-                display: flex;
-                justify-content: space-around;
-                margin-top: 4rem;
-            }
-            .next {
-                margin: 0;
-                padding-right: 5px;
-                background-color: var(--cornflower-blue);
-                color: var(--white);
-            }
-            .next mat-icon {
-                order: 2;
-                margin-left: 8px;
-            }
-            .next span {
-                order: 1;
-            }
-        `],
+        .input-container {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 3%;
+        }
+        .input-container-desktop {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .input {
+            width: 100%;
+            transform: scale(0.9);
+        }
+        .photo-place {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;                
+            align-items: center;
+        }
+        .photo_button-message-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .photo {
+            width: 100%;
+            box-sizing: border-box;
+            height: 4em;
+            font-size: 1rem;
+            color: var(--tea-green);
+            background-color: var(--marian-blue);
+        }
+        .photo-disabled {
+            opacity: .7;
+        }
+        .photo-clear {
+            margin-left: 1rem;
+            transform: scale(0.8);
+            background-color: var(--white);
+            color: var(--marian-blue);
+        }
+        .photo-message {
+            font-size: .8rem;
+            color: rgba(0, 0, 0, 0.5);
+            font-weight: 500;   
+            padding: .5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            line-height: 1;
+            margin: .5rem;
+        }
+        .warn-message {
+            background-color: var(--tea-green);
+            color: var(--phthalo-blue);
+            width: 80%;
+            padding: 3%;
+            grid-column: 1 / 3;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3%;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px -5px rgba(0, 0, 0, 0.5);
+        }
+    `],
     standalone: true,
     imports: [
         CommonModule,

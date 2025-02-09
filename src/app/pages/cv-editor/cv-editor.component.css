@@ -6,14 +6,14 @@
 
 .toolbar-desktop, .toolbar-mobile {
     height: 3em;
-    background-color: var(--cornflower-blue);
+    background-color: var(--white);
     
     .toolbar-button {
-        color: var(--white);
+        color: var(--phthalo-blue);
     }
 
     .preview-button {
-        background-color: var(--bittersweet);
+        background-color: var(--phthalo-blue);
         color: var(--white);
     }
 }
@@ -45,7 +45,7 @@
 
 .sidenav {
     height: 100%;   
-    background-color: var(--cornflower-blue);
+    background-color: var(--phthalo-blue);
 }
 
 .nav-list {
@@ -61,7 +61,7 @@
 }
 
 .list-item:hover {
-    background-color: var(--brandeis-blue);
+    background-color: var(--marian-blue);
 }
 
 .back-item {
@@ -77,14 +77,13 @@
 }
 
 .list-item span {
-    color: var(--white);
+    color: var(--tea-green);
     font-weight: 500;
     line-height: 2;
 }
 
-
 .item-icon {
-    color: var(--white);
+    color: var(--tea-green);
     margin-right: 1rem;
 }
 

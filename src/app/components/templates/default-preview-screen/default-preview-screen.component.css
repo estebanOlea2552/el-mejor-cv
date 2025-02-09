@@ -1,13 +1,13 @@
 .general-container {
     width: calc(595.28pt * 0.5);
     height: calc(841.89pt * 0.5);
-    background-color: #cfcfcf;
+    background-color: var(--black-overlay);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .message-container {
-    background-color: #fff;
+    background-color: var(--white);
     width: 70%;
     height: auto;
     display: flex;
@@ -29,5 +29,5 @@ button {
     width: 90%;
     font-size: 1rem;
     margin: .7rem;
-    background-color: var(--cornflower-blue);
+    background-color: var(--marian-blue);
 }

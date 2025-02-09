@@ -8,14 +8,11 @@
     --grey-alpha: rgba(0, 0, 0, 0.6);
     --medium-grey: #a0a0a0;
 
-    --cornflower-blue: #5C95FF;
-    --brandeis-blue: #1F6DFF;
-    --uranian-blue: #B9E6FF;
-    --cornflower-blue-alpha: rgba(92, 149, 255, 0.7);
-    --light-red: #F87575;
-    --bittersweet: #F65151;
-    --melon: #FFA9A3;
-    --cinereous: #7E6C6C;
+    --phthalo-blue: #020887;
+    --marian-blue: #334195;
+    --glaucous: #647AA3;
+    --ash-gray: #95B2B0;
+    --tea-green: #C6EBBE;
 
     scroll-padding: 0;
     scroll-margin: 0;

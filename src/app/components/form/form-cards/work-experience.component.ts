@@ -115,39 +115,8 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             </div>
         </div>
     `,
+    styleUrls: ['form-cards_styles.css'],
     styles: [`
-        .container {
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            margin: 0;
-            padding: 10%;
-            width: 100%;
-            height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        .header {
-            width: 100%;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--cornflower-blue);
-        }
-        .title-icon {
-            color: var(--white);
-        }
-        h2 {
-            font-weight: 600;
-            color: var(--white);
-            margin-left: 1rem;
-            margin-top: 1rem;
-        }
         .input-group-container {
             width: 100%;
             box-sizing: border-box;
@@ -174,98 +143,6 @@ import { TextLineComponent } from "src/app/shared/text-line/text-line.component"
             grid-column: 1 / 3;
             margin-top: 3%;
             margin-bottom: 3%;
-        }
-        .accordion-container {
-            grid-column: 1 / 3;
-            box-sizing: border-box;
-            width: 100%;
-            margin-top: 3%;
-        }
-        .accordion-header {
-            color: var(--grey-alpha)
-        }
-        .accordion-content {
-            box-sizing: border-box;
-            width: 100%;
-        }
-        .accordion-content-desktop {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-        .paragraph-container {
-            width: 100%;
-            box-sizing: border-box;
-            grid-column: 1 / 3;
-            margin-top: 3%;
-            margin-bottom: 3%;
-        }
-        .card-button-container-mobile {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-        .card-button-container-mobile > button {
-            width: 70%;
-            margin: 1%;
-            transform: scale(0.9);
-        }
-        .card-button-container-desktop {
-            grid-column: 1 / 3;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-        .card-button-container-desktop > button {
-            width: 100%;
-            margin: 1rem;
-            transform: scale(0.9);
-        }
-        .card-button {
-            background-color: var(--white);
-            color: var(--medium-grey);
-        }
-        .card-button:hover {
-            color: var(--black);
-        }
-        .add-button {
-            background-color: var(--cornflower-blue);
-            color: var(--white);
-            transition: transform 0.1s ease;
-        }
-        .add-button:hover {
-            transform: scale(1.02);
-        }
-        .prev-next-container-mobile {
-            width: 80%;
-        }
-        .prev-next-container-desktop {
-            width: 50%;
-        }
-        .prev-next-container {
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-around;
-            margin-top: 4rem;
-        }
-        .prev {
-            margin-left: 3%;
-            background-color: var(--cornflower-blue);
-            color: var(--white);
-        }
-        .next {
-            margin: 0;
-            padding-right: 5px;
-            background-color: var(--cornflower-blue);
-            color: var(--white);
-        }
-        .next mat-icon {
-            order: 2;
-            margin-left: 8px;
-        }
-        .next span {
-            order: 1;
         }
     `],
     standalone: true,
