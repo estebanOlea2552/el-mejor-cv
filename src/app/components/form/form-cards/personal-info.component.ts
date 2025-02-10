@@ -10,13 +10,13 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
-import { FormService } from "src/app/services/form.service";
-import { ProfilePictureService } from "src/app/services/profile-picture.service";
 
-import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
-import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
-import { AppState } from "src/app/state/app.state";
-import { templateSelector } from "src/app/state/selectors/selected-template.selectors";
+import { NumInputComponent } from "src/app/components/form/form-shared-components/num-input/num-input.component";
+import { TextLineComponent } from "src/app/components/form/form-shared-components/text-line/text-line.component";
+import { FormService } from "src/app/shared/services/form.service";
+import { ProfilePictureService } from "src/app/shared/services/profile-picture.service";
+import { AppState } from "src/app/shared/state/app.state";
+import { templateSelector } from "src/app/shared/state/selectors/selected-template.selectors";
 
 @Component({
     selector: 'personal-info',

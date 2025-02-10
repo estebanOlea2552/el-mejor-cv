@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { DefaultPreviewScreenComponent } from 'src/app/components/templates/default-preview-screen/default-preview-screen.component';
+import { Template1Component } from 'src/app/components/templates/template1/template1.component';
+import { Template2Component } from 'src/app/components/templates/template2/template2.component';
+import { Template3Component } from 'src/app/components/templates/template3/template3.component';
+import { Template4Component } from 'src/app/components/templates/template4/template4.component';
+import { Template5Component } from 'src/app/components/templates/template5/template5.component';
+import { Template } from 'src/app/model/template.model';
 
-import { Template } from '../model/template.model';
-import { Template1Component } from '../components/templates/template1/template1.component'; 
-import { Template2Component } from '../components/templates/template2/template2.component'; 
-import { Template3Component } from '../components/templates/template3/template3.component';
-import { Template4Component } from '../components/templates/template4/template4.component';
-import { Template5Component } from '../components/templates/template5/template5.component';
-import { DefaultPreviewScreenComponent } from '../components/templates/default-preview-screen/default-preview-screen.component';
+
 
 @Injectable({
   providedIn: 'root'

@@ -6,8 +6,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { cvDataInit } from "src/app/model/cv-data-init";
-import { FormService } from "src/app/services/form.service";
-import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
+import { TextLineComponent } from "src/app/components/form/form-shared-components/text-line/text-line.component";
+import { FormService } from "src/app/shared/services/form.service";
 
 @Component({
     selector: 'references',

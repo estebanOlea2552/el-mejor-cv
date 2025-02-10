@@ -1,16 +1,17 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ComponentRef, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormComponent } from 'src/app/components/form/form.component';
-import { PreviewComponent } from 'src/app/components/preview/preview.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { ExportService } from 'src/app/services/export.service';
+
 import { FormNotifierComponent } from 'src/app/components/form-notifier/form-notifier.component';
 import { RouterLink } from '@angular/router';
+import { ExportService } from 'src/app/shared/services/export.service';
+import { FormComponent } from 'src/app/components/form/form.component';
+import { PreviewComponent } from 'src/app/components/preview/preview.component';
 
 @Component({
   selector: 'app-cv-editor',

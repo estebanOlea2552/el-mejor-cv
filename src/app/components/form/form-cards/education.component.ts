@@ -3,15 +3,15 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/cor
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { FormService } from "src/app/services/form.service";
-import { InitEndDateComponent } from "src/app/shared/init-end-date/init-end-date.component";
-import { NumInputComponent } from "src/app/shared/num-input/num-input.component";
-import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component";
-import { TextLineComponent } from "src/app/shared/text-line/text-line.component";
+import { InitEndDateComponent } from "src/app/components/form/form-shared-components/init-end-date/init-end-date.component";
+import { NumInputComponent } from "src/app/components/form/form-shared-components/num-input/num-input.component";
+import { ParagraphComponent } from "src/app/components/form/form-shared-components/paragraph/paragraph.component";
+import { TextLineComponent } from "src/app/components/form/form-shared-components/text-line/text-line.component";
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { MatIconModule } from "@angular/material/icon";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { FormService } from "src/app/shared/services/form.service";
 
 @Component({
     selector: 'education',

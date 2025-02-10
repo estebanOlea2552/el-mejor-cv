@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
-import { ExportService } from 'src/app/services/export.service';
-import { ProfilePictureService } from 'src/app/services/profile-picture.service';
 import { Subscription } from 'rxjs';
-import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
-import { themeSelector } from 'src/app/state/selectors/selected-template.selectors';
 import {
   template4_theme01, template4_theme02, template4_theme03, template4_theme04, template4_theme05, template4_theme06
 } from 'src/app/components/templates/template4/template4-themes';
-import { notifyOverflow } from 'src/app/state/actions/selected-template.action';
+import { ExportService } from 'src/app/shared/services/export.service';
+import { ProfilePictureService } from 'src/app/shared/services/profile-picture.service';
+import { AppState } from 'src/app/shared/state/app.state';
+import { themeSelector } from 'src/app/shared/state/selectors/selected-template.selectors';
+import { notifyOverflow } from 'src/app/shared/state/actions/selected-template.action';
 
 @Component({
   selector: 'app-template4',

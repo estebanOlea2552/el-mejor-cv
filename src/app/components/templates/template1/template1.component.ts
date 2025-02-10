@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
-import { ExportService } from 'src/app/services/export.service';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/state/app.state';
-import { notifyOverflow } from 'src/app/state/actions/selected-template.action';
+import { ExportService } from 'src/app/shared/services/export.service';
+import { AppState } from 'src/app/shared/state/app.state';
+import { notifyOverflow } from 'src/app/shared/state/actions/selected-template.action';
 
 @Component({
   selector: 'app-template1',

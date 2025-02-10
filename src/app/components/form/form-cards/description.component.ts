@@ -5,8 +5,8 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
-import { FormService } from "src/app/services/form.service";
-import { ParagraphComponent } from "src/app/shared/paragraph/paragraph.component";
+import { ParagraphComponent } from "src/app/components/form/form-shared-components/paragraph/paragraph.component";
+import { FormService } from "src/app/shared/services/form.service";
 
 @Component({
     selector: 'description',

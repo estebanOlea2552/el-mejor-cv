@@ -4,11 +4,9 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { distinctUntilChanged } from 'rxjs';
 
 // Internal App imports
-import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
-import { FormService } from 'src/app/services/form.service';
 import { PersonalInfoComponent } from './form-cards/personal-info.component';
 import { DescriptionComponent } from './form-cards/description.component';
 import { EducationComponent } from './form-cards/education.component';
@@ -18,6 +16,8 @@ import { SkillsComponent } from './form-cards/skills.component';
 import { LanguagesComponent } from './form-cards/languages.component';
 import { ReferencesComponent } from './form-cards/references.component';
 import { LinksComponent } from './form-cards/links.component';
+import { PreviewConnectorService } from 'src/app/shared/services/preview-connector.service';
+import { FormService } from 'src/app/shared/services/form.service';
 
 @Component({
   selector: 'app-form',

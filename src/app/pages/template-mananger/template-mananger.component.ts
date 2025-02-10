@@ -5,8 +5,8 @@ import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { TemplateSelectorComponent } from 'src/app/components/template-selector/template-selector.component';
-import { MainHeaderComponent } from 'src/app/shared/main-header/main-header.component';
-import { templateSelector } from 'src/app/state/selectors/selected-template.selectors';
+import { MainHeaderComponent } from 'src/app/components/form/form-shared-components/main-header/main-header.component';
+import { templateSelector } from 'src/app/shared/state/selectors/selected-template.selectors';
 
 @Component({
   selector: 'app-template-mananger',
@@ -15,7 +15,6 @@ import { templateSelector } from 'src/app/state/selectors/selected-template.sele
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     TemplateSelectorComponent,
     MainHeaderComponent,
     MatButtonModule

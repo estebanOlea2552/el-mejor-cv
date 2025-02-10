@@ -3,9 +3,9 @@ import { AppComponent } from './app/app.component';
 import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { ROOT_REDUCERS } from './app/state/app.state';
 import { APP_ROUTES } from './app/app-routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { ROOT_REDUCERS } from './app/shared/state/app.state';
 
 bootstrapApplication(AppComponent, {
   providers: [

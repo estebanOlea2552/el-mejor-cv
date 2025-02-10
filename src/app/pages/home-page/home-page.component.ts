@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MainHeaderComponent } from 'src/app/shared/main-header/main-header.component';
+import { MainHeaderComponent } from 'src/app/components/form/form-shared-components/main-header/main-header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 

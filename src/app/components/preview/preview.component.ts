@@ -17,18 +17,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
-import { PreviewConnectorService } from 'src/app/services/preview-connector.service';
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
-import { ExportService } from 'src/app/services/export.service';
-import { TemplateRegistryService } from 'src/app/services/template-registry.service';
-import { templateSelector, themeSelector } from 'src/app/state/selectors/selected-template.selectors';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
-import { AppState } from 'src/app/state/app.state';
-import { selectTemplateTheme } from 'src/app/state/actions/selected-template.action';
 import { ThemeSelectorComponent } from '../theme-selector/theme-selector.component';
+import { TemplateRegistryService } from 'src/app/shared/services/template-registry.service';
+import { PreviewConnectorService } from 'src/app/shared/services/preview-connector.service';
+import { ExportService } from 'src/app/shared/services/export.service';
 import { ExportButtonComponent } from '../export-button/export-button.component';
+import { AppState } from 'src/app/shared/state/app.state';
+import { templateSelector } from 'src/app/shared/state/selectors/selected-template.selectors';
+import { selectTemplateTheme } from 'src/app/shared/state/actions/selected-template.action';
 
 @Component({
   selector: 'app-preview',

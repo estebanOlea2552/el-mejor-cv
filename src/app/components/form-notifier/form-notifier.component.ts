@@ -1,13 +1,13 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { AppState } from 'src/app/state/app.state';
-import { overflowNotifySelector } from 'src/app/state/selectors/selected-template.selectors';
+import { AppState } from 'src/app/shared/state/app.state';
+import { overflowNotifySelector } from 'src/app/shared/state/selectors/selected-template.selectors';
 
 @Component({
   selector: 'form-notifier',

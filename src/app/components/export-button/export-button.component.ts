@@ -4,7 +4,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';
-import { ExportService } from 'src/app/services/export.service';
+import { ExportService } from 'src/app/shared/services/export.service';
 
 @Component({
   selector: 'export-button',

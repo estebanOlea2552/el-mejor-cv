@@ -1,19 +1,19 @@
+.border {
+    border: 1px solid black;
+}
 .preview-container {
     width: 100%;
-    height: 100vh; /* By default, this element is smaller than vh */
+    height: 100vh;
     background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='30' height='30' patternTransform='scale(1) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='%23a0a0a0ff'/><path d='M3.25 10h13.5M10 3.25v13.5' transform='translate(5,0)' stroke-linecap='square' stroke-width='2' stroke='%2300000010' fill='none'/></pattern></defs><rect width='100%' height='100%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
     background-repeat: repeat;
 }
-
 .preview {
     width: calc(595.28pt * 0.5); /* A4 Format */
     height: calc(841.89pt * 0.5); /* A4 Format */
 }
-
 .side-container-desktop, .side-container-mobile {
     background-color: var(--white);
 }
-
 .side-container-mobile {
     box-sizing: border-box;
     height: 5%;
@@ -22,7 +22,6 @@
     bottom: 0;
     display: flex;
 }
-    
 .side-container-desktop {
     width: 4rem;
     height: 100vh;
@@ -34,7 +33,6 @@
     justify-content: start;
     align-items: center;
 }
-
 .buttons-container-mobile {
     width: 100%;
     display: flex;
@@ -42,7 +40,6 @@
     padding-right: 1rem;
     align-items: center;
 }
-
 .buttons-container-desktop {
     height: 100%;
     display: flex;
@@ -51,17 +48,14 @@
     margin-bottom: 10%;
     padding-bottom: .5rem;
 }
-
 .zoom-buttons-container {
     display: flex;
 }
-
 .zoom-buttons-container-desktop {
     height: 8rem;
     flex-direction: column;
     justify-content: space-evenly;
 }
-
 .zoom-buttons-container-mobile {
     flex-direction: row;
     align-items: center;
@@ -70,30 +64,18 @@
 .zoom-buttons-container-mobile .zoom-out {
     transform: scale(.7);
 }
-
 .zoom-in, .zoom-out {
     margin-left: auto;
     margin-right: auto;
     color: var(--phthalo-blue);
 }
-
 .theme-selector-container {
     margin-bottom: auto;
 }
-
 .theme-selector-mobile {
     margin-right: auto;
 }
-
 .theme-selector {
     margin-top: 1rem;
     margin-bottom: auto;
 }
-
-/* .generate-button {
-    background-color: #505050;
-}
-
-.download {
-    color: #f1f1f1;
-} */

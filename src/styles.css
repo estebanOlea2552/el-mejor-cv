@@ -7,7 +7,7 @@
     --black-overlay: rgba(47, 47, 47, 0.2);
     --grey-alpha: rgba(0, 0, 0, 0.6);
     --medium-grey: #a0a0a0;
-
+    
     --phthalo-blue: #020887;
     --marian-blue: #334195;
     --glaucous: #647AA3;
@@ -26,5 +26,6 @@ html, body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: var(--mat-font-family);
     box-sizing: border-box;
 }

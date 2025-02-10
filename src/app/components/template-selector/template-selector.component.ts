@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TemplateRegistryService } from 'src/app/services/template-registry.service';
 import { Store } from '@ngrx/store';
-import { selectTemplate } from 'src/app/state/actions/selected-template.action';
 import { MatCardModule } from '@angular/material/card';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { AppState } from 'src/app/state/app.state';
 import { Template } from 'src/app/model/template.model';
 import { SelectedTemplateState } from 'src/app/model/state-model/selected-template-state';
 import { MatIconModule } from '@angular/material/icon';
+import { TemplateRegistryService } from 'src/app/shared/services/template-registry.service';
+import { AppState } from 'src/app/shared/state/app.state';
+import { selectTemplate } from 'src/app/shared/state/actions/selected-template.action';
 
 @Component({
   selector: 'app-template-selector',

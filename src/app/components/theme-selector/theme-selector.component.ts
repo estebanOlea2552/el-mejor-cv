@@ -4,9 +4,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { selectTemplateTheme } from 'src/app/state/actions/selected-template.action';
-import { AppState } from 'src/app/state/app.state';
-import { templateSelector } from 'src/app/state/selectors/selected-template.selectors';
+import { selectTemplateTheme } from 'src/app/shared/state/actions/selected-template.action';
+import { AppState } from 'src/app/shared/state/app.state';
+import { templateSelector } from 'src/app/shared/state/selectors/selected-template.selectors';
 
 interface Theme {
   key: string,
