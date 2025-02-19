@@ -3,18 +3,19 @@
 }
 .general-container {
     width: 100%;
-    height: 100%;
+    height: auto;
     box-sizing: border-box;
 }
+
 .main {
     width: 100%;
-    height: 100%;
+    height: auto;
     background-color: #fff;
 }
 .get-start {
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 9vh);
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     justify-items: center;
@@ -23,7 +24,7 @@
 .welcome {
     width: 100%;
     height: 100%;
-    grid-column: 1 / 9;
+    grid-column: 1 / 10;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,10 +41,11 @@
     justify-content: center;
 }
 .message_first-line, .message_second-line, .message_third-line {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 900;
-    line-height: .8;
+    line-height: .9;
     color: var(--black);
+    font-family: var(--bricolage);
 }
 .message_best-cv {
     --a: -45deg;
@@ -60,7 +62,7 @@
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
     transition: .3s;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 900;
     color: var(--ash-gray);
     text-shadow: none;
@@ -69,27 +71,43 @@
 --i: 100%;
 }
 .message_paragraph {
-    font-size: 1.1rem;
-    line-height: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
     font-weight: 300;
     margin-top: 2.5rem;
 }
+/* Angular Material class for mat-button */
 .mat-mdc-raised-button:not(:disabled) {
     background-color: var(--phthalo-blue);
-    color: var(--white);
-    font-size: 1rem;
+    color: #fff;
+    font-size: 1.2rem;
     font-weight: 600;
-    width: 10rem;
+    width: 12rem;
+    height: 3rem;
     margin-top: 1rem;
+    transition: 0.3s ease;
+}
+.mat-mdc-raised-button:not(:disabled):hover {
+    color: var(--tea-green);
 }
 .side-image_container {
+    position: relative;
     width: 100%;
     height: 100%;
-    grid-column: 9 / 13;
+    grid-column: 10 / 13;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--tea-green);
+}
+.side-image_content {
+    position: absolute;
+    height: 80%;
+    top: 5;
+    right: 14rem;
+}
+.side-image {
+    height: 100%;
 }
 .mat-icon {
     width: 500px;
@@ -103,31 +121,153 @@
     flex-direction: column;
     align-items: center;
 }
-.professionals, .free-use, .templates-based, .steps {
-    width: 80%;
-    height: 40%;
-    text-align: center;
-    margin-top: 2%;
+.professionals-container {
+    width: 100%;
+    height: 80vh;
+    background-color: var(--black);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    border-radius: 0%;
 }
-.welcome-message {
-    /* background-color: var(--apricot);*/
-} 
-.professionals {
-    /* background-color: var(--electric-blue); */
+.professionals-image {
+    grid-column: 1 / 4;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.free-use {
-    /* background-color: var(--indigo);*/
-} 
-.templates-based {
-    /* background-color: var(--deep-pink); */
+.professionals-image img {
+    width: 70%;
+    height: auto;
 }
-.steps {
-    /* background-color: var(--melon);*/
-} 
-.professionals > h3, .free-use > h3, .templates-based > h3, .steps > h3 {
-    font-size: x-large;
+.professionals-text {
+    grid-column: 4 / 6;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 20%;
+}
+.professionals-text h3 {
+    text-align: end;
+    line-height: 1.2;
+    color: var(--tea-green);   
+    font-size: 2.5rem;
     font-weight: 500;
-    margin: 2%; 
+    span {
+        color: #fff;
+        font-weight: 600;
+    }
+}
+.professionals-text p {
+    text-align: end;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+.free-container {
+    width: 100%;
+    height: 80vh;
+    background-color: var(--tea-green);
+    color: var(--marian-blue);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    border-radius: 0%;
+    border-top: 1rem solid var(--glaucous);
+    border-bottom: 1rem solid var(--glaucous);
+
+}
+.free-text {
+    grid-column: 1 / 4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 30%;
+}
+.free-text h3 {
+    text-align: start;
+    line-height: 1.4;
+    color: var(--glaucous);   
+    font-size: 3.5rem;
+    font-weight: 600;
+    span {
+        color: var(--white);
+        font-weight: bolder;
+        text-transform: uppercase;
+        background-color: var(--glaucous);
+        padding-top: .2rem;
+        padding-bottom: .2rem;
+        padding-left: .8rem;
+        padding-right: .8rem;
+        border-radius: 1rem;
+    }
+}
+.free-text p {
+    width: 85%;
+    color: var(--black);
+    text-align: start;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.4;
+}
+.free-image {
+    grid-column: 4 / 6;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.free-image img {
+    box-sizing: border-box;
+    width: 50%;
+    height: auto;
+    outline: 0.8rem solid var(--glaucous);
+    border-radius: 1rem;
+}
+.templates-container {
+    width: 100%;
+    height: 80vh;
+    background-color: var(--black);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    border-radius: 0%;
+}
+.templates-text {
+    grid-column: 1 / 4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 15%;
+}
+.templates-text h3 {
+    text-align: start;
+    line-height: 1.4;
+    color: var(--tea-green);   
+    font-size: 3.5rem;
+    font-weight: 600;
+    span {
+        color: var(--white);
+        font-weight: bolder;
+        text-transform: uppercase;
+    }
+}
+.templates-text p {
+    width: 85%;
+    color: var(--black);
+    text-align: start;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.4;
 }
 .footer {
     bottom: 0;

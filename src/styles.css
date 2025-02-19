@@ -1,6 +1,8 @@
 /* GENERAL CLASSES */
 
 :root {
+    --bricolage: 'Bricolage Grotesque', sans-serif;
+
     --white: #F8F8F8;
     --white-overlay: rgba(248, 248, 248, 0.2);
     --black: #2f2f2f;
