@@ -138,8 +138,10 @@ import { templateSelector } from "src/app/shared/state/selectors/selected-templa
                         </mat-expansion-panel>
                     </mat-accordion>
                 </div>
-                <div class="card-button-container">      
-                    <button mat-flat-button (click)="resetPInfo()">
+                <div
+                class="card-button-container"
+                [ngClass]="{'card-button-container-mobile': isMobile, 'card-button-container-desktop': !isMobile}">      
+                    <button mat-flat-button (click)="resetPInfo()" class="card-button">
                         <mat-icon>undo</mat-icon>
                         Reiniciar campos
                     </button>
@@ -189,8 +191,8 @@ import { templateSelector } from "src/app/shared/state/selectors/selected-templa
             box-sizing: border-box;
             height: 4em;
             font-size: 1rem;
-            color: var(--tea-green);
-            background-color: var(--marian-blue);
+            color: var(--black);
+            background-color: var(--light-cobalt-blue);
         }
         .photo-disabled {
             opacity: .7;
@@ -198,21 +200,21 @@ import { templateSelector } from "src/app/shared/state/selectors/selected-templa
         .photo-clear {
             margin-left: 1rem;
             transform: scale(0.8);
-            background-color: var(--white);
-            color: var(--marian-blue);
+            background-color: var(--white-variant);
+            color: var(--cobalt-blue);
         }
         .photo-message {
             font-size: .8rem;
-            color: rgba(0, 0, 0, 0.5);
+            color: var(--medium-grey);
             font-weight: 500;   
             padding: .5rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--medium-grey);
             line-height: 1;
             margin: .5rem;
         }
         .warn-message {
-            background-color: var(--tea-green);
-            color: var(--phthalo-blue);
+            background-color: var(--light-cobalt-blue);
+            color: var(--black);
             width: 80%;
             padding: 3%;
             grid-column: 1 / 3;

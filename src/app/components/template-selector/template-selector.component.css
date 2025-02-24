@@ -17,39 +17,38 @@
     align-items: center;
     justify-content: center;
 }
-
 .title-desktop {
     border-radius: 5px;
     padding: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
-
 .title-mobile {
     border-radius: 4px;
     padding: 0.5rem;
     margin: 1rem;
 }
-
 .title {
+    font-family: var(--bricolage);
     font-size: 1.6rem;
     text-align: center;
-    font-weight: 600;
+    font-weight: 900;
     color: var(--black);
     line-height: 1.5;
     margin: 0;
 }
-
 .title-color {
-    color: var(--tea-green);
-    background-color: var(--marian-blue);
-    padding-top: .2rem;
+    font-size: 1.8rem;
+    font-family: var(--bricolage);
+    color: var(--white);
+    background-color: var(--cobalt-blue);
+    font-weight: 900;
+    padding-top: .1rem;
     padding-bottom: .2rem;
     padding-left: .4rem;
     padding-right: .4rem;
     border-radius: 5px;
 }
-
 .templates-container-desktop, .templates-container-mobile {
     background-color: var(--black-overlay);
     box-sizing: border-box;
@@ -58,7 +57,6 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
-
 .templates-container-desktop {
     border-radius: 5px;
     display: grid;
@@ -68,7 +66,6 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
-
 .templates-container-mobile {
     border-radius: 4px;
     margin-left: 1rem;
@@ -77,7 +74,6 @@
     flex-direction: column;
     overflow-y: auto;
 }
-
 .template-card {
     width: 100%;
     height: 100%;
@@ -88,10 +84,9 @@
     display: flex;
     justify-content: center;
 }
-
 .card {
     box-sizing: border-box;
-    background-color: var(--white);
+    background-color: var(--white-variant);
     width: 250px;
     height: 400px;
     display: grid;
@@ -101,21 +96,19 @@
     padding: 0.5rem;
     transition: transform 0.2s;
 }
-
 .card-header {
     margin-bottom: 0.5rem;
     padding: 0;
     display: flex;
     justify-content: center;
 }
-
 .card-title {
+    font-family: var(--bricolage);
     line-height: 1.5;
-    font-size: medium;
-    color: var(--glaucous);
-    font-weight: 600;
+    font-size: 1rem;
+    color: var(--black);
+    font-weight: 700;
 }
-
 .card-content {
     width: 100%;
     height: 100%;
@@ -126,12 +119,10 @@
     background-size: cover;
     background-position: center;
 }
-
 /* Overwrites Angular Material mat-card padding */
 .card-content:last-child {
     padding-bottom: 0;
 }
-
 .template-is-selected {
     position: absolute;
     top: 0;
@@ -147,23 +138,19 @@
     animation: fadeIn 0.1s ease-in-out;
     opacity: 1;
 }
-
 .mat-mdc-unelevated-button:not(:disabled) {
-    background-color: var(--marian-blue);
+    background-color: var(--cobalt-blue);
     color: var(--white);
 }
-
 .card:hover {
     transform: scale(1.01);
 }
-
 .miniature {
     width: 100%;
     height: 100%;
     border-radius: 5px;
     border: none;
 }
-
 .arrows-container {
     position: absolute;
     width: 85%;
@@ -171,7 +158,6 @@
     display: flex;
     justify-content: space-between;
 }
-
 .arrows-container button {
     width: 1.5rem;
     height: 1.5rem;
@@ -181,16 +167,21 @@
     align-items: center;
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.0);
-    background-color: var(--marian-blue);
+    background-color: var(--black);
+    opacity: .5;
+    transition: 0.1s ease;
+}
+.arrows-container button:hover {
+    background-color: var(--cobalt-blue);
     opacity: .8;
 }
-
-.arrows-container button:hover {
-    background-color: var(--phthalo-blue);
-}
-
 .arrows-container button mat-icon {
     color: var(--white);
     font-size: 1rem;
     margin-top: .5rem;
+}
+.template-card:nth-child(1) .arrows-container button,
+.template-card:nth-child(1) .arrows-container button:hover  {
+    opacity: .1;
+    background-color: var(--black);
 }

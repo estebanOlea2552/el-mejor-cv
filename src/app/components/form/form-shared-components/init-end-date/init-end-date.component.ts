@@ -105,8 +105,6 @@ import { Subscription } from 'rxjs';
       .form-group-container {
         width: auto;
         box-sizing: border-box;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
       }
       .form-group-container-mobile {
         display: flex;
@@ -122,18 +120,24 @@ import { Subscription } from 'rxjs';
         display: flex;
         align-items: center;
         justify-content: center;
+        border: .1rem solid var(--black-overlay);
+        border-radius: 4px;
+        margin-right: .5rem
       }
       .ed-end-container {
         box-sizing: border-box;
         display: flex;
         align-items: center;
         justify-content: center;
+        border: .1rem solid var(--black-overlay);
+        border-radius: 4px;
+        margin-left: .5rem;
       }
       .date-title {
         font-size: .9rem;
         padding: .2rem; 
         margin-top: 1rem;
-        color: var(--marian-blue);
+        color: var(--black);
         font-weight: 500;
       }
       .form-field-container {
@@ -142,7 +146,6 @@ import { Subscription } from 'rxjs';
         display: flex;
         flex-direction: column;
         align-items: center;
-        
       }
       .form-field {
         transform: scale(0.8);
@@ -150,9 +153,8 @@ import { Subscription } from 'rxjs';
       .clear-button {
         transform: scale(0.8);
         margin-bottom: 1.5rem;
-        background-color: var(--white);
-        color: var(--marian-blue);
-        
+        background-color: var(--white-variant);
+        color: var(--cobalt-blue);
       }
       .checkbox-container {
         width: 100%;

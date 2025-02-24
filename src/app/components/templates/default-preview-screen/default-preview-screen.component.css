@@ -7,7 +7,7 @@
     align-items: center;
 }
 .message-container {
-    background-color: var(--white);
+    background-color: var(--white-variant);
     width: 70%;
     height: auto;
     display: flex;
@@ -24,10 +24,11 @@ span {
     font-weight: 300;
 }
 button {
-    color: #fff !important;
-    font-weight: 700;
+    color: var(--white) !important;
     width: 90%;
+    font-family: var(--bricolage);
     font-size: 1rem;
+    font-weight: 700;
     margin: .7rem;
-    background-color: var(--marian-blue);
+    background-color: var(--cobalt-blue);
 }

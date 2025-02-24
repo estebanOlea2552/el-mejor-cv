@@ -56,7 +56,7 @@ import { FormService } from "src/app/shared/services/form.service";
                             <mat-expansion-panel-header class="accordion-header">
                                 Agregar más información
                             </mat-expansion-panel-header>
-                            <div class="accordion-content" [ngClass]="{'accordion-content-desktop': !isMobile}">
+                            <div class="accordion-content border" [ngClass]="{'accordion-content-desktop': !isMobile}">
                                 <div class="input">
                                     <text-line
                                     [groupName]="getFormGroup(i)"
@@ -71,7 +71,7 @@ import { FormService } from "src/app/shared/services/form.service";
                                     label="Jornada">
                                     </text-line>
                                 </div>
-                                <div class="paragraph-container">
+                                <div class="paragraph-container border">
                                     <paragraph
                                     [groupName]="getFormGroup(i)"
                                     controlName="description">
@@ -143,6 +143,10 @@ import { FormService } from "src/app/shared/services/form.service";
             grid-column: 1 / 3;
             margin-top: 3%;
             margin-bottom: 3%;
+        }
+        .paragraph-container {
+            grid-column: 1 / 3;
+            width: 100%;
         }
     `],
     standalone: true,

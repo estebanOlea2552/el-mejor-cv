@@ -23,7 +23,6 @@ import { ExportService } from 'src/app/shared/services/export.service';
         <mat-icon class="download">download</mat-icon>
       </button>
     </div>
-
   `,
   styles: [`
     .export-container {
@@ -31,29 +30,29 @@ import { ExportService } from 'src/app/shared/services/export.service';
       display: inline-block; /* Mantiene el tamaño exacto del botón */
     }
     .generate-button {
-      background-color: var(--phthalo-blue);
+      background-color: var(--jasmine-yellow);
     }
     .generate-button-mobile {
       transform: scale(.7);
     }
     .download {
-      color: var(--tea-green);
+      color: var(--black);
     }
     .export-message {
       position: absolute;
       bottom: 100%; /* Lo coloca justo encima del botón */
       left: 0%; /* Centra horizontalmente respecto al botón */
       transform: translateX(-50%) translateY(-5px); /* Lo mueve 5px hacia arriba */
-      background-color: var(--phthalo-blue);
-      color: var(--tea-green);
+      background-color: var(--poppy-red);
+      color: var(--white);
       width: max-content;
       padding: 5px 10px;
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 10px;
-      color: var(--white);
-      font-weight: 500;
+      font-family: var(--bricolage);
+      font-weight: 700;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;

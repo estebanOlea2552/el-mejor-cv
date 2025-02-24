@@ -21,8 +21,10 @@ import { FormService } from "src/app/shared/services/form.service";
                 [groupName]="descGroup"
                 controlName="description">
                 </paragraph>       
-                <div class="card-button-container">
-                    <button mat-flat-button (click)="resetDesc()">
+                <div
+                class="card-button-container"
+                [ngClass]="{'card-button-container-mobile': isMobile, 'card-button-container-desktop': !isMobile}">
+                    <button mat-flat-button (click)="resetDesc()" class="card-button">
                         <mat-icon>undo</mat-icon>
                         Reiniciar campo
                     </button>

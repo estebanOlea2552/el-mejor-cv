@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
+import { PreloadAllModules, provideRouter, withPreloading, withRouterConfig } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { APP_ROUTES } from './app/app-routes';

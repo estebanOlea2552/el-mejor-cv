@@ -3,18 +3,28 @@
 :root {
     --bricolage: 'Bricolage Grotesque', sans-serif;
 
-    --white: #F8F8F8;
+    --white: #FFF;
+    --white-variant: #F8F8F8;
     --white-overlay: rgba(248, 248, 248, 0.2);
-    --black: #2f2f2f;
+    --black: #2F2F2F;
     --black-overlay: rgba(47, 47, 47, 0.2);
     --grey-alpha: rgba(0, 0, 0, 0.6);
-    --medium-grey: #a0a0a0;
+    --medium-grey: #A0A0A0;
+    
+    --cobalt-blue: #0047AB;
+    --jasmine-yellow: #F7CB78;
+    --poppy-red: #DC343B;
+
+    --light-cobalt-blue: #B1DFFC;
+    --light-jasmine-yellow: #FFF7EB;
+    --light-poppy-red: #FFADAD;
     
     --phthalo-blue: #020887;
     --marian-blue: #334195;
     --glaucous: #647AA3;
     --ash-gray: #95B2B0;
     --tea-green: #C6EBBE;
+
 
     scroll-padding: 0;
     scroll-margin: 0;
