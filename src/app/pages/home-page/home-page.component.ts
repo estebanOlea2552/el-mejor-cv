@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MainHeaderComponent } from 'src/app/components/form/form-shared-components/main-header/main-header.component';
@@ -21,7 +21,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     MainHeaderComponent
   ]
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, AfterViewInit {
   welcomeImages: string[] = [
     '../../../assets/images/welcome_man1.svg',
     '../../../assets/images/welcome_woman1.svg',
@@ -37,6 +37,7 @@ export class HomePageComponent implements OnInit {
   professionalsCurrentIndex: number = 0;
   welcomeAnimationState: string = 'in';
   professionalsAnimationState: string = 'in';
+  firstLoadAnimationDone: boolean = false;
   isMobile!: boolean;
   
   constructor(private breakpointObserver: BreakpointObserver){}
@@ -46,8 +47,13 @@ export class HomePageComponent implements OnInit {
       .subscribe(result => {
         this.isMobile = result.matches
       });
-
-    this.startSlideAnimation();
+    }
+    
+  ngAfterViewInit(): void {
+    this.firstLoadAnimationDone = true;
+    setTimeout(() => {
+      this.startSlideAnimation();
+    }, 4000);
   }
 
   startSlideAnimation(){

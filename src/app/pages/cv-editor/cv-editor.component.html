@@ -1,4 +1,4 @@
-<div class="general-container">
+<div class="general-container" [ngClass]="{'animate': firstLoadAnimationDone}">
     <mat-toolbar [ngClass]="{'toolbar-mobile': isMobile, 'toolbar-desktop': !isMobile}">
         <button class="toolbar-button" mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>

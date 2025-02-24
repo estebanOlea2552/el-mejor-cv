@@ -33,21 +33,24 @@ import { PreviewComponent } from 'src/app/components/preview/preview.component';
 })
 export class CvEditorComponent implements OnInit, AfterViewInit {
   // Handle variable for display dinamically the <form> and <preview> elements or the dynamicView container
-  protected isMobile: boolean = true;
+  isMobile: boolean = true;
+
+  // Handles the component startup animation
+  firstLoadAnimationDone: boolean = false;
 
   // Handler variable for the alternate form/preview function
-  protected prevIsVisible: boolean = false;
+  prevIsVisible: boolean = false;
 
   // Here the form and preview are rendered dinamically when the variable 'isMobile' is true
   @ViewChild('dynamicView', { read: ViewContainerRef, static: true })
-  protected dynamicView!: ViewContainerRef;
+  dynamicView!: ViewContainerRef;
 
   // FormComponent and PreviewComponent instances
-  protected formComponentRef: ComponentRef<FormComponent> | null = null;
-  protected previewComponentRef: ComponentRef<PreviewComponent> | null = null;
+  formComponentRef: ComponentRef<FormComponent> | null = null;
+  previewComponentRef: ComponentRef<PreviewComponent> | null = null;
 
   // Stores the selected card from the sidenav
-  protected selectedCard: string = "pinfo";
+  selectedCard: string = "pinfo";
 
   constructor(
     private breakPointObserver: BreakpointObserver,
@@ -64,7 +67,7 @@ export class CvEditorComponent implements OnInit, AfterViewInit {
   }
 
   // Determines the device the app is running on
-  private setupBreakPointObserver(): void {
+  setupBreakPointObserver(): void {
     this.breakPointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
       .subscribe(
         value => {

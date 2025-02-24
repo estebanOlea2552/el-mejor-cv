@@ -1,11 +1,36 @@
 /* Used in card:hover animation */
-@keyframes fadeIn {
+@keyframes fade-fall {
+    from {
+        transform: translateY(-15%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes fade-in {
     from {
         opacity: 0;
     }
     to {
         opacity: 1;
     }
+}
+.title-container {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.title-container.animate {
+    animation: fade-fall 1s ease-out forwards;
+}
+.templates-container {
+    opacity: 0;
+    transform: translateY(-10%);
+}
+.templates-container.animate {
+    animation: fade-fall 1s ease-out forwards;
+    animation-delay: 1.5s;
 }
 
 .general-container {
@@ -135,7 +160,7 @@
     justify-content: center;
     align-items: center;
     background-color: var(--black-overlay);
-    animation: fadeIn 0.1s ease-in-out;
+    animation: fade-in 0.1s ease-in-out;
     opacity: 1;
 }
 .mat-mdc-unelevated-button:not(:disabled) {

@@ -3,7 +3,60 @@
     font-family: var(--bricolage);
 }
 
-/* ANIMATIONS */
+/*************** ANIMATIONS ***************/
+@keyframes slide-to-left {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slide-to-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes show-cards {
+    from {
+        scale: 50%;
+        opacity: 0;
+    }
+    to {
+        scale: 100%;
+        opacity: 1;
+    }
+}
+.slide-to-left-title, .slide-to-left-paragraph, .slide-to-left-button {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.slide-to-left-title.animate {
+    animation: slide-to-left 1s ease-out forwards;
+}
+.slide-to-left-paragraph.animate {
+    animation: slide-to-left 1s ease-out forwards;
+    animation-delay: 2.5s;
+}
+.slide-to-left-button.animate {
+    animation: slide-to-left 1s ease-out forwards;
+    animation-delay: 3.5s;
+}
+.side-image_content {
+    transform: translateX(100%);
+    opacity: 0;
+}
+.side-image_content.animate {
+    animation: slide-to-right 1s ease-out forwards;
+    animation-delay: 5s;
+}
 .in {
     transform: translateX(0);
     opacity: 1;
@@ -13,11 +66,12 @@
     opacity: 0;
 }
 
-/* GENERAL CLASSES */
+/*************** GENERAL CLASSES ***************/
 .general-container {
     width: 100%;
     height: auto;
     box-sizing: border-box;
+    padding-bottom: 1rem;
 }
 .main {
     width: 100%;
@@ -32,6 +86,7 @@
     grid-template-columns: repeat(12, 1fr);
     justify-items: center;
     align-items: center;
+    overflow-x: hidden;
 }
 .welcome {
     width: 100%;
@@ -60,13 +115,11 @@
     --a: -45deg;
     --t: .23em;
     --_s: calc(var(--t) * cos(var(--a)));
-  
     background:
     linear-gradient(var(--a),
     #0000 var(--_s),
     currentColor 0 calc(100% - var(--_s)),
     #0000 0) bottom/var(--i, 90%) var(--t) no-repeat;
-    
     padding: 0 .25em calc(var(--t) + .1em);
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
@@ -126,6 +179,12 @@
     transition: 1s ease-in-out;
 }
 .mat-card {
+    view-timeline: --card;
+    view-timeline-axis: block;
+    animation-timeline: --card;
+    animation-name: show-cards;
+    animation-range: entry 0% cover 50%;
+    animation-fill-mode:  both;
     box-shadow: 
     0px 1px 3px rgba(0, 0, 0, 0.2), 
     0px 1px 2px rgba(0, 0, 0, 0.12);
@@ -286,7 +345,7 @@
 .welcome-mobile .message_best-cv {
     font-size: 2.6rem;
     position: absolute;
-    left: 5%;
+    left: calc(-5% + 2vw);
 }
 .welcome-desktop .message_paragraph {
     font-size: 1.2rem;

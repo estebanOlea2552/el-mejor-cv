@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +19,7 @@ import { selectTemplate } from 'src/app/shared/state/actions/selected-template.a
   standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink, MatIconModule]
 })
-export class TemplateSelectorComponent implements OnInit {
+export class TemplateSelectorComponent implements OnInit, AfterViewInit {
   templatesList: Template[] = [];
   selectedTemplate: SelectedTemplateState = {
     id: "",
@@ -27,10 +27,11 @@ export class TemplateSelectorComponent implements OnInit {
     theme: "",
     hasOverflow: false
   };
-  isMobile: boolean = true;
   selectedTemplateIndex: number | null = null;
   miniatures: Record<number, string> = {};
   currentIndexes: Record<number, number> = {};
+  firstLoadAnimationDone: boolean = false;
+  isMobile: boolean = true;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -54,6 +55,10 @@ export class TemplateSelectorComponent implements OnInit {
       this.miniatures[index] = template.miniaturesReg?.[0] || "";
       this.currentIndexes[index] = 0;
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.firstLoadAnimationDone = true;
   }
   
   selectTemplate(index: number): void {

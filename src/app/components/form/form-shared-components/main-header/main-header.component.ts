@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   template: `
     <header
     class="header"
-    [ngClass]="{'header-desktop': !isMobile}">
+    [ngClass]="{'header-desktop': !isMobile, 'animate': firstLoadAnimationDone}">
         <div
         class="logo-container"
         [ngClass]="{'logo-container-mobile': isMobile, 'logo-container-desktop': !isMobile}"
@@ -35,6 +35,16 @@ import { RouterLink } from '@angular/router';
     </header>
   `,
   styles: [`
+      @keyframes slide-to-left {
+        from {
+            transform: translateY(-10vh);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+      }
       .header {
         width: 90vw;
         height: 6vh;
@@ -47,12 +57,17 @@ import { RouterLink } from '@angular/router';
         background-color: var(--white);
         padding-left: 5%;
         padding-right: 5%;
-        z-index: 2;
+        z-index: 3;
         border-radius: 1rem;
         box-shadow: 
         0px 1px 3px rgba(0, 0, 0, 0.2), 
         0px 1px 2px rgba(0, 0, 0, 0.12);
+        /* transform: translateY(-10vh);
+        opacity: 0; */
       }
+      /* .header.animate {
+        animation: slide-to-left 1s ease-out forwards;
+      } */
       .header-desktop {
         width: 80vw;
         height: 9vh;
@@ -113,8 +128,9 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink, CommonModule]
 })
-export class MainHeaderComponent implements OnInit {
+export class MainHeaderComponent implements OnInit, AfterViewInit{
   @Input() componentTitle: string = '';
+  firstLoadAnimationDone: boolean = false;
   isMobile!: boolean;
 
   constructor(private breakpointObserver: BreakpointObserver) { }
@@ -125,5 +141,8 @@ export class MainHeaderComponent implements OnInit {
         this.isMobile = result.matches;
       });
   }
-
+   
+  ngAfterViewInit(): void {
+    this.firstLoadAnimationDone = true;
+  }
 }

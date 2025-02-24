@@ -6,22 +6,32 @@
             [ngClass]="{'welcome-mobile': isMobile, 'welcome-desktop': !isMobile}"
             class="welcome">
                 <div class="welcome-message">
-                    <h1 class="message_first-line">
+                    <h1
+                    class="message_first-line slide-to-left-title"
+                    [ngClass]="{'animate': firstLoadAnimationDone}">
                         Aplica
                     </h1>
-                    <h1 class="message_second-line">
+                    <h1
+                    class="message_second-line slide-to-left-title"
+                    [ngClass]="{'animate': firstLoadAnimationDone}">
                         a tu <span class="message_job">empleo</span> soñado
                     </h1>
-                    <h1 class="message_third-line">
+                    <h1
+                    class="message_third-line slide-to-left-title"
+                    [ngClass]="{'animate': firstLoadAnimationDone}">
                         con <br *ngIf="isMobile">
                         <span class="message_best-cv">
                             El Mejor CV
                         </span>
                     </h1>
-                    <p class="message_paragraph">
+                    <p
+                    class="message_paragraph slide-to-left-paragraph"
+                    [ngClass]="{'animate': firstLoadAnimationDone}">
                         Crea tu currículum profesional de forma <span class="bold">gratuita</span>  con nuestra aplicación online. Personaliza tu CV con plantillas elegantes, edítalo fácilmente y descárgalo en PDF en segundos. ¡Destaca en el mundo laboral con un diseño eficaz y atractivo!
                     </p>
                     <button
+                    class="slide-to-left-button"
+                    [ngClass]="{'animate': firstLoadAnimationDone}"
                     mat-raised-button
                     [routerLink]="['/template-mananger']">Comenzar!</button>
                 </div>
@@ -31,7 +41,7 @@
             class="side-image_container">
                 <div class="shape1"></div>
                 <div class="shape2"></div>
-                <div *ngIf="!isMobile" class="side-image_content">
+                <div *ngIf="!isMobile" [ngClass]="{'animate': firstLoadAnimationDone}" class="side-image_content">
                     <img
                     [src]="welcomeImages[welcomeCurrentIndex]"
                     [class]="welcomeAnimationState"

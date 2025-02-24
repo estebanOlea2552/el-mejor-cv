@@ -1,16 +1,3 @@
-/* .color-blue {
-    background-color: var(--light-cobalt-blue);
-    color: var(--black);
-}
-.color-red {
-    background-color: var(--light-poppy-red);
-    color: var(--black);
-}
-.color-yellow {
-    background-color: var(--jasmine-yellow);
-    color: var(--black);
-} */
-
 .container {
     width: 100%;
     height: 100vh;
@@ -40,6 +27,7 @@
     color: var(--white);
 }
 h2 {
+    text-align: center;
     font-family: var(--bricolage);
     font-weight: 900;
     color: var(--white);
