@@ -99,7 +99,7 @@
             <div *ngIf="!isMobile" class="desktop-container">
                 <!-- The formComponent has an @Input variable that can store the selectedCard from the sidenav -->
                 <app-form [selectedCard]="selectedCard"></app-form>
-                <app-preview></app-preview>
+                <app-preview class="preview" [ngClass]="{'animate': firstLoadAnimationDone}"></app-preview>
             </div>
             <!-- In this case, the selectedCard value is sent during the construction of the formComponent -->
             <ng-container #dynamicView></ng-container>

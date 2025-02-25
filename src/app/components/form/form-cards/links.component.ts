@@ -5,7 +5,6 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from "@angular
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
-import { slideInOutAnimation } from "src/app/animations/slide-in-out";
 import { cvDataInit } from "src/app/model/cv-data-init";
 import { TextLineComponent } from "src/app/components/form/form-shared-components/text-line/text-line.component";
 import { FormService } from "src/app/shared/services/form.service";
@@ -95,7 +94,6 @@ import { FormService } from "src/app/shared/services/form.service";
         TextLineComponent,
         MatButtonModule
     ],
-    animations: [ slideInOutAnimation ]
 })
 export class LinksComponent {
     cvFormGroup!: FormGroup;

@@ -62,12 +62,7 @@ import { RouterLink } from '@angular/router';
         box-shadow: 
         0px 1px 3px rgba(0, 0, 0, 0.2), 
         0px 1px 2px rgba(0, 0, 0, 0.12);
-        /* transform: translateY(-10vh);
-        opacity: 0; */
       }
-      /* .header.animate {
-        animation: slide-to-left 1s ease-out forwards;
-      } */
       .header-desktop {
         width: 80vw;
         height: 9vh;
@@ -90,12 +85,14 @@ import { RouterLink } from '@angular/router';
         grid-column: 1 / 3;
       }
       .logo-container-desktop img {
-        height: 4rem;
-        width: 4rem;
-      }
-      .logo-container-mobile img {
         height: 3rem;
         width: 3rem;
+        margin-right: .5rem;
+      }
+      .logo-container-mobile img {
+        height: 2rem;
+        width: 2rem;
+        margin-right: .5rem;
       }
       .logo-container h1 {
         font-family: 'Bricolage', sans-serif;

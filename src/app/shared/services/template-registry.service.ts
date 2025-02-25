@@ -19,31 +19,31 @@ export class TemplateRegistryService {
   private templates: Template[] = [
     { 
       id: 't01', 
-      templateName: 'Clean', 
+      templateName: 'Limpio', 
       component: Template1Component, 
       miniaturesReg: ['t01_a.svg']
     },
     { 
       id: 't02', 
-      templateName: 'Minimalist', 
+      templateName: 'Minimalista', 
       component: Template2Component, 
       miniaturesReg: ['t02_a.svg', 't02_b.svg', 't02_c.svg', 't02_d.svg', 't02_e.svg']
     },
     { 
       id: 't03', 
-      templateName: 'Classic', 
+      templateName: 'Clásico', 
       component: Template3Component, 
       miniaturesReg: ['t03_a.svg', 't03_b.svg', 't03_c.svg', 't03_d.svg', 't03_e.svg']
     },
     { 
       id: 't04', 
-      templateName: 'Modern', 
+      templateName: 'Moderno', 
       component: Template4Component, 
       miniaturesReg: ['t04_a.svg', 't04_b.svg', 't04_c.svg', 't04_d.svg', 't04_e.svg']
     },
     { 
       id: 't05', 
-      templateName: 'Creative', 
+      templateName: 'Creativo', 
       component: Template5Component, 
       miniaturesReg: ['t05_a.svg', 't05_b.svg', 't05_c.svg', 't05_d.svg', 't05_e.svg']
     }

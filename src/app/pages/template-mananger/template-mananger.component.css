@@ -39,22 +39,18 @@
     background-color: var(--jasmine-yellow);
     z-index: 1;
 }
-
 header {
     color: var(--font-white);
     z-index: 2;
 }
-
 main {
     height: 100%;
     z-index: 2;
 }
-
 .button-container {
     display: flex;
     justify-content: center;
 }
-
 button {
     margin-top: 1rem;
 }

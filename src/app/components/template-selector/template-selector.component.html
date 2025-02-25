@@ -1,14 +1,13 @@
-<div class="general-container">
-  <div class="title-container" [ngClass]="{'title-mobile': isMobile, 'title-desktop': !isMobile, 'animate': firstLoadAnimationDone}">
+<div class="general-container" [ngClass]="{'animate': firstLoadAnimationDone}">
+  <div class="title-container" [ngClass]="{'title-mobile': isMobile, 'title-desktop': !isMobile}">
     <h2 class="title">Elige una plantilla para <span class="title-color">comenzar!</span></h2>
   </div>
   <div
   class="templates-container"
   [ngClass]="{
     'templates-container-mobile': isMobile,
-    'templates-container-desktop': !isMobile,
-    'animate': firstLoadAnimationDone
-  }">
+    'templates-container-desktop': !isMobile
+    }">
     <div
     *ngFor="let template of templatesList; let i = index"
     class="template-card">

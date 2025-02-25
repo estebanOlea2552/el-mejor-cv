@@ -6,7 +6,6 @@ import { distinctUntilChanged } from 'rxjs';
 // Internal App imports
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
-import { slideInOutAnimation } from 'src/app/animations/slide-in-out';
 import { PersonalInfoComponent } from './form-cards/personal-info.component';
 import { DescriptionComponent } from './form-cards/description.component';
 import { EducationComponent } from './form-cards/education.component';
@@ -29,7 +28,6 @@ import { FormService } from 'src/app/shared/services/form.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  animations: [slideInOutAnimation]
 })
 export class FormComponent implements OnInit, OnChanges {
   // Element where the Form Items are rendered

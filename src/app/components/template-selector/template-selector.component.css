@@ -17,21 +17,6 @@
         opacity: 1;
     }
 }
-.title-container {
-    opacity: 0;
-    transform: translateY(-100%);
-}
-.title-container.animate {
-    animation: fade-fall 1s ease-out forwards;
-}
-.templates-container {
-    opacity: 0;
-    transform: translateY(-10%);
-}
-.templates-container.animate {
-    animation: fade-fall 1s ease-out forwards;
-    animation-delay: 1.5s;
-}
 
 .general-container {
     box-sizing: border-box;
@@ -41,6 +26,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    transform: translateY(-15%);
+}
+.general-container.animate {
+    animation: fade-fall 1s ease-out forwards;
 }
 .title-desktop {
     border-radius: 5px;
