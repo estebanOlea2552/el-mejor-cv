@@ -6,7 +6,11 @@
         <div class="notifier-container">
             <form-notifier></form-notifier>
         </div>
-        <button class="preview-button" mat-flat-button (click)="alternateViews()">
+        <a href="/" *ngIf="!isMobile" class="logo-container">
+            <img src="../../../assets/images/logo.webp" alt="El Mejor CV - Logo">
+            <h1>El Mejor <span>CV</span></h1>
+        </a>
+        <button *ngIf="isMobile" class="preview-button" mat-flat-button (click)="alternateViews()">
             Preview
         </button>
     </mat-toolbar>

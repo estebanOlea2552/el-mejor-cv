@@ -17,11 +17,9 @@
 .toolbar-desktop, .toolbar-mobile {
     height: 3em;
     background-color: var(--white);
-    
     .toolbar-button {
         color: var(--cobalt-blue);
     }
-
     .preview-button {
         background-color: var(--cobalt-blue);
         color: var(--white);
@@ -33,8 +31,26 @@
     top: 0;
     left: 0;
     z-index: 2;
-    .preview-button {
-        visibility: hidden;
+}
+.logo-container {
+    text-decoration: none;
+    display: flex;
+    width: auto;
+    height: 2rem;
+    margin-right: .5rem;
+    img {
+        width: 2rem;
+        height: 100%;
+    }
+}
+h1 {
+    color: var(--black);
+    font-size: 1.1rem;
+    font-family: var(--bricolage);
+    font-weight: 900;
+    margin-left: .5rem;
+    span {
+        color: var(--jasmine-yellow);
     }
 }
 .toolbar-mobile {

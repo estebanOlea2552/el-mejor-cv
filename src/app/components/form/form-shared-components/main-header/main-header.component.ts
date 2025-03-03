@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
         class="logo-container"
         [ngClass]="{'logo-container-mobile': isMobile, 'logo-container-desktop': !isMobile}"
         routerLink="/">
-          <img src="../../../../../assets/images/logo.svg" alt="">
+          <img src="../../../../../assets/images/logo.webp" alt="">
           <h1>El Mejor <span>CV</span></h1>
         </div>
         <div class="coffee-container">

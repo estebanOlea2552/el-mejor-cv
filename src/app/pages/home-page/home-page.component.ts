@@ -23,15 +23,15 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class HomePageComponent implements OnInit, AfterViewInit {
   welcomeImages: string[] = [
-    '../../../assets/images/welcome_man1.svg',
-    '../../../assets/images/welcome_woman1.svg',
-    '../../../assets/images/welcome_woman2.svg',
+    '../../../assets/images/welcome_man1.webp',
+    '../../../assets/images/welcome_woman1.webp',
+    '../../../assets/images/welcome_woman2.webp',
   ];
   professionalsImages: string[] = [
-    '../../../assets/images/professionals_woman-headset.svg',
-    '../../../assets/images/professionals_man-construction.svg',
-    '../../../assets/images/professionals_man-suit.svg',
-    '../../../assets/images/professionals_woman-chemistry.svg',
+    '../../../assets/images/professionals_woman-headset.webp',
+    '../../../assets/images/professionals_man-construction.webp',
+    '../../../assets/images/professionals_man-suit.webp',
+    '../../../assets/images/professionals_woman-chemistry.webp',
   ];
   welcomeCurrentIndex: number = 0;
   professionalsCurrentIndex: number = 0;

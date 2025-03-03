@@ -53,10 +53,10 @@
         [ngClass]="{'mat-card-mobile': isMobile, 'mat-card-desktop': !isMobile}"
         class="professionals-container mat-card">
             <div *ngIf="!isMobile" class="professionals-image">
-                <img src="../../../assets/images/professionals_woman-headset.svg" alt="Empleada de llamadas telefónicas">
-                <img src="../../../assets/images/professionals_man-construction.svg" alt="Obrero de la construcción">
-                <img src="../../../assets/images/professionals_man-suit.svg" alt="Hombre de negocios">
-                <img src="../../../assets/images/professionals_woman-chemistry.svg" alt="Mujer científica">
+                <img src="../../../assets/images/professionals_woman-headset.webp" alt="Empleada de llamadas telefónicas">
+                <img src="../../../assets/images/professionals_man-construction.webp" alt="Obrero de la construcción">
+                <img src="../../../assets/images/professionals_man-suit.webp" alt="Hombre de negocios">
+                <img src="../../../assets/images/professionals_woman-chemistry.webp" alt="Mujer científica">
             </div>
             <div *ngIf="isMobile" class="professionals-image">
                 <img [src]="professionalsImages[professionalsCurrentIndex]" [class]="professionalsAnimationState" alt="Profesionales">
@@ -82,15 +82,15 @@
             </div>
             <div class="free-image">
                 <img
-                src="../../../assets/images/totally_free-1.svg"
+                src="../../../assets/images/totally_free-1.webp"
                 alt="Totalmente gratis">
                 <img
                 *ngIf="!isMobile"
-                src="../../../assets/images/totally_free-2.svg"
+                src="../../../assets/images/totally_free-2.webp"
                 alt="Totalmente gratis">
                 <img
                 *ngIf="!isMobile"
-                src="../../../assets/images/totally_free-3.svg"
+                src="../../../assets/images/totally_free-3.webp"
                 alt="Totalmente gratis">
             </div>
         </mat-card>
@@ -98,7 +98,7 @@
         [ngClass]="{'mat-card-mobile': isMobile, 'mat-card-desktop': !isMobile}"
         class="templates-container mat-card">
             <div class="templates-image">
-                <img src="../../../assets/images/templates_based.svg" alt="">
+                <img src="../../../assets/images/templates_based.webp" alt="">
             </div>
             <div class="templates-text">
                 <h3>

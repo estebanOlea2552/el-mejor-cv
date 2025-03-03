@@ -8,7 +8,6 @@ import { Template5Component } from 'src/app/components/templates/template5/templ
 import { Template } from 'src/app/model/template.model';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,31 +20,31 @@ export class TemplateRegistryService {
       id: 't01', 
       templateName: 'Limpio', 
       component: Template1Component, 
-      miniaturesReg: ['t01_a.svg']
+      miniaturesReg: ['t01_a.webp']
     },
     { 
       id: 't02', 
       templateName: 'Minimalista', 
       component: Template2Component, 
-      miniaturesReg: ['t02_a.svg', 't02_b.svg', 't02_c.svg', 't02_d.svg', 't02_e.svg']
+      miniaturesReg: ['t02_a.webp', 't02_b.webp', 't02_c.webp', 't02_d.webp', 't02_e.webp']
     },
     { 
       id: 't03', 
       templateName: 'Clásico', 
       component: Template3Component, 
-      miniaturesReg: ['t03_a.svg', 't03_b.svg', 't03_c.svg', 't03_d.svg', 't03_e.svg']
+      miniaturesReg: ['t03_a.webp', 't03_b.webp', 't03_c.webp', 't03_d.webp', 't03_e.webp']
     },
     { 
       id: 't04', 
       templateName: 'Moderno', 
       component: Template4Component, 
-      miniaturesReg: ['t04_a.svg', 't04_b.svg', 't04_c.svg', 't04_d.svg', 't04_e.svg']
+      miniaturesReg: ['t04_a.webp', 't04_b.webp', 't04_c.webp', 't04_d.webp', 't04_e.webp']
     },
     { 
       id: 't05', 
       templateName: 'Creativo', 
       component: Template5Component, 
-      miniaturesReg: ['t05_a.svg', 't05_b.svg', 't05_c.svg', 't05_d.svg', 't05_e.svg']
+      miniaturesReg: ['t05_a.webp', 't05_b.webp', 't05_c.webp', 't05_d.webp', 't05_e.webp']
     }
   ]
 
