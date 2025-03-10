@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MainHeaderComponent } from 'src/app/components/form/form-shared-components/main-header/main-header.component';
@@ -38,8 +38,9 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   welcomeAnimationState: string = 'in';
   professionalsAnimationState: string = 'in';
   firstLoadAnimationDone: boolean = false;
+  showScrollButton = false;
   isMobile!: boolean;
-  
+
   constructor(private breakpointObserver: BreakpointObserver){}
   
   ngOnInit(){
@@ -56,6 +57,11 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     }, 4000);
   }
 
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.showScrollButton = window.scrollY > 300; // Muestra cuando se baja 300px
+  }
+  
   startSlideAnimation(){
     setInterval(() => {
       this.welcomeAnimationState = 'out';
@@ -75,4 +81,13 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     this.professionalsCurrentIndex = (this.professionalsCurrentIndex + 1) % this.professionalsImages.length;
     this.professionalsAnimationState = 'in';
   }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  
+
+
+  
 }

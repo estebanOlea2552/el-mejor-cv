@@ -35,16 +35,6 @@ import { RouterLink } from '@angular/router';
     </header>
   `,
   styles: [`
-      @keyframes slide-to-left {
-        from {
-            transform: translateY(-10vh);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-      }
       .header {
         width: 90vw;
         height: 6vh;

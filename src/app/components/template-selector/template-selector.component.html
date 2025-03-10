@@ -1,8 +1,10 @@
 <div class="general-container" [ngClass]="{'animate': firstLoadAnimationDone}">
-  <div class="title-container" [ngClass]="{'title-mobile': isMobile, 'title-desktop': !isMobile}">
+  <div class="title-container" [ngClass]="{'title-container-mobile': isMobile, 'title-container-desktop': !isMobile}">
     <div class="title-content">
-      <h2 class="title">
-        Elige una plantilla para <span class="title-color">comenzar!</span>
+      <h2
+      [ngClass]="{'title-mobile': isMobile, 'title-desktop': !isMobile}"
+      class="title">
+        Elige una plantilla para <span>comenzar!</span>
       </h2>
     </div>
   </div>
@@ -15,7 +17,7 @@
     <div
     *ngFor="let template of templatesList; let i = index"
     class="template-card">
-      <mat-card class="card" >
+      <mat-card class="card">
         <mat-card-header class="card-header">
           <mat-card-title class="card-title">
             {{ template.templateName }}
@@ -25,7 +27,7 @@
         class="card-content" (click)="selectTemplate(i)">
           <img
           class="miniature"
-          [src]="'../../../assets/images/' + miniatures[i]" alt="">
+          [src]="'../../../assets/images/' + miniatures[i]" alt="Previsualización de plantilla">
           <div class="template-is-selected" *ngIf="i === selectedTemplateIndex">
             <button class="select-button" mat-flat-button routerLink="/editor">Usar esta plantilla</button>
           </div>

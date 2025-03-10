@@ -1,4 +1,6 @@
-<div class="general-container">
+<div 
+[ngClass]="{'general-container-mobile': isMobile, 'general-container-desktop': !isMobile}"
+class="general-container">
     <main-header>
         <h1>Administrador de Plantillas</h1>
     </main-header>
