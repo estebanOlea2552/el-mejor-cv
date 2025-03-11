@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "cv-maker-test-deploy"
-  }
+    "default": "cv-maker-test-deploy",
+    "production": "elmejorcv-6e7c4"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

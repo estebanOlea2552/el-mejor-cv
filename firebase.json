@@ -1,14 +1,6 @@
 {
   "hosting": {
     "public": "dist/cv-maker-online",
-    "headers": [
-      {
-        "source": "**/*.@(jpg|jpeg|png|webp|avif|svg)",
-        "headers": [
-          { "key": "Cache-Control", "value": "max-age=31536000, immutable" }
-        ]
-      }
-    ],
     "ignore": [
       "firebase.json",
       "**/.*",
