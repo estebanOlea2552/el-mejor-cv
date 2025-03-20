@@ -13,5 +13,5 @@ import { RouterOutlet } from '@angular/router';
   ]
 })
 export class AppComponent {
-  title = 'cv-maker-online';
+  title = 'el-mejor-cv';
 }

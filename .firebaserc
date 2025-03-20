@@ -1,7 +1,8 @@
 {
   "projects": {
-    "default": "cv-maker-test-deploy",
-    "production": "elmejorcv-6e7c4"
+    "default": "el-mejor-cv",
+    "production": "elmejorcv-6e7c4",
+    "el-mejor-cv": "el-mejor-cv"
   },
   "targets": {},
   "etags": {},
