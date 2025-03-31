@@ -6,29 +6,29 @@ import {
   AfterViewInit,
   OnDestroy,
   ViewChild,
-  Type
+  Type,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import Panzoom, { PanzoomObject } from '@panzoom/panzoom';
 import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/shared/state/app.state';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatIconModule } from '@angular/material/icon';
-import { ThemeSelectorComponent } from '../theme-selector/theme-selector.component';
+import { templateSelector } from 'src/app/shared/state/selectors/selected-template.selectors';
 import { TemplateRegistryService } from 'src/app/shared/services/template-registry.service';
 import { PreviewConnectorService } from 'src/app/shared/services/preview-connector.service';
 import { ExportService } from 'src/app/shared/services/export.service';
+import { ThemeSelectorComponent } from '../theme-selector/theme-selector.component';
+import { TemplateLangSelectorComponent } from '../template-lang-selector/template-lang-selector.component';
 import { ExportButtonComponent } from '../export-button/export-button.component';
-import { AppState } from 'src/app/shared/state/app.state';
-import { templateSelector } from 'src/app/shared/state/selectors/selected-template.selectors';
-import { selectTemplateTheme } from 'src/app/shared/state/actions/selected-template.action';
 
 @Component({
   selector: 'app-preview',
@@ -42,26 +42,40 @@ import { selectTemplateTheme } from 'src/app/shared/state/actions/selected-templ
     MatIconModule,
     MatButtonModule,
     ThemeSelectorComponent,
-    ExportButtonComponent
-  ]
+    TemplateLangSelectorComponent,
+    ExportButtonComponent,
+  ],
 })
 export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
-  // HTML Element where the preview is displayed
+  // HTML element used to render the cv-templates inside it
   @ViewChild('templateContainer', { read: ViewContainerRef, static: true })
-  private container!: ViewContainerRef;
-  // HTML Element containing PanZoom element
+  container!: ViewContainerRef;
+
+  // HTML element where to aplly Panzoom funcions
+  // Panzoom requires a parent-child structure to aplly controls
   @ViewChild('previewContainer', { static: false })
-  private previewContainer!: ElementRef;
-  // HTML Element controlled by PanZoom functions
+  previewContainer!: ElementRef;
+
+  // Child HTML element controlled by PanZoom functions
   @ViewChild('preview', { static: false })
-  private preview!: ElementRef;
+  preview!: ElementRef;
 
-  private cvDataSubscription: Subscription | undefined; //gets form data trought previewConnectorService
-  private templateSelectorSubscription: Subscription | undefined; // Subscription to the templateSelector of the Store
+  cvDataSubscription: Subscription | undefined; //gets form data from previewConnectorService
+  templateSelectorSubscription: Subscription | undefined; //gets the currente template theme from the Store
+  tempalteLangSubscription: Subscription | undefined; //gets the currente template language from the Store
 
-  protected cvDataPreview: cvData = cvDataInit; // Form data sent to each template for previewing
+  // Form data sent to each template for previewing.
+  // This variable receives its values from the previewConnectorService
+  cvDataPreview: cvData = cvDataInit;
 
-  protected panzoom!: PanzoomObject;
+  // Receives its value from the Store
+  // Determines the language of the selected template
+  templateLang!: string;
+
+  // Panzoom instance
+  panzoom!: PanzoomObject;
+
+  // Controls responsive functionalities
   isMobile!: boolean;
 
   constructor(
@@ -69,29 +83,30 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
     private templateService: TemplateRegistryService,
     private previewConnector: PreviewConnectorService,
     private store: Store<AppState>,
-    private exportCv: ExportService,
-  ) { }
-
+    private exportCv: ExportService
+  ) {}
 
   ngOnInit(): void {
-    this.cvDataSubscription = this.previewConnector.cvDataInput$.
-      subscribe((cvData) => {
+    this.cvDataSubscription = this.previewConnector.cvDataInput$.subscribe(
+      (cvData) => {
         this.updatePreview(cvData.controlName, cvData.value);
-      });
+      }
+    );
 
     // Detect mobile devices
-    this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
-      .subscribe(
-        result => this.isMobile = result.matches
-      );
+    this.breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.Tablet])
+      .subscribe((result) => (this.isMobile = result.matches));
 
     // Defines a default selected template
     this.updateSelectedTemplate('t00'); // Default template
 
     // Get selected Template from the Store
-    this.templateSelectorSubscription = this.store.select(templateSelector).subscribe((templateId: string) => {
-      this.updateSelectedTemplate(templateId);
-    })
+    this.templateSelectorSubscription = this.store
+      .select(templateSelector)
+      .subscribe((templateId: string) => {
+        this.updateSelectedTemplate(templateId);
+      });
   }
 
   ngAfterViewInit(): void {
@@ -106,33 +121,16 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.isMobile) {
       this.panzoom.setOptions({
-        startScale: 0.8
-      })
+        startScale: 0.8,
+      });
     }
 
     // Defines a center position to the panzoom element
     this.setPanInitPosition();
-
-    // Init Wheel Event listener
-    /* this.previewContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
-      event.preventDefault();
-      const zoomFactor = event.deltaY < 0 ? 1.05 : 0.01;
-      const currentScale = this.panzoom?.getScale();
-      let newScale = currentScale * zoomFactor;
-
-      if (newScale < this.panzoom?.getOptions().minScale!) {
-        newScale = this.panzoom?.getOptions().minScale!;
-      } else if (newScale > this.panzoom?.getOptions().maxScale!) {
-        newScale = this.panzoom?.getOptions().maxScale!;
-      }
-      this.panzoom.zoom(
-        newScale, { animate: true, focal: { x: 250, y: 250 } }
-      );
-    }); */
   }
 
   // Updates the cvDataPreview in real time
-  private updatePreview(controlName: string, value: any): void {
+  updatePreview(controlName: string, value: any): void {
     const keys: string[] = controlName.split('.');
     if (keys.length === 1) {
       (this.cvDataPreview as any)[keys[0]] = value;
@@ -142,10 +140,10 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // Updates the selected template in real time
-  private updateSelectedTemplate(templateId: string ): void {
-    if(templateId === 't00') {
+  updateSelectedTemplate(templateId: string): void {
+    if (templateId === 't00') {
       const defaultScreen = this.templateService.getDefaultScreen();
-      if(defaultScreen) {
+      if (defaultScreen) {
         this.container.clear();
         this.container.createComponent(defaultScreen.component as Type<any>);
       }
@@ -153,49 +151,45 @@ export class PreviewComponent implements OnInit, AfterViewInit, OnDestroy {
       const template = this.templateService.getTemplateById(templateId);
       if (template) {
         this.container.clear();
-        const componentRef = this.container.createComponent(template.component as Type<any>);
+        const componentRef = this.container.createComponent(
+          template.component as Type<any>
+        );
+        // Sends the cv data to the child component, which receives it through an @Input
         (componentRef.instance as any).cvPreview = this.cvDataPreview;
       }
     }
   }
 
-  // NGRX Template theme selector
-  protected selectTheme(theme: string): void {
-    this.store.dispatch(
-      selectTemplateTheme({ theme: theme })
-    )
-  }
-
   // Panzoom methods
-  private setPanInitPosition() {
+  setPanInitPosition() {
     const previewWidth = this.previewContainer.nativeElement.clientWidth;
     const previewHeight = this.previewContainer.nativeElement.clientHeight;
 
     if (this.isMobile) {
       this.panzoom.setOptions({
         startX: previewWidth / 60,
-        startY: previewHeight / 6
-      })
+        startY: previewHeight / 6,
+      });
     } else {
       this.panzoom.setOptions({
         startX: previewWidth / 5,
-        startY: previewHeight / 7
-      })
+        startY: previewHeight / 7,
+      });
     }
   }
 
-  protected zoomIn(): void {
-    this.panzoom?.zoomIn()
+  zoomIn(): void {
+    this.panzoom?.zoomIn();
   }
-  protected zoomOut(): void {
-    this.panzoom?.zoomOut()
+  zoomOut(): void {
+    this.panzoom?.zoomOut();
   }
-  protected reset(): void {
-    this.panzoom?.reset()
+  reset(): void {
+    this.panzoom?.reset();
   }
 
   // Export Resume
-  protected export(): void {
+  export(): void {
     this.exportCv.generatePdf();
   }
 

@@ -12,6 +12,8 @@ import { ProfilePictureService } from 'src/app/shared/services/profile-picture.s
 import { AppState } from 'src/app/shared/state/app.state';
 import { themeSelector } from 'src/app/shared/state/selectors/selected-template.selectors';
 import { notifyOverflow } from 'src/app/shared/state/actions/selected-template.action';
+import { templateLangSelector } from 'src/app/shared/state/selectors/template-lang.selector';
+import { SPANISH_TEMPLATE, ENGLISH_TEMPLATE } from 'src/app/model/template-lang';
 
 @Component({
   selector: 'app-template3',
@@ -29,6 +31,8 @@ export class Template3Component implements OnInit, OnDestroy {
   overflowDetected: boolean = false;
   pictureUrl: string | null = null;
   pictureSubscription!: Subscription;
+  templateLangSubscription!: Subscription;
+  templateLang!: any;
   templateThemeSubscription!: Subscription;
   themes: Record<string, string> = {
     'theme01': template3_theme01,
@@ -56,6 +60,20 @@ export class Template3Component implements OnInit, OnDestroy {
       console.log('Theme selected: ', theme);
       this.changeTheme(theme);
     })
+
+    this.templateLangSubscription = this.store
+      .select(templateLangSelector)
+      .subscribe((lang: string) => {
+        if (lang === 'spanish') {
+          this.templateLang = SPANISH_TEMPLATE;
+        } else if (lang === 'english') {
+          this.templateLang = ENGLISH_TEMPLATE;
+        } else {
+          console.error(
+            'TemplateLanguageSelector Error: Invalid Language Selection'
+          );
+        }
+      });
 
     this.resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {

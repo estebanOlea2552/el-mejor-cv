@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/cv-maker-online",
+    "public": "dist/el-mejor-cv",
     "ignore": [
       "firebase.json",
       "**/.*",

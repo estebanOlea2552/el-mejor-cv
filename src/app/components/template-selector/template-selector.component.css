@@ -89,7 +89,7 @@
     font-size: 1.4rem;
 }
 .templates-container-desktop, .templates-container-mobile {
-    background-color: var(--black-overlay);
+    background-color: #dfdfdf;
     box-sizing: border-box;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
