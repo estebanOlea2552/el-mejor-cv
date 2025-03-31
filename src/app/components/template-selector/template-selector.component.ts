@@ -6,7 +6,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { Template } from 'src/app/model/template.model';
-import { SelectedTemplateState } from 'src/app/model/state-model/selected-template-state';
+import { SelectedTemplateState } from "src/app/shared/state/app.state"
 import { MatIconModule } from '@angular/material/icon';
 import { TemplateRegistryService } from 'src/app/shared/services/template-registry.service';
 import { AppState } from 'src/app/shared/state/app.state';

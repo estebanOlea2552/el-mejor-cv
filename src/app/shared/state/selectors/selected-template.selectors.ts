@@ -1,7 +1,7 @@
 import { createSelector } from "@ngrx/store";
-import { SelectedTemplateState } from "src/app/model/state-model/selected-template-state";
+import { SelectedTemplateState } from "src/app/shared/state/app.state"
 
-//TODO: Arreglar el tipo del parámetro "state". Tiene que ser de tipo AppState
+//TODO: Fix the type of the parameter "state". It must be "AppState"
 export const templateDataFromStore = (state: any) => state.selectedTemplate
 
 export const templateSelector = createSelector(

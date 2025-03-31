@@ -1,23 +1,37 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { cvData } from 'src/app/model/cv-data.model';
 import { cvDataInit } from 'src/app/model/cv-data-init';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import {
-  template2_theme01, template2_theme02, template2_theme03, template2_theme04, template2_theme05, template2_theme06
+  template2_theme01,
+  template2_theme02,
+  template2_theme03,
+  template2_theme04,
+  template2_theme05,
+  template2_theme06,
 } from './template2-themes';
 import { ExportService } from 'src/app/shared/services/export.service';
 import { themeSelector } from 'src/app/shared/state/selectors/selected-template.selectors';
 import { notifyOverflow } from 'src/app/shared/state/actions/selected-template.action';
 import { AppState } from 'src/app/shared/state/app.state';
+import { templateLangSelector } from 'src/app/shared/state/selectors/template-lang.selector';
+import { SPANISH_TEMPLATE, ENGLISH_TEMPLATE } from 'src/app/model/template-lang';
 
 @Component({
   selector: 'app-template2',
   templateUrl: './template2.component.html',
   styleUrls: ['./template2.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class Template2Component implements OnInit, OnDestroy {
   @ViewChild('cvContainer', { static: true }) cvContainer!: ElementRef;
@@ -26,50 +40,79 @@ export class Template2Component implements OnInit, OnDestroy {
   @Input() cvPreview: cvData = cvDataInit;
   resizeObserver!: ResizeObserver;
   overflowDetected: boolean = false;
+  templateLangSubscription!: Subscription;
+  templateLang!: any;
   templateThemeSubscription!: Subscription;
   themes: Record<string, string> = {
-    'theme01': template2_theme01,
-    'theme02': template2_theme02,
-    'theme03': template2_theme03,
-    'theme04': template2_theme04,
-    'theme05': template2_theme05,
-    'theme06': template2_theme06,
-  }
+    theme01: template2_theme01,
+    theme02: template2_theme02,
+    theme03: template2_theme03,
+    theme04: template2_theme04,
+    theme05: template2_theme05,
+    theme06: template2_theme06,
+  };
   style: HTMLStyleElement = document.createElement('style');
 
-  constructor(private exportCv: ExportService, private store: Store<AppState>) { }
+  constructor(
+    private exportCv: ExportService,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
     this.exportCv.setCvToExport(this.cvContainer);
-    this.resizeObserver = new ResizeObserver(entries => {
+    this.resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         this.alertOverflow(entry);
       }
-    })
+    });
 
-    this.templateThemeSubscription = this.store.select(themeSelector).subscribe(theme => {
-      console.log('Theme selected: ', theme);
-      this.changeTheme(theme);
-    })
-    
-    this.resizeObserver.observe(this.leftContainer.nativeElement as HTMLElement);
-    this.resizeObserver.observe(this.rightContainer.nativeElement as HTMLElement);
+    this.templateThemeSubscription = this.store
+      .select(themeSelector)
+      .subscribe((theme) => {
+        console.log('Theme selected: ', theme);
+        this.changeTheme(theme);
+      });
+
+    this.templateLangSubscription = this.store
+      .select(templateLangSelector)
+      .subscribe((lang: string) => {
+        if (lang === 'spanish') {
+          this.templateLang = SPANISH_TEMPLATE;
+        } else if (lang === 'english') {
+          this.templateLang = ENGLISH_TEMPLATE;
+        } else {
+          console.error(
+            'TemplateLanguageSelector Error: Invalid Language Selection'
+          );
+        }
+      });
+
+    this.resizeObserver.observe(
+      this.leftContainer.nativeElement as HTMLElement
+    );
+    this.resizeObserver.observe(
+      this.rightContainer.nativeElement as HTMLElement
+    );
   }
 
   hasValues(object: any, keys: string[]): boolean {
-    if (!object) return false; /* If the field does not exist within cvPreview, returns false */
-    return keys.some(key => !!String(object[key] ?? '').trim());
+    if (!object)
+      return false; /* If the field does not exist within cvPreview, returns false */
+    return keys.some((key) => !!String(object[key] ?? '').trim());
     /* .some() checks if at least one element meets the condition, the anonymous function returns false if object[key] does not contain any value */
   }
 
   alertOverflow(entry: ResizeObserverEntry): void {
     if (entry.contentRect.height >= 562) {
       this.overflowDetected = true;
-      this.store.dispatch(notifyOverflow({ hasOverflow: this.overflowDetected }));
-
+      this.store.dispatch(
+        notifyOverflow({ hasOverflow: this.overflowDetected })
+      );
     } else if (entry.contentRect.height < 562) {
       this.overflowDetected = false;
-      this.store.dispatch(notifyOverflow({ hasOverflow: this.overflowDetected }));
+      this.store.dispatch(
+        notifyOverflow({ hasOverflow: this.overflowDetected })
+      );
     }
   }
 

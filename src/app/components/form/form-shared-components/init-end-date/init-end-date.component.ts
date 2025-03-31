@@ -10,14 +10,25 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/shared/state/app.state';
+import { templateLangSelector } from 'src/app/shared/state/selectors/template-lang.selector';
+import {
+  ENGLISH_TEMPLATE,
+  SPANISH_TEMPLATE,
+} from 'src/app/model/template-lang';
 
 @Component({
   selector: 'init-end-date',
   template: `
     <div
-    [formGroup]="groupName"
-    class="form-group-container"
-    [ngClass]="{'form-group-container-desktop': !isMobile, 'form-group-container-mobile': isMobile}">
+      [formGroup]="groupName"
+      class="form-group-container"
+      [ngClass]="{
+        'form-group-container-desktop': !isMobile,
+        'form-group-container-mobile': isMobile
+      }"
+    >
       <div class="ed-start-container">
         <div class="form-field-container">
           <span class="date-title">Fecha de inicio</span>
@@ -25,7 +36,8 @@ import { Subscription } from 'rxjs';
             <mat-label>Mes</mat-label>
             <mat-select
               [(value)]="initMonthSelected"
-              [formControlName]="initMControl">
+              [formControlName]="initMControl"
+            >
               <div *ngFor="let month of months">
                 <mat-option [value]="month">{{ month }}</mat-option>
               </div>
@@ -33,9 +45,10 @@ import { Subscription } from 'rxjs';
           </mat-form-field>
           <mat-form-field class="form-field">
             <mat-label>Año</mat-label>
-            <mat-select 
+            <mat-select
               [(value)]="initYearSelected"
-              [formControlName]="initYControl">
+              [formControlName]="initYControl"
+            >
               <div *ngFor="let year of years">
                 <mat-option [value]="year">{{ year }}</mat-option>
               </div>
@@ -43,7 +56,11 @@ import { Subscription } from 'rxjs';
           </mat-form-field>
         </div>
         <div>
-          <button class="clear-button" mat-icon-button (click)="clearInitDate()">
+          <button
+            class="clear-button"
+            mat-icon-button
+            (click)="clearInitDate()"
+          >
             <mat-icon>restart_alt</mat-icon>
           </button>
         </div>
@@ -53,10 +70,11 @@ import { Subscription } from 'rxjs';
           <span class="date-title">Fecha de finalización</span>
           <mat-form-field class="form-field">
             <mat-label>Mes</mat-label>
-            <mat-select 
+            <mat-select
               [disabled]="inCourse"
               [(value)]="endMonthSelected"
-              [formControlName]="endMControl">
+              [formControlName]="endMControl"
+            >
               <div *ngFor="let month of months">
                 <mat-option [value]="month">{{ month }}</mat-option>
               </div>
@@ -64,10 +82,11 @@ import { Subscription } from 'rxjs';
           </mat-form-field>
           <mat-form-field class="form-field">
             <mat-label>Año</mat-label>
-            <mat-select 
+            <mat-select
               [disabled]="inCourse"
               [(value)]="endYearSelected"
-              [formControlName]="endYControl">
+              [formControlName]="endYControl"
+            >
               <div *ngFor="let year of years">
                 <mat-option [value]="year">{{ year }}</mat-option>
               </div>
@@ -75,19 +94,21 @@ import { Subscription } from 'rxjs';
           </mat-form-field>
           <div class="checkbox-container">
             <mat-checkbox
-            class="checkbox"
-            color="primary"
-            [checked]="inCourse"
-            (click)="alternateInCourse()"
-            (change)="this.inCourse = !this.inCourse">
+              class="checkbox"
+              color="primary"
+              [checked]="inCourse"
+              (click)="alternateInCourse()"
+              (change)="this.inCourse = !this.inCourse"
+            >
               <span>Presente</span>
             </mat-checkbox>
             <input
-            class="display-none"
-            type="text"
-            name="inCourse"
-            id="inCourse"
-            formControlName="inCourse">
+              class="display-none"
+              type="text"
+              name="inCourse"
+              id="inCourse"
+              formControlName="inCourse"
+            />
           </div>
         </div>
         <div>
@@ -98,7 +119,8 @@ import { Subscription } from 'rxjs';
       </div>
     </div>
   `,
-  styles: [`
+  styles: [
+    `
       .display-none {
         display: none;
       }
@@ -120,22 +142,22 @@ import { Subscription } from 'rxjs';
         display: flex;
         align-items: center;
         justify-content: center;
-        border: .1rem solid var(--black-overlay);
+        border: 0.1rem solid var(--black-overlay);
         border-radius: 4px;
-        margin-right: .5rem
+        margin-right: 0.5rem;
       }
       .ed-end-container {
         box-sizing: border-box;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: .1rem solid var(--black-overlay);
+        border: 0.1rem solid var(--black-overlay);
         border-radius: 4px;
-        margin-left: .5rem;
+        margin-left: 0.5rem;
       }
       .date-title {
-        font-size: .9rem;
-        padding: .2rem; 
+        font-size: 0.9rem;
+        padding: 0.2rem;
         margin-top: 1rem;
         color: var(--black);
         font-weight: 500;
@@ -169,7 +191,8 @@ import { Subscription } from 'rxjs';
         color: var(--black);
         line-height: 3;
       }
-      `],
+    `,
+  ],
   standalone: true,
   imports: [
     CommonModule,
@@ -179,8 +202,8 @@ import { Subscription } from 'rxjs';
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatIconModule
-  ]
+    MatIconModule,
+  ],
 })
 export class InitEndDateComponent implements OnInit, OnDestroy {
   @Input() groupName!: FormGroup;
@@ -188,41 +211,46 @@ export class InitEndDateComponent implements OnInit, OnDestroy {
   @Input() initYControl!: string;
   @Input() endMControl!: string;
   @Input() endYControl!: string;
-  months: string[] = [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre'
-  ];
+  templateLangSubscription!: Subscription;
+  months: string[] = [];
   years: number[] = [];
-  initMonthSelected: string = "";
+  initMonthSelected: string = '';
   initYearSelected: number | undefined;
-  endMonthSelected: string = "";
+  endMonthSelected: string = '';
   endYearSelected: number | undefined;
   inCourse: boolean = false;
   isMobileSubscription!: Subscription;
   isMobile: boolean = true;
-  
-  constructor(private breakpointObserver: BreakpointObserver) { }
-  
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private store: Store<AppState>
+  ) {}
+
   ngOnInit() {
-    this.isMobileSubscription = this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
-    .subscribe(result => {
-      this.isMobile = result.matches;
-    });
+    this.isMobileSubscription = this.breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.Tablet])
+      .subscribe((result) => {
+        this.isMobile = result.matches;
+      });
     this.loadYears();
+    this.templateLangSubscription = this.store
+      .select(templateLangSelector)
+      .subscribe((lang: string) => {
+        if (lang === 'spanish') {
+          this.months = SPANISH_TEMPLATE.other.months;
+        } else if (lang === 'english') {
+          this.months = ENGLISH_TEMPLATE.other.months;
+        } else {
+          console.error(
+            'InitEndDateComponent Error: Invalid Language Selection'
+          );
+        }
+      });
   }
-  
+
   loadYears(): void {
-    const date: Date = new Date;
+    const date: Date = new Date();
     const actualYear: number = date.getFullYear();
     const limitYear: number = 1950;
     for (let i = actualYear; i >= limitYear; i--) {
@@ -238,7 +266,7 @@ export class InitEndDateComponent implements OnInit, OnDestroy {
     this.groupName.controls[this.endMControl].reset();
     this.groupName.controls[this.endYControl].reset();
   }
-  
+
   alternateInCourse(): void {
     if (this.inCourse) {
       this.groupName.controls['inCourse'].setValue('true');
