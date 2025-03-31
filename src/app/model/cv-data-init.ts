@@ -1,4 +1,4 @@
-/* export const cvDataInit = {
+export const cvDataInit = {
     personalInfo: {
         name: '',
         lastname: '',
@@ -73,9 +73,9 @@
             link: ''
         }
     ]
-} */
+}
 
-export const cvDataInit = {
+/* export const cvDataInit = {
     personalInfo: {
         name: 'fbsfdbdb',
         lastname: 'fbdfbzdfbd',
@@ -150,4 +150,4 @@ export const cvDataInit = {
             link: 'dhjfggdfhdfh'
         }
     ]
-}
+} */
