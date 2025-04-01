@@ -3,7 +3,7 @@ import { TemplateLangState } from '../app.state';
 import { selectTemplateLang } from '../actions/template-lang.action';
 
 const initialState: TemplateLangState = {
-  selectedLanguage: ''
+  selectedLanguage: 'spanish'
 };
 
 export const templateLangReducer = createReducer(

@@ -1,9 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { selectTemplateLang } from 'src/app/shared/state/actions/template-lang.action';
 import { AppState } from 'src/app/shared/state/app.state';
+import { templateLangSelector } from 'src/app/shared/state/selectors/template-lang.selector';
 
 @Component({
   selector: 'template-lang-selector',
@@ -77,7 +79,8 @@ import { AppState } from 'src/app/shared/state/app.state';
   standalone: true,
   imports: [CommonModule],
 })
-export class TemplateLangSelectorComponent implements OnInit {
+export class TemplateLangSelectorComponent implements OnInit, OnDestroy {
+  templateLangSubscription!: Subscription;
   activeLanguage!: string;
   isMobile!: boolean;
 
@@ -87,14 +90,22 @@ export class TemplateLangSelectorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.selectTemplateLang('spanish'); //Initializes the template with a default language
+    /* this.selectTemplateLang('spanish'); */ //Initializes the template with a default language
     this.breakpointObserver
       .observe([Breakpoints.Handset, Breakpoints.Tablet])
       .subscribe((result) => (this.isMobile = result.matches));
+    
+    this.templateLangSubscription = this.store.select(templateLangSelector).subscribe((lang: string) => {
+      this.activeLanguage = lang;
+    })
   }
 
   selectTemplateLang(lang: string): void {
     this.store.dispatch(selectTemplateLang({ lang: lang }));
     this.activeLanguage = lang;
+  }
+
+  ngOnDestroy(): void {
+    this.templateLangSubscription.unsubscribe();
   }
 }
